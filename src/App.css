@@ -80,10 +80,6 @@ select {
   padding: 5vmin;
 }
 
-#settingsButton {
-  background-image: url("./images/settings.svg");
-}
-
 #newGameButton {
   background-image: url("./images/new_game.svg");
 }
@@ -111,46 +107,9 @@ select {
   font-size: var(--default-font-size);
 }
 
-#settings {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  width: 100%;
-  align-items: stretch;
-}
-
-.setting {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  text-align: left;
-  margin: 0.5cm;
-}
-
-.setting-description {
-  padding: 0 5px 0 0;
-}
-
-.setting-info {
-  font-size: calc(var(--default-font-size) / 2);
-}
-
-#setting-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-}
-
-#setting-buttons > button {
-  margin: 10px;
-}
-
 #palette_icon {
   background-image: url("./images/palette.svg");
 }
-
-/* palette-specific */
 
 #palette {
   display: grid;

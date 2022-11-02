@@ -116,27 +116,7 @@ function getPlayableBoard({
   return [letters, colors, clueIndexes];
 }
 
-export function gameInit({minWordLength, useSaved = true}) {
-  const savedState = useSaved
-    ? JSON.parse(localStorage.getItem("paletteState"))
-    : undefined;
-
-  if (
-    savedState &&
-    savedState.minWordLength &&
-    savedState.maxWordLength &&
-    savedState.letters &&
-    savedState.colors &&
-    savedState.clueIndexes &&
-    savedState.clueMatches &&
-    savedState.playedIndexes &&
-    savedState.easyMode !== undefined &&
-    savedState.hintLevel >= 0 &&
-    !savedState.clueMatches.every((i) => i)
-  ) {
-    return savedState;
-  }
-
+export function gameInit({minWordLength}) {
   const easyMode = true;
   minWordLength = minWordLength || 4;
   const maxWordLength = 6;

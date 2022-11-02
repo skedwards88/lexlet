@@ -13,10 +13,6 @@ function Palette() {
     gameInit
   );
 
-  React.useEffect(() => {
-    window.localStorage.setItem("paletteState", JSON.stringify(gameState));
-  }, [gameState]);
-
   return (
     <div
       className="App"
@@ -59,17 +55,6 @@ function Palette() {
         dispatchGameState={dispatchGameState}
       ></Board>
       <div id="controls">
-        <button
-          id="newGameButton"
-          onClick={() => {
-            dispatchGameState({
-              action: "newGame",
-              gridSize: Math.sqrt(gameState.letters.length),
-              minWordLength: gameState.minWordLength,
-              easyMode: gameState.easyMode,
-            });
-          }}
-        ></button>
         <button
           id="helpButton"
           disabled={gameState.clueMatches.every((i) => i)}

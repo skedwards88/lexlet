@@ -80,10 +80,6 @@ select {
   padding: 5vmin;
 }
 
-#newGameButton {
-  background-image: url("./images/new_game.svg");
-}
-
 #helpButton {
   background-image: url("./images/help.svg");
 }

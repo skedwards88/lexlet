@@ -1,12 +1,9 @@
 import { isKnown } from "../common/isKnown";
-import { gameInit } from "./gameInit";
 import { checkIfNeighbors } from "../common/checkIfNeighbors";
 import { arraysMatchQ } from "../common/arraysMatchQ";
 
 export function gameReducer(currentGameState, payload) {
-  if (payload.action === "newGame") {
-    return gameInit({ ...payload, useSaved: false });
-  } else if (payload.action === "startWord") {
+  if (payload.action === "startWord") {
     return {
       ...currentGameState,
       wordInProgress: true,

@@ -1,0 +1,278 @@
+/* General */
+html {
+  height: 100%;
+}
+
+.App {
+  --default-font-size: min(1cm, min(4vmax, 7vmin));
+  --dark-color: rgb(5 5 95);
+  --light-color: rgb(239 239 239);
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  font-family: sans-serif;
+  font-size: var(--default-font-size);
+  display: grid;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: min(5vmax, 10vmin);
+}
+
+button {
+  all: unset;
+  text-decoration: none;
+  text-align: center;
+  appearance: none;
+  font-size: var(--default-font-size);
+  font-family: sans-serif;
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 2px;
+  color: black;
+  margin: 0;
+  padding: 1px 6px;
+}
+
+select {
+  font-size: var(--default-font-size);
+  font-family: sans-serif;
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 2px;
+  text-align: center;
+  color: black;
+  margin: 0;
+  padding: 1px 6px;
+  height: fit-content;
+}
+
+#controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: controls;
+  border-top: 2px solid var(--light-color);
+  width: 100%;
+  height: 7vh;
+}
+
+#controls > button {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+}
+
+#infoButton {
+  background-image: url("./images/info.svg");
+}
+
+#info {
+  white-space: pre-line;
+  padding: 5vmin;
+}
+
+#settingsButton {
+  background-image: url("./images/settings.svg");
+}
+
+#newGameButton {
+  background-image: url("./images/new_game.svg");
+}
+
+#helpButton {
+  background-image: url("./images/help.svg");
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: scroll;
+  justify-items: center;
+  background-color: var(--dark-color);
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--light-color);
+  font-family: sans-serif;
+  font-size: var(--default-font-size);
+}
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.setting {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  margin: 0.5cm;
+}
+
+.setting-description {
+  padding: 0 5px 0 0;
+}
+
+.setting-info {
+  font-size: calc(var(--default-font-size) / 2);
+}
+
+#setting-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#setting-buttons > button {
+  margin: 10px;
+}
+
+#palette_icon {
+  background-image: url("./images/palette.svg");
+}
+
+/* palette-specific */
+
+#palette {
+  display: grid;
+  grid-template-areas:
+    "clues"
+    "currentWord"
+    "board"
+    "controls";
+  grid-template-rows:
+    1fr
+    auto
+    auto
+    auto;
+}
+
+#palette #currentWord {
+  grid-area: currentWord;
+  min-height: min(5vmax, 16vmin);
+  overflow: hidden;
+}
+
+#palette #board {
+  grid-area: board;
+  display: grid;
+  background-color: var(--dark-color);
+  touch-action: none;
+  justify-content: center;
+  grid-template-columns: repeat(4, min(15vmax, 20vmin));
+  grid-template-rows: repeat(4, min(15vmax, 20vmin));
+}
+
+#palette .letter {
+  touch-action: none;
+  margin: 4vmin;
+  background-color: var(--dark-color);
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: min(5vmax, 8vmin);
+}
+
+#palette .red {
+  background-color: rgb(169 75 80);
+}
+
+#palette .yellow {
+  background-color: rgb(182 173 26);
+}
+
+#palette .green {
+  background-color: rgb(39 144 109);
+}
+
+#palette .letter.unavailable {
+  opacity: 0.5;
+}
+
+#palette #currentWord,
+.clue {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5vmax;
+}
+
+#palette #clues {
+  grid-area: clues;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#palette .clue.matched {
+  opacity: 0.5;
+}
+
+#palette .clueBox,
+.guessBox {
+  min-height: min(4vmax, 16vmin);
+  min-width: min(4vmax, 16vmin);
+  border: 1px solid var(--light-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: min(3vmax, 7vmin);
+}
+
+/* Landscape */
+
+@media (orientation: landscape) {
+
+  #palette {
+    grid-template-areas:
+      "clues currentWord controls"
+      "clues board controls";
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto auto;
+  }
+
+  #currentWord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #palette #currentWord {
+    max-width: min(45vmax, 80vmin);
+    align-self: center;
+    justify-self: center;
+  }
+
+  #controls {
+    flex-direction: column;
+    border: solid var(--light-color);
+    border-width: 0 0 0 2px;
+    align-items: center;
+    height: 100%;
+    width: 7vw;
+  }
+}

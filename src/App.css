@@ -5,7 +5,7 @@ html {
 
 .App {
   --default-font-size: min(1cm, min(4vmax, 7vmin));
-  --dark-color: rgb(5 5 95);
+  --dark-color: rgb(54, 58, 71);
   --light-color: rgb(239 239 239);
   background-color: var(--dark-color);
   color: var(--light-color);
@@ -195,15 +195,15 @@ select {
 }
 
 #palette .red {
-  background-color: rgb(169 75 80);
+  background-color: rgb(169 6 67);
 }
 
 #palette .yellow {
-  background-color: rgb(182 173 26);
+  background-color: rgb(183 152 3);
 }
 
 #palette .green {
-  background-color: rgb(39 144 109);
+  background-color: rgb(36 66 199);
 }
 
 #palette .letter.unavailable {

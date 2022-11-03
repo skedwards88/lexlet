@@ -37,7 +37,7 @@ function Palette() {
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {gameState.clueMatches.every((i) => i) ? <GameOver hints={gameState.hints}/> : (
+      {gameState.clueMatches.every((i) => i) ? <GameOver hints={gameState.hints} clueIndexes={gameState.clueIndexes} colors={gameState.colors}/> : (
         <CurrentWord
           letters={gameState.playedIndexes.map(
             (index) => gameState.letters[index]

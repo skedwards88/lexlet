@@ -13,3 +13,5 @@
 - could let people set colors
 - style the share button
 - make representative icon for sharing
+- icon
+- change url in handleShare

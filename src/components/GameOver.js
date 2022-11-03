@@ -19,13 +19,36 @@ function handleCopy(result) {
   }
 }
 
-export default function GameOver({ hints }) {
-  const hintsUsed = hints.reduce(
-    (accumulator, hint) => accumulator + hint.filter((i) => i).length,
-    0
-  );
+function resultToIcon({ hints, clueIndexes, colors }) {
+  const boxTranslation = {
+    red: "🟥",
+    green: "🟦",
+    yellow: "🟨",
+    hint: "⬜",
+  };
 
-  const result = `Solved with ${hintsUsed} hints.`; // todo change to icon representation
+  let result = ""
+  for (let clueIndex = 0; clueIndex < clueIndexes.length; clueIndex++) {
+    result += "\n\n"
+    for (
+      let boxIndex = 0;
+      boxIndex < clueIndexes[clueIndex].length;
+      boxIndex++
+    ) {
+      if (hints[clueIndex][boxIndex]) {
+        result += boxTranslation.hint;
+      } else {
+        const boardIndex = clueIndexes[clueIndex][boxIndex]
+        result += boxTranslation[colors[boardIndex]];
+      }
+    }
+  }
+  return result;
+}
+
+export default function GameOver({ hints, clueIndexes, colors }) {
+  const result = resultToIcon({ hints: hints, clueIndexes: clueIndexes, colors: colors });
+
   if (navigator.canShare) {
     return <button onClick={() => handleShare(result)}>Share</button>;
   } else {

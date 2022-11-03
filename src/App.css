@@ -80,10 +80,6 @@ select {
   padding: 5vmin;
 }
 
-#helpButton {
-  background-image: url("./images/help.svg");
-}
-
 .modal {
   position: fixed;
   left: 0;

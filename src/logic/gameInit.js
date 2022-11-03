@@ -116,9 +116,9 @@ function getPlayableBoard({
   return [letters, colors, clueIndexes];
 }
 
-export function gameInit({minWordLength}) {
+export function gameInit() {
   const easyMode = true;
-  minWordLength = minWordLength || 4;
+  const minWordLength = 6;
   const maxWordLength = 6;
   const gridSize = 4;
   const numClues = 5;

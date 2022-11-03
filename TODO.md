@@ -1,17 +1,27 @@
 # TODO
 
+## Before player 1
+
+- make min 6 letters
+
+## Before beta group
+
 - make stash of game; give unique game per day
-- save progress on current game. only clear when new day.
 - show time of next game
+- save progress on current game. only clear when new day.
 - google analytics
 - move info button up and make smaller. Change "i" to "?"
 - update info about how to play
-- custom domain
-- personal streak/hints used
 - also add info about wordnik
-- make min 6 letters
-- could let people set colors
 - style the share button
-- make representative icon for sharing
-- icon
 - change url in handleShare
+
+## Before wider sharing
+
+- custom domain
+- icon updates
+
+## Potential follow ups
+
+- personal streak/hints used
+- could let people set colors

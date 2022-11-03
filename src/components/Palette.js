@@ -27,13 +27,14 @@ function Palette() {
     >
       <Clues
         clueMatches={gameState.clueMatches}
-        hintLevel={gameState.hintLevel}
+        hints={gameState.hints}
         clueColors={gameState.clueIndexes.map((clue) =>
           clue.map((index) => gameState.colors[index])
         )}
         clueLetters={gameState.clueIndexes.map((clue) =>
           clue.map((index) => gameState.letters[index])
         )}
+        dispatchGameState={dispatchGameState}
       ></Clues>
       {gameState.clueMatches.every((i) => i) ? (
         <div id="currentWord">Complete!</div>
@@ -55,11 +56,6 @@ function Palette() {
         dispatchGameState={dispatchGameState}
       ></Board>
       <div id="controls">
-        <button
-          id="helpButton"
-          disabled={gameState.clueMatches.every((i) => i)}
-          onClick={() => dispatchGameState({ action: "hint" })}
-        ></button>
         <Info
           info={
             <div>

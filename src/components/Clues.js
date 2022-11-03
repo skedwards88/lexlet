@@ -1,10 +1,10 @@
 import React from "react";
 
-function Clue({ clueColors, clueMatch, clueLetters, hintLevel }) {
+function Clue({ clueColors, clueMatch, clueLetters, hint, dispatchGameState, clueIndex }) {
   const boxes = clueColors.map((color, index) => (
-    <div className={`clueBox ${color}`} key={`${index}`}>
-      {index < hintLevel || clueMatch ? clueLetters[index].toUpperCase() : ""}
-    </div>
+    <button className={`clueBox ${color}`} key={`${index}`} onClick={()=> dispatchGameState({action: "hint", clueIndex: clueIndex, boxIndex: index})}>
+      {hint[index] || clueMatch ? clueLetters[index].toUpperCase() : ""}
+    </button>
   ));
 
   return <div className={`clue ${clueMatch ? "matched" : ""}`}>{boxes}</div>;
@@ -14,7 +14,8 @@ export default function Clues({
   clueColors,
   clueMatches,
   clueLetters,
-  hintLevel,
+  hints,
+  dispatchGameState,
 }) {
   const clueDisplays = clueColors.map((clue, index) => (
     <Clue
@@ -22,7 +23,9 @@ export default function Clues({
       clueMatch={clueMatches[index]}
       clueLetters={clueLetters[index]}
       key={index}
-      hintLevel={hintLevel}
+      hint={hints[index]}
+      dispatchGameState={dispatchGameState}
+      clueIndex={index}
     ></Clue>
   ));
 

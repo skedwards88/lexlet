@@ -10,32 +10,27 @@ export function gameReducer(currentGameState, payload) {
       playedIndexes: [payload.letterIndex],
     };
   } else if (payload.action === "hint") {
-    let newHintLevel = currentGameState.hintLevel + 1;
-
-    // If the hit level exceeds the length of any of the clues, that clue is fully solved
-    // gameState.clueMatches.every((i) => i)
-    const currentClueMatches = currentGameState.clueMatches;
-    const currentClueIndexes = currentGameState.clueIndexes;
-    let newClueMatches = [];
-    for (let index = 0; index < currentClueIndexes.length; index++) {
-      // If the clue is already matched, skip
-      if (currentClueMatches[index]) {
-        newClueMatches.push(currentClueMatches[index]);
-        continue;
-      }
-
-      if (newHintLevel >= currentClueIndexes[index].length) {
-        newClueMatches.push(true);
-      } else {
-        newClueMatches.push(false);
-      }
+    // If we already gave a hint for that location, return early
+    if (currentGameState.hints[payload.clueIndex][payload.boxIndex]) {
+      return { ...currentGameState };
     }
+    let newHints = JSON.parse(JSON.stringify(currentGameState.hints));
+    newHints[payload.clueIndex][payload.boxIndex] = true;
 
-    return {
-      ...currentGameState,
-      hintLevel: newHintLevel,
-      clueMatches: newClueMatches,
-    };
+    // If all boxes in the clue have been hinted, that clue is fully solved
+    if (newHints[payload.clueIndex].every((i) => i)) {
+      let newClueMatches = JSON.parse(
+        JSON.stringify(currentGameState.clueMatches)
+      );
+      newClueMatches[payload.clueIndex] = true;
+      return {
+        ...currentGameState,
+        hints: newHints,
+        clueMatches: newClueMatches,
+      };
+    } else {
+      return { ...currentGameState, hints: newHints };
+    }
   } else if (payload.action === "addLetter") {
     if (!currentGameState.wordInProgress) {
       return currentGameState;

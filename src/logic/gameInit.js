@@ -131,6 +131,7 @@ export function gameInit({minWordLength}) {
     numClues: numClues,
   });
   const clueMatches = clueIndexes.map(() => false);
+  const hints = clueIndexes.map(clue => clue.map(() => false));
 
   return {
     minWordLength: minWordLength,
@@ -141,6 +142,6 @@ export function gameInit({minWordLength}) {
     clueMatches: clueMatches,
     playedIndexes: [],
     easyMode: easyMode,
-    hintLevel: 0,
+    hints: hints,
   };
 }

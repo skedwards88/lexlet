@@ -186,7 +186,15 @@ select {
   opacity: 0.5;
 }
 
-#palette .clueBox,
+/* clueBox is a button, so remove all button styling */
+.clueBox {
+  all: unset;
+  text-decoration: none;
+  text-align: center;
+  appearance: none;
+}
+
+.clueBox,
 .guessBox {
   min-height: min(4vmax, 16vmin);
   min-width: min(4vmax, 16vmin);

@@ -5,7 +5,7 @@ function handleShare(result) {
     .share({
       title: "Palette",
       text: result,
-      url: "https://skedwards88.github.io/word_games/", // todo change url
+      url: "https://skedwards88.github.io/palette/",
     })
     .then(() => console.log("Successful share"))
     .catch((error) => console.log("Error sharing", error));

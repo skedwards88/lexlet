@@ -37,7 +37,13 @@ function Palette() {
         dispatchGameState={dispatchGameState}
       ></Clues>
       {gameState.clueMatches.every((i) => i) ? (
-        <div id="currentWord">Complete!</div>
+        <div id="currentWord">{`Solved with ${gameState.hints.reduce(
+          (accumulator, hint) => accumulator + hint.filter((i) => i).length,
+          0
+        )} / ${gameState.hints.reduce(
+          (accumulator, hint) => accumulator + hint.length,
+          0
+        )} hints!`}</div>
       ) : (
         <CurrentWord
           letters={gameState.playedIndexes.map(

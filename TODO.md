@@ -7,7 +7,6 @@
 ## Before beta group
 
 - make stash of game; give unique game per day
-- make theme color match new background
 - show time of next game
 - save progress on current game. only clear when new day.
 - google analytics

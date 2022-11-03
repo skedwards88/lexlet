@@ -127,6 +127,14 @@ select {
   overflow: hidden;
 }
 
+#gameOver {
+  grid-area: currentWord;
+  min-height: min(5vmax, 16vmin);
+  white-space: pre;
+  font-size: min(3vmax, 7vmin);
+  text-align: center;
+}
+
 #palette #board {
   grid-area: board;
   display: grid;
@@ -172,6 +180,10 @@ select {
   justify-content: center;
   align-items: center;
   margin: 0.5vmax;
+}
+
+.clue {
+  border: 1px solid var(--light-color);
 }
 
 #palette #clues {

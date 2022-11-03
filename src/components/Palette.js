@@ -5,6 +5,7 @@ import { gameInit } from "../logic/gameInit";
 import { gameReducer } from "../logic/gameReducer";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
+import GameOver from "./GameOver";
 
 function Palette() {
   const [gameState, dispatchGameState] = React.useReducer(
@@ -36,15 +37,7 @@ function Palette() {
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {gameState.clueMatches.every((i) => i) ? (
-        <div id="currentWord">{`Solved with ${gameState.hints.reduce(
-          (accumulator, hint) => accumulator + hint.filter((i) => i).length,
-          0
-        )} / ${gameState.hints.reduce(
-          (accumulator, hint) => accumulator + hint.length,
-          0
-        )} hints!`}</div>
-      ) : (
+      {gameState.clueMatches.every((i) => i) ? <GameOver hints={gameState.hints}/> : (
         <CurrentWord
           letters={gameState.playedIndexes.map(
             (index) => gameState.letters[index]

@@ -103,10 +103,6 @@ select {
   font-size: var(--default-font-size);
 }
 
-#palette_icon {
-  background-image: url("./images/palette.svg");
-}
-
 #palette {
   display: grid;
   grid-template-areas:

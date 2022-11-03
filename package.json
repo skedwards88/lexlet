@@ -8,9 +8,6 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "npm version patch && npm run build",
-    "deploy": "gh-pages -d dist",
-    "prebuild": "python3 src/common/wordLists/compiled/compile.py",
     "lint": "npx eslint --ignore-path .gitignore .",
     "prettier": "npx prettier --ignore-path .gitignore --write ."
   },

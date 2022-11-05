@@ -202,7 +202,7 @@ select {
 }
 
 .clue {
-  border: 1px solid var(--light-color);
+  /* border: 1px solid var(--light-color); */
 }
 
 #palette #clues {
@@ -229,13 +229,20 @@ select {
 .guessBox {
   min-height: min(4vmax, 16vmin);
   min-width: min(4vmax, 16vmin);
-  border: 1px solid var(--light-color);
+  border-top: 2px solid var(--light-color);
+  border-left: 2px solid var(--light-color);
+  border-bottom: 2px solid var(--light-color);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   font-size: min(3vmax, 7vmin);
 }
+
+.clueBox:last-child,
+.guessBox:last-child{
+  border-right: 2px solid var(--light-color);
+} 
 
 /* Landscape */
 

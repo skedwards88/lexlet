@@ -18,11 +18,12 @@
 - style the share button
 - change url in handleShare
 - 
-- hook up custom domain + redirect from misspelling
+- hook up custom domain + redirect from misspelling. or put simple game on mispelling.
 
 - cut out unneeded wordlist files
 
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
+- autopopulate the open an issue link with the version number
 
 ## Before wider sharing
 

@@ -37,7 +37,6 @@ export default function GameOver({ hints, clueIndexes, colors }) {
 
   return (
     <div id="gameOver">
-      <div>Next game at 03:30</div>
       <Share text={result}></Share>
     </div>
   );

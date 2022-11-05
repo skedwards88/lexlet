@@ -15,6 +15,8 @@ function Palette() {
     gameInit
   );
 
+  const isGameOver = gameState.clueMatches.every((i) => i);
+
   return (
     <div
       className="App"
@@ -28,6 +30,7 @@ function Palette() {
       }}
     >
       <div id="controls">
+        <div id="nextGame">{isGameOver ? "Next game at 03:00" : ""}</div>
         <Info
           id="rules"
           info={
@@ -76,7 +79,7 @@ function Palette() {
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {gameState.clueMatches.every((i) => i) ? (
+      {isGameOver ? (
         <GameOver
           hints={gameState.hints}
           clueIndexes={gameState.clueIndexes}

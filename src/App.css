@@ -49,14 +49,17 @@ select {
 }
 
 #controls {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  display: grid;
+  grid-template-areas:
+    "nextGame rules heart";
+  grid-template-columns:
+    1fr
+    auto
+    auto;
   grid-area: controls;
   border-bottom: 1px solid var(--light-color);
   width: 100%;
   height: 5vh;
-  font-size: calc(var(--default-font-size) * 0.5);
   white-space: pre;
 }
 
@@ -65,18 +68,33 @@ select {
   background-repeat: no-repeat;
   background-size: contain;
   border: 0;
-  width: calc(var(--default-font-size) * 0.75);
-  height: calc(var(--default-font-size) * 0.75);
+  width: var(--default-font-size);
+  height: var(--default-font-size);
   background-color: transparent;
-  margin: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  margin-right: 1vmax;
+  padding: 0;
+}
+
+#nextGame {
+  margin-left: 1vmax;
+  grid-area: nextGame;
+  font-size: calc(var(--default-font-size) * 0.75);
+  display: flex;
+  align-items: center;
 }
 
 #rules {
   background-image: url("./images/info.svg");
+  grid-area: rules;
 }
 
 #heart {
   background-image: url("./images/heart.svg");
+  grid-area: heart;
 }
 
 #info {
@@ -129,10 +147,11 @@ select {
 
 #gameOver {
   grid-area: currentWord;
-  min-height: min(5vmax, 16vmin);
-  white-space: pre;
   font-size: min(3vmax, 7vmin);
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
 }
 
 #palette #board {
@@ -218,11 +237,6 @@ select {
   font-size: min(3vmax, 7vmin);
 }
 
-#gameOver {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
 /* Landscape */
 
 @media (orientation: landscape) {
@@ -247,12 +261,33 @@ select {
   }
 
   #controls {
-    flex-direction: column;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-areas:
+      "rules"
+      "heart"
+      "nextGame";
+    grid-template-rows:
+      auto
+      auto
+      1fr;
+    height: 100%;
+    width: 6vw;
     border: solid var(--light-color);
     border-width: 0 0 0 1px;
-    align-items: center;
-    height: 100%;
-    width: 7vw;
+  }
+
+  #controls button {
+    width: auto;
+    margin-right: 0;
+    margin: 2vmax 0;
+  }
+
+  #nextGame {
+    margin-bottom: 1vmax;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: right;
+    justify-content: flex-end;
+    display: none;
   }
 }

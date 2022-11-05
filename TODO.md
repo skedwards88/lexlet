@@ -22,6 +22,8 @@
 
 - cut out unneeded wordlist files
 
+- limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
+
 ## Before wider sharing
 
 - custom domain

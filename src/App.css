@@ -4,7 +4,7 @@ html {
 
 .App {
   --default-font-size: min(1cm, min(4vmax, 7vmin));
-  --dark-color: rgb(54, 58, 71);
+  --dark-color: rgb(55 54 71);
   --light-color: rgb(239 239 239);
   background-color: var(--dark-color);
   color: var(--light-color);

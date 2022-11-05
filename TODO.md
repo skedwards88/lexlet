@@ -19,6 +19,8 @@
 
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
 - autopopulate the open an issue link with the version number
+- groins and corona move to uncommon word list
+- can decrease webpack large file exceptions
 
 ## Before wider sharing
 

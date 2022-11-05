@@ -1,14 +1,12 @@
 import React from "react";
-import Info from "../common/Info";
 import Board from "./Board";
 import { gameInit } from "../logic/gameInit";
 import { gameReducer } from "../logic/gameReducer";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
-import Share from "./Share";
 
-function Palette() {
+export default function Palette({ setDisplay }) {
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
     {},
@@ -31,42 +29,8 @@ function Palette() {
     >
       <div id="controls">
         <div id="nextGame">{isGameOver ? "Next game at 03:00" : ""}</div>
-        <Info
-          id="rules"
-          info={
-            <div>
-              {<h1>Palette</h1>}
-              {`Build words that match the color patterns by swiping to connect adjacent letters.\n\nClick on a clue to get a hint.`}
-            </div>
-          }
-        ></Info>
-        <Info
-          id="heart"
-          info={
-            <div>
-              {"Like this game? Share it with your friends.\n\n"}
-              {<Share text={"Check out this word game!"}></Share>}
-              {`\n\n`}
-              {<hr></hr>}
-              {`\n`}
-              {"Feedback? "}
-              <a href="https://github.com/skedwards88/palette/issues/new">
-                Open an issue
-              </a>
-              {" on GitHub."}
-              {`\n\n`}
-              {<hr></hr>}
-              {`\n`}
-              {`Thanks to `}
-              <a href="https://github.com/wordnik/wordlist">Wordnik</a>
-              {` for their open source word list and `}
-              <a href="https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#English">
-                Wiktionary
-              </a>
-              {` and data therein for word frequency data.`}
-            </div>
-          }
-        ></Info>
+        <button id="rules" onClick={() => setDisplay("rules")}></button>
+        <button id="heart" onClick={() => setDisplay("heart")}></button>
       </div>
       <Clues
         clueMatches={gameState.clueMatches}
@@ -105,5 +69,3 @@ function Palette() {
     </div>
   );
 }
-
-export default Palette;

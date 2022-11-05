@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 
-import Palette from "./components/Palette";
+import App from "./components/App";
 import "./App.css";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
@@ -24,4 +24,4 @@ if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<Palette />);
+root.render(<App />);

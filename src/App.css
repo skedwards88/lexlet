@@ -35,19 +35,6 @@ button {
   padding: 1px 6px;
 }
 
-select {
-  font-size: var(--default-font-size);
-  font-family: sans-serif;
-  background-color: var(--light-color);
-  border: 1px solid var(--light-color);
-  border-radius: 2px;
-  text-align: center;
-  color: black;
-  margin: 0;
-  padding: 1px 6px;
-  height: fit-content;
-}
-
 #controls {
   display: grid;
   grid-template-areas:
@@ -96,17 +83,8 @@ select {
   grid-area: heart;
 }
 
-#info {
+.info {
   white-space: pre-line;
-  padding: 5vmin;
-}
-
-.modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -120,8 +98,13 @@ select {
   font-size: calc(var(--default-font-size) * 0.75);
 }
 
-.modal a {
+.info a {
   color: rgb(0, 162, 255);
+}
+
+.info button {
+  height: fit-content;
+  width: fit-content;
 }
 
 #palette {
@@ -199,10 +182,6 @@ select {
   justify-content: center;
   align-items: center;
   margin: 0.5vmax;
-}
-
-.clue {
-  /* border: 1px solid var(--light-color); */
 }
 
 #palette #clues {

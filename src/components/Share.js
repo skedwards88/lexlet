@@ -4,7 +4,7 @@ function handleShare(text) {
   navigator
     .share({
       title: "Palette",
-      text: text,
+      text: `${text}\n\n`,
       url: "https://skedwards88.github.io/palette/",
     })
     .then(() => console.log("Successful share"))

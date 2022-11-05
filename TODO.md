@@ -2,8 +2,6 @@
 
 ## Before player 1
 
-- PWA and installable
-
 ## Before beta group
 
 - make stash of game; give unique game per day
@@ -13,22 +11,17 @@
 - google analytics
 - is it possible to track sharing
 - 
-- move info button up and make smaller. Change "i" to "?"
 - update info about how to play
-- style the share button
-- change url in handleShare
+- landscape not working on android
 - 
 - hook up custom domain + redirect from misspelling. or put simple game on mispelling.
-
-- cut out unneeded wordlist files
+- change url in handleShare
 
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
 - autopopulate the open an issue link with the version number
 
 ## Before wider sharing
 
-- custom domain
-- icon updates
 
 ## Potential follow ups
 

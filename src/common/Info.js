@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Info({ info, sideEffectShow, sideEffectHide }) {
+export default function Info({ id, info, sideEffectShow, sideEffectHide }) {
   const [showInfo, setShowInfo] = React.useState(false);
 
   function handleShowInfo() {
@@ -19,10 +19,10 @@ export default function Info({ info, sideEffectShow, sideEffectHide }) {
     <div className="modal">
       <div id="info">{info}</div>
       <button className="close" onClick={() => handleShowInfo()}>
-        PLAY
+        CLOSE
       </button>
     </div>
   ) : (
-    <button id="infoButton" onClick={() => handleShowInfo()}></button>
+    <button id={id} onClick={() => handleShowInfo()}></button>
   );
 }

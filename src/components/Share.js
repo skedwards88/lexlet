@@ -1,0 +1,34 @@
+import React from "react";
+
+function handleShare(text) {
+  navigator
+    .share({
+      title: "Palette",
+      text: text,
+      url: "https://skedwards88.github.io/palette/",
+    })
+    .then(() => console.log("Successful share"))
+    .catch((error) => {
+      // copy to clipboard as backup
+      handleCopy(text);
+      console.log("Error sharing", error);
+    });
+}
+
+function handleCopy(text) {
+  try {
+    navigator.clipboard.writeText(
+      `${text}\n\nhttps://skedwards88.github.io/palette/`
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default function Share({ text }) {
+  if (navigator.canShare) {
+    return <button onClick={() => handleShare(text)}>Share</button>;
+  } else {
+    return <button onClick={() => handleCopy(text)}>Copy for sharing</button>;
+  }
+}

@@ -9,12 +9,18 @@
 - make stash of game; give unique game per day
 - show time of next game
 - save progress on current game. only clear when new day.
+- 
 - google analytics
+- is it possible to track sharing
+- 
 - move info button up and make smaller. Change "i" to "?"
 - update info about how to play
-- also add info about wordnik
 - style the share button
 - change url in handleShare
+- 
+- hook up custom domain + redirect from misspelling
+
+- cut out unneeded wordlist files
 
 ## Before wider sharing
 
@@ -25,3 +31,13 @@
 
 - personal streak/hints used
 - could let people set colors
+
+
+info
+
+- rules
+
+heart
+
+- wordnik
+- feedback

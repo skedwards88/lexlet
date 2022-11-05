@@ -131,7 +131,7 @@ export function gameInit() {
     numClues: numClues,
   });
   const clueMatches = clueIndexes.map(() => false);
-  const hints = clueIndexes.map(clue => clue.map(() => false));
+  const hints = clueIndexes.map((clue) => clue.map(() => false));
 
   return {
     minWordLength: minWordLength,

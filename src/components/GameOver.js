@@ -1,23 +1,5 @@
 import React from "react";
-
-function handleShare(result) {
-  navigator
-    .share({
-      title: "Palette",
-      text: result,
-      url: "https://skedwards88.github.io/palette/",
-    })
-    .then(() => console.log("Successful share"))
-    .catch((error) => console.log("Error sharing", error));
-}
-
-function handleCopy(result) {
-  try {
-    navigator.clipboard.writeText(result);
-  } catch (error) {
-    console.log(error);
-  }
-}
+import Share from "./Share";
 
 function resultToIcon({ hints, clueIndexes, colors }) {
   const boxTranslation = {
@@ -27,9 +9,9 @@ function resultToIcon({ hints, clueIndexes, colors }) {
     hint: "⬜",
   };
 
-  let result = ""
+  let result = "";
   for (let clueIndex = 0; clueIndex < clueIndexes.length; clueIndex++) {
-    result += "\n\n"
+    result += "\n\n";
     for (
       let boxIndex = 0;
       boxIndex < clueIndexes[clueIndex].length;
@@ -38,7 +20,7 @@ function resultToIcon({ hints, clueIndexes, colors }) {
       if (hints[clueIndex][boxIndex]) {
         result += boxTranslation.hint;
       } else {
-        const boardIndex = clueIndexes[clueIndex][boxIndex]
+        const boardIndex = clueIndexes[clueIndex][boxIndex];
         result += boxTranslation[colors[boardIndex]];
       }
     }
@@ -47,11 +29,16 @@ function resultToIcon({ hints, clueIndexes, colors }) {
 }
 
 export default function GameOver({ hints, clueIndexes, colors }) {
-  const result = resultToIcon({ hints: hints, clueIndexes: clueIndexes, colors: colors });
+  const result = resultToIcon({
+    hints: hints,
+    clueIndexes: clueIndexes,
+    colors: colors,
+  });
 
-  if (navigator.canShare) {
-    return <button onClick={() => handleShare(result)}>Share</button>;
-  } else {
-    return <button onClick={() => handleCopy(result)}>Copy results</button>;
-  }
+  return (
+    <div id="gameOver">
+      <div>Next game at 03:30</div>
+      <Share text={result}></Share>
+    </div>
+  );
 }

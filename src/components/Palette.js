@@ -6,6 +6,7 @@ import { gameReducer } from "../logic/gameReducer";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
+import Share from "./Share";
 
 function Palette() {
   const [gameState, dispatchGameState] = React.useReducer(
@@ -26,6 +27,44 @@ function Palette() {
         });
       }}
     >
+      <div id="controls">
+        <Info
+          id="rules"
+          info={
+            <div>
+              {<h1>Palette</h1>}
+              {`Build words that match the color patterns by swiping to connect adjacent letters.\n\nClick on a clue to get a hint.`}
+            </div>
+          }
+        ></Info>
+        <Info
+          id="heart"
+          info={
+            <div>
+              {"Like this game? Share it with your friends.\n\n"}
+              {<Share text={"Check out this word game!"}></Share>}
+              {`\n\n`}
+              {<hr></hr>}
+              {`\n`}
+              {"Feedback? "}
+              <a href="https://github.com/skedwards88/palette/issues/new">
+                Open an issue
+              </a>
+              {" on GitHub."}
+              {`\n\n`}
+              {<hr></hr>}
+              {`\n`}
+              {`Thanks to `}
+              <a href="https://github.com/wordnik/wordlist">Wordnik</a>
+              {` for their open source word list and `}
+              <a href="https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#English">
+                Wiktionary
+              </a>
+              {` and data therein for word frequency data.`}
+            </div>
+          }
+        ></Info>
+      </div>
       <Clues
         clueMatches={gameState.clueMatches}
         hints={gameState.hints}
@@ -37,7 +76,13 @@ function Palette() {
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {gameState.clueMatches.every((i) => i) ? <GameOver hints={gameState.hints} clueIndexes={gameState.clueIndexes} colors={gameState.colors}/> : (
+      {gameState.clueMatches.every((i) => i) ? (
+        <GameOver
+          hints={gameState.hints}
+          clueIndexes={gameState.clueIndexes}
+          colors={gameState.colors}
+        />
+      ) : (
         <CurrentWord
           letters={gameState.playedIndexes.map(
             (index) => gameState.letters[index]
@@ -54,16 +99,6 @@ function Palette() {
         gameOver={gameState.clueMatches.every((i) => i)}
         dispatchGameState={dispatchGameState}
       ></Board>
-      <div id="controls">
-        <Info
-          info={
-            <div>
-              {<h1>Palette</h1>}
-              {`Build words that match the color patterns by swiping to connect adjacent letters.`}
-            </div>
-          }
-        ></Info>
-      </div>
     </div>
   );
 }

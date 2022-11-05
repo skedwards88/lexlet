@@ -24,6 +24,4 @@ if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(
-  <Palette/>
-);
+root.render(<Palette />);

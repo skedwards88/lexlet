@@ -1,8 +1,25 @@
 import React from "react";
 
-function Clue({ clueColors, clueMatch, clueLetters, hint, dispatchGameState, clueIndex }) {
+function Clue({
+  clueColors,
+  clueMatch,
+  clueLetters,
+  hint,
+  dispatchGameState,
+  clueIndex,
+}) {
   const boxes = clueColors.map((color, index) => (
-    <button className={`clueBox ${color}`} key={`${index}`} onClick={()=> dispatchGameState({action: "hint", clueIndex: clueIndex, boxIndex: index})}>
+    <button
+      className={`clueBox ${color}`}
+      key={`${index}`}
+      onClick={() =>
+        dispatchGameState({
+          action: "hint",
+          clueIndex: clueIndex,
+          boxIndex: index,
+        })
+      }
+    >
       {hint[index] || clueMatch ? clueLetters[index].toUpperCase() : ""}
     </button>
   ));

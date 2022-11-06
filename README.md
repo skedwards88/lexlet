@@ -25,3 +25,25 @@ To run locally and register the service worker, run `npm start`.
 To deploy, run `npm run deploy`.
 
 Despite the duplication and inefficiency, all required components were copied from my core word game repo, [skedwards88/word_games](https://github.com/skedwards88/word_games). Desired changes to game logic or to the word list should be made there and copied to here. Only the 6 letter words are required.
+
+The game cache was made by executing a function like this in the palette gameInit logic in my core word game repo. To reduce file size, the color names were replaced with a representative letter.
+
+```js
+function getNGames(numGames) {
+  console.log('start')
+  let count = 0
+  let games = []
+  while (count < numGames) {
+    count ++
+    const game = getPlayableBoard({
+      gridSize: 4,
+      minWordLength: 6,
+      maxWordLength: 6,
+      easyMode: true,
+      numClues: 5,
+    })
+    games = [...games, game]
+  }
+  return games
+}
+```

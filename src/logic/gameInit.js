@@ -8,8 +8,10 @@ export function gameInit() {
   const puzzleIndex = Math.floor((nowInMilliSec - startDate) / milliSecPerDay);
 
   // Loop through puzzles if we run out before uploading more
-  const [letters, colors, clueIndexes] =
+  const [letters, colorsAbbreviations, clueIndexes] =
     gameCache[puzzleIndex] || gameCache[puzzleIndex % gameCache.length];
+
+  const colors = colorsAbbreviations.map(c => c.replace('R','red').replace('Y','yellow').replace('G','green'))
 
   const clueMatches = clueIndexes.map(() => false);
   const hints = clueIndexes.map((clue) => clue.map(() => false));

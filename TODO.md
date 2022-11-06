@@ -2,12 +2,10 @@
 
 ## Before beta group
 
-- save progress on current game. only clear when new day.
-
 - landscape not working on android
 
 - google analytics
-- is it possible to track sharing
+- is it possible to track sharing. it is also possible to track results to see hints used?
 
 - hook up custom domain + redirect from misspelling. or put simple game on mispelling.
 - change url in handleShare
@@ -16,6 +14,7 @@
 
 ## Potential follow ups
 
+- update icons background to match new theme color
 - personal streak/hints used
 - could let people set colors
 - easter egg games

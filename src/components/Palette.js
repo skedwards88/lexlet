@@ -13,6 +13,10 @@ export default function Palette({ setDisplay }) {
     gameInit
   );
 
+  React.useEffect(() => {
+    window.localStorage.setItem("dailyPaletteState", JSON.stringify(gameState));
+  }, [gameState]);
+
   const isGameOver = gameState.clueMatches.every((i) => i);
 
   return (

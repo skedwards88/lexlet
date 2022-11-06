@@ -1,10 +1,7 @@
 # TODO
 
-## Before player 1
-
 ## Before beta group
 
-- make stash of game; give unique game per day
 - save progress on current game. only clear when new day.
 
 - landscape not working on android
@@ -24,4 +21,5 @@
 - easter egg games
 - show h:s countdown to next game
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
-- autopopulate the open an issue link with the version number
+- auto populate the open an issue link with the version number
+- auto update game cache or at least have automated reminder to extend it. If have this, can have a smaller game cache.

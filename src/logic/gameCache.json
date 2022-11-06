@@ -1,5 +1,1220 @@
 [
-  [["L","V","N","G","U","E","L","A","T","U","B","E","N","A","D","N"],["yellow","red","green","red","yellow","green","green","red","yellow","green","yellow","green","yellow","red","yellow","red"],[[3,6,9,8,5,2],[9,12,13,10,6,5],[2,5,10,9,6,7],[5,2,7,10,6,11],[14,11,10,13,8,5]]],
-  [["E","S","I","A","S","L","G","H","R","A","P","N","R","O","E","L"],["red","green","yellow","red","green","yellow","green","green","green","red","green","yellow","red","yellow","green","green"],[[10,14,9,8,5,1],[14,9,6,5,0,4],[10,9,8,4,0,1],[14,9,4,0,5,1],[9,4,1,2,6,11]]],
-  [["E","O","C","E","R","I","S","R","D","P","H","R","A","N","E","G"],["yellow","green","green","green","green","red","green","yellow","yellow","red","red","red","red","yellow","yellow","green"],[[2,1,4,9,6,3],[7,3,2,5,9,14],[2,5,9,10,14,11],[9,4,5,2,3,6],[7,3,2,1,4,8]]]
+  [
+    ["L","V","N","G","U","E","L","A","T","U","B","E","N","A","D","N"],
+    ["yellow","red","green","red","yellow","green","green","red","yellow","green","yellow","green","yellow","red","yellow","red"],
+    [[3, 6, 9, 8, 5, 2],[9, 12, 13, 10, 6, 5],[2, 5, 10, 9, 6, 7],[5, 2, 7, 10, 6, 11],[14, 11, 10, 13, 8, 5]
+    ]
+  ],
+  [
+    ["E","S","I","A","S","L","G","H","R","A","P","N","R","O","E","L"],
+    ["red","green","yellow","red","green","yellow","green","green","green","red","green","yellow","red","yellow","green","green"],
+    [[10, 14, 9, 8, 5, 1],[14, 9, 6, 5, 0, 4],[10, 9, 8, 4, 0, 1],[14, 9, 4, 0, 5, 1],[9, 4, 1, 2, 6, 11]
+    ]
+  ],
+  [
+    ["E","O","C","E","R","I","S","R","D","P","H","R","A","N","E","G"],
+    ["yellow","green","green","green","green","red","green","yellow","yellow","red","red","red","red","yellow","yellow","green"],
+    [[2, 1, 4, 9, 6, 3],[7, 3, 2, 5, 9, 14],[2, 5, 9, 10, 14, 11],[9, 4, 5, 2, 3, 6],[7, 3, 2, 1, 4, 8]
+    ]
+  ],
+  [
+    ["A","L","H","E","R","E","I","P","T","S","O","O","R","O","E","D"],
+    ["yellow","yellow","green","green","yellow","yellow","green","green","yellow","yellow","red","yellow","red","red","red","green"],
+    [[12, 13, 9, 8, 5, 4],[7, 10, 9, 8, 5, 4],[4, 5, 9, 13, 12, 8],[2, 5, 0, 4, 8, 9],[0, 1, 5, 4, 8, 9]
+    ]
+  ],
+  [
+    ["L","B","D","O","U","N","O","S","N","E","R","F","A","E","T","I"],
+    ["red","red","green","red","green","yellow","red","yellow","red","green","yellow","red","green","red","yellow","green"],
+    [[7, 6, 11, 14, 13, 8],[1, 6, 5, 8, 9, 14],[14, 9, 5, 6, 10, 7],[7, 3, 6, 5, 9, 10],[14, 10, 9, 5, 2, 7]
+    ]
+  ],
+  [
+    ["M","L","A","S","C","I","N","O","E","S","A","M","S","O","D","C"],
+    ["green","red","green","red","yellow","green","green","yellow","yellow","yellow","red","yellow","yellow","green","yellow","red"],
+    [[11, 10, 6, 5, 1, 2],[11, 7, 3, 2, 5, 4],[6, 7, 11, 10, 14, 9],[11, 10, 6, 5, 2, 3],[15, 10, 9, 5, 6, 7]
+    ]
+  ],
+  [
+    ["S","A","I","E","Z","T","E","A","R","L","S","A","O","P","I","T"],
+    ["yellow","red","red","red","red","green","yellow","red","red","green","yellow","red","red","yellow","green","green"],
+    [[10, 15, 14, 9, 5, 0],[15, 11, 14, 9, 12, 8],[10, 13, 12, 8, 5, 0],[10, 11, 14, 9, 12, 8],[14, 10, 9, 6, 5, 0]
+    ]
+  ],
+  [
+    ["T","Y","O","N","T","S","A","E","B","R","A","G","U","E","N","I"],
+    ["red","green","yellow","green","yellow","green","red","green","yellow","red","yellow","green","green","red","green","yellow"],
+    [[8, 9, 13, 10, 5, 0],[6, 9, 13, 14, 10, 5],[10, 5, 4, 9, 6, 1],[9, 13, 10, 5, 2, 3],[5, 4, 9, 10, 15, 14]
+    ]
+  ],
+  [
+    ["T","U","K","C","E","R","S","T","N","I","E","A","E","F","E","I"],
+    ["green","red","green","red","red","green","yellow","yellow","yellow","green","yellow","green","yellow","green","red","green"],
+    [[5, 10, 13, 9, 8, 4],[0, 5, 10, 11, 7, 6],[14, 11, 6, 9, 4, 5],[13, 9, 10, 6, 7, 11],[6, 10, 5, 4, 8, 12]
+    ]
+  ],
+  [
+    ["C","O","R","C","A","D","R","N","H","M","E","S","S","G","N","I"],
+    ["yellow","green","yellow","red","red","yellow","yellow","yellow","green","red","green","yellow","green","red","yellow","green"],
+    [[11, 15, 14, 13, 10, 6],[4, 0, 1, 2, 7, 11],[0, 1, 2, 7, 10, 6],[1, 2, 5, 10, 6, 11],[12, 8, 4, 5, 10, 11]
+    ]
+  ],
+  [
+    ["S","T","A","E","P","N","R","A","I","E","M","I","U","N","N","J"],
+    ["yellow","yellow","yellow","green","green","green","red","red","red","yellow","yellow","red","green","yellow","yellow","red"],
+    [[0, 5, 8, 4, 9, 6],[6, 9, 10, 7, 11, 14],[10, 7, 6, 11, 14, 9],[0, 1, 6, 3, 7, 10],[0, 1, 6, 7, 11, 14]
+    ]
+  ],
+  [
+    ["E","N","C","S","L","A","E","I","T","T","N","L","W","T","A","T"],
+    ["yellow","green","yellow","yellow","yellow","red","green","yellow","yellow","yellow","red","green","red","red","green","green"],
+    [[10, 6, 9, 8, 4, 0],[3, 7, 11, 6, 10, 15],[13, 14, 11, 6, 10, 9],[9, 6, 1, 5, 10, 15],[3, 6, 9, 8, 4, 0]
+    ]
+  ],
+  [
+    ["R","U","I","O","G","S","E","R","R","O","D","M","Z","E","U","A"],
+    ["red","red","green","green","yellow","yellow","yellow","red","yellow","green","red","green","red","green","red","green"],
+    [[3, 7, 10, 13, 8, 5],[13, 8, 9, 10, 6, 5],[8, 9, 4, 1, 6, 5],[7, 6, 11, 15, 10, 13],[12, 13, 8, 9, 6, 5]
+    ]
+  ],
+  [
+    ["W","I","T","E","I","N","S","Z","H","E","E","R","I","P","S","C"],
+    ["yellow","green","yellow","yellow","green","red","yellow","red","red","green","yellow","red","green","yellow","yellow","green"],
+    [[14, 15, 10, 5, 9, 6],[11, 10, 6, 9, 5, 2],[15, 11, 10, 9, 13, 14],[14, 15, 10, 5, 2, 6],[14, 15, 11, 10, 9, 5]
+    ]
+  ],
+  [
+    ["T","G","T","I","C","E","O","N","I","R","E","S","E","R","C","I"],
+    ["yellow","green","yellow","yellow","red","red","red","red","green","yellow","green","red","green","green","yellow","red"],
+    [[14, 10, 7, 11, 6, 9],[14, 10, 7, 2, 5, 9],[11, 10, 14, 9, 5, 0],[11, 10, 7, 3, 6, 9],[11, 14, 9, 5, 10, 7]
+    ]
+  ],
+  [
+    ["W","H","S","H","E","L","A","E","A","E","A","T","R","N","N","E"],
+    ["yellow","green","red","green","green","red","yellow","yellow","red","green","yellow","green","red","yellow","yellow","yellow"],
+    [[12, 9, 5, 10, 11, 15],[3, 7, 6, 5, 9, 12],[12, 9, 14, 11, 6, 5],[11, 10, 13, 14, 9, 12],[10, 14, 13, 8, 5, 2]
+    ]
+  ],
+  [
+    ["L","U","H","U","O","E","R","Y","T","C","A","S","N","E","M","I"],
+    ["red","green","red","green","yellow","green","red","red","green","red","yellow","yellow","red","yellow","green","red"],
+    [[13, 12, 8, 5, 6, 11],[9, 6, 5, 10, 14, 11],[9, 13, 12, 8, 5, 6],[14, 13, 8, 5, 6, 11],[6, 5, 9, 13, 12, 8]
+    ]
+  ],
+  [
+    ["D","R","R","E","A","M","N","D","R","O","E","L","S","E","Y","T"],
+    ["yellow","green","red","yellow","red","green","green","red","yellow","red","red","green","yellow","yellow","red","green"],
+    [[15, 10, 6, 7, 3, 2],[0, 4, 5, 6, 3, 7],[15, 10, 6, 9, 8, 12],[12, 13, 8, 5, 9, 6],[4, 1, 5, 9, 8, 12]
+    ]
+  ],
+  [
+    ["S","M","E","R","E","I","T","I","F","C","S","O","R","A","I","A"],
+    ["yellow","green","red","green","yellow","red","green","yellow","red","yellow","yellow","green","green","green","yellow","red"],
+    [[3, 2, 1, 5, 6, 10],[1, 5, 10, 6, 2, 3],[12, 13, 9, 14, 10, 6],[0, 5, 10, 6, 2, 3],[8, 13, 10, 6, 2, 3]
+    ]
+  ],
+  [
+    ["B","R","E","R","A","U","A","T","E","L","S","P","T","S","O","N"],
+    ["yellow","green","red","yellow","red","green","yellow","green","green","yellow","red","red","yellow","green","yellow","green"],
+    [[11, 14, 10, 7, 2, 3],[10, 9, 6, 7, 2, 1],[9, 8, 13, 10, 14, 15],[3, 2, 6, 10, 14, 15],[0, 1, 2, 6, 10, 7]
+    ]
+  ],
+  [
+    ["L","X","O","L","R","E","T","D","I","O","S","E","E","S","T","N"],
+    ["red","red","red","green","green","yellow","green","red","red","yellow","yellow","green","yellow","red","yellow","green"],
+    [[4, 5, 10, 6, 11, 7],[10, 5, 4, 8, 12, 13],[13, 14, 9, 4, 5, 10],[14, 9, 13, 10, 11, 7],[2, 3, 7, 11, 10, 14]
+    ]
+  ],
+  [
+    ["A","G","L","T","E","I","O","F","V","W","L","R","E","R","S","I"],
+    ["green","red","green","green","red","yellow","green","green","yellow","green","green","red","yellow","red","yellow","red"],
+    [[13, 12, 8, 5, 4, 9],[8, 5, 4, 9, 12, 13],[2, 6, 9, 12, 13, 14],[7, 2, 6, 9, 12, 13],[1, 5, 8, 12, 13, 14]
+    ]
+  ],
+  [
+    ["S","N","C","T","I","T","A","E","N","N","U","Y","D","E","A","I"],
+    ["yellow","red","red","green","green","red","red","green","green","green","red","yellow","green","yellow","yellow","red"],
+    [[4, 1, 5, 6, 2, 3],[2, 6, 9, 4, 8, 13],[2, 6, 9, 8, 13, 12],[13, 9, 6, 2, 5, 0],[0, 5, 6, 1, 2, 7]
+    ]
+  ],
+  [
+    ["E","B","E","R","O","B","T","S","S","A","D","E","J","T","O","L"],
+    ["red","yellow","red","red","red","yellow","green","green","green","red","red","red","green","yellow","yellow","red"],
+    [[8, 13, 9, 6, 11, 10],[8, 13, 9, 6, 2, 7],[3, 2, 5, 9, 6, 11],[3, 2, 7, 6, 11, 10],[14, 15, 10, 11, 7, 6]
+    ]
+  ],
+  [
+    ["S","U","T","I","A","E","R","K","I","N","A","S","N","I","N","N"],
+    ["red","yellow","yellow","green","yellow","yellow","red","green","yellow","green","green","red","yellow","yellow","red","green"],
+    [[11, 14, 10, 6, 5, 0],[10, 6, 5, 9, 4, 0],[9, 4, 1, 0, 5, 10],[13, 14, 11, 10, 9, 5],[2, 6, 10, 13, 14, 11]
+    ]
+  ],
+  [
+    ["Z","M","G","O","S","A","N","A","E","E","R","I","E","T","S","A"],
+    ["yellow","yellow","green","green","green","green","green","red","red","yellow","red","green","red","yellow","yellow","green"],
+    [[14, 13, 10, 7, 11, 6],[14, 13, 10, 9, 5, 1],[15, 10, 9, 6, 5, 4],[1, 5, 2, 6, 9, 13],[10, 15, 11, 14, 9, 4]
+    ]
+  ],
+  [
+    ["N","E","E","D","I","L","U","A","A","S","R","L","A","O","N","R"],
+    ["red","green","green","red","red","red","yellow","yellow","yellow","yellow","yellow","green","green","yellow","red","green"],
+    [[0, 1, 6, 10, 13, 14],[5, 2, 7, 10, 14, 9],[9, 8, 5, 4, 0, 1],[0, 1, 6, 10, 7, 11],[9, 8, 4, 5, 2, 3]
+    ]
+  ],
+  [
+    ["L","D","E","Y","N","B","I","N","S","D","A","N","I","E","T","N"],
+    ["green","red","green","green","yellow","yellow","red","yellow","yellow","yellow","yellow","green","red","red","red","yellow"],
+    [[10, 5, 6, 9, 13, 8],[9, 13, 14, 10, 6, 7],[6, 7, 11, 10, 14, 13],[5, 10, 11, 7, 2, 1],[8, 13, 10, 5, 2, 1]
+    ]
+  ],
+  [
+    ["G","S","O","M","E","B","S","R","Z","A","T","D","M","R","T","E"],
+    ["yellow","green","green","red","red","red","green","red","green","green","green","green","red","yellow","yellow","yellow"],
+    [[14, 9, 6, 10, 15, 11],[1, 4, 9, 10, 15, 11],[9, 5, 2, 7, 10, 6],[6, 10, 7, 2, 5, 4],[6, 10, 9, 14, 15, 11]
+    ]
+  ],
+  [
+    ["E","S","E","H","L","I","G","M","C","S","A","S","N","G","S","N"],
+    ["red","red","green","yellow","yellow","red","red","green","yellow","red","yellow","green","green","red","yellow","red"],
+    [[9, 4, 0, 5, 6, 3],[2, 7, 10, 5, 4, 9],[10, 5, 9, 4, 0, 1],[11, 15, 10, 5, 4, 9],[9, 5, 6, 7, 10, 11]
+    ]
+  ],
+  [
+    ["P","S","S","M","E","E","R","N","W","E","O","E","K","J","H","D"],
+    ["yellow","red","yellow","yellow","green","yellow","red","yellow","red","yellow","green","green","red","green","green","yellow"],
+    [[14, 11, 6, 10, 7, 2],[12, 9, 4, 0, 5, 6],[14, 11, 6, 10, 5, 1],[14, 10, 6, 1, 5, 2],[1, 4, 8, 5, 6, 2]
+    ]
+  ],
+  [
+    ["O","A","C","T","A","S","Y","I","E","R","S","A","G","L","E","I"],
+    ["red","red","yellow","red","yellow","yellow","red","green","yellow","red","green","green","yellow","red","red","green"],
+    [[11, 7, 10, 13, 8, 5],[13, 8, 5, 10, 14, 9],[12, 9, 4, 5, 10, 6],[8, 12, 9, 14, 10, 5],[12, 9, 14, 11, 10, 6]
+    ]
+  ],
+  [
+    ["C","T","O","D","H","R","S","N","S","G","I","S","R","P","T","P"],
+    ["red","green","red","yellow","green","yellow","red","yellow","red","green","red","red","red","yellow","green","red"],
+    [[6, 1, 5, 10, 15, 11],[5, 10, 9, 4, 1, 6],[13, 10, 6, 1, 2, 7],[11, 7, 2, 5, 1, 6],[9, 5, 10, 7, 3, 6]
+    ]
+  ],
+  [
+    ["K","T","N","C","S","S","H","L","I","R","E","O","E","I","E","O"],
+    ["red","red","red","yellow","red","yellow","green","green","red","red","green","yellow","green","red","yellow","green"],
+    [[5, 6, 10, 14, 9, 4],[1, 6, 10, 13, 9, 4],[9, 10, 5, 8, 4, 1],[1, 6, 9, 14, 10, 5],[3, 6, 10, 14, 9, 5]
+    ]
+  ],
+  [
+    ["I","S","C","N","R","A","N","A","G","O","S","E","E","O","A","T"],
+    ["red","yellow","green","green","green","yellow","red","green","yellow","red","yellow","green","green","yellow","green","red"],
+    [[10, 11, 6, 9, 4, 1],[8, 4, 9, 5, 6, 10],[15, 11, 6, 10, 9, 4],[9, 4, 8, 5, 6, 10],[15, 11, 6, 9, 4, 1]
+    ]
+  ],
+  [
+    ["E","S","T","K","T","D","I","O","M","S","L","T","E","T","S","R"],
+    ["red","green","green","red","yellow","yellow","green","green","red","green","yellow","green","yellow","red","red","green"],
+    [[10, 6, 9, 4, 0, 5],[14, 11, 6, 10, 13, 9],[5, 0, 1, 6, 9, 13],[13, 12, 9, 4, 0, 5],[14, 10, 6, 5, 0, 1]
+    ]
+  ],
+  [
+    ["I","E","L","O","S","R","A","A","B","S","C","Y","E","E","U","U"],
+    ["green","yellow","red","red","red","green","green","green","yellow","red","yellow","green","yellow","yellow","red","green"],
+    [[10, 6, 5, 1, 4, 9],[9, 10, 6, 5, 1, 4],[10, 5, 1, 6, 9, 12],[8, 5, 6, 10, 13, 9],[9, 10, 6, 2, 1, 4]
+    ]
+  ],
+  [
+    ["A","S","R","K","E","R","I","T","S","T","H","L","E","R","J","S"],
+    ["red","green","yellow","red","green","yellow","yellow","green","yellow","red","yellow","yellow","green","green","green","red"],
+    [[7, 10, 6, 5, 8, 9],[0, 5, 6, 1, 4, 8],[11, 6, 9, 4, 5, 1],[2, 6, 1, 4, 5, 8],[13, 12, 9, 6, 5, 4]
+    ]
+  ],
+  [
+    ["R","T","U","A","E","R","I","I","C","A","E","D","E","S","R","G"],
+    ["yellow","yellow","red","yellow","green","green","red","yellow","yellow","green","green","yellow","red","yellow","green","red"],
+    [[13, 8, 9, 5, 10, 11],[8, 4, 9, 13, 10, 11],[13, 12, 8, 5, 4, 1],[15, 14, 9, 8, 12, 13],[14, 9, 6, 11, 10, 5]
+    ]
+  ],
+  [
+    ["T","E","I","I","L","S","A","E","I","N","R","D","N","M","A","B"],
+    ["red","red","red","red","green","green","green","red","green","red","yellow","yellow","green","yellow","yellow","yellow"],
+    [[10, 6, 2, 5, 8, 9],[4, 1, 6, 10, 9, 5],[1, 6, 5, 2, 7, 10],[8, 9, 4, 1, 0, 5],[4, 1, 6, 11, 7, 10]
+    ]
+  ],
+  [
+    ["D","H","A","T","O","N","N","T","S","E","N","M","R","I","D","I"],
+    ["red","green","green","yellow","yellow","red","yellow","green","yellow","green","red","red","yellow","red","red","yellow"],
+    [[14, 15, 10, 6, 9, 12],[7, 2, 6, 10, 9, 12],[11, 15, 10, 9, 12, 8],[14, 13, 10, 9, 12, 8],[8, 13, 10, 6, 9, 12]
+    ]
+  ],
+  [
+    ["O","T","T","B","T","N","A","A","U","E","R","E","D","P","S","Y"],
+    ["red","green","red","yellow","green","green","green","red","red","yellow","red","green","green","yellow","yellow","green"],
+    [[11, 7, 10, 5, 9, 12],[10, 11, 14, 9, 5, 2],[3, 6, 5, 4, 9, 10],[13, 9, 6, 5, 8, 4],[0, 1, 4, 9, 10, 14]
+    ]
+  ],
+  [
+    ["R","A","L","O","T","V","E","T","I","A","U","A","T","W","C","R"],
+    ["yellow","red","green","red","red","green","green","red","green","green","yellow","yellow","red","yellow","red","yellow"],
+    [[14, 9, 5, 6, 11, 7],[14, 10, 15, 11, 7, 6],[2, 1, 0, 5, 9, 6],[4, 0, 1, 5, 6, 2],[5, 9, 14, 11, 7, 6]
+    ]
+  ],
+  [
+    ["O","E","R","N","T","S","O","C","P","T","A","N","T","H","O","O"],
+    ["red","red","green","yellow","red","yellow","green","red","yellow","green","green","yellow","yellow","red","green","yellow"],
+    [[6, 9, 4, 1, 2, 5],[7, 6, 9, 4, 1, 2],[7, 10, 11, 6, 1, 5],[8, 13, 14, 9, 6, 5],[7, 6, 2, 5, 1, 4]
+    ]
+  ],
+  [
+    ["A","F","O","E","R","I","T","S","E","S","G","N","M","C","A","T"],
+    ["green","red","yellow","yellow","green","red","yellow","yellow","green","red","yellow","red","yellow","green","red","red"],
+    [[15, 14, 9, 6, 3, 7],[14, 11, 10, 9, 6, 7],[4, 8, 9, 5, 10, 11],[12, 8, 4, 5, 6, 9],[4, 8, 5, 10, 11, 7]
+    ]
+  ],
+  [
+    ["O","O","S","B","T","S","E","C","E","S","A","D","T","E","H","A"],
+    ["red","yellow","yellow","red","red","red","green","yellow","yellow","green","red","green","yellow","yellow","red","green"],
+    [[9, 14, 10, 11, 6, 2],[4, 1, 5, 2, 6, 11],[7, 6, 10, 9, 8, 5],[9, 14, 13, 8, 4, 5],[3, 6, 10, 5, 4, 9]
+    ]
+  ],
+  [
+    ["A","R","R","E","I","E","G","A","L","A","N","E","R","S","U","N"],
+    ["yellow","red","red","yellow","green","yellow","red","red","red","yellow","red","yellow","green","green","green","red"],
+    [[0, 5, 1, 4, 9, 8],[9, 10, 6, 5, 8, 13],[7, 2, 5, 10, 9, 13],[12, 9, 10, 6, 5, 1],[7, 10, 15, 14, 9, 8]
+    ]
+  ],
+  [
+    ["S","E","H","S","R","I","H","B","A","G","V","T","N","T","M","Y"],
+    ["yellow","red","red","red","green","green","red","red","green","green","green","yellow","yellow","yellow","red","green"],
+    [[1, 5, 9, 6, 11, 15],[4, 5, 9, 6, 11, 15],[4, 1, 0, 5, 9, 12],[2, 5, 9, 6, 1, 4],[2, 1, 5, 9, 6, 11]
+    ]
+  ],
+  [
+    ["A","C","A","H","S","R","N","K","U","S","E","O","L","M","O","H"],
+    ["red","red","green","red","yellow","yellow","red","red","red","green","yellow","green","yellow","yellow","yellow","green"],
+    [[0, 4, 9, 8, 5, 10],[9, 14, 11, 6, 10, 5],[4, 1, 0, 5, 10, 9],[5, 2, 6, 9, 14, 13],[0, 5, 1, 2, 6, 10]
+    ]
+  ],
+  [
+    ["A","T","D","O","H","Z","E","G","E","A","L","S","O","C","A","E"],
+    ["yellow","yellow","green","red","green","red","red","yellow","green","green","yellow","yellow","red","green","yellow","red"],
+    [[7, 10, 9, 5, 6, 11],[4, 8, 9, 10, 6, 2],[11, 15, 14, 10, 6, 2],[7, 10, 9, 5, 6, 2],[0, 5, 9, 10, 15, 14]
+    ]
+  ],
+  [
+    ["E","A","I","U","K","A","R","I","H","E","E","S","L","P","S","S"],
+    ["yellow","green","yellow","yellow","green","yellow","red","red","red","green","red","yellow","green","green","yellow","yellow"],
+    [[14, 13, 10, 5, 6, 11],[12, 9, 14, 15, 10, 6],[5, 6, 7, 11, 10, 15],[8, 9, 12, 13, 10, 6],[14, 9, 6, 7, 10, 15]
+    ]
+  ],
+  [
+    ["G","C","E","P","W","N","I","P","I","D","R","R","U","E","S","E"],
+    ["red","green","green","red","yellow","green","green","red","red","green","red","yellow","green","red","yellow","yellow"],
+    [[1, 6, 5, 9, 13, 10],[7, 10, 6, 5, 1, 2],[11, 6, 9, 13, 10, 14],[1, 6, 9, 13, 10, 14],[10, 6, 9, 8, 5, 0]
+    ]
+  ],
+  [
+    ["G","T","T","A","E","R","O","D","R","S","O","U","M","I","E","R"],
+    ["yellow","yellow","red","yellow","red","green","red","red","red","green","green","red","red","green","yellow","green"],
+    [[1, 4, 8, 5, 10, 15],[12, 13, 8, 5, 10, 15],[15, 14, 9, 6, 5, 1],[3, 7, 6, 5, 4, 9],[8, 4, 1, 6, 5, 2]
+    ]
+  ],
+  [
+    ["E","W","S","S","H","E","T","I","A","N","S","K","T","I","I","L"],
+    ["yellow","red","red","green","red","green","red","green","green","yellow","green","green","yellow","yellow","yellow","yellow"],
+    [[13, 9, 10, 5, 6, 3],[11, 7, 3, 2, 5, 10],[2, 1, 0, 5, 6, 10],[13, 9, 10, 7, 3, 6],[15, 14, 10, 6, 5, 9]
+    ]
+  ],
+  [
+    ["E","E","C","I","L","T","M","N","E","S","A","S","I","S","G","F"],
+    ["red","red","green","green","yellow","yellow","green","red","green","red","green","yellow","yellow","green","yellow","yellow"],
+    [[3, 7, 6, 10, 5, 8],[13, 8, 9, 10, 6, 1],[11, 6, 1, 4, 5, 9],[9, 8, 4, 1, 2, 5],[8, 4, 1, 2, 5, 9]
+    ]
+  ],
+  [
+    ["N","E","L","W","I","G","I","E","O","R","E","D","P","H","E","A"],
+    ["red","yellow","yellow","yellow","yellow","yellow","yellow","green","yellow","green","green","red","red","green","red","red"],
+    [[5, 8, 12, 13, 14, 9],[13, 14, 9, 8, 4, 0],[5, 2, 6, 11, 14, 9],[13, 10, 15, 11, 14, 9],[8, 9, 6, 5, 4, 0]
+    ]
+  ],
+  [
+    ["Qu","L","H","C","I","T","U","T","S","E","N","T","G","V","I","T"],
+    ["green","yellow","green","yellow","green","red","red","yellow","yellow","yellow","red","green","red","green","red","yellow"],
+    [[1, 4, 8, 5, 9, 10],[6, 10, 5, 4, 9, 8],[6, 10, 13, 9, 4, 1],[14, 10, 13, 9, 8, 5],[3, 6, 11, 14, 9, 8]
+    ]
+  ],
+  [
+    ["M","N","S","E","A","F","I","R","E","M","A","D","Z","J","O","L"],
+    ["red","red","green","yellow","green","yellow","red","yellow","green","green","green","green","green","red","green","yellow"],
+    [[2, 3, 7, 6, 10, 15],[9, 14, 15, 10, 7, 2],[11, 14, 9, 10, 6, 1],[15, 10, 11, 6, 3, 2],[4, 1, 6, 9, 10, 15]
+    ]
+  ],
+  [
+    ["T","Z","I","E","I","U","R","H","S","N","E","Qu","S","E","Y","S"],
+    ["yellow","green","red","red","red","yellow","red","red","red","red","green","yellow","yellow","yellow","green","green"],
+    [[6, 10, 5, 8, 13, 12],[13, 9, 8, 5, 6, 3],[15, 10, 9, 12, 13, 8],[4, 9, 8, 5, 6, 10],[13, 9, 8, 5, 10, 15]
+    ]
+  ],
+  [
+    ["E","U","S","Y","L","N","T","N","S","Qu","R","E","I","T","A","U"],
+    ["red","yellow","yellow","green","green","green","red","yellow","green","red","yellow","green","green","red","green","green"],
+    [[8, 13, 14, 10, 6, 2],[4, 1, 2, 6, 11, 10],[5, 0, 1, 6, 11, 10],[1, 5, 6, 10, 15, 11],[6, 10, 11, 14, 13, 8]
+    ]
+  ],
+  [
+    ["L","I","N","C","O","E","T","I","S","N","S","I","R","E","S","C"],
+    ["yellow","red","red","red","yellow","red","yellow","yellow","green","yellow","yellow","green","red","red","green","green"],
+    [[12, 13, 8, 5, 9, 6],[3, 7, 6, 1, 5, 10],[0, 4, 9, 13, 12, 8],[10, 5, 9, 8, 13, 14],[0, 5, 4, 9, 13, 8]
+    ]
+  ],
+  [
+    ["I","W","T","S","R","E","A","B","A","G","R","N","S","N","E","E"],
+    ["red","red","red","red","yellow","yellow","red","red","green","green","green","yellow","green","red","yellow","red"],
+    [[14, 9, 4, 5, 2, 3],[4, 8, 13, 9, 5, 10],[9, 10, 15, 14, 13, 12],[11, 14, 9, 6, 2, 5],[7, 10, 5, 6, 3, 2]
+    ]
+  ],
+  [
+    ["I","B","O","I","A","D","Z","T","C","L","I","N","F","S","E","S"],
+    ["green","red","green","yellow","red","red","green","yellow","green","yellow","green","red","green","yellow","green","green"],
+    [[3, 2, 5, 10, 11, 14],[15, 10, 9, 14, 11, 7],[1, 2, 5, 10, 14, 13],[4, 9, 10, 14, 11, 15],[9, 4, 5, 10, 14, 13]
+    ]
+  ],
+  [
+    ["B","C","T","C","T","R","S","I","E","N","A","O","E","L","A","O"],
+    ["yellow","yellow","red","red","yellow","green","green","red","red","green","red","green","green","green","green","yellow"],
+    [[10, 13, 8, 5, 2, 6],[4, 5, 10, 7, 2, 6],[12, 9, 4, 8, 5, 6],[10, 5, 1, 2, 7, 3],[6, 1, 5, 8, 12, 9]
+    ]
+  ],
+  [
+    ["D","N","A","R","C","E","L","I","Z","S","T","O","E","P","P","S"],
+    ["red","yellow","red","green","green","green","red","yellow","red","red","yellow","green","green","yellow","red","green"],
+    [[15, 14, 11, 7, 6, 9],[6, 2, 1, 4, 5, 9],[14, 11, 15, 10, 5, 0],[15, 10, 5, 2, 6, 9],[14, 11, 6, 7, 10, 5]
+    ]
+  ],
+  [
+    ["D","P","A","R","O","E","N","E","E","Y","N","B","O","A","A","T"],
+    ["yellow","yellow","yellow","red","green","yellow","green","green","yellow","green","red","red","green","green","yellow","red"],
+    [[7, 2, 3, 6, 5, 0],[11, 14, 10, 6, 5, 0],[1, 2, 3, 7, 10, 15],[15, 14, 10, 6, 7, 3],[4, 1, 5, 10, 7, 3]
+    ]
+  ],
+  [
+    ["E","L","I","M","T","E","R","U","C","O","N","H","N","S","A","T"],
+    ["yellow","green","green","red","green","green","yellow","red","red","red","red","yellow","red","yellow","yellow","yellow"],
+    [[4, 5, 10, 13, 9, 6],[9, 6, 2, 5, 10, 15],[8, 9, 6, 10, 5, 4],[14, 13, 8, 5, 10, 15],[15, 11, 6, 9, 10, 5]
+    ]
+  ],
+  [
+    ["S","M","S","I","A","D","H","R","I","L","E","K","Y","E","T","G"],
+    ["green","green","green","red","green","yellow","green","red","yellow","yellow","yellow","red","red","yellow","green","yellow"],
+    [[0, 4, 8, 9, 10, 5],[12, 8, 13, 9, 5, 0],[4, 9, 14, 10, 7, 2],[2, 6, 7, 10, 5, 0],[13, 9, 5, 10, 7, 2]
+    ]
+  ],
+  [
+    ["E","J","T","D","Z","N","E","L","P","E","A","C","L","S","S","E"],
+    ["yellow","red","red","yellow","yellow","green","green","red","red","yellow","green","red","yellow","red","green","red"],
+    [[14, 11, 6, 5, 9, 13],[10, 13, 14, 9, 5, 2],[6, 10, 14, 9, 12, 13],[11, 15, 10, 13, 9, 14],[10, 14, 11, 6, 5, 2]
+    ]
+  ],
+  [
+    ["R","A","E","S","I","E","S","T","P","R","Qu","N","I","U","G","C"],
+    ["red","yellow","green","green","green","red","green","yellow","red","green","yellow","green","red","yellow","yellow","green"],
+    [[0, 5, 6, 2, 7, 3],[8, 13, 9, 6, 2, 3],[14, 9, 5, 1, 6, 2],[8, 13, 9, 5, 6, 7],[8, 9, 4, 5, 6, 7]
+    ]
+  ],
+  [
+    ["A","A","E","O","E","S","B","S","M","L","N","A","S","E","I","E"],
+    ["yellow","yellow","yellow","green","red","yellow","red","green","green","green","red","yellow","red","yellow","yellow","yellow"],
+    [[15, 10, 11, 6, 9, 4],[12, 13, 10, 7, 2, 5],[9, 4, 0, 5, 2, 7],[5, 10, 11, 14, 9, 12],[2, 1, 5, 4, 9, 12]
+    ]
+  ],
+  [
+    ["A","A","P","P","M","E","S","S","V","E","E","I","O","U","R","O"],
+    ["red","yellow","yellow","red","red","green","yellow","yellow","yellow","green","green","green","red","red","red","yellow"],
+    [[7, 10, 6, 1, 4, 5],[6, 9, 14, 11, 10, 7],[6, 5, 8, 9, 14, 10],[2, 1, 6, 7, 10, 14],[5, 1, 6, 11, 10, 14]
+    ]
+  ],
+  [
+    ["W","B","A","G","T","A","E","S","O","R","O","L","S","R","N","R"],
+    ["red","red","green","yellow","red","yellow","red","green","green","yellow","yellow","green","red","red","red","yellow"],
+    [[11, 10, 7, 6, 9, 12],[10, 9, 5, 4, 8, 13],[9, 6, 2, 7, 10, 14],[7, 2, 1, 6, 9, 12],[1, 2, 3, 6, 11, 7]
+    ]
+  ],
+  [
+    ["M","R","O","M","R","U","E","O","Z","A","L","D","G","E","N","I"],
+    ["green","yellow","yellow","yellow","green","green","red","red","yellow","green","red","red","red","yellow","green","yellow"],
+    [[10, 15, 14, 13, 9, 4],[6, 1, 4, 9, 14, 11],[10, 9, 14, 11, 6, 1],[12, 13, 14, 11, 6, 1],[15, 14, 11, 7, 2, 1]
+    ]
+  ],
+  [
+    ["S","T","R","M","B","S","I","N","O","R","G","E","C","E","O","E"],
+    ["green","green","yellow","red","red","yellow","green","red","yellow","yellow","red","red","red","green","yellow","red"],
+    [[12, 8, 5, 6, 7, 11],[0, 1, 2, 6, 7, 10],[1, 6, 10, 13, 9, 5],[0, 1, 6, 7, 10, 5],[5, 6, 7, 10, 13, 9]
+    ]
+  ],
+  [
+    ["E","R","L","G","R","U","H","C","S","E","E","E","A","T","T","R"],
+    ["yellow","red","green","green","green","yellow","green","green","green","red","green","yellow","red","red","green","yellow"],
+    [[2, 5, 8, 13, 9, 4],[7, 6, 9, 12, 13, 8],[7, 6, 10, 9, 4, 8],[6, 9, 12, 13, 10, 15],[14, 9, 8, 13, 10, 15]
+    ]
+  ],
+  [
+    ["M","L","E","I","U","R","S","I","U","O","C","A","O","S","T","E"],
+    ["yellow","yellow","green","yellow","yellow","red","green","yellow","green","red","yellow","red","red","red","green","yellow"],
+    [[13, 14, 9, 5, 2, 6],[15, 11, 6, 3, 2, 5],[11, 10, 14, 9, 5, 6],[13, 9, 4, 5, 10, 15],[13, 10, 9, 5, 2, 6]
+    ]
+  ],
+  [
+    ["N","A","I","S","R","I","T","N","E","T","O","T","L","R","H","R"],
+    ["red","yellow","red","red","yellow","yellow","yellow","red","green","green","red","red","red","yellow","green","green"],
+    [[13, 8, 9, 5, 0, 1],[9, 4, 1, 2, 6, 3],[3, 2, 6, 9, 8, 4],[4, 8, 9, 10, 15, 11],[14, 10, 6, 9, 5, 8]
+    ]
+  ],
+  [
+    ["E","L","Y","I","L","I","S","N","T","E","N","O","N","A","T","S"],
+    ["green","yellow","yellow","green","red","green","green","green","yellow","yellow","yellow","green","red","red","yellow","red"],
+    [[5, 10, 14, 9, 12, 8],[14, 9, 10, 13, 12, 8],[3, 7, 10, 13, 8, 9],[6, 11, 7, 10, 9, 14],[14, 9, 10, 7, 3, 6]
+    ]
+  ],
+  [
+    ["E","N","A","N","A","E","O","I","G","L","S","D","C","P","I","T"],
+    ["green","yellow","yellow","green","green","red","red","green","yellow","red","red","yellow","yellow","green","green","yellow"],
+    [[0, 4, 8, 9, 5, 10],[10, 13, 9, 5, 0, 1],[13, 9, 4, 1, 5, 10],[9, 5, 10, 7, 6, 3],[12, 9, 6, 1, 5, 10]
+    ]
+  ],
+  [
+    ["A","E","D","N","R","O","E","D","G","T","M","F","E","P","S","T"],
+    ["red","red","red","red","green","green","green","green","green","yellow","green","green","yellow","yellow","yellow","red"],
+    [[9, 6, 3, 2, 1, 4],[1, 4, 5, 2, 6, 7],[11, 6, 2, 5, 4, 0],[14, 9, 4, 5, 2, 1],[8, 4, 1, 6, 9, 14]
+    ]
+  ],
+  [
+    ["R","R","S","D","S","E","E","I","N","I","I","M","N","T","N","G"],
+    ["red","yellow","green","green","red","red","yellow","red","red","green","green","red","yellow","yellow","red","green"],
+    [[13, 10, 11, 6, 1, 4],[2, 6, 5, 9, 14, 15],[4, 9, 12, 8, 5, 1],[1, 6, 2, 5, 8, 13],[13, 10, 5, 1, 6, 3]
+    ]
+  ],
+  [
+    ["E","M","I","E","T","U","S","A","S","E","A","J","R","I","O","R"],
+    ["yellow","red","yellow","green","yellow","green","green","yellow","green","yellow","green","red","red","red","red","red"],
+    [[12, 9, 8, 5, 1, 0],[15, 10, 13, 8, 9, 6],[1, 5, 8, 4, 9, 12],[1, 0, 4, 9, 14, 15],[1, 2, 6, 5, 8, 9]
+    ]
+  ],
+  [
+    ["P","A","E","R","I","I","A","B","O","R","O","C","N","S","S","H"],
+    ["yellow","yellow","green","red","red","yellow","red","green","red","red","green","yellow","yellow","red","red","green"],
+    [[7, 3, 2, 6, 11, 15],[11, 15, 10, 5, 9, 14],[6, 11, 10, 9, 12, 13],[7, 6, 9, 8, 12, 13],[3, 2, 7, 10, 9, 12]
+    ]
+  ],
+  [
+    ["C","U","A","Qu","N","S","S","N","W","E","I","A","A","R","S","J"],
+    ["yellow","red","green","yellow","red","yellow","red","green","green","red","yellow","red","green","green","green","green"],
+    [[12, 13, 10, 14, 9, 5],[14, 10, 13, 9, 4, 5],[12, 13, 10, 14, 9, 4],[7, 2, 1, 6, 9, 12],[5, 8, 9, 12, 13, 14]
+    ]
+  ],
+  [
+    ["M","T","S","O","I","I","E","R","B","R","N","S","I","S","O","C"],
+    ["green","yellow","red","red","red","yellow","green","yellow","green","yellow","red","green","red","yellow","yellow","green"],
+    [[1, 6, 10, 13, 14, 9],[2, 6, 10, 14, 9, 13],[7, 3, 2, 1, 6, 9],[0, 5, 10, 6, 7, 11],[2, 5, 9, 6, 10, 13]
+    ]
+  ],
+  [
+    ["M","M","L","S","T","I","A","K","T","E","S","T","P","R","M","C"],
+    ["yellow","red","red","green","yellow","green","red","yellow","red","green","green","yellow","red","green","green","red"],
+    [[10, 5, 8, 4, 9, 13],[2, 5, 4, 9, 13, 10],[10, 11, 6, 2, 7, 3],[8, 13, 9, 6, 11, 10],[2, 5, 8, 4, 9, 13]
+    ]
+  ],
+  [
+    ["E","L","I","T","E","E","A","S","R","M","I","N","O","E","E","T"],
+    ["red","yellow","yellow","red","yellow","red","red","yellow","green","green","red","red","red","red","green","green"],
+    [[8, 4, 9, 6, 10, 11],[14, 11, 6, 9, 5, 1],[9, 6, 2, 1, 5, 8],[9, 14, 11, 10, 6, 1],[1, 6, 9, 14, 11, 15]
+    ]
+  ],
+  [
+    ["S","R","I","N","L","E","A","V","S","P","I","D","O","R","A","A"],
+    ["yellow","green","yellow","red","green","red","green","red","red","green","green","green","yellow","green","yellow","green"],
+    [[7, 6, 1, 2, 5, 8],[11, 10, 6, 9, 5, 1],[1, 5, 9, 14, 10, 11],[9, 6, 1, 0, 5, 8],[8, 9, 6, 1, 0, 5]
+    ]
+  ],
+  [
+    ["I","A","O","S","Y","L","C","D","R","A","N","R","S","M","E","P"],
+    ["red","red","yellow","yellow","red","red","red","green","green","red","yellow","red","yellow","yellow","green","green"],
+    [[15, 14, 9, 8, 5, 4],[1, 5, 9, 8, 13, 12],[7, 11, 14, 9, 13, 12],[6, 11, 14, 9, 13, 12],[7, 11, 14, 9, 8, 4]
+    ]
+  ],
+  [
+    ["G","A","I","I","E","T","L","S","N","R","I","J","R","M","E","U"],
+    ["yellow","yellow","green","red","green","red","yellow","red","yellow","green","green","green","red","green","green","yellow"],
+    [[9, 4, 8, 5, 1, 6],[4, 8, 5, 1, 2, 6],[4, 8, 5, 10, 9, 14],[7, 6, 1, 5, 4, 9],[9, 4, 5, 1, 2, 6]
+    ]
+  ],
+  [
+    ["P","N","O","T","S","I","S","D","O","G","T","A","N","S","E","E"],
+    ["green","green","yellow","green","green","red","green","red","yellow","red","yellow","green","green","red","yellow","yellow"],
+    [[0, 5, 6, 3, 2, 1],[13, 10, 15, 11, 7, 6],[2, 1, 5, 8, 12, 13],[13, 14, 11, 6, 2, 1],[4, 0, 5, 10, 14, 13]
+    ]
+  ],
+  [
+    ["E","G","E","R","A","N","A","Y","H","T","G","E","O","S","E","D"],
+    ["green","red","yellow","red","green","red","green","green","green","yellow","green","red","yellow","green","red","yellow"],
+    [[0, 5, 1, 6, 10, 14],[3, 2, 1, 0, 5, 9],[13, 9, 6, 7, 11, 15],[8, 12, 13, 9, 14, 15],[5, 0, 1, 4, 9, 14]
+    ]
+  ],
+  [
+    ["K","R","D","G","R","O","L","C","E","A","I","R","T","I","E","D"],
+    ["yellow","green","red","yellow","yellow","green","yellow","red","yellow","green","red","red","green","red","red","green"],
+    [[7, 11, 14, 9, 12, 8],[12, 9, 10, 6, 5, 4],[3, 6, 10, 15, 14, 11],[4, 8, 12, 9, 10, 6],[4, 9, 10, 15, 14, 11]
+    ]
+  ],
+  [
+    ["A","O","E","G","I","S","R","B","T","E","O","T","C","P","T","E"],
+    ["yellow","red","red","yellow","green","green","red","red","yellow","yellow","green","green","green","green","yellow","red"],
+    [[5, 8, 9, 6, 2, 1],[7, 2, 6, 9, 8, 5],[2, 3, 6, 9, 8, 5],[13, 10, 5, 8, 9, 6],[2, 6, 9, 12, 8, 5]
+    ]
+  ],
+  [
+    ["M","R","T","V","A","D","I","L","E","N","D","E","E","E","I","I"],
+    ["green","red","green","red","green","yellow","green","yellow","red","red","green","yellow","green","yellow","green","red"],
+    [[0, 4, 1, 6, 9, 12],[9, 8, 13, 10, 7, 11],[1, 6, 5, 10, 7, 11],[5, 8, 9, 14, 11, 10],[1, 6, 5, 10, 13, 9]
+    ]
+  ],
+  [
+    ["N","I","N","T","S","O","S","Y","G","T","R","R","E","E","G","E"],
+    ["yellow","yellow","yellow","red","green","red","yellow","green","green","green","yellow","red","green","green","yellow","red"],
+    [[11, 15, 14, 10, 13, 9],[6, 2, 5, 10, 9, 4],[4, 9, 12, 13, 10, 6],[4, 1, 6, 9, 13, 10],[14, 10, 13, 12, 9, 6]
+    ]
+  ],
+  [
+    ["P","R","F","E","N","L","I","M","A","E","X","O","T","S","T","O"],
+    ["red","red","red","yellow","red","green","yellow","green","yellow","red","yellow","green","red","red","green","yellow"],
+    [[0, 5, 8, 12, 9, 13],[14, 11, 6, 5, 9, 12],[0, 5, 8, 4, 9, 14],[0, 1, 6, 9, 13, 12],[5, 8, 12, 9, 13, 14]
+    ]
+  ],
+  [
+    ["A","G","A","Y","N","E","G","R","I","O","D","S","C","R","U","A"],
+    ["yellow","yellow","red","green","yellow","red","green","red","green","yellow","green","red","red","red","red","green"],
+    [[10, 7, 2, 6, 9, 4],[6, 2, 7, 10, 5, 4],[12, 9, 8, 4, 5, 10],[7, 2, 1, 6, 5, 10],[6, 9, 14, 13, 10, 11]
+    ]
+  ],
+  [
+    ["S","R","C","I","O","A","E","R","G","D","O","D","I","L","S","L"],
+    ["yellow","red","yellow","green","red","green","yellow","yellow","green","yellow","yellow","green","red","yellow","red","red"],
+    [[1, 4, 9, 6, 10, 14],[8, 13, 12, 9, 6, 1],[13, 10, 5, 9, 6, 11],[14, 10, 13, 9, 6, 1],[5, 9, 10, 7, 6, 11]
+    ]
+  ],
+  [
+    ["T","B","R","L","E","S","E","R","T","Y","A","G","P","K","L","A"],
+    ["green","red","yellow","green","red","green","red","green","red","yellow","green","yellow","yellow","green","green","yellow"],
+    [[14, 10, 9, 6, 2, 5],[10, 7, 2, 6, 5, 0],[1, 2, 6, 10, 5, 0],[11, 14, 10, 7, 6, 5],[14, 10, 7, 11, 6, 2]
+    ]
+  ],
+  [
+    ["G","B","S","T","G","S","P","S","C","E","T","H","R","O","R","T"],
+    ["green","green","red","green","yellow","yellow","red","red","red","red","green","green","yellow","green","red","yellow"],
+    [[8, 12, 9, 5, 10, 7],[7, 10, 14, 9, 5, 2],[9, 5, 8, 13, 14, 15],[7, 10, 13, 14, 9, 5],[12, 9, 10, 13, 14, 15]
+    ]
+  ],
+  [
+    ["C","E","D","M","B","E","L","N","X","I","C","A","M","O","T","S"],
+    ["red","yellow","green","green","yellow","red","red","red","yellow","yellow","red","yellow","green","red","green","yellow"],
+    [[12, 13, 14, 9, 6, 1],[10, 13, 9, 6, 5, 2],[10, 11, 7, 2, 6, 5],[15, 14, 11, 7, 10, 5],[2, 5, 4, 9, 14, 15]
+    ]
+  ],
+  [
+    ["D","U","Z","L","E","S","L","A","A","R","T","E","E","T","N","M"],
+    ["red","green","red","yellow","red","red","red","green","green","yellow","yellow","green","red","yellow","green","yellow"],
+    [[6, 7, 10, 11, 14, 13],[15, 11, 14, 10, 7, 6],[15, 11, 10, 7, 6, 5],[10, 7, 6, 11, 14, 13],[11, 14, 13, 12, 9, 5]
+    ]
+  ],
+  [
+    ["A","M","R","A","G","A","E","N","C","I","R","S","L","P","C","C"],
+    ["red","yellow","red","yellow","green","yellow","yellow","green","green","yellow","green","green","red","yellow","green","red"],
+    [[11, 14, 10, 6, 5, 1],[8, 9, 4, 5, 10, 11],[4, 5, 10, 7, 6, 2],[1, 0, 4, 9, 14, 11],[8, 5, 1, 6, 2, 3]
+    ]
+  ],
+  [
+    ["D","C","V","R","C","L","T","A","G","N","C","S","J","I","A","E"],
+    ["green","red","yellow","green","yellow","yellow","yellow","red","green","green","red","red","red","green","green","yellow"],
+    [[2, 7, 10, 14, 9, 6],[3, 7, 10, 13, 9, 8],[13, 9, 10, 15, 11, 6],[6, 3, 7, 10, 15, 11],[8, 13, 14, 9, 6, 11]
+    ]
+  ],
+  [
+    ["E","R","R","O","D","E","I","S","G","L","T","E","I","T","Z","Y"],
+    ["red","green","yellow","yellow","yellow","green","red","red","red","red","red","green","green","yellow","red","red"],
+    [[2, 5, 10, 6, 1, 0],[2, 3, 7, 10, 5, 1],[9, 6, 7, 10, 5, 4],[7, 11, 10, 13, 9, 5],[9, 12, 13, 10, 5, 2]
+    ]
+  ],
+  [
+    ["R","C","S","G","Z","L","B","O","O","E","R","S","E","N","T","I"],
+    ["yellow","green","red","yellow","red","red","green","green","red","yellow","red","green","yellow","yellow","green","yellow"],
+    [[3, 7, 6, 5, 9, 14],[12, 13, 14, 15, 10, 9],[12, 13, 14, 9, 10, 11],[11, 14, 10, 7, 6, 9],[5, 8, 13, 9, 10, 11]
+    ]
+  ],
+  [
+    ["A","N","S","N","E","I","N","T","S","C","T","O","I","O","B","R"],
+    ["yellow","green","yellow","green","red","green","yellow","red","green","red","yellow","red","green","yellow","red","green"],
+    [[9, 5, 10, 15, 11, 6],[8, 4, 9, 10, 11, 15],[14, 15, 11, 6, 9, 13],[13, 9, 4, 0, 1, 2],[9, 13, 8, 5, 1, 4]
+    ]
+  ],
+  [
+    ["S","N","I","E","Y","M","U","L","E","A","E","A","R","I","N","T"],
+    ["green","yellow","red","red","yellow","yellow","yellow","red","yellow","red","yellow","yellow","green","green","green","yellow"],
+    [[11, 7, 6, 5, 1, 2],[12, 8, 5, 9, 13, 14],[5, 9, 14, 15, 10, 7],[5, 9, 12, 13, 14, 10],[5, 10, 14, 15, 11, 7]
+    ]
+  ],
+  [
+    ["O","R","M","S","C","E","R","G","N","A","L","S","O","T","X","G"],
+    ["yellow","red","green","red","green","yellow","yellow","green","green","yellow","yellow","yellow","yellow","red","green","red"],
+    [[6, 5, 8, 13, 9, 10],[2, 5, 8, 13, 9, 10],[3, 2, 5, 9, 6, 11],[9, 8, 13, 10, 5, 1],[15, 10, 9, 8, 4, 5]
+    ]
+  ],
+  [
+    ["E","L","A","O","A","T","S","N","O","T","O","P","U","E","P","O"],
+    ["red","yellow","red","yellow","red","yellow","yellow","green","red","green","green","green","green","green","green","green"],
+    [[11, 10, 9, 4, 5, 8],[14, 10, 6, 5, 4, 1],[6, 10, 7, 2, 5, 4],[14, 13, 9, 4, 1, 6],[6, 5, 4, 9, 12, 13]
+    ]
+  ],
+  [
+    ["A","S","E","U","V","R","C","O","E","O","I","Qu","P","T","N","W"],
+    ["green","red","green","green","red","yellow","red","green","red","yellow","green","red","yellow","red","green","yellow"],
+    [[15, 10, 14, 13, 8, 5],[2, 5, 9, 13, 10, 6],[12, 9, 8, 13, 10, 6],[9, 12, 13, 10, 6, 1],[5, 2, 6, 10, 13, 8]
+    ]
+  ],
+  [
+    ["L","S","H","A","T","E","T","R","K","S","E","I","C","S","O","W"],
+    ["green","red","green","green","yellow","red","yellow","green","green","green","yellow","yellow","red","green","green","red"],
+    [[1, 6, 3, 7, 10, 9],[7, 3, 6, 11, 14, 9],[6, 2, 7, 10, 5, 9],[9, 6, 7, 10, 5, 4],[6, 10, 9, 4, 5, 1]
+    ]
+  ],
+  [
+    ["N","I","S","S","T","E","E","M","S","L","T","O","Qu","L","Z","A"],
+    ["green","green","red","green","green","yellow","yellow","red","green","yellow","red","green","yellow","red","yellow","red"],
+    [[3, 7, 6, 9, 13, 8],[7, 11, 10, 5, 9, 8],[3, 7, 6, 9, 4, 8],[9, 6, 3, 2, 5, 0],[7, 6, 3, 2, 5, 8]
+    ]
+  ],
+  [
+    ["N","O","T","L","E","S","R","S","E","L","T","A","R","E","E","R"],
+    ["red","red","green","green","red","yellow","yellow","green","red","yellow","yellow","green","yellow","red","red","yellow"],
+    [[0, 4, 5, 10, 9, 8],[5, 0, 1, 6, 10, 7],[5, 10, 11, 6, 2, 7],[6, 1, 5, 10, 13, 12],[12, 8, 5, 1, 6, 10]
+    ]
+  ],
+  [
+    ["R","I","U","N","S","E","S","P","D","L","I","S","F","Z","W","T"],
+    ["red","yellow","red","green","yellow","red","green","red","red","yellow","yellow","red","green","green","green","yellow"],
+    [[10, 11, 6, 2, 5, 4],[10, 11, 6, 2, 5, 8],[7, 10, 11, 6, 5, 8],[15, 10, 11, 6, 2, 5],[8, 5, 6, 10, 11, 15]
+    ]
+  ],
+  [
+    ["L","S","U","I","M","R","B","D","I","S","S","E","N","L","A","T"],
+    ["green","green","yellow","red","red","green","yellow","red","yellow","yellow","red","yellow","green","red","red","red"],
+    [[10, 13, 14, 15, 11, 7],[9, 13, 14, 15, 11, 10],[10, 15, 11, 14, 13, 9],[3, 7, 11, 14, 13, 10],[7, 11, 6, 5, 8, 9]
+    ]
+  ],
+  [
+    ["B","S","G","L","X","T","I","M","A","L","V","S","I","D","E","I"],
+    ["yellow","red","yellow","red","green","green","yellow","green","yellow","red","yellow","green","red","green","green","red"],
+    [[8, 13, 10, 6, 11, 14],[11, 7, 6, 9, 14, 13],[10, 15, 11, 6, 5, 1],[13, 14, 11, 6, 1, 5],[5, 8, 12, 9, 14, 13]
+    ]
+  ],
+  [
+    ["P","O","L","D","R","A","I","E","T","Qu","B","R","R","E","T","L"],
+    ["yellow","yellow","yellow","green","green","red","green","red","green","green","yellow","red","green","yellow","yellow","red"],
+    [[0, 1, 2, 3, 7, 11],[11, 7, 10, 5, 8, 13],[12, 13, 8, 5, 6, 2],[0, 1, 4, 8, 13, 12],[10, 11, 6, 3, 2, 7]
+    ]
+  ],
+  [
+    ["S","S","L","Z","T","T","I","A","E","I","V","E","D","R","A","R"],
+    ["green","yellow","green","green","red","green","yellow","green","green","red","yellow","green","red","red","yellow","red"],
+    [[15, 11, 14, 13, 8, 12],[15, 14, 9, 12, 8, 13],[10, 14, 13, 9, 8, 12],[1, 6, 5, 4, 8, 13],[12, 8, 13, 9, 10, 11]
+    ]
+  ],
+  [
+    ["N","B","T","S","O","L","E","T","C","T","L","I","U","N","C","I"],
+    ["green","green","red","yellow","yellow","green","green","yellow","red","red","red","yellow","red","red","yellow","yellow"],
+    [[10, 11, 7, 2, 5, 6],[4, 8, 9, 6, 2, 3],[12, 13, 8, 5, 6, 3],[8, 12, 9, 6, 3, 7],[8, 4, 5, 10, 11, 6]
+    ]
+  ],
+  [
+    ["R","A","E","U","R","S","R","A","X","T","S","T","I","U","M","I"],
+    ["yellow","green","red","yellow","red","green","yellow","yellow","red","green","yellow","green","red","green","yellow","red"],
+    [[10, 11, 7, 6, 2, 5],[7, 10, 5, 2, 6, 11],[9, 6, 2, 7, 11, 10],[1, 6, 11, 15, 10, 9],[10, 11, 7, 6, 9, 5]
+    ]
+  ],
+  [
+    ["E","S","C","F","V","A","S","I","U","R","D","S","B","I","E","T"],
+    ["red","green","yellow","red","yellow","yellow","yellow","yellow","yellow","green","green","green","yellow","red","red","green"],
+    [[1, 2, 5, 9, 14, 11],[0, 4, 5, 10, 14, 11],[2, 7, 10, 14, 9, 6],[9, 5, 2, 7, 11, 15],[2, 5, 9, 4, 0, 1]
+    ]
+  ],
+  [
+    ["T","E","U","W","R","E","U","L","G","T","R","O","P","E","S","I"],
+    ["red","yellow","red","red","green","green","yellow","red","red","red","green","yellow","yellow","green","yellow","red"],
+    [[13, 8, 4, 5, 9, 14],[10, 11, 6, 9, 5, 4],[14, 9, 4, 5, 1, 0],[10, 5, 8, 4, 1, 0],[10, 11, 6, 9, 13, 14]
+    ]
+  ],
+  [
+    ["O","E","Y","E","T","R","A","S","A","P","L","D","G","I","E","F"],
+    ["yellow","green","green","yellow","red","red","red","yellow","green","red","red","green","red","yellow","green","yellow"],
+    [[11, 14, 9, 8, 5, 4],[7, 3, 6, 10, 14, 11],[5, 1, 4, 8, 13, 10],[4, 5, 8, 13, 10, 7],[11, 14, 10, 6, 2, 7]
+    ]
+  ],
+  [
+    ["I","U","A","I","C","S","N","D","H","N","T","E","Y","A","Y","U"],
+    ["green","red","green","yellow","green","green","green","red","red","green","yellow","red","red","yellow","red","yellow"],
+    [[4, 8, 13, 9, 10, 5],[3, 6, 9, 13, 10, 11],[7, 2, 3, 6, 10, 14],[5, 10, 13, 14, 11, 7],[5, 8, 13, 9, 10, 14]
+    ]
+  ],
+  [
+    ["E","L","L","O","E","N","G","I","A","R","T","C","T","T","I","M"],
+    ["green","green","red","green","red","green","green","yellow","red","yellow","green","red","red","yellow","green","yellow"],
+    [[8, 12, 13, 14, 9, 4],[13, 8, 5, 6, 1, 0],[10, 7, 2, 1, 4, 9],[8, 5, 6, 1, 4, 9],[0, 5, 10, 14, 9, 4]
+    ]
+  ],
+  [
+    ["I","O","T","X","L","S","P","S","R","F","E","O","P","D","O","M"],
+    ["green","red","red","yellow","green","red","red","green","red","yellow","yellow","yellow","green","yellow","red","red"],
+    [[7, 6, 11, 14, 9, 5],[5, 4, 1, 6, 10, 7],[5, 4, 1, 6, 10, 13],[13, 10, 7, 6, 1, 2],[15, 14, 13, 10, 5, 2]
+    ]
+  ],
+  [
+    ["T","T","G","L","A","E","A","S","G","R","E","Qu","S","D","C","M"],
+    ["red","yellow","red","green","yellow","yellow","green","green","yellow","green","green","yellow","red","red","yellow","yellow"],
+    [[7, 3, 6, 1, 5, 9],[14, 10, 9, 5, 6, 3],[7, 10, 14, 9, 5, 0],[3, 6, 1, 0, 5, 9],[8, 4, 9, 6, 2, 5]
+    ]
+  ],
+  [
+    ["Y","C","K","R","A","O","E","S","E","E","N","L","R","P","C","A"],
+    ["red","yellow","green","green","green","red","red","red","red","red","yellow","red","yellow","red","green","yellow"],
+    [[14, 11, 6, 3, 2, 7],[13, 9, 14, 15, 10, 7],[14, 15, 10, 5, 6, 7],[3, 6, 1, 2, 5, 10],[2, 6, 9, 13, 8, 12]
+    ]
+  ],
+  [
+    ["S","R","N","R","A","D","E","E","T","I","A","T","I","O","E","T"],
+    ["green","yellow","yellow","red","green","red","yellow","red","yellow","green","red","green","red","yellow","yellow","red"],
+    [[3, 7, 2, 5, 6, 1],[11, 7, 2, 5, 6, 3],[10, 15, 11, 7, 2, 5],[3, 7, 10, 5, 6, 1],[1, 4, 9, 5, 6, 3]
+    ]
+  ],
+  [
+    ["E","N","N","T","N","T","A","O","N","G","T","B","S","E","N","S"],
+    ["yellow","yellow","yellow","yellow","yellow","red","yellow","green","green","red","green","green","red","red","green","yellow"],
+    [[14, 13, 9, 6, 5, 0],[11, 7, 2, 1, 0, 5],[6, 9, 13, 14, 10, 15],[15, 10, 6, 9, 13, 12],[5, 0, 1, 6, 2, 3]
+    ]
+  ],
+  [
+    ["R","G","A","I","H","C","L","E","B","O","S","E","Z","P","D","T"],
+    ["green","red","yellow","yellow","yellow","green","green","green","green","green","yellow","red","yellow","green","red","red"],
+    [[4, 9, 10, 15, 11, 14],[10, 7, 2, 6, 11, 14],[7, 2, 1, 6, 11, 10],[4, 9, 10, 15, 11, 6],[5, 6, 9, 10, 11, 14]
+    ]
+  ],
+  [
+    ["R","A","S","E","A","E","I","V","M","T","E","R","I","C","Y","X"],
+    ["red","yellow","yellow","yellow","yellow","yellow","green","green","red","yellow","red","red","green","yellow","green","yellow"],
+    [[5, 1, 2, 6, 10, 11],[11, 10, 13, 12, 9, 5],[0, 5, 9, 6, 11, 10],[13, 12, 9, 6, 3, 2],[11, 10, 7, 6, 2, 3]
+    ]
+  ],
+  [
+    ["E","I","O","T","I","P","C","P","C","E","A","N","T","R","L","S"],
+    ["yellow","red","red","red","red","red","green","green","green","yellow","green","green","red","yellow","green","yellow"],
+    [[5, 10, 13, 8, 9, 14],[5, 9, 6, 10, 11, 15],[2, 6, 9, 10, 11, 15],[5, 9, 10, 13, 14, 15],[13, 9, 8, 4, 5, 0]
+    ]
+  ],
+  [
+    ["K","E","R","I","C","I","E","A","T","N","M","U","N","E","Y","N"],
+    ["red","red","yellow","red","red","green","yellow","red","green","red","yellow","green","yellow","green","green","red"],
+    [[4, 5, 9, 6, 10, 7],[2, 1, 4, 5, 8, 13],[10, 7, 2, 5, 9, 13],[8, 5, 4, 0, 1, 2],[13, 12, 8, 5, 2, 6]
+    ]
+  ],
+  [
+    ["E","M","A","S","D","L","T","T","G","A","E","N","R","C","F","L"],
+    ["green","yellow","yellow","green","yellow","red","yellow","green","red","yellow","red","yellow","yellow","green","yellow","red"],
+    [[13, 9, 5, 1, 0, 4],[4, 0, 5, 6, 2, 3],[6, 9, 5, 10, 11, 7],[13, 12, 9, 4, 5, 0],[11, 10, 7, 6, 5, 0]
+    ]
+  ],
+  [
+    ["N","O","P","A","N","E","M","G","T","A","R","Qu","K","S","S","N"],
+    ["red","green","red","red","yellow","yellow","green","red","green","green","yellow","red","yellow","red","red","red"],
+    [[6, 9, 4, 0, 5, 10],[7, 3, 6, 5, 10, 14],[1, 2, 5, 10, 9, 13],[7, 10, 9, 4, 8, 13],[6, 9, 13, 8, 5, 10]
+    ]
+  ],
+  [
+    ["H","O","U","J","E","S","R","Y","O","T","L","E","C","N","A","I"],
+    ["yellow","red","green","green","red","yellow","red","green","red","red","red","yellow","yellow","green","red","green"],
+    [[12, 8, 5, 9, 14, 10],[14, 10, 11, 6, 9, 5],[14, 13, 9, 10, 11, 6],[5, 2, 6, 11, 10, 7],[6, 11, 10, 14, 9, 4]
+    ]
+  ],
+  [
+    ["R","E","T","U","A","P","D","S","P","T","H","I","B","T","E","L"],
+    ["green","yellow","red","green","green","yellow","red","red","yellow","red","yellow","green","red","red","yellow","red"],
+    [[6, 1, 5, 9, 10, 7],[15, 11, 7, 2, 1, 6],[6, 1, 4, 9, 10, 7],[4, 5, 10, 11, 6, 7],[9, 4, 8, 5, 1, 6]
+    ]
+  ],
+  [
+    ["T","E","E","I","M","W","A","T","I","U","S","G","S","L","E","I"],
+    ["green","red","green","green","red","green","red","red","yellow","green","yellow","yellow","red","red","yellow","red"],
+    [[1, 6, 10, 14, 13, 12],[0, 5, 1, 2, 7, 10],[14, 10, 7, 2, 1, 4],[4, 8, 12, 9, 10, 14],[5, 1, 6, 10, 14, 13]
+    ]
+  ],
+  [
+    ["E","Y","L","I","E","M","N","A","S","E","C","A","A","T","T","H"],
+    ["red","yellow","red","yellow","green","red","red","yellow","red","green","yellow","green","red","green","red","green"],
+    [[3, 6, 10, 9, 8, 13],[12, 13, 14, 11, 10, 15],[9, 6, 11, 10, 13, 8],[2, 7, 6, 10, 9, 8],[5, 9, 6, 3, 7, 2]
+    ]
+  ],
+  [
+    ["G","I","S","A","E","T","E","F","E","U","N","C","O","U","P","I"],
+    ["green","red","red","green","yellow","green","green","yellow","green","red","green","green","green","yellow","yellow","red"],
+    [[13, 10, 5, 1, 6, 2],[12, 13, 10, 11, 6, 2],[15, 10, 14, 9, 5, 2],[15, 10, 11, 6, 2, 5],[10, 15, 11, 6, 2, 5]
+    ]
+  ],
+  [
+    ["S","V","X","E","H","S","C","Z","E","C","E","S","N","A","L","A"],
+    ["yellow","yellow","green","yellow","green","green","green","red","yellow","red","green","red","yellow","green","red","yellow"],
+    [[14, 13, 12, 9, 8, 5],[3, 2, 6, 10, 5, 0],[3, 2, 6, 10, 14, 11],[5, 9, 13, 14, 10, 11],[13, 9, 6, 10, 5, 0]
+    ]
+  ],
+  [
+    ["P","U","N","M","R","L","I","G","T","E","P","I","S","A","R","S"],
+    ["red","green","red","red","yellow","yellow","green","yellow","red","yellow","yellow","red","red","green","green","green"],
+    [[15, 10, 11, 14, 9, 12],[4, 1, 5, 6, 2, 7],[15, 10, 13, 14, 9, 12],[15, 10, 13, 8, 9, 12],[10, 11, 14, 13, 8, 9]
+    ]
+  ],
+  [
+    ["S","B","R","T","N","H","I","A","E","S","N","O","L","M","T","P"],
+    ["red","yellow","yellow","green","red","yellow","yellow","red","green","green","yellow","green","red","green","yellow","green"],
+    [[1, 2, 7, 6, 10, 9],[3, 2, 7, 6, 10, 9],[7, 2, 3, 6, 9, 14],[15, 11, 6, 10, 14, 9],[7, 2, 6, 9, 8, 4]
+    ]
+  ],
+  [
+    ["U","O","L","G","N","O","S","B","Z","E","I","U","S","R","C","H"],
+    ["yellow","green","red","green","yellow","yellow","green","yellow","green","red","green","red","red","yellow","yellow","red"],
+    [[6, 1, 5, 4, 9, 13],[2, 5, 6, 9, 13, 12],[2, 5, 4, 9, 13, 12],[4, 1, 5, 6, 9, 12],[2, 5, 1, 6, 9, 4]
+    ]
+  ],
+  [
+    ["I","Y","O","T","P","R","M","T","E","T","I","I","L","L","L","K"],
+    ["yellow","green","red","green","green","yellow","yellow","yellow","red","red","red","yellow","yellow","yellow","green","green"],
+    [[15, 11, 14, 13, 8, 5],[9, 10, 13, 12, 8, 5],[4, 8, 5, 6, 11, 7],[6, 2, 7, 10, 13, 8],[6, 10, 13, 12, 8, 5]
+    ]
+  ],
+  [
+    ["L","E","I","S","T","R","S","A","I","A","E","U","T","N","C","A"],
+    ["red","red","yellow","red","red","yellow","yellow","green","red","green","red","green","red","red","green","yellow"],
+    [[7, 3, 6, 10, 13, 12],[3, 7, 11, 14, 10, 6],[6, 10, 13, 9, 4, 1],[6, 7, 11, 14, 10, 5],[14, 9, 4, 1, 5, 6]
+    ]
+  ],
+  [
+    ["N","S","L","I","N","T","I","F","S","R","N","R","T","O","E","S"],
+    ["green","yellow","yellow","red","green","red","red","green","red","red","yellow","yellow","yellow","yellow","green","red"],
+    [[15, 14, 10, 13, 9, 8],[7, 2, 6, 9, 12, 8],[15, 10, 13, 9, 5, 1],[2, 6, 10, 14, 11, 15],[8, 12, 13, 10, 14, 15]
+    ]
+  ],
+  [
+    ["E","R","O","S","T","I","I","E","A","N","C","C","D","P","U","I"],
+    ["red","red","green","red","yellow","red","red","yellow","green","yellow","red","green","red","green","yellow","red"],
+    [[13, 8, 4, 5, 2, 3],[12, 8, 9, 10, 7, 3],[1, 0, 4, 8, 5, 9],[14, 13, 12, 8, 4, 0],[1, 0, 4, 5, 9, 8]
+    ]
+  ],
+  [
+    ["T","P","A","D","O","L","S","E","L","N","T","N","D","A","I","D"],
+    ["yellow","yellow","red","green","yellow","green","red","green","green","green","red","yellow","yellow","green","red","green"],
+    [[5, 2, 6, 10, 7, 3],[3, 7, 10, 13, 14, 9],[3, 7, 11, 10, 13, 8],[3, 7, 6, 1, 4, 0],[14, 9, 10, 7, 11, 15]
+    ]
+  ],
+  [
+    ["E","N","R","U","L","S","E","E","T","E","I","S","C","C","I","T"],
+    ["red","red","red","yellow","green","yellow","red","yellow","green","green","green","yellow","yellow","red","red","yellow"],
+    [[0, 4, 9, 12, 8, 5],[13, 14, 15, 10, 7, 11],[5, 0, 4, 9, 13, 8],[1, 6, 5, 8, 4, 9],[2, 7, 11, 10, 5, 8]
+    ]
+  ],
+  [
+    ["H","I","C","A","R","E","T","R","R","L","T","A","M","N","Qu","N"],
+    ["green","yellow","green","green","green","green","yellow","red","yellow","green","yellow","green","red","red","red","yellow"],
+    [[7, 11, 10, 6, 9, 5],[6, 7, 3, 2, 5, 8],[11, 10, 6, 1, 4, 5],[11, 15, 10, 9, 5, 4],[2, 3, 6, 10, 9, 5]
+    ]
+  ],
+  [
+    ["G","E","A","R","N","L","R","R","Y","X","Y","E","S","A","S","S"],
+    ["red","red","green","red","green","red","green","red","red","yellow","red","yellow","green","yellow","green","yellow"],
+    [[4, 1, 2, 6, 11, 7],[0, 5, 2, 7, 11, 14],[7, 2, 6, 1, 5, 8],[4, 1, 2, 6, 5, 8],[11, 15, 14, 13, 8, 12]
+    ]
+  ],
+  [
+    ["O","L","M","O","A","I","R","E","L","P","E","T","X","N","S","B"],
+    ["yellow","green","yellow","yellow","red","red","red","red","green","green","green","yellow","green","red","red","green"],
+    [[14, 10, 6, 5, 4, 8],[4, 8, 5, 10, 13, 14],[14, 11, 10, 6, 7, 3],[15, 10, 6, 7, 11, 14],[6, 5, 9, 10, 13, 14]
+    ]
+  ],
+  [
+    ["F","E","A","T","R","D","R","T","B","S","D","D","L","I","E","I"],
+    ["yellow","green","yellow","green","green","yellow","yellow","red","yellow","red","green","red","yellow","red","red","red"],
+    [[1, 5, 10, 15, 14, 9],[10, 6, 1, 2, 5, 9],[7, 6, 2, 5, 1, 4],[7, 6, 1, 2, 5, 9],[8, 4, 1, 2, 5, 9]
+    ]
+  ],
+  [
+    ["R","T","H","E","A","R","S","A","S","A","I","L","Y","Y","D","O"],
+    ["yellow","yellow","red","green","yellow","red","green","red","red","green","red","red","red","green","yellow","yellow"],
+    [[6, 1, 5, 9, 13, 8],[7, 6, 1, 5, 9, 13],[1, 5, 10, 7, 11, 6],[5, 9, 14, 10, 7, 11],[1, 5, 9, 10, 11, 6]
+    ]
+  ],
+  [
+    ["C","I","D","N","H","N","A","V","M","I","E","G","G","R","T","S"],
+    ["green","yellow","green","red","yellow","yellow","green","red","yellow","yellow","red","yellow","green","red","yellow","green"],
+    [[14, 13, 10, 5, 0, 4],[13, 10, 11, 6, 9, 5],[6, 7, 10, 13, 14, 15],[13, 10, 14, 9, 5, 6],[6, 2, 7, 10, 13, 14]
+    ]
+  ],
+  [
+    ["E","Y","S","B","I","R","E","W","A","L","S","S","R","G","O","F"],
+    ["red","yellow","yellow","green","yellow","yellow","green","red","green","yellow","red","red","green","green","yellow","green"],
+    [[13, 12, 8, 4, 9, 10],[2, 6, 5, 4, 8, 9],[13, 9, 8, 5, 6, 10],[9, 14, 10, 6, 5, 2],[9, 14, 10, 11, 6, 2]
+    ]
+  ],
+  [
+    ["S","L","Z","O","Y","M","I","A","S","S","D","V","I","T","E","I"],
+    ["red","yellow","green","red","red","green","red","yellow","red","red","green","green","red","yellow","yellow","yellow"],
+    [[10, 6, 11, 14, 9, 13],[1, 6, 9, 13, 14, 10],[10, 14, 9, 12, 8, 13],[11, 6, 9, 12, 13, 8],[0, 1, 6, 10, 14, 9]
+    ]
+  ],
+  [
+    ["T","S","E","Qu","P","M","R","G","M","L","E","A","E","N","C","T"],
+    ["green","yellow","red","green","red","red","red","yellow","green","green","green","yellow","red","red","yellow","yellow"],
+    [[5, 10, 11, 7, 2, 6],[14, 9, 10, 11, 6, 1],[13, 10, 14, 15, 11, 6],[1, 2, 6, 10, 13, 12],[5, 10, 6, 7, 2, 1]
+    ]
+  ],
+  [
+    ["S","R","X","E","L","E","U","L","T","I","V","T","O","S","E","R"],
+    ["green","red","yellow","yellow","green","green","red","yellow","red","yellow","red","yellow","green","green","green","red"],
+    [[11, 14, 13, 8, 5, 1],[15, 14, 10, 5, 4, 0],[13, 14, 10, 5, 1, 0],[13, 9, 14, 10, 5, 0],[1, 5, 10, 14, 15, 11]
+    ]
+  ],
+  [
+    ["E","R","E","A","D","A","I","T","C","M","S","O","T","U","C","Y"],
+    ["yellow","red","red","yellow","green","green","red","yellow","red","yellow","green","green","green","yellow","green","red"],
+    [[9, 5, 10, 14, 11, 7],[9, 6, 10, 7, 2, 1],[7, 6, 2, 1, 0, 4],[4, 1, 0, 5, 9, 10],[9, 5, 10, 7, 2, 1]
+    ]
+  ],
+  [
+    ["N","C","U","R","C","J","E","A","C","O","S","S","A","L","P","E"],
+    ["yellow","green","red","green","green","green","red","yellow","red","green","red","red","yellow","red","yellow","red"],
+    [[6, 3, 7, 10, 15, 11],[8, 13, 9, 10, 15, 11],[10, 7, 2, 1, 6, 3],[10, 9, 4, 1, 6, 3],[10, 7, 2, 1, 6, 11]
+    ]
+  ],
+  [
+    ["H","O","S","I","Y","H","E","G","T","M","R","N","A","E","E","S"],
+    ["green","yellow","yellow","red","green","green","yellow","red","green","yellow","green","red","green","green","red","green"],
+    [[8, 5, 6, 9, 14, 15],[10, 5, 4, 9, 6, 2],[13, 9, 14, 10, 7, 6],[7, 6, 11, 10, 14, 15],[9, 13, 10, 7, 6, 2]
+    ]
+  ],
+  [
+    ["C","E","P","L","A","L","S","A","E","T","R","N","R","A","F","O"],
+    ["yellow","red","red","yellow","yellow","green","green","red","red","yellow","red","red","green","green","red","red"],
+    [[2, 7, 6, 9, 8, 5],[0, 5, 8, 13, 10, 6],[3, 7, 2, 1, 5, 6],[4, 5, 8, 12, 9, 6],[5, 8, 13, 10, 11, 6]
+    ]
+  ],
+  [
+    ["R","R","K","N","X","E","A","C","D","S","L","I","P","A","N","N"],
+    ["yellow","red","green","red","yellow","red","red","red","red","green","yellow","green","yellow","green","red","yellow"],
+    [[3, 6, 11, 10, 5, 8],[15, 11, 7, 2, 5, 10],[10, 6, 7, 2, 5, 8],[9, 6, 11, 10, 5, 8],[1, 6, 3, 2, 5, 8]
+    ]
+  ],
+  [
+    ["N","T","N","C","E","S","U","R","A","A","E","G","I","O","M","E"],
+    ["yellow","red","yellow","green","green","red","green","yellow","red","green","green","red","green","yellow","green","yellow"],
+    [[11, 7, 10, 9, 5, 4],[3, 7, 10, 9, 5, 4],[11, 7, 6, 2, 1, 5],[6, 2, 7, 10, 5, 1],[7, 10, 5, 4, 0, 1]
+    ]
+  ],
+  [
+    ["Y","L","N","L","A","T","S","S","E","R","E","O","T","A","T","J"],
+    ["yellow","yellow","green","red","red","green","red","red","red","yellow","green","green","red","red","yellow","red"],
+    [[6, 1, 4, 5, 8, 9],[14, 10, 6, 5, 8, 9],[9, 8, 4, 1, 5, 0],[4, 1, 5, 8, 9, 6],[6, 1, 4, 5, 10, 7]
+    ]
+  ],
+  [
+    ["I","E","T","E","S","M","A","E","R","T","J","R","S","A","D","C"],
+    ["red","red","yellow","yellow","green","green","red","green","red","green","yellow","yellow","red","green","red","yellow"],
+    [[14, 11, 7, 6, 5, 9],[12, 9, 6, 2, 1, 4],[15, 11, 7, 6, 2, 1],[15, 11, 6, 2, 1, 4],[15, 11, 7, 6, 5, 4]
+    ]
+  ],
+  [
+    ["I","W","S","H","T","E","E","T","F","R","E","A","A","N","H","E"],
+    ["yellow","red","red","green","yellow","yellow","green","green","yellow","red","red","yellow","yellow","red","green","green"],
+    [[4, 1, 6, 10, 7, 2],[4, 5, 2, 7, 6, 9],[4, 9, 6, 11, 7, 2],[14, 10, 11, 7, 6, 9],[13, 10, 7, 3, 6, 9]
+    ]
+  ],
+  [
+    ["S","I","L","T","A","E","E","S","M","S","E","A","R","U","N","I"],
+    ["red","green","red","yellow","yellow","green","yellow","green","yellow","red","green","red","yellow","yellow","red","green"],
+    [[9, 8, 5, 2, 3, 7],[2, 5, 8, 13, 12, 9],[4, 8, 13, 9, 6, 7],[14, 13, 12, 9, 6, 7],[15, 14, 9, 6, 3, 7]
+    ]
+  ],
+  [
+    ["B","E","R","A","O","R","Qu","C","E","S","S","N","T","W","I","C"],
+    ["yellow","red","yellow","yellow","red","yellow","yellow","green","green","red","green","green","yellow","green","green","red"],
+    [[10, 14, 9, 12, 8, 5],[0, 1, 5, 8, 12, 9],[3, 2, 5, 8, 9, 12],[9, 4, 0, 1, 5, 10],[9, 12, 8, 5, 1, 4]
+    ]
+  ],
+  [
+    ["A","S","L","E","M","S","E","G","D","A","N","E","H","U","E","Y"],
+    ["red","yellow","green","red","red","green","green","red","yellow","yellow","yellow","yellow","green","green","green","red"],
+    [[12, 9, 5, 1, 2, 3],[9, 10, 7, 2, 6, 1],[8, 9, 4, 5, 6, 2],[9, 10, 7, 3, 2, 5],[14, 9, 5, 6, 2, 1]
+    ]
+  ],
+  [
+    ["P","E","E","Z","T","S","D","A","I","C","Y","V","X","D","E","E"],
+    ["green","yellow","green","yellow","green","yellow","yellow","green","red","green","green","green","red","red","red","red"],
+    [[5, 0, 1, 2, 6, 10],[14, 11, 7, 6, 2, 5],[14, 13, 8, 9, 4, 5],[14, 13, 8, 4, 1, 6],[5, 1, 0, 4, 8, 9]
+    ]
+  ],
+  [
+    ["R","A","T","E","T","P","L","Y","E","T","K","A","O","S","S","C"],
+    ["yellow","red","green","green","red","red","green","yellow","yellow","green","green","yellow","yellow","green","red","red"],
+    [[6, 1, 4, 8, 13, 9],[6, 1, 4, 9, 8, 13],[5, 6, 1, 4, 8, 13],[15, 11, 14, 9, 6, 3],[13, 8, 4, 9, 6, 3]
+    ]
+  ],
+  [
+    ["I","R","S","G","A","N","E","T","O","T","P","D","B","I","C","E"],
+    ["red","red","red","yellow","red","green","yellow","yellow","red","red","red","red","green","green","green","yellow"],
+    [[11, 15, 10, 13, 14, 9],[5, 8, 9, 13, 14, 15],[8, 12, 9, 4, 0, 5],[6, 5, 9, 13, 14, 15],[2, 6, 10, 9, 13, 14]
+    ]
+  ],
+  [
+    ["I","N","R","D","R","U","U","E","O","T","S","X","S","E","L","D"],
+    ["red","yellow","green","yellow","red","green","green","red","yellow","red","green","green","red","green","green","yellow"],
+    [[4, 8, 5, 10, 13, 12],[10, 5, 9, 6, 2, 7],[4, 8, 5, 10, 7, 3],[6, 1, 2, 7, 10, 9],[4, 8, 5, 9, 13, 10]
+    ]
+  ],
+  [
+    ["L","O","D","S","E","I","B","E","L","I","T","E","H","O","S","S"],
+    ["yellow","red","red","yellow","yellow","yellow","yellow","red","yellow","green","red","green","green","green","red","green"],
+    [[2, 7, 6, 5, 10, 15],[8, 9, 14, 10, 7, 2],[14, 13, 8, 5, 2, 3],[14, 10, 11, 7, 2, 3],[12, 13, 14, 10, 7, 2]
+    ]
+  ],
+  [
+    ["D","E","S","C","S","R","N","O","E","D","R","M","A","Qu","S","O"],
+    ["red","yellow","red","red","yellow","green","green","green","green","yellow","yellow","red","green","red","green","green"],
+    [[4, 1, 6, 7, 10, 14],[7, 10, 9, 8, 5, 2],[4, 1, 6, 2, 7, 10],[0, 5, 8, 12, 9, 4],[11, 15, 10, 7, 6, 2]
+    ]
+  ],
+  [
+    ["N","I","L","R","E","T","R","J","U","E","N","A","L","A","H","T"],
+    ["yellow","yellow","red","red","yellow","yellow","green","green","red","green","yellow","green","yellow","red","green","yellow"],
+    [[1, 0, 5, 9, 6, 10],[4, 0, 5, 1, 6, 9],[1, 0, 5, 9, 10, 15],[0, 4, 8, 5, 9, 6],[6, 1, 5, 8, 13, 12]
+    ]
+  ],
+  [
+    ["I","M","E","S","P","T","S","C","T","A","I","C","G","R","D","M"],
+    ["yellow","red","green","red","red","yellow","green","red","green","green","red","yellow","yellow","yellow","yellow","red"],
+    [[0, 1, 4, 9, 10, 13],[9, 13, 10, 6, 2, 3],[12, 13, 9, 5, 2, 3],[13, 9, 10, 6, 2, 3],[9, 14, 15, 10, 5, 6]
+    ]
+  ],
+  [
+    ["D","A","L","C","R","S","R","O","S","E","E","C","L","M","N","N"],
+    ["red","yellow","yellow","red","green","green","yellow","yellow","green","yellow","green","red","green","yellow","red","red"],
+    [[10, 6, 1, 5, 9, 8],[10, 15, 11, 7, 6, 9],[12, 9, 8, 5, 10, 14],[11, 7, 6, 1, 2, 5],[2, 1, 5, 9, 4, 8]
+    ]
+  ],
+  [
+    ["E","E","F","S","L","E","A","P","N","L","S","T","R","P","E","R"],
+    ["yellow","yellow","green","red","red","yellow","green","yellow","red","green","green","green","green","red","green","red"],
+    [[7, 6, 10, 11, 14, 9],[13, 14, 11, 6, 9, 10],[2, 1, 4, 9, 6, 10],[2, 6, 10, 11, 14, 15],[2, 6, 9, 4, 5, 8]
+    ]
+  ],
+  [
+    ["D","R","Z","C","T","S","O","U","R","E","I","S","U","B","M","T"],
+    ["yellow","red","green","red","red","green","red","yellow","yellow","yellow","red","red","green","red","green","green"],
+    [[8, 9, 14, 10, 15, 11],[8, 9, 5, 10, 11, 15],[8, 9, 5, 6, 1, 4],[11, 10, 5, 4, 9, 8],[15, 10, 14, 13, 9, 8]
+    ]
+  ],
+  [
+    ["N","E","T","N","M","B","T","E","G","A","R","R","T","S","N","S"],
+    ["red","yellow","green","yellow","red","green","yellow","red","yellow","green","yellow","red","green","yellow","green","red"],
+    [[5, 9, 10, 6, 7, 11],[5, 1, 2, 6, 7, 10],[4, 9, 6, 2, 7, 10],[5, 9, 6, 2, 7, 11],[8, 9, 10, 6, 7, 11]
+    ]
+  ],
+  [
+    ["Y","X","P","G","S","N","A","D","I","T","I","T","G","O","L","E"],
+    ["green","yellow","red","red","green","yellow","red","yellow","red","red","green","green","red","red","red","yellow"],
+    [[4, 0, 5, 9, 6, 1],[2, 6, 10, 5, 9, 4],[14, 10, 9, 6, 5, 0],[9, 13, 10, 14, 15, 11],[11, 10, 9, 6, 5, 4]
+    ]
+  ],
+  [
+    ["F","L","T","E","E","I","I","D","C","C","E","N","A","D","Qu","A"],
+    ["red","green","yellow","green","green","yellow","yellow","red","green","green","red","yellow","red","green","green","yellow"],
+    [[12, 8, 9, 10, 7, 3],[7, 10, 9, 4, 5, 2],[13, 10, 11, 6, 3, 7],[0, 4, 1, 6, 11, 10],[4, 1, 6, 9, 5, 2]
+    ]
+  ],
+  [
+    ["A","C","E","A","A","N","M","R","S","O","A","S","C","L","S","T"],
+    ["green","red","green","green","yellow","green","red","yellow","yellow","yellow","yellow","yellow","green","red","yellow","red"],
+    [[14, 15, 10, 5, 1, 2],[12, 9, 10, 14, 15, 11],[1, 0, 5, 10, 13, 14],[6, 9, 13, 10, 7, 11],[13, 9, 5, 2, 7, 11]
+    ]
+  ],
+  [
+    ["L","S","T","T","U","R","S","O","C","P","I","E","K","Y","L","C"],
+    ["yellow","green","green","red","yellow","red","red","green","red","yellow","yellow","green","green","red","red","yellow"],
+    [[8, 5, 4, 1, 2, 6],[15, 10, 5, 8, 4, 1],[9, 5, 10, 15, 11, 6],[9, 5, 10, 11, 6, 2],[2, 5, 10, 9, 14, 11]
+    ]
+  ],
+  [
+    ["T","C","L","E","S","E","C","I","V","O","N","A","K","S","T","E"],
+    ["red","yellow","green","red","red","yellow","yellow","yellow","red","green","yellow","yellow","yellow","green","yellow","green"],
+    [[10, 7, 3, 6, 5, 4],[5, 10, 14, 11, 7, 2],[4, 1, 5, 10, 7, 6],[7, 10, 6, 5, 4, 0],[4, 5, 10, 11, 14, 15]
+    ]
+  ],
+  [
+    ["R","X","T","U","I","N","A","O","R","P","S","R","E","I","I","T"],
+    ["red","green","red","red","green","red","red","yellow","green","green","yellow","yellow","yellow","red","red","yellow"],
+    [[11, 6, 9, 13, 10, 15],[6, 10, 9, 13, 8, 12],[10, 15, 11, 14, 9, 12],[10, 9, 8, 4, 5, 2],[10, 5, 4, 9, 12, 8]
+    ]
+  ],
+  [
+    ["O","T","F","I","N","S","C","R","A","E","H","U","O","N","T","I"],
+    ["green","yellow","yellow","red","yellow","red","yellow","yellow","green","yellow","green","green","red","red","green","red"],
+    [[8, 5, 6, 9, 13, 14],[14, 9, 13, 8, 4, 1],[14, 10, 7, 3, 2, 1],[6, 11, 14, 9, 5, 1],[7, 3, 6, 10, 9, 5]
+    ]
+  ],
+  [
+    ["N","I","B","E","E","T","A","T","S","T","Z","U","I","O","O","E"],
+    ["yellow","green","red","green","yellow","red","yellow","green","yellow","green","yellow","yellow","green","yellow","red","red"],
+    [[7, 6, 5, 9, 14, 13],[2, 1, 5, 9, 4, 0],[2, 3, 6, 5, 4, 0],[8, 9, 6, 7, 11, 15],[4, 8, 5, 6, 7, 3]
+    ]
+  ],
+  [
+    ["M","C","E","U","M","A","E","D","I","L","S","T","I","S","I","N"],
+    ["yellow","red","red","red","green","green","green","green","green","green","yellow","yellow","red","yellow","green","yellow"],
+    [[9, 5, 10, 11, 6, 7],[5, 8, 13, 9, 6, 10],[12, 13, 9, 6, 11, 10],[4, 5, 8, 9, 6, 7],[4, 8, 13, 9, 6, 7]
+    ]
+  ],
+  [
+    ["S","R","R","E","I","T","O","E","E","M","E","D","G","A","R","N"],
+    ["green","red","green","red","red","red","yellow","yellow","red","red","yellow","green","red","red","yellow","green"],
+    [[5, 10, 15, 11, 7, 2],[14, 10, 9, 6, 5, 8],[14, 10, 9, 4, 5, 0],[9, 6, 11, 10, 14, 15],[0, 5, 2, 6, 11, 10]
+    ]
+  ],
+  [
+    ["I","L","R","B","A","E","P","I","D","O","R","E","E","R","M","E"],
+    ["yellow","green","green","red","yellow","red","yellow","red","green","red","yellow","red","red","green","yellow","green"],
+    [[8, 9, 13, 14, 15, 10],[10, 5, 4, 8, 12, 13],[10, 11, 6, 5, 4, 1],[9, 13, 8, 5, 4, 1],[1, 5, 4, 8, 12, 13]
+    ]
+  ],
+  [
+    ["R","T","O","D","Z","R","N","E","C","H","E","S","N","F","L","T"],
+    ["red","red","yellow","red","yellow","red","yellow","red","red","red","yellow","green","green","green","yellow","green"],
+    [[5, 2, 3, 7, 6, 1],[3, 7, 11, 10, 5, 1],[6, 7, 11, 15, 14, 10],[5, 10, 11, 7, 6, 1],[9, 10, 5, 2, 6, 11]
+    ]
+  ],
+  [
+    ["P","E","S","N","O","R","S","N","R","A","T","Y","R","E","P","H"],
+    ["red","green","red","red","yellow","green","red","green","yellow","red","green","green","green","yellow","green","yellow"],
+    [[0, 4, 5, 10, 13, 8],[14, 9, 5, 2, 1, 6],[13, 8, 9, 6, 1, 2],[4, 0, 1, 5, 9, 6],[9, 6, 2, 1, 5, 10]
+    ]
+  ],
+  [
+    ["U","O","A","L","N","I","I","V","G","E","G","R","S","E","R","C"],
+    ["green","yellow","green","red","green","red","red","green","yellow","green","green","yellow","yellow","red","yellow","yellow"],
+    [[14, 9, 10, 5, 1, 4],[8, 9, 4, 5, 2, 3],[3, 6, 9, 8, 13, 12],[12, 13, 9, 5, 4, 8],[7, 6, 11, 10, 5, 4]
+    ]
+  ],
+  [
+    ["I","S","N","Z","I","C","E","N","I","L","H","R","R","E","Y","Qu"],
+    ["green","yellow","red","yellow","yellow","yellow","red","green","yellow","yellow","green","red","yellow","green","red","green"],
+    [[9, 4, 5, 10, 6, 7],[12, 8, 5, 10, 6, 11],[12, 13, 9, 8, 5, 1],[12, 8, 5, 10, 9, 14],[12, 8, 5, 10, 6, 1]
+    ]
+  ]
 ]

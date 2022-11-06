@@ -15,6 +15,7 @@ export default function App() {
           <div>
             {<h1>Palette</h1>}
             {`Build words that match the color patterns by swiping to connect adjacent letters.\n\nTap on a clue to get a hint.`}
+            {<small>version 0.0.3</small>}
           </div>
           <button className="close" onClick={() => setDisplay("game")}>
             CLOSE

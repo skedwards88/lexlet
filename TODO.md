@@ -4,10 +4,9 @@
 
 - landscape not working on android
 
-- google analytics
 - is it possible to track sharing. it is also possible to track results to see hints used?
 
-- hook up custom domain + redirect from misspelling. or put simple game on mispelling.
+- redirect from misspelling. or put simple game on mispelling. also include tracking there.
 - change url in handleShare
 
 ## Before wider sharing

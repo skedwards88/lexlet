@@ -58,17 +58,6 @@ export function gameReducer(currentGameState, payload) {
       playedIndexes: newPlayedIndexes,
     };
   } else if (payload.action === "endWord") {
-    // if the word is below the min length, don't add the word
-    if (
-      currentGameState.playedIndexes.length < currentGameState.minWordLength
-    ) {
-      return {
-        ...currentGameState,
-        playedIndexes: [],
-        wordInProgress: false,
-      };
-    }
-
     // check if word is a real word
     const word = currentGameState.playedIndexes
       .map((index) => currentGameState.letters[index])

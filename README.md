@@ -1,12 +1,12 @@
 # Palette
 
-A standalone version of palette from [my other word games](https://skedwards88.github.io/word_games/).
+A standalone, daily version of palette from [my other word games](https://skedwards88.github.io/word_games/).
 
 **Players:** 1
 
 **Time:** 5 minutes
 
-[Play Now!](https://skedwards88.github.io/palette/)
+[Play Now!](https://palettegame.com/)
 
 <img src="src/images/icon_512.png" alt="game icon" width="70"/>
 
@@ -30,7 +30,6 @@ The game cache was made by executing a function like this in the palette gameIni
 
 ```js
 function getNGames(numGames) {
-  console.log('start')
   let count = 0
   let games = []
   while (count < numGames) {

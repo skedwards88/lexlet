@@ -22,5 +22,5 @@ export function Countdown() {
     return () => clearTimeout(timerID);
   })
 
-  return <div>{timeLeft}</div>
+  return <div>{`Next game in: ${timeLeft}`}</div>
 }

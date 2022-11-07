@@ -12,12 +12,12 @@
 
 ## Potential follow ups
 
-- update icons background to match new theme color
-- personal streak/hints used
 - auto populate the open an issue link with the version number
 - auto update game cache or at least have automated reminder to extend it. If have this, can have a smaller game cache.
 - auto bump version?
 - easter egg games
 
+- update icons background to match new theme color
+- personal streak/hints used
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
 - could let people set colors

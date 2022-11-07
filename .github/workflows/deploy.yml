@@ -26,20 +26,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install requirements
-        run: npm install
+      - name: Bump version
+        run: npm version patch
 
-      - name: Build
-        run: npm run build
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
+      - name: commit
+        run: |
+          git add package.json
+          git commit -m "bump version"
+          git push origin main
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "./dist/"
+      # - name: Install requirements
+      #   run: npm install
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      # - name: Build
+      #   run: npm run build
+
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v2
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: "./dist/"
+
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1

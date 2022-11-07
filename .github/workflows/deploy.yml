@@ -26,13 +26,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Bump version
-        run: npm version patch
-
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
+
+      - name: Bump version
+        run: npm version patch
 
       - name: commit
         run: |

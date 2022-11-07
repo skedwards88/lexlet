@@ -2,6 +2,11 @@
 
 ## Before beta group
 
+- 24 hr adjustment
+- 0 single diget adjustment
+- test on ipad
+- install button
+- add to app store
 - landscape not working on android
 
 - is it possible to track sharing. it is also possible to track results to see hints used?

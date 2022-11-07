@@ -3,7 +3,7 @@ import Share from "./Share";
 import packageJson from "../../package.json";
 
 export default function Heart({setDisplay}) {
-  const feedbackLink = `"https://github.com/skedwards88/palette/issues/new?body=Palette+version+${packageJson.version}"`
+  const feedbackLink = `https://github.com/skedwards88/palette/issues/new?body=Palette+version+${packageJson.version}`
   
   return (
     <div className="App info">

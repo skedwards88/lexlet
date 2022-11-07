@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: setup git config
+      - name: Setup git config
         run: |
           git config --global user.name "skedwards88"
           git config --global user.email "skedwards88@gmail.com"
@@ -33,7 +33,7 @@ jobs:
       - name: Bump version
         run: npm version patch
 
-      - name: commit
+      - name: Push
         run: |
           git push origin main
 

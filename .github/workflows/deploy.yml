@@ -36,8 +36,6 @@ jobs:
 
       - name: commit
         run: |
-          git add package.json
-          git commit -m "bump version"
           git push origin main
 
       # - name: Install requirements

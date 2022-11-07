@@ -28,8 +28,8 @@ jobs:
 
       - name: setup git config
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          git config --global user.name "skedwards88"
+          git config --global user.email "skedwards88@gmail.com"
 
       - name: Bump version
         run: npm version patch

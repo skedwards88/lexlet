@@ -1,26 +1,30 @@
 import React from "react";
 
 function calculateTimeLeft() {
-  const newDayNumber = new Date().getDate() + 1; // accounts for month change automatically
-  const nextGameAtInMilliSec = new Date(new Date().setDate(newDayNumber)).setHours(3,0,0,0)
-  const nowInMilliSec = Date.now();
-  const minUntilNext = (nextGameAtInMilliSec - nowInMilliSec) / (1000 * 60);
-  const displayHourUntilNext = Math.floor(minUntilNext / 60)
-  const displayMinUntilNext = Math.floor(minUntilNext % 60)
-  return `${displayHourUntilNext}:${displayMinUntilNext}`
+  const now = new Date();
+  const nowHours = now.getHours();
+  const nowMinutes = now.getMinutes();
+  const nowAbsoluteMinutes = nowMinutes + 60 * nowHours;
+  const nextAbsoluteMinutes = (24 + 3) * 60;
+
+  const diffAbsoluteMinutes = nextAbsoluteMinutes - nowAbsoluteMinutes;
+  const diffHours = Math.floor(diffAbsoluteMinutes / 60);
+  const adjDiffHours = diffHours >= 24 ? diffHours - 24 : diffHours;
+  const diffMinutes = diffAbsoluteMinutes % 60;
+
+  return `${adjDiffHours} hr ${diffMinutes} min`;
 }
 
 export function Countdown() {
-
-  const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft())
+  const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
 
   React.useEffect(() => {
     const timerID = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 60000);
+    }, 30000);
 
     return () => clearTimeout(timerID);
-  })
+  });
 
-  return <div>{`Next game in: ${timeLeft}`}</div>
+  return <div>{`Next game in ${timeLeft}`}</div>;
 }

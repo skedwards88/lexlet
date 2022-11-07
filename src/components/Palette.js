@@ -5,6 +5,7 @@ import { gameReducer } from "../logic/gameReducer";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
+import { Countdown } from "./Countdown";
 
 export default function Palette({ setDisplay }) {
   const [gameState, dispatchGameState] = React.useReducer(
@@ -32,7 +33,7 @@ export default function Palette({ setDisplay }) {
       }}
     >
       <div id="controls">
-        <div id="nextGame">{isGameOver ? "Next game at 03:00" : ""}</div>
+        <div id="nextGame">{isGameOver ? <Countdown></Countdown> : ""}</div>
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
       </div>

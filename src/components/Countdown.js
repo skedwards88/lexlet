@@ -21,7 +21,7 @@ export function Countdown() {
   React.useEffect(() => {
     const timerID = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 30000);
+    }, 1000);
 
     return () => clearTimeout(timerID);
   });

@@ -1,20 +1,7 @@
 # TODO
 
-## Before beta group
-
-- test on ipad
-- install button
-- add to app store
-- landscape not working on android
-
 - is it possible to track clicking on the share button? is it also possible to track results to see hints used?
-
-- redirect from misspelling. or put simple game on misspelling. also include tracking there.
-
-## Before wider sharing
-
-## Potential follow ups
-
+- google search
 - auto update game cache or at least have automated reminder to extend it. If have this, can have a smaller game cache.
 - easter egg games
 
@@ -23,3 +10,5 @@
 - limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
 - could let people set colors
 - issue template form for feedback
+- install button
+- add to app store

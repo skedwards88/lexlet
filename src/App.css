@@ -131,6 +131,7 @@ button {
 
 #rulesVersion {
   grid-area: version;
+  margin: 0 0 1vmax 0;
 }
 
 .info {

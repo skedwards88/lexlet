@@ -2,9 +2,9 @@ import React from "react";
 import Share from "./Share";
 import packageJson from "../../package.json";
 
-export default function Heart({setDisplay}) {
-  const feedbackLink = `https://github.com/skedwards88/palette/issues/new?body=Palette+version+${packageJson.version}`
-  
+export default function Heart({ setDisplay }) {
+  const feedbackLink = `https://github.com/skedwards88/palette/issues/new?body=Palette+version+${packageJson.version}`;
+
   return (
     <div className="App info">
       <div className="infoText">
@@ -14,9 +14,7 @@ export default function Heart({setDisplay}) {
         {<hr></hr>}
         {`\n`}
         {"Feedback? "}
-        <a href={feedbackLink}>
-          Open an issue
-        </a>
+        <a href={feedbackLink}>Open an issue</a>
         {" on GitHub."}
         {`\n\n`}
         {<hr></hr>}

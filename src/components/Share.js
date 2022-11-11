@@ -17,9 +17,7 @@ function handleShare(text) {
 
 function handleCopy(text) {
   try {
-    navigator.clipboard.writeText(
-      `${text}\n\nhttps://palettegame.com/`
-    );
+    navigator.clipboard.writeText(`${text}\n\nhttps://palettegame.com/`);
   } catch (error) {
     console.log(error);
   }

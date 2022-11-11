@@ -6,6 +6,7 @@ html {
   --default-font-size: min(1cm, min(4vmax, 7vmin));
   --dark-color: rgb(55 54 71);
   --light-color: rgb(239 239 239);
+
   background-color: var(--dark-color);
   color: var(--light-color);
   font-family: sans-serif;
@@ -20,7 +21,7 @@ html {
 }
 
 small {
-  font-size: calc(var(--default-font-size) * .5);
+  font-size: calc(var(--default-font-size) * 0.5);
 }
 
 button {
@@ -38,8 +39,7 @@ button {
 
 #controls {
   display: grid;
-  grid-template-areas:
-    "nextGame rules heart";
+  grid-template-areas: "nextGame rules heart";
   grid-template-columns:
     1fr
     auto
@@ -129,8 +129,8 @@ button {
   grid-area: close;
 }
 
-#rulesVersion{
- grid-area: version;
+#rulesVersion {
+  grid-area: version;
 }
 
 .info {
@@ -150,7 +150,7 @@ button {
 }
 
 .info a {
-  color: rgb(0, 162, 255);
+  color: rgb(0 162 255);
 }
 
 #palette {
@@ -265,9 +265,9 @@ button {
 }
 
 .clueBox:last-child,
-.guessBox:last-child{
+.guessBox:last-child {
   border-right: 2px solid var(--light-color);
-} 
+}
 
 /* Landscape */
 
@@ -308,7 +308,6 @@ button {
 
   #controls button {
     width: auto;
-    margin-right: 0;
     margin: 2vmax 0;
   }
 

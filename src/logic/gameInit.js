@@ -7,17 +7,19 @@ export function gameInit() {
   const milliSecPerDay = 24 * 60 * 60 * 1000;
   const puzzleIndex = Math.floor((nowInMilliSec - startDate) / milliSecPerDay);
 
-  const savedState = JSON.parse(localStorage.getItem("dailyPaletteState"))
+  const savedState = JSON.parse(localStorage.getItem("dailyPaletteState"));
 
   if (savedState && savedState.puzzleIndex === puzzleIndex) {
-    return savedState
+    return savedState;
   }
 
   // Loop through puzzles if we run out before uploading more
   const [letters, colorsAbbreviations, clueIndexes] =
     gameCache[puzzleIndex] || gameCache[puzzleIndex % gameCache.length];
 
-  const colors = colorsAbbreviations.map(c => c.replace('R','red').replace('Y','yellow').replace('G','green'))
+  const colors = colorsAbbreviations.map((c) =>
+    c.replace("R", "red").replace("Y", "yellow").replace("G", "green")
+  );
 
   const clueMatches = clueIndexes.map(() => false);
   const hints = clueIndexes.map((clue) => clue.map(() => false));

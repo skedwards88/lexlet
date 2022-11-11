@@ -11,10 +11,10 @@ export default function App() {
       return <Palette setDisplay={setDisplay}></Palette>;
 
     case "rules":
-      return <Rules setDisplay={setDisplay}></Rules>
+      return <Rules setDisplay={setDisplay}></Rules>;
 
     case "heart":
-      return <Heart setDisplay={setDisplay}></Heart>
+      return <Heart setDisplay={setDisplay}></Heart>;
 
     default:
       return <Palette setDisplay={setDisplay}></Palette>;

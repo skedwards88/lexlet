@@ -19,13 +19,10 @@ html {
   overflow: scroll;
 }
 
-h1 {
-  font-size: min(5vmax, 10vmin);
+small {
+  font-size: calc(var(--default-font-size) * .5);
 }
 
-small {
-  font-size: calc(var(--default-font-size) * .6);
-}
 button {
   all: unset;
   text-decoration: none;
@@ -87,6 +84,55 @@ button {
   grid-area: heart;
 }
 
+.rules {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "text"
+    "demo"
+    "close"
+    "version";
+  text-align: center;
+  overflow: scroll;
+  font-size: calc(var(--default-font-size) * 0.75);
+  justify-items: center;
+  align-items: center;
+}
+
+#rulesHeader {
+  all: unset;
+  font-size: min(7vmax, 10vmin);
+  display: block;
+  font-weight: bold;
+  grid-area: header;
+}
+
+#rulesText {
+  white-space: pre-line;
+  margin: 0 2vmax;
+  grid-area: text;
+}
+
+#rulesDemo {
+  background-image: url("./images/demo.gif");
+  width: 100vw;
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  grid-area: demo;
+}
+
+#rulesClose {
+  height: fit-content;
+  width: fit-content;
+  grid-area: close;
+}
+
+#rulesVersion{
+ grid-area: version;
+}
+
 .info {
   white-space: pre-line;
   display: flex;
@@ -94,11 +140,8 @@ button {
   text-align: center;
   overflow: scroll;
   justify-items: center;
-  background-color: var(--dark-color);
   justify-content: space-evenly;
   align-items: center;
-  color: var(--light-color);
-  font-family: sans-serif;
   font-size: calc(var(--default-font-size) * 0.75);
 }
 
@@ -108,11 +151,6 @@ button {
 
 .info a {
   color: rgb(0, 162, 255);
-}
-
-.info button {
-  height: fit-content;
-  width: fit-content;
 }
 
 #palette {
@@ -281,5 +319,19 @@ button {
     text-align: right;
     justify-content: flex-end;
     display: none;
+  }
+
+  .rules {
+    grid-template-areas:
+      "header header"
+      "demo text"
+      "close close"
+      "version version";
+    grid-template-columns: 1fr auto;
+  }
+
+  #rulesDemo {
+    width: 50vw;
+    height: 70vh;
   }
 }

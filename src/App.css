@@ -322,15 +322,15 @@ button {
 
   .rules {
     grid-template-areas:
-      "header header"
-      "demo text"
+      "header demo"
+      "text demo"
       "close close"
       "version version";
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr;
   }
 
   #rulesDemo {
     width: 50vw;
-    height: 70vh;
+    height: 80vh;
   }
 }

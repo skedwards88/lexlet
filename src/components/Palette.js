@@ -33,7 +33,7 @@ export default function Palette({ setDisplay }) {
       }}
     >
       <div id="controls">
-        <div id="nextGame">{isGameOver ? <Countdown></Countdown> : ""}</div>
+        <div id="nextGame">{isGameOver ? <Countdown></Countdown> : `Hints used: ${gameState.hints.flatMap(i=>i).filter(i=>i).length}`}</div>
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
       </div>

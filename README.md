@@ -22,7 +22,7 @@ To run locally with live reloading and no service worker, run `npm run dev`. (If
 
 To run locally and register the service worker, run `npm start`.
 
-To deploy, run `npm run deploy`.
+To deploy, push to `main` or manually trigger the GitHub Actions `deploy.yml` workflow.
 
 Despite the duplication and inefficiency, all required components were copied from my core word game repo, [skedwards88/word_games](https://github.com/skedwards88/word_games). Desired changes to game logic or to the word list should be made there and copied to here. Only the 6 letter words are required.
 

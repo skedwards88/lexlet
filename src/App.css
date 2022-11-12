@@ -334,4 +334,8 @@ button {
     width: 50vw;
     height: 80vh;
   }
+
+  #rulesText{
+    height: 100%;
+  }
 }

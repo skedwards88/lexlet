@@ -7,7 +7,6 @@
 
 - update icons background to match new theme color
 - personal streak/hints used
-- limit to 3 hints? if so, can show "Hints remaining: " where would show next game time
 - could let people set colors
 - issue template form for feedback
 - install button

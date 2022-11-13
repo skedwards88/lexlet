@@ -5,7 +5,7 @@ export default function Rules({ setDisplay, isFirstGame, setIsFirstGame }) {
   return (
     <div className="App rules">
       <h1 id="rulesHeader">Palette: Rules</h1>
-      <p id="rulesText">{`Swipe to connect adjacent letters into words that match the color patterns.\n\nTap on a pattern to get a hint.`}</p>
+      <p id="rulesText">{`Swipe to connect letters into words that match the color patterns.\n\nTap on a pattern to get a hint.`}</p>
       <div id="rulesDemo"></div>
       <button
         id="rulesClose"

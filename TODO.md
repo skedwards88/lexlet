@@ -11,3 +11,6 @@
 - issue template form for feedback
 - install button
 - add to app store
+
+- add separate share button in controls bar
+- in rules, if on desktop, suggest mobile

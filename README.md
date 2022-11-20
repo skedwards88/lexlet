@@ -45,4 +45,19 @@ function getNGames(numGames) {
   }
   return games
 }
+
+const output = getNGames(200)
+
+let solutions = ""
+for (let gameIndex = 0; gameIndex < output.length; gameIndex++) {
+  solutions += `\n\n${gameIndex}`
+    let [letters, colors, clues] = output[gameIndex]
+    for (let clueIndex = 0; clueIndex < clues.length; clueIndex++) {
+        let word = clues[clueIndex].map((index) => letters[index]).join("")
+        solutions += `\n${word}`
+    }
+}
+
+console.log(output)
+console.log(solutions)
 ```

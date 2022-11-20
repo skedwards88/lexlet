@@ -3,7 +3,9 @@ html {
 }
 
 .App {
-  --default-font-size: min(1cm, min(4vmax, 7vmin));
+  --default-font-size: min(4vmax, 7vmin, 40px);
+  --board-box-diam: min(15vmax, 20vmin, 145px);
+  --clue-box-diam: min(4vmax, 16vmin);
   --dark-color: rgb(55 54 71);
   --light-color: rgb(239 239 239);
 
@@ -101,7 +103,7 @@ button {
 
 #rulesHeader {
   all: unset;
-  font-size: min(7vmax, 10vmin);
+  font-size: calc(var(--default-font-size) * 1.5);
   display: block;
   font-weight: bold;
   grid-area: header;
@@ -170,17 +172,21 @@ button {
 
 #palette #currentWord {
   grid-area: currentWord;
-  min-height: min(5vmax, 16vmin);
+  height: calc(var(--clue-box-diam) * 1.5);
   overflow: hidden;
+  justify-self: center;
+  align-self: center;
 }
 
 #gameOver {
   grid-area: currentWord;
-  font-size: min(3vmax, 7vmin);
+  font-size: calc(var(--default-font-size) * .75);
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  width: 70%;
 }
 
 #palette #board {
@@ -189,9 +195,12 @@ button {
   background-color: var(--dark-color);
   touch-action: none;
   justify-content: center;
-  grid-template-columns: repeat(4, min(15vmax, 20vmin));
-  grid-template-rows: repeat(4, min(15vmax, 20vmin));
+  grid-template-columns: repeat(4, var(--board-box-diam));
+  grid-template-rows: repeat(4, var(--board-box-diam));
   margin-bottom: 3vmax;
+  justify-self: center;
+  align-items: center;
+  justify-items: center;
 }
 
 #palette .letter {
@@ -203,7 +212,9 @@ button {
   justify-content: center;
   display: flex;
   align-items: center;
-  font-size: min(5vmax, 8vmin);
+  font-size: calc(var(--default-font-size) * 1.2);
+  height: 60%;
+  width: 60%;
 }
 
 #palette .red {
@@ -253,8 +264,8 @@ button {
 
 .clueBox,
 .guessBox {
-  min-height: min(4vmax, 16vmin);
-  min-width: min(4vmax, 16vmin);
+  min-height: var(--clue-box-diam);
+  min-width: var(--clue-box-diam);
   border-top: 2px solid var(--light-color);
   border-left: 2px solid var(--light-color);
   border-bottom: 2px solid var(--light-color);
@@ -262,7 +273,7 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: min(3vmax, 7vmin);
+  font-size: calc(var(--default-font-size) * 0.8);
 }
 
 .clueBox:last-child,
@@ -270,9 +281,9 @@ button {
   border-right: 2px solid var(--light-color);
 }
 
-/* Landscape */
+/* Landscape, small screen */
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-width: 800px) {
   #palette {
     grid-template-areas:
       "clues currentWord controls"
@@ -337,5 +348,22 @@ button {
 
   #rulesText{
     height: 100%;
+  }
+}
+
+/* Large screen */
+@media (min-width: 800px) {
+  .App {
+    justify-content: center;
+  }
+}
+
+/* Landscape, large screen */
+@media (orientation: landscape) and (min-width: 800px) {
+  .App {
+    --default-font-size: min(4vh, 7vw, 1cm);
+    --board-box-diam: min(12vh, 120px);
+    --clue-box-diam: min(4vh, 16vw);
+    justify-content: center;
   }
 }

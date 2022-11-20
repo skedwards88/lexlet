@@ -133,7 +133,7 @@ button {
 
 #rulesVersion {
   grid-area: version;
-  margin: 0 0 1vmax 0;
+  margin: 0 0 1vmax;
 }
 
 .info {
@@ -180,7 +180,7 @@ button {
 
 #gameOver {
   grid-area: currentWord;
-  font-size: calc(var(--default-font-size) * .75);
+  font-size: calc(var(--default-font-size) * 0.75);
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -346,7 +346,7 @@ button {
     height: 80vh;
   }
 
-  #rulesText{
+  #rulesText {
     height: 100%;
   }
 }
@@ -364,6 +364,7 @@ button {
     --default-font-size: min(4vh, 7vw, 1cm);
     --board-box-diam: min(12vh, 120px);
     --clue-box-diam: min(4vh, 16vw);
+
     justify-content: center;
   }
 }

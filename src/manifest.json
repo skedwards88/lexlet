@@ -8,7 +8,7 @@
   "start_url": "../.",
   "background_color": "#373647",
   "theme_color": "#373647",
-  "orentation": "any",
+  "orientation": "any",
   "icons": [
     {
       "src": "favicon.svg",
@@ -23,13 +23,38 @@
     {
       "src": "icon_512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     },
     {
       "src": "maskable_icon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [],
+  "screenshots" : [
+    {
+      "src": "screenshot_new.png",
+      "sizes": "720x1280",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "New game of Palette"
+    },
+    {
+      "src": "screenshot_partial_word.png",
+      "sizes": "720x1280",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "In progress word in Palette"
+    },
+    {
+      "src": "screenshot_complete_word.png",
+      "sizes": "720x1280",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "Completed word in Palette"
     }
   ]
 }

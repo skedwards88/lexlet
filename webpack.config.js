@@ -24,6 +24,9 @@ module.exports = (env, argv) => {
       { from: "./src/images/icon_512.png", to: "./assets/icon_512.png" },
       { from: "./src/images/maskable_icon.png", to: "./assets/maskable_icon.png" },
       { from: "./src/manifest.json", to: "./assets/manifest.json" },
+      { from: "./src/images/screenshot_complete_word.jpg", to: "./assets/screenshot_complete_word.jpg" },
+      { from: "./src/images/screenshot_partial_word.jpg", to: "./assets/screenshot_partial_word.jpg" },
+      { from: "./src/images/screenshot_new.jpg", to: "./assets/screenshot_new.jpg" },
     ],
     options: {
       concurrency: 100,

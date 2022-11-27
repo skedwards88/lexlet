@@ -34,14 +34,17 @@ function Letter({
   function handlePointerEnter(e, index, letterAvailability) {
     e.preventDefault();
     if (!letterAvailability) {
-      return;
+      dispatchGameState({
+        action: "removeLetter",
+        letterIndex: index,
+      });
+    } else {
+      // Add the letter to the list of letters
+      dispatchGameState({
+        action: "addLetter",
+        letterIndex: index,
+      });
     }
-
-    // Add the letter to the list of letters
-    dispatchGameState({
-      action: "addLetter",
-      letterIndex: index,
-    });
   }
 
   function handlePointerUp(e) {

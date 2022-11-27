@@ -57,6 +57,26 @@ export function gameReducer(currentGameState, payload) {
       ...currentGameState,
       playedIndexes: newPlayedIndexes,
     };
+  } else if (payload.action === "removeLetter") {
+    if (!currentGameState.wordInProgress) {
+      return currentGameState;
+    }
+    // Don't remove a letter if the player didn't go back to the letter before the last letter
+    let newPlayedIndexes = [...currentGameState.playedIndexes];
+    const lastIndexPlayed = newPlayedIndexes[newPlayedIndexes.length - 2];
+    if (lastIndexPlayed !== payload.letterIndex) {
+      return currentGameState;
+    }
+
+    newPlayedIndexes = currentGameState.playedIndexes.slice(
+      0,
+      newPlayedIndexes.length - 1
+    );
+
+    return {
+      ...currentGameState,
+      playedIndexes: newPlayedIndexes,
+    };
   } else if (payload.action === "endWord") {
     // check if word is a real word
     const word = currentGameState.playedIndexes

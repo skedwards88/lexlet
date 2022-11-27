@@ -34,23 +34,23 @@
     }
   ],
   "shortcuts": [],
-  "screenshots" : [
+  "screenshots": [
     {
-      "src": "screenshot_new.png",
+      "src": "screenshot_new.jpg",
       "sizes": "720x1280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "New game of Palette"
     },
     {
-      "src": "screenshot_partial_word.png",
+      "src": "screenshot_partial_word.jpg",
       "sizes": "720x1280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "In progress word in Palette"
     },
     {
-      "src": "screenshot_complete_word.png",
+      "src": "screenshot_complete_word.jpg",
       "sizes": "720x1280",
       "type": "image/jpg",
       "platform": "narrow",

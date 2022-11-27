@@ -11,8 +11,10 @@ export default function Rules({ setDisplay, isFirstGame, setIsFirstGame }) {
         id="rulesClose"
         className="close"
         onClick={() => {
-          if (setIsFirstGame) {setIsFirstGame(false)}
-          setDisplay("game")
+          if (setIsFirstGame) {
+            setIsFirstGame(false);
+          }
+          setDisplay("game");
         }}
       >
         {isFirstGame ? "Start game" : "Close"}

@@ -1,5 +1,5 @@
 {
-  "name": "Palette",
+  "name": "Palette Word Game",
   "short_name": "Palette",
   "description": "A spatial word game",
   "dir": "auto",
@@ -34,6 +34,7 @@
     }
   ],
   "shortcuts": [],
+  "categories": ["games", "entertainment", "education"],
   "screenshots": [
     {
       "src": "screenshot_new.jpg",

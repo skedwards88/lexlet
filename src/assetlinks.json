@@ -1,0 +1,6 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.palettegame.twa",
+               "sha256_cert_fingerprints": ["0B:46:62:3F:2E:AF:18:42:DB:57:D9:25:93:CA:82:23:D2:98:40:DB:58:41:B1:C7:A9:9F:33:DB:18:2E:D2:3A"] }
+}
+]

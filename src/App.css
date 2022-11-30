@@ -283,7 +283,7 @@ button {
 
 /* Landscape, small screen */
 
-@media (orientation: landscape) and (max-width: 800px) {
+@media (orientation: landscape) and (max-width: 1000px) {
   #palette {
     grid-template-areas:
       "clues currentWord controls"
@@ -359,7 +359,7 @@ button {
 }
 
 /* Landscape, large screen */
-@media (orientation: landscape) and (min-width: 800px) {
+@media (orientation: landscape) and (min-width: 1000px) {
   .App {
     --default-font-size: min(4vh, 7vw, 1cm);
     --board-box-diam: min(12vh, 120px);

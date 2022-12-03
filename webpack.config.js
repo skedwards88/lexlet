@@ -28,6 +28,7 @@ module.exports = (env, argv) => {
       { from: "./src/images/screenshot_complete_word.jpg", to: "./assets/screenshot_complete_word.jpg" },
       { from: "./src/images/screenshot_partial_word.jpg", to: "./assets/screenshot_partial_word.jpg" },
       { from: "./src/images/screenshot_new.jpg", to: "./assets/screenshot_new.jpg" },
+      { from: "./src/privacy.html", to: "./privacy.html" },
     ],
     options: {
       concurrency: 100,

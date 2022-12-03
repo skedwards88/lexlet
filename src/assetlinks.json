@@ -1,6 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target" : { "namespace": "android_app", "package_name": "com.palettegame.twa",
-               "sha256_cert_fingerprints": ["1B:7C:A0:46:F2:96:34:A5:5D:04:11:EF:70:ED:4F:B8:A9:38:02:43:34:DF:AD:53:BB:4F:B8:0A:83:55:5A:5C"] }
-}
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.palettegame.twa",
+      "sha256_cert_fingerprints": [
+        "1B:7C:A0:46:F2:96:34:A5:5D:04:11:EF:70:ED:4F:B8:A9:38:02:43:34:DF:AD:53:BB:4F:B8:0A:83:55:5A:5C"
+      ]
+    }
+  }
 ]

@@ -37,25 +37,60 @@
   "categories": ["games", "entertainment", "education"],
   "screenshots": [
     {
-      "src": "screenshot_new.jpg",
+      "src": "screenshot_new_720_1280.png",
       "sizes": "720x1280",
-      "type": "image/jpg",
+      "type": "image/png",
       "platform": "narrow",
       "label": "New game of Palette"
     },
     {
-      "src": "screenshot_partial_word.jpg",
+      "src": "screenshot_new_1080_1080.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "New game of Palette"
+    },
+    {
+      "src": "screenshot_partial_720_1280.png",
       "sizes": "720x1280",
-      "type": "image/jpg",
+      "type": "image/png",
       "platform": "narrow",
       "label": "In progress word in Palette"
     },
     {
-      "src": "screenshot_complete_word.jpg",
+      "src": "screenshot_partial_1080_1080.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "In progress word in Palette"
+    },
+    {
+      "src": "screenshot_full_720_1280.png",
       "sizes": "720x1280",
-      "type": "image/jpg",
+      "type": "image/png",
       "platform": "narrow",
       "label": "Completed word in Palette"
+    },
+    {
+      "src": "screenshot_full_1080_1080.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Completed word in Palette"
+    },
+    {
+      "src": "screenshot_hint_720_1280.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Hint in Palette"
+    },
+    {
+      "src": "screenshot_hint_1080_1080.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Hint in Palette"
     }
   ]
 }

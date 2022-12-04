@@ -13,6 +13,12 @@ export default function Heart({ setDisplay }) {
         {`\n\n`}
         {<hr></hr>}
         {`\n`}
+        {`Want more games?\nCheck `}
+        <a href="https://skedwards88.github.io/portfolio/">these</a>
+        {` out. `}
+        {`\n\n`}
+        {<hr></hr>}
+        {`\n`}
         {"Feedback? "}
         <a href={feedbackLink}>Open an issue</a>
         {" on GitHub."}

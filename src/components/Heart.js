@@ -13,7 +13,7 @@ export default function Heart({ setDisplay }) {
         {`\n\n`}
         {<hr></hr>}
         {`\n`}
-        {`Want more games?\nCheck `}
+        {`Want more games? Check `}
         <a href="https://skedwards88.github.io/portfolio/">these</a>
         {` out. `}
         {`\n\n`}

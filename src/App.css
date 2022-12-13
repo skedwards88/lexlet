@@ -380,9 +380,3 @@ button {
     justify-content: center;
   }
 }
-
-@media all and (display-mode: standalone) {
-  #install {
-    display: none !important;
-  }
-}

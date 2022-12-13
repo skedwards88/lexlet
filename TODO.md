@@ -10,8 +10,8 @@
 - personal streak/hints used
 - could let people set colors
 - issue template form for feedback
-- install button
-- add to app store
+- **install button**
+- **add to app store**
 
 - add separate share button in controls bar?
-- in rules, if on desktop, suggest mobile
+- background sync/periodic sync?

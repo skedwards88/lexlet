@@ -191,6 +191,8 @@ button {
   justify-self: center;
   align-self: center;
   width: 70%;
+  height: calc(var(--clue-box-diam) * 1.5);
+  margin: 0.5vmax;
 }
 
 #palette #board {

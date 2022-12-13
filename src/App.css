@@ -45,7 +45,7 @@ button {
 
 #controls {
   display: grid;
-  grid-template-areas: "nextGame rules heart";
+  grid-template-areas: "nextGame rules heart install";
   grid-template-columns:
     1fr
     auto
@@ -88,6 +88,11 @@ button {
 #heart {
   background-image: url("./images/heart.svg");
   grid-area: heart;
+}
+
+#install {
+  background-image: url("./images/install.svg");
+  grid-area: install;
 }
 
 .rules {
@@ -315,6 +320,7 @@ button {
     grid-template-areas:
       "rules"
       "heart"
+      "install"
       "nextGame";
     grid-template-rows:
       auto
@@ -372,5 +378,11 @@ button {
     --clue-box-diam: min(4vh, 16vw);
 
     justify-content: center;
+  }
+}
+
+@media all and (display-mode: standalone) {
+  #install {
+    display: none !important;
   }
 }

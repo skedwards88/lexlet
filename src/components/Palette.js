@@ -24,34 +24,44 @@ export default function Palette({ setDisplay }) {
   const [showInstallButton, setShowInstallButton] = React.useState(true);
 
   function handleBeforeInstallPrompt(event) {
-    console.log("handleBeforeInstallPrompt")
+    console.log("handleBeforeInstallPrompt");
     if (event) setInstallPromptEvent(event);
     setShowInstallButton(true);
   }
 
   function handleAppInstalled() {
-    console.log("handleAppInstalled")
+    console.log("handleAppInstalled");
     setInstallPromptEvent(null);
     setShowInstallButton(false);
   }
 
   React.useEffect(() => {
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    return () =>
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
   }); // todo not sure if this is the correct dep array
 
   React.useEffect(() => {
-    window.addEventListener('appinstalled', handleAppInstalled);
-    return () => window.removeEventListener('appinstalled', handleAppInstalled);
+    window.addEventListener("appinstalled", handleAppInstalled);
+    return () => window.removeEventListener("appinstalled", handleAppInstalled);
   }, []); // todo not sure if this is the correct dep array
 
   async function handleInstall() {
-    console.log('handling install')
-    console.log(installPromptEvent)
-    installPromptEvent.prompt()
+    console.log("handling install");
+    console.log(installPromptEvent);
+    installPromptEvent.prompt();
     const result = await installPromptEvent.userChoice;
-    console.log(result)
-    setInstallPromptEvent(null)
+    console.log(result);
+    setInstallPromptEvent(null);
+
+    try {
+      window.gtag("event", "install", {});
+    } catch (error) {
+      console.log("tracking error", error);
+    }
   }
 
   return (
@@ -78,7 +88,11 @@ export default function Palette({ setDisplay }) {
         </div>
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
-        {showInstallButton && installPromptEvent ? <button id="install" onClick={() => handleInstall()}></button> : <></>}
+        {showInstallButton && installPromptEvent ? (
+          <button id="install" onClick={() => handleInstall()}></button>
+        ) : (
+          <></>
+        )}
       </div>
       <Clues
         clueMatches={gameState.clueMatches}

@@ -13,6 +13,12 @@ function handleShare(text) {
       handleCopy(text);
       console.log("Error sharing", error);
     });
+
+  try {
+    window.gtag("event", "share", {});
+  } catch (error) {
+    console.log("tracking error", error);
+  }
 }
 
 function handleCopy(text) {

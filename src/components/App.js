@@ -74,7 +74,14 @@ export default function App() {
 
   switch (display) {
     case "game":
-      return <Palette setDisplay={setDisplay}></Palette>;
+      return (
+        <Palette
+          setDisplay={setDisplay}
+          setInstallPromptEvent={setInstallPromptEvent}
+          showInstallButton={showInstallButton}
+          installPromptEvent={installPromptEvent}
+        ></Palette>
+      );
 
     case "rules":
       return <Rules setDisplay={setDisplay}></Rules>;

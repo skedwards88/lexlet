@@ -7,7 +7,27 @@ import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import { Countdown } from "./Countdown";
 
-export default function Palette({ setDisplay }) {
+async function handleInstall(installPromptEvent, setInstallPromptEvent) {
+  console.log("handling install");
+  console.log(installPromptEvent);
+  installPromptEvent.prompt();
+  const result = await installPromptEvent.userChoice;
+  console.log(result);
+  setInstallPromptEvent(null);
+
+  try {
+    window.gtag("event", "install", {});
+  } catch (error) {
+    console.log("tracking error", error);
+  }
+}
+
+export default function Palette({
+  setDisplay,
+  installPromptEvent,
+  showInstallButton,
+  setInstallPromptEvent,
+}) {
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
     {},
@@ -19,50 +39,6 @@ export default function Palette({ setDisplay }) {
   }, [gameState]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
-
-  const [installPromptEvent, setInstallPromptEvent] = React.useState();
-  const [showInstallButton, setShowInstallButton] = React.useState(true);
-
-  function handleBeforeInstallPrompt(event) {
-    console.log("handleBeforeInstallPrompt");
-    if (event) setInstallPromptEvent(event);
-    setShowInstallButton(true);
-  }
-
-  function handleAppInstalled() {
-    console.log("handleAppInstalled");
-    setInstallPromptEvent(null);
-    setShowInstallButton(false);
-  }
-
-  React.useEffect(() => {
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-    return () =>
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt
-      );
-  }); // todo not sure if this is the correct dep array
-
-  React.useEffect(() => {
-    window.addEventListener("appinstalled", handleAppInstalled);
-    return () => window.removeEventListener("appinstalled", handleAppInstalled);
-  }, []); // todo not sure if this is the correct dep array
-
-  async function handleInstall() {
-    console.log("handling install");
-    console.log(installPromptEvent);
-    installPromptEvent.prompt();
-    const result = await installPromptEvent.userChoice;
-    console.log(result);
-    setInstallPromptEvent(null);
-
-    try {
-      window.gtag("event", "install", {});
-    } catch (error) {
-      console.log("tracking error", error);
-    }
-  }
 
   return (
     <div
@@ -89,7 +65,12 @@ export default function Palette({ setDisplay }) {
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
         {showInstallButton && installPromptEvent ? (
-          <button id="install" onClick={() => handleInstall()}></button>
+          <button
+            id="install"
+            onClick={() =>
+              handleInstall(installPromptEvent, setInstallPromptEvent)
+            }
+          ></button>
         ) : (
           <></>
         )}

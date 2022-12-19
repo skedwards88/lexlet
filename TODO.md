@@ -14,4 +14,3 @@
 - background sync/periodic sync?
 
 - **add to app store**
-- is it possible to track results to see # hints used?

@@ -15,6 +15,14 @@ export function gameReducer(currentGameState, payload) {
     if (currentGameState.hints[payload.clueIndex][payload.boxIndex]) {
       return { ...currentGameState };
     }
+
+    try {
+      console.log("hint")
+      window.gtag("event", "hint", {});
+    } catch (error) {
+      console.log("tracking error", error);
+    }
+
     let newHints = JSON.parse(JSON.stringify(currentGameState.hints));
     newHints[payload.clueIndex][payload.boxIndex] = true;
 
@@ -24,6 +32,26 @@ export function gameReducer(currentGameState, payload) {
         JSON.stringify(currentGameState.clueMatches)
       );
       newClueMatches[payload.clueIndex] = true;
+
+      try {
+        const num_found = newClueMatches.filter(i=>i).length
+        console.log("found_word")
+        window.gtag("event", "found_word", {
+          "num_found" : num_found
+        });
+      } catch (error) {
+        console.log("tracking error", error);
+      }
+
+      if (newClueMatches.every((i) => i)) {
+        console.log("completed_game")
+        try {
+          window.gtag("event", "completed_game", {});
+        } catch (error) {
+          console.log("tracking error", error);
+        }
+      }
+
       return {
         ...currentGameState,
         hints: newHints,
@@ -120,6 +148,25 @@ export function gameReducer(currentGameState, payload) {
 
         // there will only be one match, so exit early if we find one
         break;
+      }
+    }
+
+    try {
+      const num_found = clueMatches.filter(i=>i).length
+      console.log("found_word")
+      window.gtag("event", "found_word", {
+        "num_found" : num_found
+      });
+    } catch (error) {
+      console.log("tracking error", error);
+    }
+
+    if (clueMatches.every((i) => i)) {
+      console.log("completed_game")
+      try {
+        window.gtag("event", "completed_game", {});
+      } catch (error) {
+        console.log("tracking error", error);
       }
     }
 

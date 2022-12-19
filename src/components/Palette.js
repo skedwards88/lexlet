@@ -55,7 +55,7 @@ export default function Palette({
       <div id="controls">
         <div id="nextGame">
           {isGameOver ? (
-            <Countdown></Countdown>
+            <Countdown dispatchGameState={dispatchGameState} puzzleIndex={gameState.puzzleIndex}></Countdown>
           ) : (
             `Hints used: ${
               gameState.hints.flatMap((i) => i).filter((i) => i).length

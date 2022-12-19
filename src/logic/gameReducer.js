@@ -1,6 +1,7 @@
 import { isKnown } from "../common/isKnown";
 import { checkIfNeighbors } from "../common/checkIfNeighbors";
 import { arraysMatchQ } from "../common/arraysMatchQ";
+import { gameInit } from "./gameInit";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "startWord") {
@@ -129,6 +130,8 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
     };
+  } else if (payload.action === "newGame") {
+    return gameInit()
   } else {
     console.log(`unknown action: ${payload.action}`);
     return { ...currentGameState };

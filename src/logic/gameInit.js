@@ -1,11 +1,17 @@
 import gameCache from "./gameCache.json";
 
-export function gameInit() {
-  // Publish one puzzle per day
-  const startDate = new Date("Sun Nov 06 2022 03:00:00"); // uses local timezone
+export const startDate = new Date("Sun Nov 06 2022 03:00:00"); // uses local timezone
+
+export function getPuzzleIndex() {
   const nowInMilliSec = Date.now();
   const milliSecPerDay = 24 * 60 * 60 * 1000;
   const puzzleIndex = Math.floor((nowInMilliSec - startDate) / milliSecPerDay);
+  return puzzleIndex
+}
+
+export function gameInit() {
+  // Publish one puzzle per day
+  const puzzleIndex = getPuzzleIndex();
 
   const savedState = JSON.parse(localStorage.getItem("dailyPaletteState"));
 

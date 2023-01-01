@@ -1,7 +1,7 @@
 import React from "react";
 import Share from "./Share";
 
-function resultToIcon({ hints, clueIndexes, colors }) {
+function resultToIcon({ hints, preSeededHints, clueIndexes, colors }) {
   const boxTranslation = {
     red: "🟥",
     green: "🟦",
@@ -17,7 +17,10 @@ function resultToIcon({ hints, clueIndexes, colors }) {
       boxIndex < clueIndexes[clueIndex].length;
       boxIndex++
     ) {
-      if (hints[clueIndex][boxIndex]) {
+      if (
+        hints[clueIndex][boxIndex] &&
+        !(preSeededHints && preSeededHints[clueIndex][boxIndex])
+      ) {
         result += boxTranslation.hint;
       } else {
         const boardIndex = clueIndexes[clueIndex][boxIndex];
@@ -28,9 +31,15 @@ function resultToIcon({ hints, clueIndexes, colors }) {
   return result;
 }
 
-export default function GameOver({ hints, clueIndexes, colors }) {
+export default function GameOver({
+  hints,
+  preSeededHints,
+  clueIndexes,
+  colors,
+}) {
   const result = resultToIcon({
     hints: hints,
+    preSeededHints: preSeededHints,
     clueIndexes: clueIndexes,
     colors: colors,
   });

@@ -2,6 +2,7 @@ import React from "react";
 import Palette from "./Palette";
 import Heart from "./Heart";
 import Rules from "./Rules";
+import WhatsNew from "./WhatsNew";
 
 function handleBeforeInstallPrompt(
   event,
@@ -49,11 +50,13 @@ export default function App() {
     return () => window.removeEventListener("appinstalled", handleAppInstalled);
   }, []);
 
-  const savedState = JSON.parse(
+  const savedIsFirstGame = JSON.parse(
     localStorage.getItem("dailyPaletteIsFirstGame")
   );
 
-  const [isFirstGame, setIsFirstGame] = React.useState(savedState ?? true);
+  const [isFirstGame, setIsFirstGame] = React.useState(
+    savedIsFirstGame ?? true
+  );
 
   React.useEffect(() => {
     window.localStorage.setItem(
@@ -62,6 +65,21 @@ export default function App() {
     );
   }, [isFirstGame]);
 
+  const savedSawWhatsNew20230101 = JSON.parse(
+    localStorage.getItem("dailyPaletteSawWhatsNew20230101")
+  );
+
+  const [sawWhatsNew20230101, setSawWhatsNew20230101] = React.useState(
+    savedSawWhatsNew20230101 ?? false
+  );
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "dailyPaletteSawWhatsNew20230101",
+      JSON.stringify(sawWhatsNew20230101)
+    );
+  }, [sawWhatsNew20230101]);
+
   if (isFirstGame) {
     return (
       <Rules
@@ -69,6 +87,19 @@ export default function App() {
         isFirstGame={isFirstGame}
         setIsFirstGame={setIsFirstGame}
       ></Rules>
+    );
+  }
+
+  if (
+    !isFirstGame &&
+    !sawWhatsNew20230101 &&
+    JSON.parse(localStorage.getItem("dailyPaletteState"))?.preSeededHints
+  ) {
+    return (
+      <WhatsNew
+        setDisplay={setDisplay}
+        setSawWhatsNew20230101={setSawWhatsNew20230101}
+      ></WhatsNew>
     );
   }
 

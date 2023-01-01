@@ -55,10 +55,14 @@ export default function Palette({
       <div id="controls">
         <div id="nextGame">
           {isGameOver ? (
-            <Countdown dispatchGameState={dispatchGameState} puzzleIndex={gameState.puzzleIndex}></Countdown>
+            <Countdown
+              dispatchGameState={dispatchGameState}
+              puzzleIndex={gameState.puzzleIndex}
+            ></Countdown>
           ) : (
             `Hints used: ${
-              gameState.hints.flatMap((i) => i).filter((i) => i).length
+              gameState.hints.flatMap((i) => i).filter((i) => i).length -
+              gameState.numPreSeededHints
             }`
           )}
         </div>
@@ -89,6 +93,7 @@ export default function Palette({
       {isGameOver ? (
         <GameOver
           hints={gameState.hints}
+          preSeededHints={gameState.preSeededHints}
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
         />

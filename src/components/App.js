@@ -86,6 +86,7 @@ export default function App() {
         setDisplay={setDisplay}
         isFirstGame={isFirstGame}
         setIsFirstGame={setIsFirstGame}
+        setSawWhatsNew20230101={setSawWhatsNew20230101}
       ></Rules>
     );
   }
@@ -93,7 +94,8 @@ export default function App() {
   if (
     !isFirstGame &&
     !sawWhatsNew20230101 &&
-    JSON.parse(localStorage.getItem("dailyPaletteState"))?.preSeededHints
+    JSON.parse(localStorage.getItem("dailyPaletteState"))?.preSeededHints &&
+    JSON.parse(localStorage.getItem("dailyPaletteState"))?.numPreSeededHints // don't show if 0 hints
   ) {
     return (
       <WhatsNew

@@ -1,7 +1,7 @@
 import React from "react";
 import packageJson from "../../package.json";
 
-export default function Rules({ setDisplay, isFirstGame, setIsFirstGame }) {
+export default function Rules({ setDisplay, isFirstGame, setIsFirstGame, setSawWhatsNew20230101 }) {
   return (
     <div className="App rules">
       <h1 id="rulesHeader">How to play</h1>
@@ -11,8 +11,9 @@ export default function Rules({ setDisplay, isFirstGame, setIsFirstGame }) {
         id="rulesClose"
         className="close"
         onClick={() => {
-          if (setIsFirstGame) {
+          if (isFirstGame) {
             setIsFirstGame(false);
+            setSawWhatsNew20230101(true);
           }
           setDisplay("game");
         }}

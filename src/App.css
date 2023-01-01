@@ -18,6 +18,7 @@ body {
   font-family: sans-serif;
   font-size: var(--default-font-size);
   display: grid;
+
   /* position: fixed;
   left: 0;
   top: 0; */
@@ -110,7 +111,18 @@ button {
   align-items: center;
 }
 
-#rulesHeader {
+.whatsNew {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: calc(var(--default-font-size) * 0.75);
+  overflow: scroll;
+}
+
+#rulesHeader,
+#whatsNewHeader {
   all: unset;
   font-size: calc(var(--default-font-size) * 1.5);
   display: block;
@@ -118,7 +130,8 @@ button {
   grid-area: header;
 }
 
-#rulesText {
+#rulesText,
+#whatsNewText {
   white-space: pre-line;
   margin: 0 2vmax;
   grid-area: text;
@@ -134,7 +147,8 @@ button {
   grid-area: demo;
 }
 
-#rulesClose {
+#rulesClose,
+#whatsNewClose {
   height: fit-content;
   width: fit-content;
   grid-area: close;

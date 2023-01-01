@@ -17,7 +17,7 @@ export function gameReducer(currentGameState, payload) {
     }
 
     try {
-      console.log("hint")
+      console.log("hint");
       window.gtag("event", "hint", {});
     } catch (error) {
       console.log("tracking error", error);
@@ -34,17 +34,17 @@ export function gameReducer(currentGameState, payload) {
       newClueMatches[payload.clueIndex] = true;
 
       try {
-        const num_found = newClueMatches.filter(i=>i).length
-        console.log("found_word")
+        const num_found = newClueMatches.filter((i) => i).length;
+        console.log("found_word");
         window.gtag("event", "found_word", {
-          "num_found" : num_found
+          num_found: num_found,
         });
       } catch (error) {
         console.log("tracking error", error);
       }
 
       if (newClueMatches.every((i) => i)) {
-        console.log("completed_game")
+        console.log("completed_game");
         try {
           window.gtag("event", "completed_game", {});
         } catch (error) {
@@ -152,17 +152,17 @@ export function gameReducer(currentGameState, payload) {
     }
 
     try {
-      const num_found = clueMatches.filter(i=>i).length
-      console.log("found_word")
+      const num_found = clueMatches.filter((i) => i).length;
+      console.log("found_word");
       window.gtag("event", "found_word", {
-        "num_found" : num_found
+        num_found: num_found,
       });
     } catch (error) {
       console.log("tracking error", error);
     }
 
     if (clueMatches.every((i) => i)) {
-      console.log("completed_game")
+      console.log("completed_game");
       try {
         window.gtag("event", "completed_game", {});
       } catch (error) {
@@ -178,7 +178,7 @@ export function gameReducer(currentGameState, payload) {
       wordInProgress: false,
     };
   } else if (payload.action === "newGame") {
-    return gameInit()
+    return gameInit();
   } else {
     console.log(`unknown action: ${payload.action}`);
     return { ...currentGameState };

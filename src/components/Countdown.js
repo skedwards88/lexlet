@@ -16,15 +16,15 @@ function calculateTimeLeft() {
   return `${adjDiffHours} hr ${diffMinutes} min`;
 }
 
-export function Countdown({dispatchGameState, puzzleIndex}) {
+export function Countdown({ dispatchGameState, puzzleIndex }) {
   const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
 
   React.useEffect(() => {
     const timerID = setTimeout(() => {
       // If past the next game time, get a new game, otherwise decrement the countdown
-      const newPuzzleIndex = getPuzzleIndex()
+      const newPuzzleIndex = getPuzzleIndex();
       if (puzzleIndex !== newPuzzleIndex) {
-        dispatchGameState({action: "newGame"})
+        dispatchGameState({ action: "newGame" });
       } else {
         setTimeLeft(calculateTimeLeft());
       }

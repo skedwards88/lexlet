@@ -12,5 +12,3 @@
 
 - add separate share button in controls bar?
 - background sync/periodic sync?
-
-- **add to app store**

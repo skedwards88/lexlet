@@ -26,7 +26,7 @@ function getTotalNumHints() {
     case 6: // Sat
       return 3;
     case 0: // Sun
-      return 3; // todo change back to 0
+      return 0;
     default:
       return 0;
   }

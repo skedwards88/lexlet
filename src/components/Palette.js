@@ -62,7 +62,7 @@ export default function Palette({
           ) : (
             `Hints used: ${
               gameState.hints.flatMap((i) => i).filter((i) => i).length -
-              gameState.numPreSeededHints
+              (gameState.numPreSeededHints ?? 0)
             }`
           )}
         </div>

@@ -6,6 +6,7 @@ import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import { Countdown } from "./Countdown";
+import WhatsNew from "./WhatsNew";
 
 async function handleInstall(installPromptEvent, setInstallPromptEvent) {
   console.log("handling install");
@@ -27,6 +28,8 @@ export default function Palette({
   installPromptEvent,
   showInstallButton,
   setInstallPromptEvent,
+  setSawWhatsNew20230101,
+  sawWhatsNew20230101
 }) {
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
@@ -39,6 +42,19 @@ export default function Palette({
   }, [gameState]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
+
+  if (
+    !sawWhatsNew20230101 &&
+    gameState?.preSeededHints &&
+    gameState?.numPreSeededHints // don't show if 0 hints
+  ) {
+    return (
+      <WhatsNew
+        setDisplay={setDisplay}
+        setSawWhatsNew20230101={setSawWhatsNew20230101}
+      ></WhatsNew>
+    );
+  }
 
   return (
     <div

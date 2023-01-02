@@ -2,7 +2,6 @@ import React from "react";
 import Palette from "./Palette";
 import Heart from "./Heart";
 import Rules from "./Rules";
-import WhatsNew from "./WhatsNew";
 
 function handleBeforeInstallPrompt(
   event,
@@ -91,20 +90,6 @@ export default function App() {
     );
   }
 
-  if (
-    !isFirstGame &&
-    !sawWhatsNew20230101 &&
-    JSON.parse(localStorage.getItem("dailyPaletteState"))?.preSeededHints &&
-    JSON.parse(localStorage.getItem("dailyPaletteState"))?.numPreSeededHints // don't show if 0 hints
-  ) {
-    return (
-      <WhatsNew
-        setDisplay={setDisplay}
-        setSawWhatsNew20230101={setSawWhatsNew20230101}
-      ></WhatsNew>
-    );
-  }
-
   switch (display) {
     case "game":
       return (
@@ -113,6 +98,8 @@ export default function App() {
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
+          setSawWhatsNew20230101={setSawWhatsNew20230101}
+          sawWhatsNew20230101={sawWhatsNew20230101}
         ></Palette>
       );
 

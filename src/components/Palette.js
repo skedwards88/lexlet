@@ -28,8 +28,8 @@ export default function Palette({
   installPromptEvent,
   showInstallButton,
   setInstallPromptEvent,
-  setSawWhatsNew20230101,
-  sawWhatsNew20230101
+  setSawWhatsNew,
+  sawWhatsNew
 }) {
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
@@ -44,14 +44,12 @@ export default function Palette({
   const isGameOver = gameState.clueMatches.every((i) => i);
 
   if (
-    !sawWhatsNew20230101 &&
-    gameState?.preSeededHints &&
-    gameState?.numPreSeededHints // don't show if 0 hints
+    !sawWhatsNew
   ) {
     return (
       <WhatsNew
         setDisplay={setDisplay}
-        setSawWhatsNew20230101={setSawWhatsNew20230101}
+        setSawWhatsNew={setSawWhatsNew}
       ></WhatsNew>
     );
   }
@@ -77,8 +75,7 @@ export default function Palette({
             ></Countdown>
           ) : (
             `Hints used: ${
-              gameState.hints.flatMap((i) => i).filter((i) => i).length -
-              (gameState.numPreSeededHints ?? 0)
+              gameState.hints.flatMap((i) => i).filter((i) => i).length
             }`
           )}
         </div>
@@ -109,7 +106,6 @@ export default function Palette({
       {isGameOver ? (
         <GameOver
           hints={gameState.hints}
-          preSeededHints={gameState.preSeededHints}
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
         />

@@ -64,20 +64,20 @@ export default function App() {
     );
   }, [isFirstGame]);
 
-  const savedSawWhatsNew20230101 = JSON.parse(
-    localStorage.getItem("dailyPaletteSawWhatsNew20230101")
+  const savedSawWhatsNew = JSON.parse(
+    localStorage.getItem("dailyPaletteSawWhatsNew20230116")
   );
 
-  const [sawWhatsNew20230101, setSawWhatsNew20230101] = React.useState(
-    savedSawWhatsNew20230101 ?? false
+  const [sawWhatsNew, setSawWhatsNew] = React.useState(
+    savedSawWhatsNew ?? false
   );
 
   React.useEffect(() => {
     window.localStorage.setItem(
-      "dailyPaletteSawWhatsNew20230101",
-      JSON.stringify(sawWhatsNew20230101)
+      "dailyPaletteSawWhatsNew20230116",
+      JSON.stringify(sawWhatsNew)
     );
-  }, [sawWhatsNew20230101]);
+  }, [sawWhatsNew]);
 
   if (isFirstGame) {
     return (
@@ -85,7 +85,7 @@ export default function App() {
         setDisplay={setDisplay}
         isFirstGame={isFirstGame}
         setIsFirstGame={setIsFirstGame}
-        setSawWhatsNew20230101={setSawWhatsNew20230101}
+        setSawWhatsNew={setSawWhatsNew}
       ></Rules>
     );
   }
@@ -98,8 +98,8 @@ export default function App() {
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
-          setSawWhatsNew20230101={setSawWhatsNew20230101}
-          sawWhatsNew20230101={sawWhatsNew20230101}
+          setSawWhatsNew={setSawWhatsNew}
+          sawWhatsNew={sawWhatsNew}
         ></Palette>
       );
 

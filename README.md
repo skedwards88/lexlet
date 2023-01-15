@@ -29,24 +29,33 @@ Despite the duplication and inefficiency, all required components were copied fr
 The game cache was made by executing a function like this in the palette gameInit logic in my core word game repo. To reduce file size, the color names were replaced with a representative letter.
 
 ```js
-function getNGames(numGames) {
-  let count = 0
+function getNWeeksOfGames(numWeeks) {
+  const days = [
+    [4,4],
+    [4,5],
+    [4,6],
+    [5,6],
+    [5,6],
+    [6,6],
+    [6,7]
+  ]
   let games = []
-  while (count < numGames) {
-    count ++
-    const game = getPlayableBoard({
-      gridSize: 4,
-      minWordLength: 6,
-      maxWordLength: 6,
-      easyMode: true,
-      numClues: 5,
-    })
-    games = [...games, game]
+  for (let weekIndex = 0; weekIndex < numWeeks; weekIndex++) {
+    for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+      const game = getPlayableBoard({
+        gridSize: 4,
+        minWordLength: days[dayIndex][0],
+        maxWordLength: days[dayIndex][1],
+        easyMode: true,
+        numClues: 5,
+      })
+      games = [...games, game]
+    }
   }
   return games
 }
 
-const output = getNGames(200)
+const output = getNWeeksOfGames(52)
 
 let solutions = ""
 for (let gameIndex = 0; gameIndex < output.length; gameIndex++) {

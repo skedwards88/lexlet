@@ -12,6 +12,7 @@ permissions:
   contents: write # Required for bumping version (read-only required for deployment)
   pages: write # Required for deployment
   id-token: write # Required for deployment
+  packages: read # For installing skedwards88/word_lists
 
 # Allow one concurrent deployment
 concurrency:

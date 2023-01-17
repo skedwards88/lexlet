@@ -40,7 +40,10 @@ jobs:
       - name: Push
         run: |
           git push origin main
-
+      
+      - name: Authenticate with GitHub package registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.PACKAGES_ACCESS_TOKEN }}" > ~/.npmrc
+    
       - name: Install requirements
         run: npm install
 

@@ -8,7 +8,7 @@
   "start_url": "../.",
   "background_color": "#373647",
   "theme_color": "#373647",
-  "orientation": "any",
+  "orientation": "natural",
   "icons": [
     {
       "src": "favicon.svg",

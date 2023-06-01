@@ -1,6 +1,6 @@
 import gameCache from "./gameCache.json";
 
-export const startDate = new Date("Sat Jan 14 2023 03:00:00"); // uses local timezone
+export const startDate = new Date("Mon May 29 2023 03:00:00"); // uses local timezone
 
 export function getPuzzleIndex() {
   const nowInMilliSec = Date.now();

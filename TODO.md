@@ -1,6 +1,8 @@
 # TODO
 
 - personal streak/hints used
+- do another word sweep of word lists
+- reload fresh game cache
 
 Maybe:
 

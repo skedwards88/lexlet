@@ -4,7 +4,7 @@ export default function WhatsNew({ setDisplay, setSawWhatsNew }) {
   return (
     <div className="App whatsNew">
       <h1 id="whatsNewHeader">{"What's New"}</h1>
-      <p id="whatsNewText">{`The puzzle will get progressively harder over the week.\n\nMonday will start you off with shorter words, and Sunday will challenge you with longer words.\n\nCan you beat every day?`}</p>
+      <p id="whatsNewText">{`You can now view your stats!\n\nStats are saved locally on your browser/device.\n\nStats do not include data before today.`}</p>
       <button
         id="whatsNewClose"
         className="close"

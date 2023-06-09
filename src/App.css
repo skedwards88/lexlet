@@ -46,7 +46,7 @@ button {
 
 #controls {
   display: grid;
-  grid-template-areas: "nextGame rules heart install";
+  grid-template-areas: "nextGame rules heart stats install";
   grid-template-columns:
     1fr
     auto
@@ -86,6 +86,11 @@ button {
   grid-area: rules;
 }
 
+#stats {
+  background-image: url("./images/stats.svg");
+  grid-area: stats;
+}
+
 #heart {
   background-image: url("./images/heart.svg");
   grid-area: heart;
@@ -94,6 +99,49 @@ button {
 #install {
   background-image: url("./images/install.svg");
   grid-area: install;
+}
+
+.stats {
+  font-size: calc(var(--default-font-size) * 0.75);
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#statsDistribution {
+  border-top: 3px solid var(--light-color);
+  border-bottom: 3px solid var(--light-color);
+}
+
+.statsBar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 90vw;
+  margin: 10px 0;
+}
+
+.statsBar>.statsDay {
+  align-self: center;
+  width: calc(var(--default-font-size) * 1);
+  padding: 0 2vw;
+}
+.statsBar>.statsWon {
+  background-color: var(--light-color);
+  height: calc(var(--default-font-size) * 1.2);
+}
+
+.statsNumber {
+  text-align: center;
+  margin: 1vh 0;
+}
+.statsNumber>.number {
+  font-size: calc(var(--default-font-size) * 1.5);
+}
+
+.statLabel {
+  padding: 2vw 0 0 2vw;
 }
 
 .rules {
@@ -148,7 +196,8 @@ button {
 }
 
 #rulesClose,
-#whatsNewClose {
+#whatsNewClose,
+#statsClose {
   height: fit-content;
   width: fit-content;
   grid-area: close;
@@ -334,6 +383,7 @@ button {
     grid-template-areas:
       "rules"
       "heart"
+      "stats"
       "install"
       "nextGame";
     grid-template-rows:

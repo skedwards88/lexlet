@@ -3,6 +3,72 @@ import { checkIfNeighbors } from "../common/checkIfNeighbors";
 import { arraysMatchQ } from "../common/arraysMatchQ";
 import { gameInit } from "./gameInit";
 
+function isYesterday(timestamp) {
+  const milliSecPerDay = 24 * 60 * 60 * 1000;
+  const yesterday = new Date(Date.now() - milliSecPerDay);
+  const dateFromTimestamp = new Date(timestamp);
+
+  return (
+    dateFromTimestamp.getDate() === yesterday.getDate() &&
+    dateFromTimestamp.getMonth() === yesterday.getMonth() &&
+    dateFromTimestamp.getFullYear() === yesterday.getFullYear()
+  );
+}
+
+function getNewStats(currentGameState) {
+  // update stats
+  const today = new Date();
+  const lastDateWon = currentGameState.stats.lastDateWon;
+  const wonYesterday = isYesterday(lastDateWon);
+
+  // If won yesterday, add 1 to the streak
+  // Otherwise, reset the streak to 1
+  const newStreak = wonYesterday ? currentGameState.stats.streak + 1 : 1;
+
+  const newMaxStreak = Math.max(newStreak, currentGameState.stats.maxStreak);
+
+  // If didn't use any hints today, increment number of wins in the streak without hints
+  const hintsUsedToday = currentGameState.hints
+    .flatMap((i) => i)
+    .some((i) => i);
+  const prevNumHintlessInStreak = wonYesterday
+    ? currentGameState.stats.numHintlessInStreak
+    : 0;
+  const newNumHintlessInStreak = hintsUsedToday
+    ? prevNumHintlessInStreak
+    : prevNumHintlessInStreak + 1;
+
+  // Tally the number of hints used in the streak
+  const prevNumHintsInStreak = wonYesterday
+    ? currentGameState.stats.numHintsInStreak
+    : 0;
+  const newNumHintsInStreak = prevNumHintsInStreak + hintsUsedToday;
+
+  // Update the number of games won for this weekday
+  const dayNumber = today.getDay();
+
+  const numWeekdayWon = currentGameState.stats.days[dayNumber].won + 1;
+
+  const numWeekdayWonWithoutHints = hintsUsedToday
+    ? currentGameState.stats.days[dayNumber].noHints
+    : currentGameState.stats.days[dayNumber].noHints + 1;
+
+  const newDays = {
+    ...currentGameState.stats.days,
+    [dayNumber]: { won: numWeekdayWon, noHints: numWeekdayWonWithoutHints },
+  };
+
+  return {
+    ...currentGameState.stats,
+    lastDateWon: today,
+    streak: newStreak,
+    maxStreak: newMaxStreak,
+    numHintlessInStreak: newNumHintlessInStreak,
+    numHintsInStreak: newNumHintsInStreak,
+    days: newDays,
+  };
+}
+
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "startWord") {
     return {
@@ -43,8 +109,10 @@ export function gameReducer(currentGameState, payload) {
         console.log("tracking error", error);
       }
 
+      let newStats;
       if (newClueMatches.every((i) => i)) {
         console.log("completed_game");
+        newStats = getNewStats(currentGameState);
         try {
           window.gtag("event", "completed_game", {});
         } catch (error) {
@@ -56,6 +124,7 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         hints: newHints,
         clueMatches: newClueMatches,
+        ...(newStats && { stats: newStats }),
       };
     } else {
       return { ...currentGameState, hints: newHints };
@@ -161,8 +230,10 @@ export function gameReducer(currentGameState, payload) {
       console.log("tracking error", error);
     }
 
+    let newStats;
     if (clueMatches.every((i) => i)) {
       console.log("completed_game");
+      newStats = getNewStats(currentGameState);
       try {
         window.gtag("event", "completed_game", {});
       } catch (error) {
@@ -176,6 +247,7 @@ export function gameReducer(currentGameState, payload) {
       clueMatches: clueMatches,
       clueIndexes: clueIndexes,
       wordInProgress: false,
+      ...(newStats && { stats: newStats }),
     };
   } else if (payload.action === "newGame") {
     return gameInit();

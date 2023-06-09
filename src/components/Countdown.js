@@ -33,5 +33,5 @@ export function Countdown({ dispatchGameState, puzzleIndex }) {
     return () => clearTimeout(timerID);
   });
 
-  return <div>{`Next game in ${timeLeft}`}</div>;
+  return <small>{`Next game in ${timeLeft}`}</small>;
 }

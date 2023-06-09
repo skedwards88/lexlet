@@ -2,6 +2,9 @@ import React from "react";
 import Palette from "./Palette";
 import Heart from "./Heart";
 import Rules from "./Rules";
+import Stats from "./Stats";
+import { gameInit } from "../logic/gameInit";
+import { gameReducer } from "../logic/gameReducer";
 
 function handleBeforeInstallPrompt(
   event,
@@ -23,6 +26,11 @@ export default function App() {
   const [display, setDisplay] = React.useState("game");
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
+  const [gameState, dispatchGameState] = React.useReducer(
+    gameReducer,
+    {},
+    gameInit
+  );
 
   React.useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) =>
@@ -65,7 +73,7 @@ export default function App() {
   }, [isFirstGame]);
 
   const savedSawWhatsNew = JSON.parse(
-    localStorage.getItem("dailyPaletteSawWhatsNew20230116")
+    localStorage.getItem("dailyPaletteSawWhatsNew20230609")
   );
 
   const [sawWhatsNew, setSawWhatsNew] = React.useState(
@@ -74,7 +82,7 @@ export default function App() {
 
   React.useEffect(() => {
     window.localStorage.setItem(
-      "dailyPaletteSawWhatsNew20230116",
+      "dailyPaletteSawWhatsNew20230609",
       JSON.stringify(sawWhatsNew)
     );
   }, [sawWhatsNew]);
@@ -91,20 +99,11 @@ export default function App() {
   }
 
   switch (display) {
-    case "game":
-      return (
-        <Palette
-          setDisplay={setDisplay}
-          setInstallPromptEvent={setInstallPromptEvent}
-          showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent}
-          setSawWhatsNew={setSawWhatsNew}
-          sawWhatsNew={sawWhatsNew}
-        ></Palette>
-      );
-
     case "rules":
       return <Rules setDisplay={setDisplay}></Rules>;
+
+    case "stats":
+      return <Stats setDisplay={setDisplay} stats={gameState.stats}></Stats>;
 
     case "heart":
       return <Heart setDisplay={setDisplay}></Heart>;
@@ -116,6 +115,10 @@ export default function App() {
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
+          gameState={gameState}
+          dispatchGameState={dispatchGameState}
+          setSawWhatsNew={setSawWhatsNew}
+          sawWhatsNew={sawWhatsNew}
         ></Palette>
       );
   }

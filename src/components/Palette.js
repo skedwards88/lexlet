@@ -1,7 +1,5 @@
 import React from "react";
 import Board from "./Board";
-import { gameInit } from "../logic/gameInit";
-import { gameReducer } from "../logic/gameReducer";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
@@ -29,23 +27,17 @@ export default function Palette({
   showInstallButton,
   setInstallPromptEvent,
   setSawWhatsNew,
-  sawWhatsNew
+  sawWhatsNew,
+  gameState,
+  dispatchGameState,
 }) {
-  const [gameState, dispatchGameState] = React.useReducer(
-    gameReducer,
-    {},
-    gameInit
-  );
-
   React.useEffect(() => {
     window.localStorage.setItem("dailyPaletteState", JSON.stringify(gameState));
   }, [gameState]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
 
-  if (
-    !sawWhatsNew
-  ) {
+  if (!sawWhatsNew) {
     return (
       <WhatsNew
         setDisplay={setDisplay}
@@ -80,6 +72,7 @@ export default function Palette({
           )}
         </div>
         <button id="rules" onClick={() => setDisplay("rules")}></button>
+        <button id="stats" onClick={() => setDisplay("stats")}></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
         {showInstallButton && installPromptEvent ? (
           <button

@@ -1,20 +1,71 @@
-import gameCache from "./gameCache.json";
+import { getPlayableBoard } from "./generateGame";
 
-export const startDate = new Date("Mon May 29 2023 00:00:00"); // uses local timezone
+export function getSeed() {
+  // Get a seed based on today's date 'YYYYMMDD'
+  const currentDate = new Date();
+  const seed = `${currentDate.getFullYear()}${(currentDate.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}${currentDate.getDate().toString().padStart(2, "0")}`;
 
-export function getPuzzleIndex() {
-  const nowInMilliSec = Date.now();
-  const milliSecPerDay = 24 * 60 * 60 * 1000;
-  const puzzleIndex = Math.floor((nowInMilliSec - startDate) / milliSecPerDay);
-  return puzzleIndex;
+  return seed;
+}
+
+function getWordLengthsForDay() {
+  const today = new Date().getDay();
+
+  const wordLengths = [
+    [6, 7], // Sunday
+    [4, 4],
+    [4, 5],
+    [4, 6],
+    [5, 6],
+    [5, 6],
+    [6, 6],
+  ];
+
+  return wordLengths[today];
 }
 
 export function gameInit() {
-  // Publish one puzzle per day
-  const puzzleIndex = getPuzzleIndex();
+  const seed = getSeed();
 
   const savedState = JSON.parse(localStorage.getItem("dailyPaletteState"));
 
+  // If today's game is in progress, keep the progress
+  if (
+    savedState &&
+    savedState.seed === seed &&
+    savedState.letters &&
+    savedState.colors &&
+    savedState.clueIndexes &&
+    savedState.clueMatches &&
+    savedState.hints &&
+    savedState.playedIndexes &&
+    savedState.stats
+  ) {
+    return savedState;
+  }
+
+  const gridSize = 4;
+  const numClues = 5;
+  const easyMode = true;
+  const [minWordLength, maxWordLength] = getWordLengthsForDay();
+
+  // Unlike the original version which returns a random game,
+  //  this returns the one game per day based on the date
+  const [letters, colors, clueIndexes] = getPlayableBoard({
+    gridSize: gridSize,
+    minWordLength: minWordLength,
+    maxWordLength: maxWordLength,
+    easyMode: easyMode,
+    numClues: numClues,
+    seed: seed,
+  });
+
+  const clueMatches = clueIndexes.map(() => false);
+  const hints = clueIndexes.map((clue) => clue.map(() => false));
+
+  // If there are already stats, use those
   let stats;
   if (savedState && savedState.stats) {
     stats = savedState.stats;
@@ -43,22 +94,8 @@ export function gameInit() {
     };
   }
 
-  if (savedState && savedState.puzzleIndex === puzzleIndex) {
-    return { ...savedState, stats: stats };
-  }
-
-  // Loop through puzzles if we run out before uploading more
-  const [letters, colorsAbbreviations, clueIndexes] =
-    gameCache[puzzleIndex] || gameCache[puzzleIndex % gameCache.length];
-
-  const colors = colorsAbbreviations.map((c) =>
-    c.replace("R", "red").replace("Y", "yellow").replace("G", "green")
-  );
-
-  const clueMatches = clueIndexes.map(() => false);
-  const hints = clueIndexes.map((clue) => clue.map(() => false));
-
   return {
+    seed: seed,
     letters: letters,
     colors: colors,
     clueIndexes: clueIndexes,
@@ -66,9 +103,5 @@ export function gameInit() {
     playedIndexes: [],
     hints: hints,
     stats: stats,
-    // We could derive letters, colors, and clueIndexes from puzzleIndex instead of storing them in the state
-    // but we aren't in order to simplify downstream code
-    // and in order to make things slightly more robust to updates to the gameCache
-    puzzleIndex: puzzleIndex,
   };
 }

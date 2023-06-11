@@ -63,7 +63,7 @@ export default function Palette({
           {isGameOver ? (
             <Countdown
               dispatchGameState={dispatchGameState}
-              puzzleIndex={gameState.puzzleIndex}
+              seed={gameState.seed}
             ></Countdown>
           ) : (
             `Hints used: ${

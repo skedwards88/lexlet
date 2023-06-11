@@ -1,8 +1,9 @@
 import seedrandom from "seedrandom";
-import { letterPool } from "../common/letterPool";
-import { shuffleArray } from "../common/shuffleArray";
-import { findAllWordIndexes } from "../common/findAllWords";
-import { arraysMatchQ } from "../common/arraysMatchQ";
+import { letterPool } from "./letterPool";
+import { shuffleArray } from "./shuffleArray";
+import { arraysMatchQ } from "@skedwards88/word_logic";
+import { findAllWordIndexes } from "@skedwards88/word_logic";
+import { trie } from "./trie"
 
 function getLetters(gridSize, pseudoRandomGenerator) {
   // Given the distribution of letters in the word list
@@ -58,7 +59,7 @@ export function getPlayableBoard({
       colors = letters.map(
         () =>
           colorDistribution[
-            Math.floor(pseudoRandomGenerator() * colorDistribution.length)
+          Math.floor(pseudoRandomGenerator() * colorDistribution.length)
           ]
       );
       colorTally = tallyItems(colors);
@@ -70,6 +71,7 @@ export function getPlayableBoard({
       minWordLength: minWordLength,
       maxWordLength: maxWordLength,
       easyMode: easyMode,
+      trie: trie
     });
     const shuffledWordIndexes = shuffleArray(
       wordIndexes,

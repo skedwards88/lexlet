@@ -1,7 +1,8 @@
-import { isKnown } from "../common/isKnown";
-import { checkIfNeighbors } from "../common/checkIfNeighbors";
-import { arraysMatchQ } from "../common/arraysMatchQ";
+import { isKnown } from "@skedwards88/word_logic";
+import { checkIfNeighbors } from "@skedwards88/word_logic";
+import { arraysMatchQ } from "@skedwards88/word_logic";
 import { gameInit } from "./gameInit";
+import { trie } from "./trie";
 
 function isYesterday(timestamp) {
   const milliSecPerDay = 24 * 60 * 60 * 1000;
@@ -137,7 +138,7 @@ export function gameReducer(currentGameState, payload) {
     const isNeighboring = checkIfNeighbors({
       indexA:
         currentGameState.playedIndexes[
-          currentGameState.playedIndexes.length - 1
+        currentGameState.playedIndexes.length - 1
         ],
       indexB: payload.letterIndex,
       gridSize: Math.sqrt(currentGameState.letters.length),
@@ -180,7 +181,7 @@ export function gameReducer(currentGameState, payload) {
     const word = currentGameState.playedIndexes
       .map((index) => currentGameState.letters[index])
       .join("");
-    const { isWord } = isKnown(word);
+    const { isWord } = isKnown(word, trie);
     if (!isWord) {
       return {
         ...currentGameState,

@@ -43,6 +43,9 @@ jobs:
       - name: Install requirements
         run: npm install
 
+      - name: Update word lists
+        run: npm update @skedwards88/word_lists
+        
       - name: Build
         run: npm run build
 

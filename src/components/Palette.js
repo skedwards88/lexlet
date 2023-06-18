@@ -72,7 +72,13 @@ export default function Palette({
           )}
         </div>
         <button id="rules" onClick={() => setDisplay("rules")}></button>
-        <button id="stats" onClick={() => setDisplay("stats")}></button>
+        <button
+          id="stats"
+          onClick={() => {
+            dispatchGameState({ action: "clearStreakIfNeeded" });
+            setDisplay("stats");
+          }}
+        ></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
         {showInstallButton && installPromptEvent ? (
           <button

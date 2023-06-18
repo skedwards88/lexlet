@@ -5,14 +5,22 @@ import { gameInit } from "./gameInit";
 import { trie } from "./trie";
 
 function isYesterday(timestamp) {
+  return isNDaysAgo(timestamp, 1);
+}
+
+function isToday(timestamp) {
+  return isNDaysAgo(timestamp, 0);
+}
+
+function isNDaysAgo(timestamp, numberOfDaysAgo) {
   const milliSecPerDay = 24 * 60 * 60 * 1000;
-  const yesterday = new Date(Date.now() - milliSecPerDay);
+  const previousDay = new Date(Date.now() - numberOfDaysAgo * milliSecPerDay);
   const dateFromTimestamp = new Date(timestamp);
 
   return (
-    dateFromTimestamp.getDate() === yesterday.getDate() &&
-    dateFromTimestamp.getMonth() === yesterday.getMonth() &&
-    dateFromTimestamp.getFullYear() === yesterday.getFullYear()
+    dateFromTimestamp.getDate() === previousDay.getDate() &&
+    dateFromTimestamp.getMonth() === previousDay.getMonth() &&
+    dateFromTimestamp.getFullYear() === previousDay.getFullYear()
   );
 }
 
@@ -138,7 +146,7 @@ export function gameReducer(currentGameState, payload) {
     const isNeighboring = checkIfNeighbors({
       indexA:
         currentGameState.playedIndexes[
-        currentGameState.playedIndexes.length - 1
+          currentGameState.playedIndexes.length - 1
         ],
       indexB: payload.letterIndex,
       gridSize: Math.sqrt(currentGameState.letters.length),
@@ -250,6 +258,28 @@ export function gameReducer(currentGameState, payload) {
       wordInProgress: false,
       ...(newStats && { stats: newStats }),
     };
+  } else if (payload.action === "clearStreakIfNeeded") {
+    const lastDateWon = currentGameState.stats.lastDateWon;
+    const wonYesterday = isYesterday(lastDateWon);
+    const wonToday = isToday(lastDateWon);
+
+    if (wonYesterday || wonToday) {
+      // if won in the past day, don't need to clear the streak
+      return currentGameState;
+    } else {
+      // otherwise clear the streak but leave other stats intact
+      const newStats = {
+        ...currentGameState.stats,
+        streak: 0,
+        numHintlessInStreak: 0,
+        numHintsInStreak: 0,
+      };
+
+      return {
+        ...currentGameState,
+        stats: newStats,
+      };
+    }
   } else if (payload.action === "newGame") {
     return gameInit();
   } else {

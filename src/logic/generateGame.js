@@ -28,7 +28,7 @@ export function getPlayableBoard({
   numClues,
   seed,
 }) {
-  const colorDistribution = ["red", "green", "yellow"];
+  const colorDistribution = ["red", "blue", "yellow"];
   let foundPlayableBoard = false;
   let letters = [];
   let colors = [];

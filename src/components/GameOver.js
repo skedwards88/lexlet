@@ -4,7 +4,7 @@ import Share from "./Share";
 function resultToIcon({ hints, clueIndexes, colors }) {
   const boxTranslation = {
     red: "🟥",
-    green: "🟦",
+    blue: "🟦",
     yellow: "🟨",
     hint: "⬜",
   };

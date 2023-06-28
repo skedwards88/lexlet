@@ -43,7 +43,9 @@ export function gameInit() {
     savedState.playedIndexes &&
     savedState.stats
   ) {
-    return savedState;
+    // Temporary patch to support the green->blue rename
+    const adjustedColors = savedState.colors.map(color => color === "green" ? "blue" : color);
+    return {...savedState, colors: adjustedColors};
   }
 
   const gridSize = 4;

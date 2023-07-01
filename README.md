@@ -12,7 +12,7 @@ A standalone, daily version of palette from [my other word games](https://skedwa
 
 Do you have feedback or ideas for improvement? [Open an issue](https://github.com/skedwards88/palette/issues/new).
 
-Want more games? Visit [SECT Games](https://skedwards88.github.io/portfolio/).
+Want more games? Visit [SECT Games](https://skedwards88.github.io/).
 
 ## Development
 

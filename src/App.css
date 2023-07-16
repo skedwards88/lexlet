@@ -327,10 +327,6 @@ button {
   align-items: center;
 }
 
-#palette .clue.matched {
-  opacity: 0.5;
-}
-
 /* clueBox is a button, so remove all button styling */
 .clueBox {
   all: unset;

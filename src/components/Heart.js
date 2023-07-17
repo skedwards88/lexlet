@@ -3,7 +3,7 @@ import Share from "./Share";
 import packageJson from "../../package.json";
 
 export default function Heart({ setDisplay }) {
-  const feedbackLink = `https://github.com/skedwards88/palette/issues/new?body=Palette+version+${packageJson.version}`;
+  const feedbackLink = "https://github.com/skedwards88/palette/issues/new/choose";
 
   return (
     <div className="App info">
@@ -21,7 +21,7 @@ export default function Heart({ setDisplay }) {
         {`\n`}
         {"Feedback? "}
         <a href={feedbackLink}>Open an issue</a>
-        {" on GitHub."}
+        {` on GitHub or email SECTgames@gmail.com.`}
         {`\n\n`}
         {<hr></hr>}
         {`\n`}
@@ -39,6 +39,7 @@ export default function Heart({ setDisplay }) {
       <button className="close" onClick={() => setDisplay("game")}>
         CLOSE
       </button>
+      <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
 }

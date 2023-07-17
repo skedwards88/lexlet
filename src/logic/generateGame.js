@@ -1,9 +1,10 @@
 import seedrandom from "seedrandom";
 import { letterPool } from "./letterPool";
 import { shuffleArray } from "./shuffleArray";
-import { arraysMatchQ } from "@skedwards88/word_logic";
 import { findAllWordIndexes } from "@skedwards88/word_logic";
-import { trie } from "./trie"
+import { trie } from "./trie";
+import { getMaxSimilarityScore } from "./similarityScore";
+import { determinePatternPreference } from "./determinePatternPreference";
 
 function getLetters(gridSize, pseudoRandomGenerator) {
   // Given the distribution of letters in the word list
@@ -59,7 +60,7 @@ export function getPlayableBoard({
       colors = letters.map(
         () =>
           colorDistribution[
-          Math.floor(pseudoRandomGenerator() * colorDistribution.length)
+            Math.floor(pseudoRandomGenerator() * colorDistribution.length)
           ]
       );
       colorTally = tallyItems(colors);
@@ -71,110 +72,115 @@ export function getPlayableBoard({
       minWordLength: minWordLength,
       maxWordLength: maxWordLength,
       easyMode: easyMode,
-      trie: trie
+      trie: trie,
     });
     const shuffledWordIndexes = shuffleArray(
       wordIndexes,
       pseudoRandomGenerator
     );
 
-    // assemble the clues by going through each word and,
-    // if the word/clue isn't too similar, add it to the clue list
-    clueIndexes = [];
-    for (let index = 0; index < shuffledWordIndexes.length; index++) {
-      const currentClue = shuffledWordIndexes[index];
-
-      // If the color pattern of the clue is already used, skip
-      const currentClueColors = currentClue.map((index) => colors[index]);
-      const foundCluesColors = clueIndexes.map((clue) =>
-        clue.map((index) => colors[index])
-      );
-      const duplicateClue = foundCluesColors.some((array) =>
-        arraysMatchQ(array, currentClueColors)
-      );
-      if (duplicateClue) {
-        continue;
+    // Right now, we have a list of word indexes, many of which use the same pattern
+    // Consolidate data about each pattern into a dict with the patterns as the keys
+    let patternData = {};
+    for (const currentIndexes of shuffledWordIndexes) {
+      const pattern = currentIndexes.map((index) => colors[index][0]).join("");
+      const word = currentIndexes.map((index) => letters[index]).join("");
+      if (!patternData[pattern]) {
+        patternData[pattern] = {
+          words: new Set(),
+          indexes: [],
+          similarityScores: {},
+          sumSimilarityScore: 0,
+        };
       }
+      patternData[pattern].indexes.push(currentIndexes);
+      patternData[pattern].words.add(word);
+    }
 
-      // If the first two letters, last two letters, or any stretch of 3 letters
-      // is already used in another word of the same length, skip
-      // (to keep answers from being too similar)
-      const currentWord = currentClue.map((index) => letters[index]).join("");
-      const foundCluesWords = clueIndexes.map((clue) =>
-        clue.map((index) => letters[index]).join("")
-      );
-      const foundCluesWordsOfSameLength = foundCluesWords.filter(
-        (clue) => clue.length === currentWord.length
-      );
-
-      let indexesToCompare = [];
-      for (let index = 0; index <= currentWord.length - 2; index++) {
-        if (index === 0) {
-          indexesToCompare.push([index, index + 1]);
-        } else if (index === currentWord.length - 2) {
-          indexesToCompare.push([index, index + 1]);
-        } else indexesToCompare.push([index, index + 1, index + 2]);
-      }
-
-      let tooSimilar = false;
-      for (let index = 0; index < indexesToCompare.length; index++) {
-        const comparisonIndex = indexesToCompare[index];
-        const firstIndex = comparisonIndex[0];
-        const lastIndex = comparisonIndex[comparisonIndex.length - 1] + 1;
-        const comparisonSnippets = foundCluesWordsOfSameLength.map((i) =>
-          i.slice(firstIndex, lastIndex)
-        );
-        if (
-          comparisonSnippets.includes(currentWord.slice(firstIndex, lastIndex))
-        ) {
-          tooSimilar = true;
-          break;
-        }
-      }
-      if (tooSimilar) {
-        continue;
-      }
-
-      // If the new word is a plural or singular of an existing word, skip
-      // (This isn't covered by the above check, which only looks at clues of the same length)
-      const foundCluesWordsLengthOffOne = foundCluesWords.filter(
-        (clue) =>
-          clue.length === currentWord.length + 1 ||
-          clue.length === currentWord.length - 1
-      );
-
-      let pluralDuplicate = false;
+    // For each pattern, find the similarity score compared to the other patterns
+    const patterns = Object.keys(patternData);
+    for (let index = 0; index < patterns.length; index++) {
+      const pattern = patterns[index];
       for (
-        let comparisonIndex = 0;
-        comparisonIndex < foundCluesWordsLengthOffOne.length;
+        let comparisonIndex = index + 1;
+        comparisonIndex < patterns.length;
         comparisonIndex++
       ) {
-        if (
-          foundCluesWordsLengthOffOne[comparisonIndex] + "S" === currentWord ||
-          foundCluesWordsLengthOffOne[comparisonIndex] === currentWord + "S"
-        ) {
-          pluralDuplicate = true;
-          break;
+        const comparisonPattern = patterns[comparisonIndex];
+
+        const maxSimilarityScore = getMaxSimilarityScore(
+          Array.from(patternData[pattern].words),
+          Array.from(patternData[comparisonPattern].words)
+        );
+        patternData[pattern].similarityScores[comparisonPattern] =
+          maxSimilarityScore;
+        patternData[comparisonPattern].similarityScores[pattern] =
+          maxSimilarityScore;
+      }
+
+      const sumSimilarityScore = Object.values(
+        patternData[pattern].similarityScores
+      ).reduce((currentSum, currentValue) => currentSum + currentValue, 0);
+      patternData[pattern]["sumSimilarityScore"] = sumSimilarityScore;
+    }
+
+    let potentialPatterns = new Set(Object.keys(patternData));
+    for (const pattern in patternData) {
+      for (const comparisonPattern in patternData[pattern].similarityScores) {
+        // If any pattern comparisons have a similarity score of 1
+        if (patternData[pattern].similarityScores[comparisonPattern] === 1) {
+          // omit the pattern with the higher sum similarity score
+          if (
+            patternData[pattern].sumSimilarityScore >
+            patternData[comparisonPattern].sumSimilarityScore
+          ) {
+            potentialPatterns.delete(pattern);
+          } else if (
+            patternData[pattern].sumSimilarityScore <
+            patternData[comparisonPattern].sumSimilarityScore
+          ) {
+            potentialPatterns.delete(comparisonPattern);
+          } else {
+            // if there is a tie, omit the one with the fewer indexes
+            if (
+              patternData[pattern].indexes.length <
+              patternData[comparisonPattern].indexes.length
+            ) {
+              potentialPatterns.delete(pattern);
+            } else {
+              // if there is still a tie, just choose one to omit
+              potentialPatterns.delete(comparisonPattern);
+            }
+          }
         }
       }
-      if (pluralDuplicate) {
-        continue;
-      }
-
-      clueIndexes.push(currentClue);
-
-      // If found numClues, exit
-      if (clueIndexes.length >= numClues) {
-        foundPlayableBoard = true;
-        break;
-      }
     }
-  }
 
-  // Sort by clue length so longer clues are last
-  clueIndexes.sort(function (a, b) {
-    return a.length - b.length;
-  });
+    // If we don't have enough patterns, try again
+    if (potentialPatterns.size < numClues) {
+      continue;
+    }
+
+    // Order the potential patterns by similarity score (lower = better)
+    // If two patterns have the same similarity score, favor the pattern with more solutions
+    potentialPatterns = Array.from(potentialPatterns);
+    potentialPatterns.sort((patternA, patternB) =>
+      determinePatternPreference(patternA, patternB, patternData)
+    );
+
+    // Choose the first index of the first N patterns
+    clueIndexes = potentialPatterns
+      .slice(0, numClues)
+      .map((pattern) => patternData[pattern].indexes[0]);
+
+    // Sort by clue length so longer clues are last
+    clueIndexes.sort(function (a, b) {
+      return a.length - b.length;
+    });
+
+    // stop looking
+    foundPlayableBoard = true;
+  }
 
   return [letters, colors, clueIndexes];
 }

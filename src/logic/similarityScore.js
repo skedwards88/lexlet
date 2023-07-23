@@ -36,20 +36,35 @@ export function getSimilarityScore(word1, word2) {
     (numSharedEndLetters / word1.length + numSharedEndLetters / word2.length) /
     2;
 
-  // And if they share any stretch of 3 letters
-  let tripletScore = 0;
-  let word1Triplets = [];
-  for (let index = 0; index <= word1.length - 3; index++) {
-    word1Triplets.push(word1.slice(index, index + 3));
+  // If they share any stretch of 4 letters
+  let quadrupletScore = 0;
+  let word1Quadruplets = [];
+  for (let index = 0; index <= word1.length - 4; index++) {
+    word1Quadruplets.push(word1.slice(index, index + 4));
   }
-  for (let index = 0; index <= word2.length - 3; index++) {
-    if (word1Triplets.includes(word2.slice(index, index + 3))) {
-      tripletScore = (3 / word1.length + 3 / word2.length) / 2;
+  for (let index = 0; index <= word2.length - 4; index++) {
+    if (word1Quadruplets.includes(word2.slice(index, index + 4))) {
+      quadrupletScore = (4 / word1.length + 4 / word2.length) / 2;
       break;
     }
   }
 
-  return Math.max(startScore, endScore, tripletScore);
+  // And if they share any stretch of 3 letters (if they don't already share 4 letters)
+  let tripletScore = 0;
+  if (quadrupletScore === 0) {
+    let word1Triplets = [];
+    for (let index = 0; index <= word1.length - 3; index++) {
+      word1Triplets.push(word1.slice(index, index + 3));
+    }
+    for (let index = 0; index <= word2.length - 3; index++) {
+      if (word1Triplets.includes(word2.slice(index, index + 3))) {
+        tripletScore = (3 / word1.length + 3 / word2.length) / 2;
+        break;
+      }
+    }
+  }
+
+  return Math.max(startScore, endScore, quadrupletScore, tripletScore);
 }
 
 export function getMaxSimilarityScore(wordList1, wordList2) {

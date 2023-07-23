@@ -22,6 +22,11 @@ describe("getSimilarityScore", () => {
     expect(getSimilarityScore("LIKING", "SING")).toBe((3/6 + 3/4) /2);
   });
 
+  test("words that share the any stretch of four letters", () => {
+    expect(getSimilarityScore("BAKER", "MAKERS")).toBe((4/5 + 4/6) /2);
+    expect(getSimilarityScore("COOKBOOK", "BOOKS")).toBe((4/8 + 4/5) /2);
+  });
+
   test("words that share the any stretch of three letters", () => {
     expect(getSimilarityScore("CAKES", "MAKE")).toBe((3/5 + 3/4) /2);
     expect(getSimilarityScore("BOOK", "COOKING")).toBe((3/4 + 3/7) /2);

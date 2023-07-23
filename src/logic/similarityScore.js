@@ -6,29 +6,50 @@ export function getSimilarityScore(word1, word2) {
   if (word1 + "S" === word2) return 1;
   if (word1 === word2 + "S") return 1;
 
-  // If they share the first two letters
-  if (word1.slice(0, 2) === word2.slice(0, 2)) return 0.5;
+  // Calculate the fraction of the word that is the same starting at the first letter
+  // e.g. COOK vs COOLING share the first 3 letters,
+  // so the score for this is the average of 3/4 and 3/7
+  const minWordLength = Math.min(word1.length, word2.length);
+  let numSharedStartLetters = 0;
+  for (let index = 0; index < minWordLength; index++) {
+    if (word1[index] === word2[index]) {
+      numSharedStartLetters++;
+    } else {
+      break;
+    }
+  }
+  const startScore =
+    (numSharedStartLetters / word1.length +
+      numSharedStartLetters / word2.length) /
+    2;
 
-  // If they share the last two letters
-  if (
-    word1.slice(word1.length - 2, word1.length) ===
-    word2.slice(word2.length - 2, word2.length)
-  )
-    return 0.5;
+  // Do the same for the ending letters
+  let numSharedEndLetters = 0;
+  for (let index = 1; index <= minWordLength; index++) {
+    if (word1[word1.length - index] === word2[word2.length - index]) {
+      numSharedEndLetters++;
+    } else {
+      break;
+    }
+  }
+  const endScore =
+    (numSharedEndLetters / word1.length + numSharedEndLetters / word2.length) /
+    2;
 
-  // If they share any stretch of 3 letters
-  // (We already checked the first two and first last, so we just need to check the middle of the word)
+  // And if they share any stretch of 3 letters
+  let tripletScore = 0;
   let word1Triplets = [];
   for (let index = 0; index <= word1.length - 3; index++) {
     word1Triplets.push(word1.slice(index, index + 3));
   }
   for (let index = 0; index <= word2.length - 3; index++) {
     if (word1Triplets.includes(word2.slice(index, index + 3))) {
-      return 0.5;
+      tripletScore = (3 / word1.length + 3 / word2.length) / 2;
+      break;
     }
   }
 
-  return 0;
+  return Math.max(startScore, endScore, tripletScore);
 }
 
 export function getMaxSimilarityScore(wordList1, wordList2) {

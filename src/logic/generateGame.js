@@ -127,8 +127,8 @@ export function getPlayableBoard({
     let potentialPatterns = new Set(Object.keys(patternData));
     for (const pattern in patternData) {
       for (const comparisonPattern in patternData[pattern].similarityScores) {
-        // If any pattern comparisons have a similarity score of 1
-        if (patternData[pattern].similarityScores[comparisonPattern] === 1) {
+        // If any pattern comparisons have a similarity score greater than .75
+        if (patternData[pattern].similarityScores[comparisonPattern] > 0.75) {
           // omit the pattern with the higher sum similarity score
           if (
             patternData[pattern].sumSimilarityScore >

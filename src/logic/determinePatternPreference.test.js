@@ -86,7 +86,6 @@ describe("determinePatternPreference", () => {
     potentialPatterns.sort((patternA, patternB) =>
       determinePatternPreference(patternA, patternB, patternData)
     );
-    console.log(JSON.stringify(potentialPatterns));
     expect(potentialPatterns).toEqual([
       "pattern2",
       "pattern1",

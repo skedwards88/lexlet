@@ -1,6 +1,6 @@
 import seedrandom from "seedrandom";
 import { letterPool } from "./letterPool";
-import { shuffleArray } from "./shuffleArray";
+import { shuffleArray } from "@skedwards88/word_logic";
 import { findAllWordIndexes } from "@skedwards88/word_logic";
 import { trie } from "./trie";
 import { getMaxSimilarityScore } from "./similarityScore";

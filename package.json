@@ -20,7 +20,7 @@
   "license": "",
   "dependencies": {
     "@skedwards88/word_lists": "latest",
-    "@skedwards88/word_logic": "^2.0.3",
+    "@skedwards88/word_logic": "2.0.4",
     "mobile-drag-drop": "^2.3.0-rc.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

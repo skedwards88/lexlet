@@ -1,3 +1,4 @@
+import cloneDeep from "lodash.clonedeep";
 import { isKnown } from "@skedwards88/word_logic";
 import { checkIfNeighbors } from "@skedwards88/word_logic";
 import { arraysMatchQ } from "@skedwards88/word_logic";
@@ -98,7 +99,7 @@ export function gameReducer(currentGameState, payload) {
       console.log("tracking error", error);
     }
 
-    let newHints = JSON.parse(JSON.stringify(currentGameState.hints));
+    let newHints = cloneDeep(currentGameState.hints);
     newHints[payload.clueIndex][payload.boxIndex] = true;
 
     // If all boxes in the clue have been hinted, that clue is fully solved

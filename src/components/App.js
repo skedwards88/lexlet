@@ -1,5 +1,5 @@
 import React from "react";
-import Palette from "./Palette";
+import Lexlet from "./Lexlet";
 import Heart from "./Heart";
 import Rules from "./Rules";
 import Stats from "./Stats";
@@ -57,9 +57,9 @@ export default function App() {
     return () => window.removeEventListener("appinstalled", handleAppInstalled);
   }, []);
 
-  const savedIsFirstGame = JSON.parse(
-    localStorage.getItem("dailyPaletteIsFirstGame")
-  );
+  const savedIsFirstGame =
+    JSON.parse(localStorage.getItem("dailyLexletIsFirstGame")) ??
+    JSON.parse(localStorage.getItem("dailyPaletteIsFirstGame"));
 
   const [isFirstGame, setIsFirstGame] = React.useState(
     savedIsFirstGame ?? true
@@ -67,13 +67,13 @@ export default function App() {
 
   React.useEffect(() => {
     window.localStorage.setItem(
-      "dailyPaletteIsFirstGame",
+      "dailyLexletIsFirstGame",
       JSON.stringify(isFirstGame)
     );
   }, [isFirstGame]);
 
   const savedSawWhatsNew = JSON.parse(
-    localStorage.getItem("dailyPaletteSawWhatsNew20230609")
+    localStorage.getItem("dailyLexletSawWhatsNew20230609")
   );
 
   const [sawWhatsNew, setSawWhatsNew] = React.useState(
@@ -82,7 +82,7 @@ export default function App() {
 
   React.useEffect(() => {
     window.localStorage.setItem(
-      "dailyPaletteSawWhatsNew20230609",
+      "dailyLexletSawWhatsNew20230609",
       JSON.stringify(sawWhatsNew)
     );
   }, [sawWhatsNew]);
@@ -110,7 +110,7 @@ export default function App() {
 
     default:
       return (
-        <Palette
+        <Lexlet
           setDisplay={setDisplay}
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
@@ -119,7 +119,7 @@ export default function App() {
           dispatchGameState={dispatchGameState}
           setSawWhatsNew={setSawWhatsNew}
           sawWhatsNew={sawWhatsNew}
-        ></Palette>
+        ></Lexlet>
       );
   }
 }

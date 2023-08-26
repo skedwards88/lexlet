@@ -4,7 +4,7 @@ export default function WhatsNew({ setDisplay, setSawWhatsNew }) {
   return (
     <div className="App whatsNew">
       <h1 id="whatsNewHeader">{"What's New"}</h1>
-      <p id="whatsNewText">{`You can now view your stats!\n\nStats are saved locally on your browser/device.\n\nStats do not include data before today.`}</p>
+      <p id="whatsNewText">{`Same game, new name: The app is now called Lexlet!`}</p>
       <button
         id="whatsNewClose"
         className="close"

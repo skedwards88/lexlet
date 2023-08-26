@@ -29,7 +29,9 @@ function getWordLengthsForDay() {
 export function gameInit() {
   const seed = getSeed();
 
-  const savedState = JSON.parse(localStorage.getItem("dailyPaletteState"));
+  const savedState =
+    JSON.parse(localStorage.getItem("dailyLexletState")) ||
+    JSON.parse(localStorage.getItem("dailyPaletteState"));
 
   // If today's game is in progress, keep the progress
   if (
@@ -44,8 +46,10 @@ export function gameInit() {
     savedState.stats
   ) {
     // Temporary patch to support the green->blue rename
-    const adjustedColors = savedState.colors.map(color => color === "green" ? "blue" : color);
-    return {...savedState, colors: adjustedColors};
+    const adjustedColors = savedState.colors.map((color) =>
+      color === "green" ? "blue" : color
+    );
+    return { ...savedState, colors: adjustedColors };
   }
 
   const gridSize = 4;

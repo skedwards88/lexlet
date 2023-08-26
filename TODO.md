@@ -1,9 +1,11 @@
 # TODO
 
 - rebrand as lexlet
-  - rediect palette site to lexlet
   - get rid of pallet (short game) site
   - remove from word games and point to lexlet instead
+  - rename in app store
+  - remove old state refs once has time to propogate
+  - update whats new with links
 
 Maybe:
 

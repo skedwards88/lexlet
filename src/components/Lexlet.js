@@ -32,7 +32,7 @@ export default function Lexlet({
   dispatchGameState,
 }) {
   React.useEffect(() => {
-    window.localStorage.setItem("dailyPaletteState", JSON.stringify(gameState));
+    window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
   }, [gameState]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);

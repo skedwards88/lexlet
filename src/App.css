@@ -228,7 +228,7 @@ button {
   color: rgb(0 162 255);
 }
 
-#palette {
+#lexlet {
   display: grid;
   grid-template-areas:
     "controls"
@@ -242,7 +242,7 @@ button {
     auto;
 }
 
-#palette #currentWord {
+#lexlet #currentWord {
   grid-area: currentWord;
   height: calc(var(--clue-box-diam) * 1.5);
   overflow: hidden;
@@ -263,7 +263,7 @@ button {
   margin: 0.5vmax;
 }
 
-#palette #board {
+#lexlet #board {
   grid-area: board;
   display: grid;
   background-color: var(--dark-color);
@@ -277,7 +277,7 @@ button {
   justify-items: center;
 }
 
-#palette .letter {
+#lexlet .letter {
   touch-action: none;
   margin: 4vmin;
   background-color: var(--dark-color);
@@ -291,26 +291,26 @@ button {
   width: 60%;
 }
 
-#palette .red {
+#lexlet .red {
   background-color: rgb(169 6 67);
   transition: background-color 2s;
 }
 
-#palette .yellow {
+#lexlet .yellow {
   background-color: rgb(183 152 3);
   transition: background-color 2s;
 }
 
-#palette .blue {
+#lexlet .blue {
   background-color: rgb(36 66 199);
   transition: background-color 2s;
 }
 
-#palette .letter.unavailable {
+#lexlet .letter.unavailable {
   opacity: 0.5;
 }
 
-#palette #currentWord,
+#lexlet #currentWord,
 .clue {
   display: flex;
   flex-direction: row;
@@ -319,7 +319,7 @@ button {
   margin: 0.5vmax;
 }
 
-#palette #clues {
+#lexlet #clues {
   grid-area: clues;
   display: flex;
   flex-direction: column;

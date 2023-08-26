@@ -3,9 +3,9 @@ import React from "react";
 function handleShare(text) {
   navigator
     .share({
-      title: "Palette",
+      title: "Lexlet",
       text: `${text}\n\n`,
-      url: "https://palettegame.com/",
+      url: "https://lexlet.com/",
     })
     .then(() => console.log("Successful share"))
     .catch((error) => {
@@ -23,7 +23,7 @@ function handleShare(text) {
 
 function handleCopy(text) {
   try {
-    navigator.clipboard.writeText(`${text}\n\nhttps://palettegame.com/`);
+    navigator.clipboard.writeText(`${text}\n\nhttps://lexlet.com/`);
   } catch (error) {
     console.log(error);
   }

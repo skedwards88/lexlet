@@ -21,7 +21,7 @@ async function handleInstall(installPromptEvent, setInstallPromptEvent) {
   }
 }
 
-export default function Palette({
+export default function Lexlet({
   setDisplay,
   installPromptEvent,
   showInstallButton,
@@ -49,7 +49,7 @@ export default function Palette({
   return (
     <div
       className="App"
-      id="palette"
+      id="lexlet"
       onPointerUp={(e) => {
         e.preventDefault();
 

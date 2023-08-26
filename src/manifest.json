@@ -1,6 +1,6 @@
 {
-  "name": "Palette Word Game",
-  "short_name": "Palette",
+  "name": "Lexlet Word Game",
+  "short_name": "Lexlet",
   "description": "A spatial word game",
   "dir": "auto",
   "lang": "en-US",
@@ -41,56 +41,56 @@
       "sizes": "720x1280",
       "type": "image/png",
       "platform": "narrow",
-      "label": "New game of Palette"
+      "label": "New game of Lexlet"
     },
     {
       "src": "screenshot_new_1080_1080.png",
       "sizes": "1080x1080",
       "type": "image/png",
       "platform": "wide",
-      "label": "New game of Palette"
+      "label": "New game of Lexlet"
     },
     {
       "src": "screenshot_partial_720_1280.png",
       "sizes": "720x1280",
       "type": "image/png",
       "platform": "narrow",
-      "label": "In progress word in Palette"
+      "label": "In progress word in Lexlet"
     },
     {
       "src": "screenshot_partial_1080_1080.png",
       "sizes": "1080x1080",
       "type": "image/png",
       "platform": "wide",
-      "label": "In progress word in Palette"
+      "label": "In progress word in Lexlet"
     },
     {
       "src": "screenshot_full_720_1280.png",
       "sizes": "720x1280",
       "type": "image/png",
       "platform": "narrow",
-      "label": "Completed word in Palette"
+      "label": "Completed word in Lexlet"
     },
     {
       "src": "screenshot_full_1080_1080.png",
       "sizes": "1080x1080",
       "type": "image/png",
       "platform": "wide",
-      "label": "Completed word in Palette"
+      "label": "Completed word in Lexlet"
     },
     {
       "src": "screenshot_hint_720_1280.png",
       "sizes": "720x1280",
       "type": "image/png",
       "platform": "narrow",
-      "label": "Hint in Palette"
+      "label": "Hint in Lexlet"
     },
     {
       "src": "screenshot_hint_1080_1080.png",
       "sizes": "1080x1080",
       "type": "image/png",
       "platform": "narrow",
-      "label": "Hint in Palette"
+      "label": "Hint in Lexlet"
     }
   ]
 }

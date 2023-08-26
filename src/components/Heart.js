@@ -3,7 +3,7 @@ import Share from "./Share";
 import packageJson from "../../package.json";
 
 export default function Heart({ setDisplay }) {
-  const feedbackLink = "https://github.com/skedwards88/palette/issues/new/choose";
+  const feedbackLink = "https://github.com/skedwards88/lexlet/issues/new/choose";
 
   return (
     <div className="App info">

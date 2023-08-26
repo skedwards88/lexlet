@@ -1,16 +1,16 @@
-# Palette
+# Lexlet
 
-A standalone, daily version of palette from [my other word games](https://skedwards88.github.io/word_games/).
+A spatial word game.
 
 **Players:** 1
 
 **Time:** 5 minutes
 
-[Play Now!](https://palettegame.com/)
+[Play Now!](https://lexlet.com/)
 
 <img src="src/images/icon_512.png" alt="game icon" width="70"/>
 
-Do you have feedback or ideas for improvement? [Open an issue](https://github.com/skedwards88/palette/issues/new).
+Do you have feedback or ideas for improvement? [Open an issue](https://github.com/skedwards88/lexlet/issues/new).
 
 Want more games? Visit [SECT Games](https://skedwards88.github.io/).
 

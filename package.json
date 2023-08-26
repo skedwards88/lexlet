@@ -1,5 +1,5 @@
 {
-  "name": "palette",
+  "name": "lexlet",
   "version": "2.0.18",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skedwards88/palette.git"
+    "url": "git+https://github.com/skedwards88/lexlet.git"
   },
   "keywords": [],
   "author": "",
@@ -50,7 +50,7 @@
     "workbox-webpack-plugin": "^6.5.2"
   },
   "bugs": {
-    "url": "https://github.com/skedwards88/palette/issues"
+    "url": "https://github.com/skedwards88/lexlet/issues"
   },
-  "homepage": "https://github.com/skedwards88/palette#readme"
+  "homepage": "https://github.com/skedwards88/lexlet#readme"
 }

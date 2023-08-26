@@ -224,7 +224,7 @@ button {
   margin: 2vmax;
 }
 
-.info a {
+.info a, .whatsNew a {
   color: rgb(0 162 255);
 }
 

@@ -29,9 +29,7 @@ function getWordLengthsForDay() {
 export function gameInit() {
   const seed = getSeed();
 
-  const savedState =
-    JSON.parse(localStorage.getItem("dailyLexletState")) ||
-    JSON.parse(localStorage.getItem("dailyPaletteState"));
+  const savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
 
   // If today's game is in progress, keep the progress
   if (

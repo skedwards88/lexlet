@@ -1,6 +1,5 @@
 # TODO
 
-- remove old palette state refs
 - force qu to be next to aeio
 - remove from word games and point to lexlet instead
 

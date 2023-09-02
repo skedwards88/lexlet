@@ -57,9 +57,7 @@ export default function App() {
     return () => window.removeEventListener("appinstalled", handleAppInstalled);
   }, []);
 
-  const savedIsFirstGame =
-    JSON.parse(localStorage.getItem("dailyLexletIsFirstGame")) ??
-    JSON.parse(localStorage.getItem("dailyPaletteIsFirstGame"));
+  const savedIsFirstGame = JSON.parse(localStorage.getItem("dailyLexletIsFirstGame"));
 
   const [isFirstGame, setIsFirstGame] = React.useState(
     savedIsFirstGame ?? true

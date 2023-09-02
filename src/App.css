@@ -250,6 +250,27 @@ button {
   align-self: center;
 }
 
+#lexlet #wordResult {
+  grid-area: currentWord;
+  height: calc(var(--clue-box-diam) * 1.5);
+  overflow: hidden;
+  justify-self: center;
+  align-self: center;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+  animation-duration: 2s;
+  animation-name: fadeout;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 0.9;
+  }
+}
+
 #gameOver {
   grid-area: currentWord;
   font-size: calc(var(--default-font-size) * 0.75);

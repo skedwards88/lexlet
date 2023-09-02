@@ -118,6 +118,13 @@ export default function Lexlet({
           )}
         ></CurrentWord>
       )}
+      {gameState.result ? (
+        <div id="wordResult" className="fadeOut">
+          {gameState.result}
+        </div>
+      ) : (
+        <></>
+      )}
       <Board
         letters={gameState.letters}
         colors={gameState.colors}

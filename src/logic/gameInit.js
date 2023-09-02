@@ -109,5 +109,6 @@ export function gameInit() {
     playedIndexes: [],
     hints: hints,
     stats: stats,
+    result: "",
   };
 }

@@ -85,6 +85,7 @@ export function gameReducer(currentGameState, payload) {
       ...currentGameState,
       wordInProgress: true,
       playedIndexes: [payload.letterIndex],
+      result: "",
     };
   } else if (payload.action === "hint") {
     // If we already gave a hint for that location, return early
@@ -186,6 +187,12 @@ export function gameReducer(currentGameState, payload) {
       playedIndexes: newPlayedIndexes,
     };
   } else if (payload.action === "endWord") {
+    // Since we end the word on board up or on app up (in case the user swipes off the board), we can end up calling this case twice.
+    // Return early if we no longer have a word in progress.
+    if (!currentGameState.playedIndexes.length) {
+      return currentGameState;
+    }
+
     // there is a small chance that an update to the word list
     // is pushed after a game is generated for a user
     // so if the word matches one of the clue indexes, consider it valid
@@ -201,6 +208,7 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         playedIndexes: [],
         wordInProgress: false,
+        result: "Unknown word",
       };
     }
 
@@ -262,6 +270,7 @@ export function gameReducer(currentGameState, payload) {
       clueMatches: clueMatches,
       clueIndexes: clueIndexes,
       wordInProgress: false,
+      result: "",
       ...(newStats && { stats: newStats }),
     };
   } else if (payload.action === "clearStreakIfNeeded") {

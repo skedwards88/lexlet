@@ -8,6 +8,8 @@ on:
       - 'TODO.md'
       - ".github/ISSUE_TEMPLATE/*"
   workflow_dispatch:
+  repository_dispatch:
+    types: [update-word-lists]
 
 permissions:
   contents: write # Required for bumping version (read-only required for deployment)
@@ -46,10 +48,10 @@ jobs:
       - name: Push
         run: |
           git push origin main
-      
+
       - name: Update word lists
         run: npm update @skedwards88/word_lists
-        
+
       - name: Build
         run: npm run build
 

@@ -208,7 +208,7 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         playedIndexes: [],
         wordInProgress: false,
-        result: "Unknown word",
+        result: word.length > 3 ? "Unknown word" : "",
       };
     }
 

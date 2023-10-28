@@ -172,7 +172,7 @@ button {
 #rulesHeader,
 #whatsNewHeader {
   all: unset;
-  font-size: calc(var(--default-font-size) * 1.5);
+  font-size: calc(var(--default-font-size) * 1.2);
   display: block;
   font-weight: bold;
   grid-area: header;

@@ -23,7 +23,7 @@ function getLetters(gridSize, pseudoRandomGenerator) {
       qIndex < (gridSize * gridSize) / 2
         ? qIndex + gridSize
         : qIndex - gridSize;
-    const replacementLetter = shuffleArray(["A", "E", "I", "O"])[0];
+    const replacementLetter = shuffleArray(["A", "E", "I", "O"], pseudoRandomGenerator)[0];
     chosenLetters[replacementPosition] = replacementLetter;
   }
 

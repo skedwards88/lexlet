@@ -202,7 +202,7 @@ export function gameReducer(currentGameState, payload) {
     const word = currentGameState.playedIndexes
       .map((index) => currentGameState.letters[index])
       .join("");
-    const { isWord } = isKnown(word, trie);
+    const { isWord } = isKnown(word.toUpperCase(), trie);
     if (!isWord && !matchesSolution) {
       return {
         ...currentGameState,

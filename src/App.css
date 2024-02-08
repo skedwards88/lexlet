@@ -127,6 +127,7 @@ button {
   width: calc(var(--default-font-size) * 1);
   padding: 0 2vw;
 }
+
 .statsBar > .statsWon {
   background-color: var(--light-color);
   height: calc(var(--default-font-size) * 1.2);
@@ -136,6 +137,7 @@ button {
   text-align: center;
   margin: 1vh 0;
 }
+
 .statsNumber > .number {
   font-size: calc(var(--default-font-size) * 1.5);
 }

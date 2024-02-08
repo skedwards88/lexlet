@@ -196,12 +196,15 @@ export function gameReducer(currentGameState, payload) {
     // there is a small chance that an update to the word list
     // is pushed after a game is generated for a user
     // so if the word matches one of the clue indexes, consider it valid
-    const matchesSolution = currentGameState.clueIndexes.some(indexes => arraysMatchQ(indexes, currentGameState.playedIndexes))
+    const matchesSolution = currentGameState.clueIndexes.some((indexes) =>
+      arraysMatchQ(indexes, currentGameState.playedIndexes)
+    );
 
     // check if word is a real word
     const word = currentGameState.playedIndexes
       .map((index) => currentGameState.letters[index])
-      .join("").toUpperCase();
+      .join("")
+      .toUpperCase();
     const { isWord } = isKnown(word, trie);
     if (!isWord && !matchesSolution) {
       return {

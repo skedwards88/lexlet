@@ -122,12 +122,12 @@ button {
   margin: 10px 0;
 }
 
-.statsBar>.statsDay {
+.statsBar > .statsDay {
   align-self: center;
   width: calc(var(--default-font-size) * 1);
   padding: 0 2vw;
 }
-.statsBar>.statsWon {
+.statsBar > .statsWon {
   background-color: var(--light-color);
   height: calc(var(--default-font-size) * 1.2);
 }
@@ -136,7 +136,7 @@ button {
   text-align: center;
   margin: 1vh 0;
 }
-.statsNumber>.number {
+.statsNumber > .number {
   font-size: calc(var(--default-font-size) * 1.5);
 }
 
@@ -224,7 +224,8 @@ button {
   margin: 2vmax;
 }
 
-.info a, .whatsNew a {
+.info a,
+.whatsNew a {
   color: rgb(0 162 255);
 }
 

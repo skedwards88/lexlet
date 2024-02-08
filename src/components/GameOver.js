@@ -17,8 +17,7 @@ function resultToIcon({ hints, clueIndexes, colors }) {
       boxIndex < clueIndexes[clueIndex].length;
       boxIndex++
     ) {
-      if (
-        hints[clueIndex][boxIndex]      ) {
+      if (hints[clueIndex][boxIndex]) {
         result += boxTranslation.hint;
       } else {
         const boardIndex = clueIndexes[clueIndex][boxIndex];
@@ -29,11 +28,7 @@ function resultToIcon({ hints, clueIndexes, colors }) {
   return result;
 }
 
-export default function GameOver({
-  hints,
-  clueIndexes,
-  colors,
-}) {
+export default function GameOver({ hints, clueIndexes, colors }) {
   const result = resultToIcon({
     hints: hints,
     clueIndexes: clueIndexes,

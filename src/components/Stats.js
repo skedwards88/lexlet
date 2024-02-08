@@ -47,7 +47,6 @@ function StatsNumber({ number, text }) {
 }
 
 export default function Stats({ stats, setDisplay }) {
-
   const maxDays = Object.values(stats.days).reduce(
     (currentMax, comparison) =>
       currentMax > comparison.won ? currentMax : comparison.won,

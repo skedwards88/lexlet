@@ -1,7 +1,12 @@
 import React from "react";
 import packageJson from "../../package.json";
 
-export default function Rules({ setDisplay, isFirstGame, setIsFirstGame, setSawWhatsNew }) {
+export default function Rules({
+  setDisplay,
+  isFirstGame,
+  setIsFirstGame,
+  setSawWhatsNew,
+}) {
   return (
     <div className="App rules">
       <h1 id="rulesHeader">Lexlet: How to play</h1>

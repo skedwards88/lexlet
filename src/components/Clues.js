@@ -42,7 +42,7 @@ function convertToRGB(red, yellow, blue) {
 }
 
 function calculateMixedColor(colors) {
-  // Convert a list of red/yellow/blue color names 
+  // Convert a list of red/yellow/blue color names
   // to an rbga value reflecting the mixture of the colors
 
   const rybLookup = {

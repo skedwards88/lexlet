@@ -5,7 +5,7 @@ describe("determinePatternPreference", () => {
     pattern1: {
       sumSimilarityScore: 0,
       indexes: [[1, 3, 5, 4]],
-      words: new Set(["BOOK"])
+      words: new Set(["BOOK"]),
     },
     pattern2: {
       sumSimilarityScore: 0,
@@ -13,12 +13,12 @@ describe("determinePatternPreference", () => {
         [1, 3, 5, 4],
         [1, 3, 5, 2],
       ],
-      words: new Set(["BOOK","READ"])
+      words: new Set(["BOOK", "READ"]),
     },
     pattern3: {
       sumSimilarityScore: 3.5,
       indexes: [[1, 3, 5, 4]],
-      words: new Set(["BOOK"])
+      words: new Set(["BOOK"]),
     },
     pattern4: {
       sumSimilarityScore: 3.5,
@@ -26,7 +26,7 @@ describe("determinePatternPreference", () => {
         [1, 3, 5, 4],
         [1, 3, 5, 8],
       ],
-      words: new Set(["BOOK","WORD"])
+      words: new Set(["BOOK", "WORD"]),
     },
     pattern5: {
       sumSimilarityScore: 3.5,
@@ -34,7 +34,7 @@ describe("determinePatternPreference", () => {
         [1, 3, 5, 4, 7],
         [1, 3, 5, 4, 8],
       ],
-      words: new Set(["WRITE","LOGIC"])
+      words: new Set(["WRITE", "LOGIC"]),
     },
     pattern6: {
       sumSimilarityScore: 3.5,
@@ -42,7 +42,7 @@ describe("determinePatternPreference", () => {
         [1, 3, 5, 4, 7],
         [1, 3, 5, 4, 8],
       ],
-      words: new Set(["BOOKS","LOGIC"])
+      words: new Set(["BOOKS", "LOGIC"]),
     },
   };
   test("different similarity score", () => {

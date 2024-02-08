@@ -201,8 +201,8 @@ export function gameReducer(currentGameState, payload) {
     // check if word is a real word
     const word = currentGameState.playedIndexes
       .map((index) => currentGameState.letters[index])
-      .join("");
-    const { isWord } = isKnown(word.toUpperCase(), trie);
+      .join("").toUpperCase();
+    const { isWord } = isKnown(word, trie);
     if (!isWord && !matchesSolution) {
       return {
         ...currentGameState,

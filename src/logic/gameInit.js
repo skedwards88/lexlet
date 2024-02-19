@@ -1,4 +1,4 @@
-import { getPlayableBoard } from "./generateGame";
+import {getPlayableBoard} from "./generateGame";
 
 export function getSeed() {
   // Get a seed based on today's date 'YYYYMMDD'
@@ -45,9 +45,9 @@ export function gameInit() {
   ) {
     // Temporary patch to support the green->blue rename
     const adjustedColors = savedState.colors.map((color) =>
-      color === "green" ? "blue" : color
+      color === "green" ? "blue" : color,
     );
-    return { ...savedState, colors: adjustedColors };
+    return {...savedState, colors: adjustedColors};
   }
 
   const gridSize = 4;
@@ -87,13 +87,13 @@ export function gameInit() {
       numHintsInStreak: 0,
       days: {
         // day: [total number of games won, total number of games won without hints]
-        0: { won: 0, noHints: 0 }, // Sunday
-        1: { won: 0, noHints: 0 },
-        2: { won: 0, noHints: 0 },
-        3: { won: 0, noHints: 0 },
-        4: { won: 0, noHints: 0 },
-        5: { won: 0, noHints: 0 },
-        6: { won: 0, noHints: 0 },
+        0: {won: 0, noHints: 0}, // Sunday
+        1: {won: 0, noHints: 0},
+        2: {won: 0, noHints: 0},
+        3: {won: 0, noHints: 0},
+        4: {won: 0, noHints: 0},
+        5: {won: 0, noHints: 0},
+        6: {won: 0, noHints: 0},
       },
     };
   }

@@ -1,4 +1,4 @@
-import { getSimilarityScore, getMaxSimilarityScore } from "./similarityScore";
+import {getSimilarityScore, getMaxSimilarityScore} from "./similarityScore";
 
 describe("getSimilarityScore", () => {
   test("identical words", () => {
@@ -47,7 +47,10 @@ describe("getSimilarityScore", () => {
 describe("getMaxSimilarityScore", () => {
   test("list includes identical words", () => {
     expect(
-      getMaxSimilarityScore(["BOOK", "READ"], ["EDIT", "TEXT", "BOOK", "WRITE"])
+      getMaxSimilarityScore(
+        ["BOOK", "READ"],
+        ["EDIT", "TEXT", "BOOK", "WRITE"],
+      ),
     ).toBe(1);
   });
 
@@ -55,20 +58,20 @@ describe("getMaxSimilarityScore", () => {
     expect(
       getMaxSimilarityScore(
         ["EDIT", "TEXT", "BOOKS", "WRITE"],
-        ["BOOK", "READ"]
-      )
+        ["BOOK", "READ"],
+      ),
     ).toBe(1);
   });
 
   test("list includes similar but not identical words", () => {
     expect(
-      getMaxSimilarityScore(["BOOK", "READ"], ["COOKING", "TEXT", "WRITE"])
+      getMaxSimilarityScore(["BOOK", "READ"], ["COOKING", "TEXT", "WRITE"]),
     ).toBe((3 / 4 + 3 / 7) / 2);
   });
 
   test("list includes dissimilar words", () => {
     expect(
-      getMaxSimilarityScore(["BOOK", "READ"], ["COOLING", "TEXT", "WRITE"])
+      getMaxSimilarityScore(["BOOK", "READ"], ["COOLING", "TEXT", "WRITE"]),
     ).toBe(0);
   });
 });

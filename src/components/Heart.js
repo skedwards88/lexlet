@@ -2,7 +2,7 @@ import React from "react";
 import Share from "./Share";
 import packageJson from "../../package.json";
 
-export default function Heart({ setDisplay }) {
+export default function Heart({setDisplay}) {
   const feedbackLink =
     "https://github.com/skedwards88/lexlet/issues/new/choose";
 

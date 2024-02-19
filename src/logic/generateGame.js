@@ -1,10 +1,10 @@
 import seedrandom from "seedrandom";
-import { letterPool } from "./letterPool";
-import { shuffleArray } from "@skedwards88/word_logic";
-import { findAllWordIndexes } from "@skedwards88/word_logic";
-import { trie } from "./trie";
-import { getMaxSimilarityScore } from "./similarityScore";
-import { determinePatternPreference } from "./determinePatternPreference";
+import {letterPool} from "./letterPool";
+import {shuffleArray} from "@skedwards88/word_logic";
+import {findAllWordIndexes} from "@skedwards88/word_logic";
+import {trie} from "./trie";
+import {getMaxSimilarityScore} from "./similarityScore";
+import {determinePatternPreference} from "./determinePatternPreference";
 
 function getLetters(gridSize, pseudoRandomGenerator) {
   // Given the distribution of letters in the word list
@@ -25,7 +25,7 @@ function getLetters(gridSize, pseudoRandomGenerator) {
         : qIndex - gridSize;
     const replacementLetter = shuffleArray(
       ["A", "E", "I", "O"],
-      pseudoRandomGenerator
+      pseudoRandomGenerator,
     )[0];
     chosenLetters[replacementPosition] = replacementLetter;
   }
@@ -79,7 +79,7 @@ export function getPlayableBoard({
         () =>
           colorDistribution[
             Math.floor(pseudoRandomGenerator() * colorDistribution.length)
-          ]
+          ],
       );
       colorTally = tallyItems(colors);
     }
@@ -94,7 +94,7 @@ export function getPlayableBoard({
     });
     const shuffledWordIndexes = shuffleArray(
       wordIndexes,
-      pseudoRandomGenerator
+      pseudoRandomGenerator,
     );
 
     // Right now, we have a list of word indexes, many of which use the same pattern
@@ -128,7 +128,7 @@ export function getPlayableBoard({
 
         const maxSimilarityScore = getMaxSimilarityScore(
           Array.from(patternData[pattern].words),
-          Array.from(patternData[comparisonPattern].words)
+          Array.from(patternData[comparisonPattern].words),
         );
         patternData[pattern].similarityScores[comparisonPattern] =
           maxSimilarityScore;
@@ -137,7 +137,7 @@ export function getPlayableBoard({
       }
 
       const sumSimilarityScore = Object.values(
-        patternData[pattern].similarityScores
+        patternData[pattern].similarityScores,
       ).reduce((currentSum, currentValue) => currentSum + currentValue, 0);
       patternData[pattern]["sumSimilarityScore"] = sumSimilarityScore;
     }
@@ -183,7 +183,7 @@ export function getPlayableBoard({
     // If two patterns have the same similarity score, favor the pattern with more solutions
     potentialPatterns = Array.from(potentialPatterns);
     potentialPatterns.sort((patternA, patternB) =>
-      determinePatternPreference(patternA, patternB, patternData)
+      determinePatternPreference(patternA, patternB, patternData),
     );
 
     // Choose the first index of the first N patterns

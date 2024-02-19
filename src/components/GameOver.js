@@ -1,7 +1,7 @@
 import React from "react";
 import Share from "./Share";
 
-function resultToIcon({ hints, clueIndexes, colors }) {
+function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
     red: "🟥",
     blue: "🟦",
@@ -28,7 +28,7 @@ function resultToIcon({ hints, clueIndexes, colors }) {
   return result;
 }
 
-export default function GameOver({ hints, clueIndexes, colors }) {
+export default function GameOver({hints, clueIndexes, colors}) {
   const result = resultToIcon({
     hints: hints,
     clueIndexes: clueIndexes,

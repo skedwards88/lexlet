@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function WhatsNew({ setDisplay, setSawWhatsNew }) {
+export default function WhatsNew({setDisplay, setSawWhatsNew}) {
   return (
     <div className="App whatsNew">
       <h1 id="whatsNewHeader">{"What's New"}</h1>

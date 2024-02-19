@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CurrentWord({ letters, colors }) {
+export default function CurrentWord({letters, colors}) {
   const blocks = letters.map((letter, index) => (
     <div key={index} className={`guessBox ${colors[index]}`}>
       {letter.toUpperCase()}

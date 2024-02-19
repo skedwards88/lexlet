@@ -1,4 +1,4 @@
-import { determinePatternPreference } from "./determinePatternPreference";
+import {determinePatternPreference} from "./determinePatternPreference";
 
 describe("determinePatternPreference", () => {
   const patternData = {
@@ -47,44 +47,44 @@ describe("determinePatternPreference", () => {
   };
   test("different similarity score", () => {
     expect(
-      determinePatternPreference("pattern1", "pattern3", patternData)
+      determinePatternPreference("pattern1", "pattern3", patternData),
     ).toBe(-1);
     expect(
-      determinePatternPreference("pattern3", "pattern1", patternData)
+      determinePatternPreference("pattern3", "pattern1", patternData),
     ).toBe(1);
   });
 
   test("same similarity score, different number solutions", () => {
     expect(
-      determinePatternPreference("pattern1", "pattern2", patternData)
+      determinePatternPreference("pattern1", "pattern2", patternData),
     ).toBe(1);
     expect(
-      determinePatternPreference("pattern2", "pattern1", patternData)
+      determinePatternPreference("pattern2", "pattern1", patternData),
     ).toBe(-1);
   });
 
   test("same similarity score, same number solutions, different length", () => {
     expect(
-      determinePatternPreference("pattern4", "pattern5", patternData)
+      determinePatternPreference("pattern4", "pattern5", patternData),
     ).toBe(-1);
     expect(
-      determinePatternPreference("pattern5", "pattern4", patternData)
+      determinePatternPreference("pattern5", "pattern4", patternData),
     ).toBe(1);
   });
 
   test("same similarity score, different number 's', same number solutions, same length", () => {
     expect(
-      determinePatternPreference("pattern6", "pattern5", patternData)
+      determinePatternPreference("pattern6", "pattern5", patternData),
     ).toBe(1);
     expect(
-      determinePatternPreference("pattern5", "pattern6", patternData)
+      determinePatternPreference("pattern5", "pattern6", patternData),
     ).toBe(-1);
   });
 
   test("can be used to sort", () => {
     let potentialPatterns = Object.keys(patternData);
     potentialPatterns.sort((patternA, patternB) =>
-      determinePatternPreference(patternA, patternB, patternData)
+      determinePatternPreference(patternA, patternB, patternData),
     );
     expect(potentialPatterns).toEqual([
       "pattern2",

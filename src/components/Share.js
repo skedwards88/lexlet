@@ -29,7 +29,7 @@ function handleCopy(text) {
   }
 }
 
-export default function Share({ text }) {
+export default function Share({text}) {
   if (navigator.canShare) {
     return <button onClick={() => handleShare(text)}>Share</button>;
   } else {

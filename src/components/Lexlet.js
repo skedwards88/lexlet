@@ -3,7 +3,7 @@ import Board from "./Board";
 import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
-import { Countdown } from "./Countdown";
+import {Countdown} from "./Countdown";
 import WhatsNew from "./WhatsNew";
 
 async function handleInstall(installPromptEvent, setInstallPromptEvent) {
@@ -75,7 +75,7 @@ export default function Lexlet({
         <button
           id="stats"
           onClick={() => {
-            dispatchGameState({ action: "clearStreakIfNeeded" });
+            dispatchGameState({action: "clearStreakIfNeeded"});
             setDisplay("stats");
           }}
         ></button>
@@ -95,10 +95,10 @@ export default function Lexlet({
         clueMatches={gameState.clueMatches}
         hints={gameState.hints}
         clueColors={gameState.clueIndexes.map((clue) =>
-          clue.map((index) => gameState.colors[index])
+          clue.map((index) => gameState.colors[index]),
         )}
         clueLetters={gameState.clueIndexes.map((clue) =>
-          clue.map((index) => gameState.letters[index])
+          clue.map((index) => gameState.letters[index]),
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
@@ -111,10 +111,10 @@ export default function Lexlet({
       ) : (
         <CurrentWord
           letters={gameState.playedIndexes.map(
-            (index) => gameState.letters[index]
+            (index) => gameState.letters[index],
           )}
           colors={gameState.playedIndexes.map(
-            (index) => gameState.colors[index]
+            (index) => gameState.colors[index],
           )}
         ></CurrentWord>
       )}

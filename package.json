@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
+    "build": "webpack",
     "dev": "webpack-dev-server --mode development",
     "start": "webpack-dev-server",
-    "build": "webpack",
-    "test": "jest --config=jest.config.cjs",
-    "lint": "npx eslint --ignore-path .gitignore .",
-    "prettier": "npx prettier --ignore-path .gitignore --write .",
-    "style": "npx stylelint '**/*.css' --fix"
+    "eslint": "npx eslint --ignore-path .gitignore . --fix",
+    "prettier": "npx prettier --write .",
+    "style": "npx stylelint '**/*.css' --fix",
+    "lint": "npm run eslint && npm run prettier && npm run style"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   "keywords": [],
   "author": "",
   "license": "",
+  "bugs": {
+    "url": "https://github.com/skedwards88/lexlet/issues"
+  },
+  "homepage": "https://github.com/skedwards88/lexlet#readme",
   "dependencies": {
     "@skedwards88/word_lists": "latest",
     "@skedwards88/word_logic": "2.0.4",
@@ -32,7 +37,6 @@
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "@eslint/create-config": "github:eslint/create-config",
     "babel-jest": "^29.7.0",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.4",
@@ -50,9 +54,5 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "workbox-webpack-plugin": "^6.5.2"
-  },
-  "bugs": {
-    "url": "https://github.com/skedwards88/lexlet/issues"
-  },
-  "homepage": "https://github.com/skedwards88/lexlet#readme"
+  }
 }

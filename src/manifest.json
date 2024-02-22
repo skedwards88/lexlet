@@ -2,13 +2,16 @@
   "name": "Lexlet Word Game",
   "short_name": "Lexlet",
   "description": "A spatial word game",
+  "id": "?lexlet=202402221",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "../.",
+  "start_url": "https://lexlet.com",
   "background_color": "#373647",
   "theme_color": "#373647",
+  "shortcuts": [],
+  "categories": ["games", "entertainment", "education"],
   "icons": [
     {
       "src": "favicon.svg",
@@ -33,8 +36,6 @@
       "purpose": "maskable"
     }
   ],
-  "shortcuts": [],
-  "categories": ["games", "entertainment", "education"],
   "screenshots": [
     {
       "src": "screenshot_new_720_1280.png",

@@ -9,8 +9,6 @@ function handleShare(text) {
     })
     .then(() => console.log("Successful share"))
     .catch((error) => {
-      // copy to clipboard as backup
-      handleCopy(text);
       console.log("Error sharing", error);
     });
 

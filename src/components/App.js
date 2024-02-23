@@ -33,28 +33,23 @@ export default function App() {
   );
 
   React.useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (event) =>
+    const listener = (event) =>
       handleBeforeInstallPrompt(
         event,
         setInstallPromptEvent,
         setShowInstallButton,
-      ),
-    );
-    return () =>
-      window.removeEventListener("beforeinstallprompt", (event) =>
-        handleBeforeInstallPrompt(
-          event,
-          setInstallPromptEvent,
-          setShowInstallButton,
-        ),
       );
+
+    window.addEventListener("beforeinstallprompt", listener);
+    return () => window.removeEventListener("beforeinstallprompt", listener);
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener("appinstalled", () =>
-      handleAppInstalled(setInstallPromptEvent, setShowInstallButton),
-    );
-    return () => window.removeEventListener("appinstalled", handleAppInstalled);
+    const listener = () =>
+      handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
+
+    window.addEventListener("appinstalled", listener);
+    return () => window.removeEventListener("appinstalled", listener);
   }, []);
 
   const savedIsFirstGame = JSON.parse(

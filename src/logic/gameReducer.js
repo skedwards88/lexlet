@@ -1,9 +1,9 @@
 import cloneDeep from "lodash.clonedeep";
-import { isKnown } from "@skedwards88/word_logic";
-import { checkIfNeighbors } from "@skedwards88/word_logic";
-import { arraysMatchQ } from "@skedwards88/word_logic";
-import { gameInit } from "./gameInit";
-import { trie } from "./trie";
+import {isKnown} from "@skedwards88/word_logic";
+import {checkIfNeighbors} from "@skedwards88/word_logic";
+import {arraysMatchQ} from "@skedwards88/word_logic";
+import {gameInit} from "./gameInit";
+import {trie} from "./trie";
 
 function isYesterday(timestamp) {
   return isNDaysAgo(timestamp, 1);
@@ -65,7 +65,7 @@ function getNewStats(currentGameState) {
 
   const newDays = {
     ...currentGameState.stats.days,
-    [dayNumber]: { won: numWeekdayWon, noHints: numWeekdayWonWithoutHints },
+    [dayNumber]: {won: numWeekdayWon, noHints: numWeekdayWonWithoutHints},
   };
 
   return {
@@ -90,7 +90,7 @@ export function gameReducer(currentGameState, payload) {
   } else if (payload.action === "hint") {
     // If we already gave a hint for that location, return early
     if (currentGameState.hints[payload.clueIndex][payload.boxIndex]) {
-      return { ...currentGameState };
+      return {...currentGameState};
     }
 
     try {
@@ -106,7 +106,7 @@ export function gameReducer(currentGameState, payload) {
     // If all boxes in the clue have been hinted, that clue is fully solved
     if (newHints[payload.clueIndex].every((i) => i)) {
       let newClueMatches = JSON.parse(
-        JSON.stringify(currentGameState.clueMatches)
+        JSON.stringify(currentGameState.clueMatches),
       );
       newClueMatches[payload.clueIndex] = true;
 
@@ -135,10 +135,10 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         hints: newHints,
         clueMatches: newClueMatches,
-        ...(newStats && { stats: newStats }),
+        ...(newStats && {stats: newStats}),
       };
     } else {
-      return { ...currentGameState, hints: newHints };
+      return {...currentGameState, hints: newHints};
     }
   } else if (payload.action === "addLetter") {
     if (!currentGameState.wordInProgress) {
@@ -179,7 +179,7 @@ export function gameReducer(currentGameState, payload) {
 
     newPlayedIndexes = currentGameState.playedIndexes.slice(
       0,
-      newPlayedIndexes.length - 1
+      newPlayedIndexes.length - 1,
     );
 
     return {
@@ -197,7 +197,7 @@ export function gameReducer(currentGameState, payload) {
     // is pushed after a game is generated for a user
     // so if the word matches one of the clue indexes, consider it valid
     const matchesSolution = currentGameState.clueIndexes.some((indexes) =>
-      arraysMatchQ(indexes, currentGameState.playedIndexes)
+      arraysMatchQ(indexes, currentGameState.playedIndexes),
     );
 
     // check if word is a real word
@@ -205,7 +205,7 @@ export function gameReducer(currentGameState, payload) {
       .map((index) => currentGameState.letters[index])
       .join("")
       .toUpperCase();
-    const { isWord } = isKnown(word, trie);
+    const {isWord} = isKnown(word, trie);
     if (!isWord && !matchesSolution) {
       return {
         ...currentGameState,
@@ -217,7 +217,7 @@ export function gameReducer(currentGameState, payload) {
 
     // check if the word matches a pattern
     const currentColors = currentGameState.playedIndexes.map(
-      (index) => currentGameState.colors[index]
+      (index) => currentGameState.colors[index],
     );
     let clueMatches = [...currentGameState.clueMatches];
     let clueIndexes = currentGameState.clueIndexes.map((indexes) => [
@@ -233,7 +233,7 @@ export function gameReducer(currentGameState, payload) {
         continue;
       }
       const comparisonColors = currentGameState.clueIndexes[clueIndex].map(
-        (index) => currentGameState.colors[index]
+        (index) => currentGameState.colors[index],
       );
       if (arraysMatchQ(currentColors, comparisonColors)) {
         // If we found a match, indicate that the match is found
@@ -274,7 +274,7 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
       result: "",
-      ...(newStats && { stats: newStats }),
+      ...(newStats && {stats: newStats}),
     };
   } else if (payload.action === "clearStreakIfNeeded") {
     const lastDateWon = currentGameState.stats.lastDateWon;
@@ -302,6 +302,6 @@ export function gameReducer(currentGameState, payload) {
     return gameInit();
   } else {
     console.log(`unknown action: ${payload.action}`);
-    return { ...currentGameState };
+    return {...currentGameState};
   }
 }

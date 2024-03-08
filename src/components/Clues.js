@@ -69,7 +69,7 @@ function calculateMixedColor(colors) {
   const [convertedRed, convertedYellow, convertedBlue] = convertToRGB(
     redAverage,
     yellowAverage,
-    blueAverage
+    blueAverage,
   );
 
   return `rgba(${convertedRed}, ${convertedYellow}, ${convertedBlue}, 0.8)`;
@@ -90,7 +90,7 @@ function Clue({
       key={`${index}`}
       style={
         clueSolved
-          ? { backgroundColor: `${calculateMixedColor(clueColors)}` }
+          ? {backgroundColor: `${calculateMixedColor(clueColors)}`}
           : {}
       }
       onClick={() =>

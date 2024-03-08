@@ -1,4 +1,4 @@
-import { getLetterPool } from "@skedwards88/word_logic";
+import {getLetterPool} from "@skedwards88/word_logic";
 import {
   commonWordsLen4,
   commonWordsLen5,

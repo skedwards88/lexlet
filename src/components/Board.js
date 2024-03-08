@@ -1,12 +1,6 @@
 import React from "react";
 
-function Letter({
-  letter,
-  color,
-  letterAvailability,
-  index,
-  dispatchGameState,
-}) {
+function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
   const myRef = React.useRef();
 
   React.useLayoutEffect(() => {

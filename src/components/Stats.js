@@ -23,7 +23,7 @@ function dayLetterFromNumber(number) {
   }
 }
 
-function StatBar({ won, maxDays, dayNumber }) {
+function StatBar({won, maxDays, dayNumber}) {
   return (
     <div className="statsBar">
       <div className="statsDay">{dayLetterFromNumber(dayNumber)}</div>
@@ -37,7 +37,7 @@ function StatBar({ won, maxDays, dayNumber }) {
   );
 }
 
-function StatsNumber({ number, text }) {
+function StatsNumber({number, text}) {
   return (
     <div className="statsNumber">
       <div className="number">{number}</div>
@@ -46,11 +46,11 @@ function StatsNumber({ number, text }) {
   );
 }
 
-export default function Stats({ stats, setDisplay }) {
+export default function Stats({stats, setDisplay}) {
   const maxDays = Object.values(stats.days).reduce(
     (currentMax, comparison) =>
       currentMax > comparison.won ? currentMax : comparison.won,
-    0
+    0,
   );
 
   // Order the day keys so get Mon...Sun
@@ -64,7 +64,7 @@ export default function Stats({ stats, setDisplay }) {
         won={stats.days[key].won}
         maxDays={maxDays}
         key={key}
-      ></StatBar>
+      ></StatBar>,
     );
   }
   return (
@@ -78,7 +78,7 @@ export default function Stats({ stats, setDisplay }) {
         {stats.streak ? (
           <StatsNumber
             number={`${Math.round(
-              (100 * stats.numHintlessInStreak) / stats.streak
+              (100 * stats.numHintlessInStreak) / stats.streak,
             )}%`}
             text={"streak without hints"}
           ></StatsNumber>

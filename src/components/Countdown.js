@@ -1,5 +1,5 @@
 import React from "react";
-import { getSeed } from "../logic/gameInit";
+import {getSeed} from "../logic/gameInit";
 
 function calculateTimeLeft() {
   const now = new Date();
@@ -16,7 +16,7 @@ function calculateTimeLeft() {
   return `${adjDiffHours} hr ${diffMinutes} min`;
 }
 
-export function Countdown({ dispatchGameState, seed }) {
+export function Countdown({dispatchGameState, seed}) {
   const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
 
   React.useEffect(() => {
@@ -24,7 +24,7 @@ export function Countdown({ dispatchGameState, seed }) {
       // If past the next game time, get a new game, otherwise decrement the countdown
       const newSeed = getSeed();
       if (seed !== newSeed) {
-        dispatchGameState({ action: "newGame" });
+        dispatchGameState({action: "newGame"});
       } else {
         setTimeLeft(calculateTimeLeft());
       }

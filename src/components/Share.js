@@ -31,6 +31,6 @@ export default function Share({text}) {
   if (navigator.canShare) {
     return <button onClick={() => handleShare(text)}>Share</button>;
   } else {
-    return <button onClick={() => handleCopy(text)}>Copy for sharing</button>;
+    return <button onClick={() => handleCopy(text)}>Copy link</button>;
   }
 }

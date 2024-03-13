@@ -3,7 +3,10 @@ import {letterPool} from "./letterPool";
 import {shuffleArray} from "@skedwards88/word_logic";
 import {findAllWordIndexes} from "@skedwards88/word_logic";
 import {trie} from "./trie";
-import {getMaxSimilarityScore} from "./similarityScore";
+import {
+  getMaxWordSimilarityScore,
+  getColorSimilarityScore,
+} from "./similarityScore";
 import {determinePatternPreference} from "./determinePatternPreference";
 
 function getLetters(gridSize, pseudoRandomGenerator) {
@@ -126,14 +129,20 @@ export function getPlayableBoard({
       ) {
         const comparisonPattern = patterns[comparisonIndex];
 
-        const maxSimilarityScore = getMaxSimilarityScore(
+        const maxWordSimilarityScore = getMaxWordSimilarityScore(
           Array.from(patternData[pattern].words),
           Array.from(patternData[comparisonPattern].words),
         );
+
+        const colorSimilarityScore = getColorSimilarityScore(
+          pattern,
+          comparisonPattern,
+        );
+
         patternData[pattern].similarityScores[comparisonPattern] =
-          maxSimilarityScore;
+          maxWordSimilarityScore + colorSimilarityScore;
         patternData[comparisonPattern].similarityScores[pattern] =
-          maxSimilarityScore;
+          maxWordSimilarityScore + colorSimilarityScore;
       }
 
       const sumSimilarityScore = Object.values(
@@ -159,7 +168,7 @@ export function getPlayableBoard({
           ) {
             potentialPatterns.delete(comparisonPattern);
           } else {
-            // if there is a tie, omit the one with the fewer indexes
+            // if there is a tie, omit the one with the fewer indexes (least words)
             if (
               patternData[pattern].indexes.length <
               patternData[comparisonPattern].indexes.length
@@ -186,7 +195,7 @@ export function getPlayableBoard({
       determinePatternPreference(patternA, patternB, patternData),
     );
 
-    // Choose the first index of the first N patterns
+    // Choose the first index of the first N patterns to be the "official" solution
     clueIndexes = potentialPatterns
       .slice(0, numClues)
       .map((pattern) => patternData[pattern].indexes[0]);

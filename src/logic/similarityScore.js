@@ -1,4 +1,28 @@
-export function getSimilarityScore(word1, word2) {
+export function getColorSimilarityScore(pattern1, pattern2) {
+  // If the patterns have the exact same number of each color, they have a non-zero similarity score
+
+  const numR1 = pattern1.match(/r/g)?.length || 0;
+  const numR2 = pattern2.match(/r/g)?.length || 0;
+  if (numR1 != numR2) {
+    return 0;
+  }
+
+  const numY1 = pattern1.match(/y/g)?.length || 0;
+  const numY2 = pattern2.match(/y/g)?.length || 0;
+  if (numY1 != numY2) {
+    return 0;
+  }
+
+  const numB1 = pattern1.match(/b/g)?.length || 0;
+  const numB2 = pattern2.match(/b/g)?.length || 0;
+  if (numB1 != numB2) {
+    return 0;
+  }
+
+  return 1;
+}
+
+export function getWordSimilarityScore(word1, word2) {
   // if the words are exactly the same
   if (word1 === word2) return 1;
 
@@ -67,11 +91,14 @@ export function getSimilarityScore(word1, word2) {
   return Math.max(startScore, endScore, quadrupletScore, tripletScore);
 }
 
-export function getMaxSimilarityScore(wordList1, wordList2) {
+export function getMaxWordSimilarityScore(wordList1, wordList2) {
   let maxSimilarityScore = 0;
   for (let index1 = 0; index1 < wordList1.length; index1++) {
     for (let index2 = 0; index2 < wordList2.length; index2++) {
-      const score = getSimilarityScore(wordList1[index1], wordList2[index2]);
+      const score = getWordSimilarityScore(
+        wordList1[index1],
+        wordList2[index2],
+      );
       maxSimilarityScore = Math.max(maxSimilarityScore, score);
       if (maxSimilarityScore === 1) break;
     }

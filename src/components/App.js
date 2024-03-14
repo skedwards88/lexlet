@@ -4,7 +4,7 @@ import Heart from "./Heart";
 import Rules from "./Rules";
 import Stats from "./Stats";
 import { gameInit} from "../logic/gameInit";
-import {gameReducer} from "../logic/gameReducer";
+import { gameReducer} from "../logic/gameReducer";
 
 function handleBeforeInstallPrompt(
   event,

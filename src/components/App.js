@@ -3,8 +3,8 @@ import Lexlet from "./Lexlet";
 import Heart from "./Heart";
 import Rules from "./Rules";
 import Stats from "./Stats";
-import { gameInit} from "../logic/gameInit";
-import { gameReducer} from "../logic/gameReducer";
+import {gameInit} from "../logic/gameInit";
+import {gameReducer} from "../logic/gameReducer";
 
 function handleBeforeInstallPrompt(
   event,
@@ -23,6 +23,8 @@ function handleAppInstalled(setInstallPromptEvent, setShowInstallButton) {
 }
 
 export default function App() {
+  const aaa = 5;
+  aaa = 5;
   const [display, setDisplay] = React.useState("game");
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);

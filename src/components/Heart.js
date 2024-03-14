@@ -14,9 +14,11 @@ export default function Heart({setDisplay}) {
         {`\n\n`}
         {<hr></hr>}
         {`\n`}
-        {`Want more games? Check `}
-        <a href="https://skedwards88.github.io/">these</a>
-        {` out. `}
+        {`Want more games? Check out `}
+        <a href="https://crossjig.com">Crossjig</a>
+        {" or see all of our puzzle-y games "}
+        <a href="https://skedwards88.github.io/">here</a>
+        {`. `}
         {`\n\n`}
         {<hr></hr>}
         {`\n`}

@@ -16,6 +16,8 @@ export default function Heart({setDisplay}) {
         {`\n`}
         {`Want more games? Check out `}
         <a href="https://crossjig.com">Crossjig</a>
+        {" and "}
+        <a href="https://skedwards88.github.io/blobble/">Blobble</a>
         {" or see all of our puzzle-y games "}
         <a href="https://skedwards88.github.io/">here</a>
         {`. `}

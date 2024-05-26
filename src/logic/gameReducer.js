@@ -151,7 +151,8 @@ export function gameReducer(currentGameState, payload) {
           currentGameState.playedIndexes.length - 1
         ],
       indexB: payload.letterIndex,
-      gridSize: Math.sqrt(currentGameState.letters.length),
+      numColumns: Math.sqrt(currentGameState.letters.length),
+      numRows: Math.sqrt(currentGameState.letters.length),
     });
     if (!isNeighboring) {
       return currentGameState;

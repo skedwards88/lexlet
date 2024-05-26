@@ -87,13 +87,17 @@ export function getPlayableBoard({
       colorTally = tallyItems(colors);
     }
 
+    const gridDimensions = Math.sqrt(letters.length);
+
     // find all possible words
     const wordIndexes = findAllWordIndexes({
-      grid: letters,
-      minWordLength: minWordLength,
-      maxWordLength: maxWordLength,
-      easyMode: easyMode,
-      trie: trie,
+      letters,
+      numColumns: gridDimensions,
+      numRows: gridDimensions,
+      minWordLength,
+      maxWordLength,
+      easyMode,
+      trie,
     });
     const shuffledWordIndexes = shuffleArray(
       wordIndexes,

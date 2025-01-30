@@ -87,13 +87,11 @@ export function getPlayableBoard({
       colorTally = tallyItems(colors);
     }
 
-    const gridDimensions = Math.sqrt(letters.length);
-
     // find all possible words
     const wordIndexes = findAllWordIndexes({
       letters,
-      numColumns: gridDimensions,
-      numRows: gridDimensions,
+      numColumns: gridSize,
+      numRows: gridSize,
       minWordLength,
       maxWordLength,
       easyMode,

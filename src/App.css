@@ -1,5 +1,12 @@
 html {
+  --default-font-size: min(4vmax, 7vmin, 40px);
+  --board-box-diam: min(15vmax, 20vmin, 145px);
+  --clue-box-diam: min(4vmax, 16vmin);
+  --dark-color: rgb(55 54 71);
+  --light-color: rgb(239 239 239);
+
   height: 100vh;
+  background-color: var(--dark-color);
 }
 
 body {
@@ -7,23 +14,14 @@ body {
 }
 
 .App {
-  --default-font-size: min(4vmax, 7vmin, 40px);
-  --board-box-diam: min(15vmax, 20vmin, 145px);
-  --clue-box-diam: min(4vmax, 16vmin);
-  --dark-color: rgb(55 54 71);
-  --light-color: rgb(239 239 239);
-
   background-color: var(--dark-color);
   color: var(--light-color);
   font-family: sans-serif;
   font-size: var(--default-font-size);
   display: grid;
-
-  /* position: fixed;
-  left: 0;
-  top: 0; */
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 90vh; /* fallback if svh isn't handled */
+  height: 100svh; /* use svh if supported to account for the url bar gracefully */
+  width: 100vw;
   overflow: scroll;
 }
 

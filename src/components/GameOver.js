@@ -1,5 +1,7 @@
 import React from "react";
 import Share from "./Share";
+import {calculateMixedColor} from "./Clues";
+import {palette} from "./palette";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -28,7 +30,37 @@ function resultToIcon({hints, clueIndexes, colors}) {
   return result;
 }
 
-export default function GameOver({hints, clueIndexes, colors}) {
+function NewSwatches({newSwatchIndexes}) {
+  if (!newSwatchIndexes.length) {
+    return <></>;
+  }
+
+  return (
+    <div>
+      <p>{`${newSwatchIndexes.length} new color${
+        newSwatchIndexes.length === 1 ? "" : "s"
+      } discovered!`}</p>
+      <div id="swatches">
+        {newSwatchIndexes.map((swatchIndex) => (
+          <div
+            className="swatch"
+            key={swatchIndex}
+            style={{
+              backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+            }}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function GameOver({
+  hints,
+  clueIndexes,
+  colors,
+  newSwatchIndexes,
+}) {
   const result = resultToIcon({
     hints: hints,
     clueIndexes: clueIndexes,
@@ -38,6 +70,7 @@ export default function GameOver({hints, clueIndexes, colors}) {
   return (
     <div id="gameOver">
       <Share text={result}></Share>
+      <NewSwatches newSwatchIndexes={newSwatchIndexes}></NewSwatches>
     </div>
   );
 }

@@ -41,7 +41,7 @@ function convertToRGB(red, yellow, blue) {
   return [red, green, blue];
 }
 
-function calculateMixedColor(colors) {
+export function calculateMixedColor(colors) {
   // Convert a list of red/yellow/blue color names
   // to an rbga value reflecting the mixture of the colors
 

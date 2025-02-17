@@ -75,7 +75,6 @@ export default function Lexlet({
         <button
           id="stats"
           onClick={() => {
-            dispatchGameState({action: "clearStreakIfNeeded"});
             setDisplay("stats");
           }}
         ></button>
@@ -102,22 +101,12 @@ export default function Lexlet({
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {isGameOver ? (
-        <GameOver
-          hints={gameState.hints}
-          clueIndexes={gameState.clueIndexes}
-          colors={gameState.colors}
-        />
-      ) : (
-        <CurrentWord
-          letters={gameState.playedIndexes.map(
-            (index) => gameState.letters[index],
-          )}
-          colors={gameState.playedIndexes.map(
-            (index) => gameState.colors[index],
-          )}
-        ></CurrentWord>
-      )}
+      <CurrentWord
+        letters={gameState.playedIndexes.map(
+          (index) => gameState.letters[index],
+        )}
+        colors={gameState.playedIndexes.map((index) => gameState.colors[index])}
+      ></CurrentWord>
       {gameState.result ? (
         <div id="wordResult" className="fadeOut">
           {gameState.result}
@@ -125,13 +114,22 @@ export default function Lexlet({
       ) : (
         <></>
       )}
-      <Board
-        letters={gameState.letters}
-        colors={gameState.colors}
-        playedIndexes={gameState.playedIndexes}
-        gameOver={gameState.clueMatches.every((i) => i)}
-        dispatchGameState={dispatchGameState}
-      ></Board>
+      {isGameOver ? (
+        <GameOver
+          hints={gameState.hints}
+          clueIndexes={gameState.clueIndexes}
+          colors={gameState.colors}
+          newSwatchIndexes={gameState.newSwatchIndexes}
+        />
+      ) : (
+        <Board
+          letters={gameState.letters}
+          colors={gameState.colors}
+          playedIndexes={gameState.playedIndexes}
+          gameOver={gameState.clueMatches.every((i) => i)}
+          dispatchGameState={dispatchGameState}
+        ></Board>
+      )}
     </div>
   );
 }

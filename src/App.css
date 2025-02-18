@@ -279,8 +279,91 @@ button {
 }
 
 #gameOver #swatches {
+  position: relative;
+}
+
+#gameOver #staticSwatches {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+#gameOver #animatedSwatches {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  transition: 2s ease-out;
+  transform-origin: center;
+  transform: translateX(var(--distanceX)) translateY(var(--distanceY)) scale(0) skew(-30deg);
+}
+
+.swatchFlash {
+  animation: flash 4s ease-in-out 1.8s forwards;
+}
+
+/* The color variables are defined during a useEffect hook and reflect the new colors that were discovered */
+@keyframes flash {
+  0% {
+    background-color: transparent;
+  }
+
+  10% {
+    box-shadow:
+      0 0 10px 5px var(--colorA),
+      inset 0 0 10px 10px var(--colorA);
+  }
+
+  20% {
+    background-color: transparent;
+  }
+
+  30% {
+    box-shadow:
+      0 0 10px 5px var(--colorB),
+      inset 0 0 10px 10px var(--colorB);
+  }
+
+  40% {
+    background-color: transparent;
+  }
+
+  50% {
+    box-shadow:
+      0 0 10px 5px var(--colorC),
+      inset 0 0 10px 10px var(--colorC);
+  }
+
+  60% {
+    background-color: transparent;
+  }
+
+  70% {
+    box-shadow:
+      0 0 10px 5px var(--colorD),
+      inset 0 0 10px 10px var(--colorD);
+  }
+
+  80% {
+    background-color: transparent;
+  }
+
+  90% {
+    box-shadow:
+      0 0 10px 5px var(--colorE),
+      inset 0 0 10px 10px var(--colorE);
+  }
+
+  100% {
+    background-color: transparent;
+  }
 }
 
 #gameOver .swatch {

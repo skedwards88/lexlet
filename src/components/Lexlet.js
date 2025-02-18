@@ -1,10 +1,11 @@
 import React from "react";
 import Board from "./Board";
-import Clues from "./Clues";
+import Clues, {calculateMixedColor} from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import {Countdown} from "./Countdown";
 import WhatsNew from "./WhatsNew";
+import {palette} from "./palette";
 
 async function handleInstall(installPromptEvent, setInstallPromptEvent) {
   console.log("handling install");
@@ -34,6 +35,40 @@ export default function Lexlet({
   React.useEffect(() => {
     window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
   }, [gameState]);
+
+  const swatchAnimatedRef = React.useRef(null);
+  const swatchAnimationDestinationRef = React.useRef(null);
+  const [swatchAnimationDistance, setSwatchAnimationDistance] =
+    React.useState(0);
+  const [flashColors, setFlashColors] = React.useState([]);
+
+  React.useEffect(() => {
+    if (swatchAnimationDestinationRef.current && swatchAnimatedRef.current) {
+      const swatchAnimatedBox = swatchAnimatedRef.current.getBoundingClientRect();
+
+      const swatchAnimationDestinationBox = swatchAnimationDestinationRef.current.getBoundingClientRect();
+
+      const distanceToMoveX =
+        swatchAnimationDestinationBox.left +
+        swatchAnimationDestinationBox.width / 2 -
+        (swatchAnimatedBox.left + swatchAnimatedBox.width / 2);
+
+        const distanceToMoveY =
+        swatchAnimationDestinationBox.top +
+        swatchAnimationDestinationBox.height / 2 -
+        (swatchAnimatedBox.top + swatchAnimatedBox.height / 2);
+
+      setSwatchAnimationDistance([distanceToMoveX, distanceToMoveY]);
+
+      const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
+        calculateMixedColor(palette[swatchIndex]),
+      );
+      
+      setFlashColors(flashColors);
+
+      swatchAnimationDestinationRef.current.classList.add("swatchFlash");
+    }
+  }, [gameState.newSwatchIndexes]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
 
@@ -74,6 +109,14 @@ export default function Lexlet({
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button
           id="stats"
+          ref={swatchAnimationDestinationRef}
+          style={{
+            "--colorA": `${flashColors[0] || "transparent"}`,
+            "--colorB": `${flashColors[1] || "transparent"}`,
+            "--colorC": `${flashColors[2] || "transparent"}`,
+            "--colorD": `${flashColors[3] || "transparent"}`,
+            "--colorE": `${flashColors[4] || "transparent"}`,
+          }}
           onClick={() => {
             setDisplay("stats");
           }}
@@ -120,6 +163,8 @@ export default function Lexlet({
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
           newSwatchIndexes={gameState.newSwatchIndexes}
+          swatchAnimatedRef={swatchAnimatedRef}
+          swatchAnimationDistance={swatchAnimationDistance}
         />
       ) : (
         <Board

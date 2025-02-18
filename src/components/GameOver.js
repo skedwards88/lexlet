@@ -30,7 +30,7 @@ function resultToIcon({hints, clueIndexes, colors}) {
   return result;
 }
 
-function NewSwatches({newSwatchIndexes}) {
+function NewSwatches({newSwatchIndexes, swatchAnimatedRef, swatchAnimationDistance}) {
   if (!newSwatchIndexes.length) {
     return <></>;
   }
@@ -41,15 +41,35 @@ function NewSwatches({newSwatchIndexes}) {
         newSwatchIndexes.length === 1 ? "" : "s"
       } discovered!`}</p>
       <div id="swatches">
-        {newSwatchIndexes.map((swatchIndex) => (
-          <div
-            className="swatch"
-            key={swatchIndex}
-            style={{
-              backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
-            }}
-          ></div>
-        ))}
+        <div id="staticSwatches">
+          {newSwatchIndexes.map((swatchIndex) => (
+            <div
+              className="swatch"
+              key={swatchIndex}
+              style={{
+                backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+              }}
+            ></div>
+          ))}
+        </div>
+        <div
+          id="animatedSwatches"
+          ref={swatchAnimatedRef}
+          style={{
+            "--distanceX": `${swatchAnimationDistance[0]}px`,
+            "--distanceY": `${swatchAnimationDistance[1]}px`,
+          }}
+        >
+          {newSwatchIndexes.map((swatchIndex) => (
+            <div
+              className="swatch"
+              key={swatchIndex}
+              style={{
+                backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+              }}
+            ></div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -60,6 +80,8 @@ export default function GameOver({
   clueIndexes,
   colors,
   newSwatchIndexes,
+  swatchAnimatedRef,
+  swatchAnimationDistance,
 }) {
   const result = resultToIcon({
     hints: hints,
@@ -70,7 +92,11 @@ export default function GameOver({
   return (
     <div id="gameOver">
       <Share text={result}></Share>
-      <NewSwatches newSwatchIndexes={newSwatchIndexes}></NewSwatches>
+      <NewSwatches
+        newSwatchIndexes={newSwatchIndexes}
+        swatchAnimatedRef={swatchAnimatedRef}
+        swatchAnimationDistance={swatchAnimationDistance}
+      ></NewSwatches>
     </div>
   );
 }

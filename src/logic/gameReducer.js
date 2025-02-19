@@ -4,80 +4,8 @@ import {checkIfNeighbors} from "@skedwards88/word_logic";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {gameInit} from "./gameInit";
 import {trie} from "./trie";
-
-function isYesterday(timestamp) {
-  return isNDaysAgo(timestamp, 1);
-}
-
-function isToday(timestamp) {
-  return isNDaysAgo(timestamp, 0);
-}
-
-function isNDaysAgo(timestamp, numberOfDaysAgo) {
-  const milliSecPerDay = 24 * 60 * 60 * 1000;
-  const previousDay = new Date(Date.now() - numberOfDaysAgo * milliSecPerDay);
-  const dateFromTimestamp = new Date(timestamp);
-
-  return (
-    dateFromTimestamp.getDate() === previousDay.getDate() &&
-    dateFromTimestamp.getMonth() === previousDay.getMonth() &&
-    dateFromTimestamp.getFullYear() === previousDay.getFullYear()
-  );
-}
-
-function getNewStats(currentGameState) {
-  // update stats
-  const today = new Date();
-  const lastDateWon = currentGameState.stats.lastDateWon;
-  const wonYesterday = isYesterday(lastDateWon);
-
-  // If won yesterday, add 1 to the streak
-  // Otherwise, reset the streak to 1
-  const newStreak = wonYesterday ? currentGameState.stats.streak + 1 : 1;
-
-  const newMaxStreak = Math.max(newStreak, currentGameState.stats.maxStreak);
-
-  // If didn't use any hints today, increment number of wins in the streak without hints
-  const hintsUsedToday = currentGameState.hints
-    .flatMap((i) => i)
-    .some((i) => i);
-  const prevNumHintlessInStreak = wonYesterday
-    ? currentGameState.stats.numHintlessInStreak
-    : 0;
-  const newNumHintlessInStreak = hintsUsedToday
-    ? prevNumHintlessInStreak
-    : prevNumHintlessInStreak + 1;
-
-  // Tally the number of hints used in the streak
-  const prevNumHintsInStreak = wonYesterday
-    ? currentGameState.stats.numHintsInStreak
-    : 0;
-  const newNumHintsInStreak = prevNumHintsInStreak + hintsUsedToday;
-
-  // Update the number of games won for this weekday
-  const dayNumber = today.getDay();
-
-  const numWeekdayWon = currentGameState.stats.days[dayNumber].won + 1;
-
-  const numWeekdayWonWithoutHints = hintsUsedToday
-    ? currentGameState.stats.days[dayNumber].noHints
-    : currentGameState.stats.days[dayNumber].noHints + 1;
-
-  const newDays = {
-    ...currentGameState.stats.days,
-    [dayNumber]: {won: numWeekdayWon, noHints: numWeekdayWonWithoutHints},
-  };
-
-  return {
-    ...currentGameState.stats,
-    lastDateWon: today,
-    streak: newStreak,
-    maxStreak: newMaxStreak,
-    numHintlessInStreak: newNumHintlessInStreak,
-    numHintsInStreak: newNumHintsInStreak,
-    days: newDays,
-  };
-}
+import {palette} from "../components/palette";
+import {colorsIdenticalQ} from "./colorsIdenticalQ";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "startWord") {
@@ -123,7 +51,6 @@ export function gameReducer(currentGameState, payload) {
       let newStats;
       if (newClueMatches.every((i) => i)) {
         console.log("completed_game");
-        newStats = getNewStats(currentGameState);
         try {
           window.gtag("event", "completed_game", {});
         } catch (error) {
@@ -257,16 +184,23 @@ export function gameReducer(currentGameState, payload) {
       console.log("tracking error", error);
     }
 
-    let newStats;
     if (clueMatches.every((i) => i)) {
       console.log("completed_game");
-      newStats = getNewStats(currentGameState);
       try {
         window.gtag("event", "completed_game", {});
       } catch (error) {
         console.log("tracking error", error);
       }
     }
+
+    // Figure out which color was made
+    const paletteIndex = palette.findIndex((color) =>
+      colorsIdenticalQ(color, currentColors),
+    );
+
+    // Figure out if the color has been found before
+    const colorIsNew =
+      !currentGameState.stats.collectedSwatchIndexes.includes(paletteIndex);
 
     return {
       ...currentGameState,
@@ -275,30 +209,19 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
       result: "",
-      ...(newStats && {stats: newStats}),
+      ...(colorIsNew && {
+        stats: {
+          ...currentGameState.stats,
+          collectedSwatchIndexes: [
+            ...currentGameState.stats.collectedSwatchIndexes,
+            paletteIndex,
+          ],
+        },
+      }),
+      ...(colorIsNew && {
+        newSwatchIndexes: [...currentGameState.newSwatchIndexes, paletteIndex],
+      }),
     };
-  } else if (payload.action === "clearStreakIfNeeded") {
-    const lastDateWon = currentGameState.stats.lastDateWon;
-    const wonYesterday = isYesterday(lastDateWon);
-    const wonToday = isToday(lastDateWon);
-
-    if (wonYesterday || wonToday) {
-      // if won in the past day, don't need to clear the streak
-      return currentGameState;
-    } else {
-      // otherwise clear the streak but leave other stats intact
-      const newStats = {
-        ...currentGameState.stats,
-        streak: 0,
-        numHintlessInStreak: 0,
-        numHintsInStreak: 0,
-      };
-
-      return {
-        ...currentGameState,
-        stats: newStats,
-      };
-    }
   } else if (payload.action === "newGame") {
     return gameInit();
   } else {

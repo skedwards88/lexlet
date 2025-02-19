@@ -1,5 +1,7 @@
 import React from "react";
 import Share from "./Share";
+import {calculateMixedColor} from "./Clues";
+import {palette} from "./palette";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -28,7 +30,77 @@ function resultToIcon({hints, clueIndexes, colors}) {
   return result;
 }
 
-export default function GameOver({hints, clueIndexes, colors}) {
+function NewSwatches({newSwatchIndexes, swatchAnimationDestinationPosition}) {
+  const swatchAnimatedRefs = [
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+  ];
+
+  const [swatchAnimationDistance, setSwatchAnimationDistance] = React.useState(
+    [],
+  );
+
+  React.useEffect(() => {
+    const distances = swatchAnimatedRefs.map((ref) => {
+      if (!ref.current || !swatchAnimationDestinationPosition) {
+        return [0, 0];
+      }
+      const swatchAnimatedBox = ref.current.getBoundingClientRect();
+
+      const distanceToMoveX =
+        swatchAnimationDestinationPosition[0] -
+        (swatchAnimatedBox.left + swatchAnimatedBox.width / 2);
+
+      const distanceToMoveY =
+        swatchAnimationDestinationPosition[1] -
+        (swatchAnimatedBox.top + swatchAnimatedBox.height / 2);
+
+      return [distanceToMoveX, distanceToMoveY];
+    });
+
+    setSwatchAnimationDistance(distances);
+  }, [swatchAnimationDestinationPosition]); // Can ignore the warning about needing to include refs in the dep array
+
+  if (!newSwatchIndexes.length) {
+    return <></>;
+  }
+
+  return (
+    <div>
+      <p>{`${newSwatchIndexes.length} new color${
+        newSwatchIndexes.length === 1 ? "" : "s"
+      } discovered!`}</p>
+      <div id="swatches">
+        {newSwatchIndexes.map((swatchIndex, index) => (
+          <div
+            className="swatch"
+            ref={swatchAnimatedRefs[index]}
+            key={swatchIndex}
+            style={{
+              backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+              ...(swatchAnimationDistance[index]?.length && {
+                "--distanceX": `${swatchAnimationDistance[index][0]}px`,
+                "--distanceY": `${swatchAnimationDistance[index][1]}px`,
+                "--delay": `${2 + index / 5}s`,
+              }),
+            }}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function GameOver({
+  hints,
+  clueIndexes,
+  colors,
+  newSwatchIndexes,
+  swatchAnimationDestinationPosition,
+}) {
   const result = resultToIcon({
     hints: hints,
     clueIndexes: clueIndexes,
@@ -38,6 +110,10 @@ export default function GameOver({hints, clueIndexes, colors}) {
   return (
     <div id="gameOver">
       <Share text={result}></Share>
+      <NewSwatches
+        newSwatchIndexes={newSwatchIndexes}
+        swatchAnimationDestinationPosition={swatchAnimationDestinationPosition}
+      ></NewSwatches>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import React from "react";
 import Board from "./Board";
-import Clues from "./Clues";
+import Clues, {calculateMixedColor} from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import {Countdown} from "./Countdown";
 import WhatsNew from "./WhatsNew";
+import {palette} from "./palette";
 
 async function handleInstall(installPromptEvent, setInstallPromptEvent) {
   console.log("handling install");
@@ -34,6 +35,43 @@ export default function Lexlet({
   React.useEffect(() => {
     window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
   }, [gameState]);
+
+  const swatchAnimationDestinationRef = React.useRef(null);
+  const [
+    swatchAnimationDestinationPosition,
+    setSwatchAnimationDestinationPosition,
+  ] = React.useState([]);
+  const [flashColors, setFlashColors] = React.useState([]);
+
+  React.useEffect(() => {
+    if (swatchAnimationDestinationRef.current) {
+      const swatchAnimationDestinationBox =
+        swatchAnimationDestinationRef.current.getBoundingClientRect();
+
+      const swatchAnimationDestinationPositionX =
+        swatchAnimationDestinationBox.left +
+        swatchAnimationDestinationBox.width / 2;
+
+      const swatchAnimationDestinationPositionY =
+        swatchAnimationDestinationBox.top +
+        swatchAnimationDestinationBox.height / 2;
+
+      setSwatchAnimationDestinationPosition([
+        swatchAnimationDestinationPositionX,
+        swatchAnimationDestinationPositionY,
+      ]);
+
+      if (gameState.newSwatchIndexes.length) {
+        const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
+          calculateMixedColor(palette[swatchIndex]),
+        );
+
+        setFlashColors(flashColors);
+
+        swatchAnimationDestinationRef.current.classList.add("swatchFlash");
+      }
+    }
+  }, [gameState.newSwatchIndexes]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
 
@@ -74,8 +112,15 @@ export default function Lexlet({
         <button id="rules" onClick={() => setDisplay("rules")}></button>
         <button
           id="stats"
+          ref={swatchAnimationDestinationRef}
+          style={{
+            "--colorA": `${flashColors[0] || "transparent"}`,
+            "--colorB": `${flashColors[1] || "transparent"}`,
+            "--colorC": `${flashColors[2] || "transparent"}`,
+            "--colorD": `${flashColors[3] || "transparent"}`,
+            "--colorE": `${flashColors[4] || "transparent"}`,
+          }}
           onClick={() => {
-            dispatchGameState({action: "clearStreakIfNeeded"});
             setDisplay("stats");
           }}
         ></button>
@@ -102,22 +147,12 @@ export default function Lexlet({
         )}
         dispatchGameState={dispatchGameState}
       ></Clues>
-      {isGameOver ? (
-        <GameOver
-          hints={gameState.hints}
-          clueIndexes={gameState.clueIndexes}
-          colors={gameState.colors}
-        />
-      ) : (
-        <CurrentWord
-          letters={gameState.playedIndexes.map(
-            (index) => gameState.letters[index],
-          )}
-          colors={gameState.playedIndexes.map(
-            (index) => gameState.colors[index],
-          )}
-        ></CurrentWord>
-      )}
+      <CurrentWord
+        letters={gameState.playedIndexes.map(
+          (index) => gameState.letters[index],
+        )}
+        colors={gameState.playedIndexes.map((index) => gameState.colors[index])}
+      ></CurrentWord>
       {gameState.result ? (
         <div id="wordResult" className="fadeOut">
           {gameState.result}
@@ -125,13 +160,25 @@ export default function Lexlet({
       ) : (
         <></>
       )}
-      <Board
-        letters={gameState.letters}
-        colors={gameState.colors}
-        playedIndexes={gameState.playedIndexes}
-        gameOver={gameState.clueMatches.every((i) => i)}
-        dispatchGameState={dispatchGameState}
-      ></Board>
+      {isGameOver ? (
+        <GameOver
+          hints={gameState.hints}
+          clueIndexes={gameState.clueIndexes}
+          colors={gameState.colors}
+          newSwatchIndexes={gameState.newSwatchIndexes}
+          swatchAnimationDestinationPosition={
+            swatchAnimationDestinationPosition
+          }
+        />
+      ) : (
+        <Board
+          letters={gameState.letters}
+          colors={gameState.colors}
+          playedIndexes={gameState.playedIndexes}
+          gameOver={gameState.clueMatches.every((i) => i)}
+          dispatchGameState={dispatchGameState}
+        ></Board>
+      )}
     </div>
   );
 }

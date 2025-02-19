@@ -36,37 +36,40 @@ export default function Lexlet({
     window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
   }, [gameState]);
 
-  const swatchAnimatedRef = React.useRef(null);
   const swatchAnimationDestinationRef = React.useRef(null);
-  const [swatchAnimationDistance, setSwatchAnimationDistance] =
-    React.useState(0);
+  const [
+    swatchAnimationDestinationPosition,
+    setSwatchAnimationDestinationPosition,
+  ] = React.useState([]);
   const [flashColors, setFlashColors] = React.useState([]);
 
   React.useEffect(() => {
-    if (swatchAnimationDestinationRef.current && swatchAnimatedRef.current) {
-      const swatchAnimatedBox = swatchAnimatedRef.current.getBoundingClientRect();
+    if (swatchAnimationDestinationRef.current) {
+      const swatchAnimationDestinationBox =
+        swatchAnimationDestinationRef.current.getBoundingClientRect();
 
-      const swatchAnimationDestinationBox = swatchAnimationDestinationRef.current.getBoundingClientRect();
-
-      const distanceToMoveX =
+      const swatchAnimationDestinationPositionX =
         swatchAnimationDestinationBox.left +
-        swatchAnimationDestinationBox.width / 2 -
-        (swatchAnimatedBox.left + swatchAnimatedBox.width / 2);
+        swatchAnimationDestinationBox.width / 2;
 
-        const distanceToMoveY =
+      const swatchAnimationDestinationPositionY =
         swatchAnimationDestinationBox.top +
-        swatchAnimationDestinationBox.height / 2 -
-        (swatchAnimatedBox.top + swatchAnimatedBox.height / 2);
+        swatchAnimationDestinationBox.height / 2;
 
-      setSwatchAnimationDistance([distanceToMoveX, distanceToMoveY]);
+      setSwatchAnimationDestinationPosition([
+        swatchAnimationDestinationPositionX,
+        swatchAnimationDestinationPositionY,
+      ]);
 
-      const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
-        calculateMixedColor(palette[swatchIndex]),
-      );
-      
-      setFlashColors(flashColors);
+      if (gameState.newSwatchIndexes.length) {
+        const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
+          calculateMixedColor(palette[swatchIndex]),
+        );
 
-      swatchAnimationDestinationRef.current.classList.add("swatchFlash");
+        setFlashColors(flashColors);
+
+        swatchAnimationDestinationRef.current.classList.add("swatchFlash");
+      }
     }
   }, [gameState.newSwatchIndexes]);
 
@@ -163,8 +166,9 @@ export default function Lexlet({
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
           newSwatchIndexes={gameState.newSwatchIndexes}
-          swatchAnimatedRef={swatchAnimatedRef}
-          swatchAnimationDistance={swatchAnimationDistance}
+          swatchAnimationDestinationPosition={
+            swatchAnimationDestinationPosition
+          }
         />
       ) : (
         <Board

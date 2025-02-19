@@ -279,28 +279,27 @@ button {
 }
 
 #gameOver #swatches {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#gameOver .swatch {
   position: relative;
+  border: 1px solid var(--light-color);
+  height: var(--clue-box-diam);
+  width: var(--clue-box-diam);
 }
 
-#gameOver #staticSwatches {
+/* The transformation variables are defined during a useEffect hook */
+#gameOver .swatch::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 100%;
-}
-
-#gameOver #animatedSwatches {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 100%;
-  transition: 2s ease-out;
+  height: var(--clue-box-diam);
+  width: var(--clue-box-diam);
+  background-color: inherit;
+  transition: var(--delay) ease-out;
   transform-origin: center;
   transform: translateX(var(--distanceX)) translateY(var(--distanceY)) scale(0) skew(-30deg);
 }
@@ -364,12 +363,6 @@ button {
   100% {
     background-color: transparent;
   }
-}
-
-#gameOver .swatch {
-  border: 1px solid var(--light-color);
-  height: var(--clue-box-diam);
-  width: var(--clue-box-diam);
 }
 
 #lexlet #board {

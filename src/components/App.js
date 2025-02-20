@@ -8,16 +8,12 @@ import {gameReducer} from "../logic/gameReducer";
 import { handleAppInstalled, handleBeforeInstallPrompt } from "../common/handleInstall";
 
 export default function App() {
+  // *****
+  // Install handling setup
+  // *****
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
-
-  const [display, setDisplay] = React.useState("game");
-  const [gameState, dispatchGameState] = React.useReducer(
-    gameReducer,
-    {},
-    gameInit,
-  );
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
@@ -43,6 +39,16 @@ export default function App() {
     window.addEventListener("appinstalled", listener);
     return () => window.removeEventListener("appinstalled", listener);
   }, []);
+  // *****
+  // End install handling setup
+  // *****
+
+  const [display, setDisplay] = React.useState("game");
+  const [gameState, dispatchGameState] = React.useReducer(
+    gameReducer,
+    {},
+    gameInit,
+  );
 
   const savedIsFirstGame = JSON.parse(
     localStorage.getItem("dailyLexletIsFirstGame"),

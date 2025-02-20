@@ -5,27 +5,14 @@ import Rules from "./Rules";
 import Stats from "./Stats";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
-
-function handleBeforeInstallPrompt(
-  event,
-  setInstallPromptEvent,
-  setShowInstallButton,
-) {
-  console.log("handleBeforeInstallPrompt");
-  if (event) setInstallPromptEvent(event);
-  setShowInstallButton(true);
-}
-
-function handleAppInstalled(setInstallPromptEvent, setShowInstallButton) {
-  console.log("handleAppInstalled");
-  setInstallPromptEvent(null);
-  setShowInstallButton(false);
-}
+import { handleAppInstalled, handleBeforeInstallPrompt } from "../common/handleInstall";
 
 export default function App() {
-  const [display, setDisplay] = React.useState("game");
+  // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
+
+  const [display, setDisplay] = React.useState("game");
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
     {},
@@ -33,6 +20,8 @@ export default function App() {
   );
 
   React.useEffect(() => {
+    // Need to store the function in a variable so that
+    // the add and remove actions can reference the same function
     const listener = (event) =>
       handleBeforeInstallPrompt(
         event,
@@ -41,10 +30,13 @@ export default function App() {
       );
 
     window.addEventListener("beforeinstallprompt", listener);
+
     return () => window.removeEventListener("beforeinstallprompt", listener);
   }, []);
 
   React.useEffect(() => {
+    // Need to store the function in a variable so that
+    // the add and remove actions can reference the same function
     const listener = () =>
       handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
 

@@ -3,9 +3,16 @@ import Lexlet from "./Lexlet";
 import Heart from "./Heart";
 import Rules from "./Rules";
 import Stats from "./Stats";
+import WhatsNew from "./WhatsNew";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
-import { handleAppInstalled, handleBeforeInstallPrompt } from "../common/handleInstall";
+import {
+  handleAppInstalled,
+  handleBeforeInstallPrompt,
+} from "../common/handleInstall";
+import {hasVisitedSince} from "../common/hasVisitedSince";
+import getDailySeed from "../common/getDailySeed";
+import {getInitialState} from "../common/getInitialState";
 
 export default function App() {
   // *****
@@ -43,55 +50,53 @@ export default function App() {
   // End install handling setup
   // *****
 
-  const [display, setDisplay] = React.useState("game");
+  // ******
+  // Set up the display state
+  // ******
+  // Determine when the player last visited the game
+  // This is used to determine whether to show the rules or an announcement instead of the game
+  const lastVisitedYYYYMMDD = JSON.parse(
+    localStorage.getItem("lexletLastVisited"),
+  );
+  const hasVisitedEver = Boolean(lastVisitedYYYYMMDD);
+  const hasVisitedSinceLastAnnouncement = hasVisitedSince(
+    lastVisitedYYYYMMDD,
+    "20230609",
+  );
+
+  // Record that they visited today
+  const [lastVisited] = React.useState(getDailySeed());
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "lexletLastVisited",
+      JSON.stringify(lastVisited),
+    );
+  }, [lastVisited]);
+
+  // Determine what view to show the user
+  const savedDisplay = JSON.parse(localStorage.getItem("lexletDisplay"));
+  const [display, setDisplay] = React.useState(
+    getInitialState(
+      savedDisplay,
+      hasVisitedEver,
+      hasVisitedSinceLastAnnouncement,
+    ),
+  );
+
+  // ******
+  // End set up the display state
+  // ******
+
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
     {},
     gameInit,
   );
 
-  const savedIsFirstGame = JSON.parse(
-    localStorage.getItem("dailyLexletIsFirstGame"),
-  );
-
-  const [isFirstGame, setIsFirstGame] = React.useState(
-    savedIsFirstGame ?? true,
-  );
-
-  React.useEffect(() => {
-    window.localStorage.setItem(
-      "dailyLexletIsFirstGame",
-      JSON.stringify(isFirstGame),
-    );
-  }, [isFirstGame]);
-
-  const savedSawWhatsNew = JSON.parse(
-    localStorage.getItem("dailyLexletSawWhatsNew20230609"),
-  );
-
-  const [sawWhatsNew, setSawWhatsNew] = React.useState(
-    savedSawWhatsNew ?? false,
-  );
-
-  React.useEffect(() => {
-    window.localStorage.setItem(
-      "dailyLexletSawWhatsNew20230609",
-      JSON.stringify(sawWhatsNew),
-    );
-  }, [sawWhatsNew]);
-
-  if (isFirstGame) {
-    return (
-      <Rules
-        setDisplay={setDisplay}
-        isFirstGame={isFirstGame}
-        setIsFirstGame={setIsFirstGame}
-        setSawWhatsNew={setSawWhatsNew}
-      ></Rules>
-    );
-  }
-
   switch (display) {
+    case "announcement":
+      return <WhatsNew setDisplay={setDisplay}></WhatsNew>;
+
     case "rules":
       return <Rules setDisplay={setDisplay}></Rules>;
 
@@ -110,8 +115,6 @@ export default function App() {
           installPromptEvent={installPromptEvent}
           gameState={gameState}
           dispatchGameState={dispatchGameState}
-          setSawWhatsNew={setSawWhatsNew}
-          sawWhatsNew={sawWhatsNew}
         ></Lexlet>
       );
   }

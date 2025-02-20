@@ -4,7 +4,6 @@ import Clues, {calculateMixedColor} from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import {Countdown} from "./Countdown";
-import WhatsNew from "./WhatsNew";
 import {palette} from "./palette";
 import {handleInstall} from "../common/handleInstall";
 
@@ -13,8 +12,6 @@ export default function Lexlet({
   installPromptEvent,
   showInstallButton,
   setInstallPromptEvent,
-  setSawWhatsNew,
-  sawWhatsNew,
   gameState,
   dispatchGameState,
 }) {
@@ -60,15 +57,6 @@ export default function Lexlet({
   }, [gameState.newSwatchIndexes]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
-
-  if (!sawWhatsNew) {
-    return (
-      <WhatsNew
-        setDisplay={setDisplay}
-        setSawWhatsNew={setSawWhatsNew}
-      ></WhatsNew>
-    );
-  }
 
   return (
     <div

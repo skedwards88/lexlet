@@ -1,5 +1,7 @@
 import React from "react";
+import sendAnalytics from "../common/sendAnalytics";
 
+// todo change to use the common handleShare component
 function handleShare(text) {
   navigator
     .share({
@@ -12,11 +14,7 @@ function handleShare(text) {
       console.log("Error sharing", error);
     });
 
-  try {
-    window.gtag("event", "share", {});
-  } catch (error) {
-    console.log("tracking error", error);
-  }
+  sendAnalytics("share");
 }
 
 function handleCopy(text) {

@@ -6,6 +6,7 @@ import {gameInit} from "./gameInit";
 import {trie} from "./trie";
 import {palette} from "../components/palette";
 import {colorsIdenticalQ} from "./colorsIdenticalQ";
+import sendAnalytics from "../common/sendAnalytics";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "startWord") {
@@ -21,12 +22,7 @@ export function gameReducer(currentGameState, payload) {
       return {...currentGameState};
     }
 
-    try {
-      console.log("hint");
-      window.gtag("event", "hint", {});
-    } catch (error) {
-      console.log("tracking error", error);
-    }
+    sendAnalytics("hint");
 
     let newHints = cloneDeep(currentGameState.hints);
     newHints[payload.clueIndex][payload.boxIndex] = true;
@@ -38,24 +34,16 @@ export function gameReducer(currentGameState, payload) {
       );
       newClueMatches[payload.clueIndex] = true;
 
-      try {
-        const num_found = newClueMatches.filter((i) => i).length;
-        console.log("found_word");
-        window.gtag("event", "found_word", {
-          num_found: num_found,
-        });
-      } catch (error) {
-        console.log("tracking error", error);
-      }
+      const num_found = newClueMatches.filter((i) => i).length;
+      console.log("found_word");
+      sendAnalytics("found_word", {
+        num_found: num_found,
+      });
 
       let newStats;
       if (newClueMatches.every((i) => i)) {
         console.log("completed_game");
-        try {
-          window.gtag("event", "completed_game", {});
-        } catch (error) {
-          console.log("tracking error", error);
-        }
+        sendAnalytics("completed_game");
       }
 
       return {
@@ -174,23 +162,15 @@ export function gameReducer(currentGameState, payload) {
       }
     }
 
-    try {
-      const num_found = clueMatches.filter((i) => i).length;
-      console.log("found_word");
-      window.gtag("event", "found_word", {
-        num_found: num_found,
-      });
-    } catch (error) {
-      console.log("tracking error", error);
-    }
+    const num_found = clueMatches.filter((i) => i).length;
+    console.log("found_word");
+    sendAnalytics("found_word", {
+      num_found: num_found,
+    });
 
     if (clueMatches.every((i) => i)) {
       console.log("completed_game");
-      try {
-        window.gtag("event", "completed_game", {});
-      } catch (error) {
-        console.log("tracking error", error);
-      }
+      sendAnalytics("completed_game");
     }
 
     // Figure out which color was made

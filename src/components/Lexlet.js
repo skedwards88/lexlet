@@ -6,21 +6,7 @@ import GameOver from "./GameOver";
 import {Countdown} from "./Countdown";
 import WhatsNew from "./WhatsNew";
 import {palette} from "./palette";
-
-async function handleInstall(installPromptEvent, setInstallPromptEvent) {
-  console.log("handling install");
-  console.log(installPromptEvent);
-  installPromptEvent.prompt();
-  const result = await installPromptEvent.userChoice;
-  console.log(result);
-  setInstallPromptEvent(null);
-
-  try {
-    window.gtag("event", "install", {});
-  } catch (error) {
-    console.log("tracking error", error);
-  }
-}
+import {handleInstall} from "../common/handleInstall";
 
 export default function Lexlet({
   setDisplay,

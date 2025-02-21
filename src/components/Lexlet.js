@@ -26,7 +26,13 @@ export default function Lexlet({
   ] = React.useState([]);
   const [flashColors, setFlashColors] = React.useState([]);
 
+  const isGameOver = gameState.clueMatches.every((i) => i);
+
   React.useEffect(() => {
+    if (!isGameOver) {
+      return;
+    }
+
     if (swatchAnimationDestinationRef.current) {
       const swatchAnimationDestinationBox =
         swatchAnimationDestinationRef.current.getBoundingClientRect();
@@ -43,20 +49,20 @@ export default function Lexlet({
         swatchAnimationDestinationPositionX,
         swatchAnimationDestinationPositionY,
       ]);
-
-      if (gameState.newSwatchIndexes.length) {
-        const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
-          calculateMixedColor(palette[swatchIndex]),
-        );
-
-        setFlashColors(flashColors);
-
-        swatchAnimationDestinationRef.current.classList.add("swatchFlash");
-      }
     }
-  }, [gameState.newSwatchIndexes]);
+  }, [isGameOver]);
 
-  const isGameOver = gameState.clueMatches.every((i) => i);
+  React.useEffect(() => {
+    if (!isGameOver || !gameState.newSwatchIndexes.length) {
+      return;
+    }
+
+    const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
+      calculateMixedColor(palette[swatchIndex]),
+    );
+
+    setFlashColors(flashColors);
+  }, [gameState.newSwatchIndexes, isGameOver]);
 
   return (
     <div
@@ -97,6 +103,7 @@ export default function Lexlet({
           onClick={() => {
             setDisplay("stats");
           }}
+          className={flashColors.length ? "swatchFlash" : ""}
         ></button>
         <button id="heart" onClick={() => setDisplay("heart")}></button>
         {showInstallButton && installPromptEvent ? (

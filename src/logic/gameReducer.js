@@ -181,19 +181,37 @@ export function gameReducer(currentGameState, payload) {
       num_found: num_found,
     });
 
-    if (clueMatches.every((i) => i)) {
+    const gameIsComplete = clueMatches.every((i) => i);
+    if (gameIsComplete) {
       console.log("completed_game");
       sendAnalytics("completed_game");
     }
 
-    // Figure out which color was made
-    const paletteIndex = palette.findIndex((color) =>
-      colorsIdenticalQ(color, currentColors),
+    // If the game isn't finished, can return here
+    if (!gameIsComplete) {
+      return {
+        ...currentGameState,
+        playedIndexes: [],
+        clueMatches: clueMatches,
+        clueIndexes: clueIndexes,
+        wordInProgress: false,
+        result: "",
+      };
+    }
+
+    // Figure out which colors were made this game
+    const colorsCreated = clueIndexes.map((indexes) =>
+      indexes.map((index) => currentGameState.colors[index]),
     );
 
-    // Figure out if the color has been found before
-    const colorIsNew =
-      !currentGameState.stats.collectedSwatchIndexes.includes(paletteIndex);
+    const paletteIndexes = colorsCreated.map((colorCreated) =>
+      palette.findIndex((color) => colorsIdenticalQ(color, colorCreated)),
+    );
+
+    const newPaletteIndexes = paletteIndexes.filter(
+      (paletteIndex) =>
+        !currentGameState.stats.collectedSwatchIndexes.includes(paletteIndex),
+    );
 
     return {
       ...currentGameState,
@@ -202,18 +220,14 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
       result: "",
-      ...(colorIsNew && {
-        stats: {
-          ...currentGameState.stats,
-          collectedSwatchIndexes: [
-            ...currentGameState.stats.collectedSwatchIndexes,
-            paletteIndex,
-          ],
-        },
-      }),
-      ...(colorIsNew && {
-        newSwatchIndexes: [...currentGameState.newSwatchIndexes, paletteIndex],
-      }),
+      stats: {
+        ...currentGameState.stats,
+        collectedSwatchIndexes: [
+          ...currentGameState.stats.collectedSwatchIndexes,
+          ...newPaletteIndexes,
+        ],
+      },
+      newSwatchIndexes: newPaletteIndexes,
     };
   } else if (payload.action === "newGame") {
     return gameInit();

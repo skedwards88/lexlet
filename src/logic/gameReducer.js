@@ -132,6 +132,7 @@ export function gameReducer(currentGameState, payload) {
     }
 
     // check if the word matches a pattern
+    let foundPatternMatch = false;
     const currentColors = currentGameState.playedIndexes.map(
       (index) => currentGameState.colors[index],
     );
@@ -157,14 +158,26 @@ export function gameReducer(currentGameState, payload) {
         clueMatches[clueIndex] = true;
         clueIndexes[clueIndex] = currentGameState.playedIndexes;
 
+        foundPatternMatch = true;
+
         // there will only be one match, so exit early if we find one
         break;
       }
     }
 
+    // If didn't match a pattern, can return now
+    if (!foundPatternMatch) {
+      return {
+        ...currentGameState,
+        playedIndexes: [],
+        wordInProgress: false,
+        result: "",
+      };
+    }
+
     const num_found = clueMatches.filter((i) => i).length;
-    console.log("found_word");
-    sendAnalytics("found_word", {
+    console.log("found_match");
+    sendAnalytics("found_match", {
       num_found: num_found,
     });
 

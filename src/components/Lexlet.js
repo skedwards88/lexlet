@@ -6,6 +6,7 @@ import GameOver from "./GameOver";
 import {Countdown} from "./Countdown";
 import {palette} from "./palette";
 import {handleInstall} from "../common/handleInstall";
+import {getNewPaletteIndexes} from "../logic/getNewPaletteIndexes";
 
 export default function Lexlet({
   setDisplay,
@@ -14,6 +15,8 @@ export default function Lexlet({
   setInstallPromptEvent,
   gameState,
   dispatchGameState,
+  stats,
+  updateStats,
 }) {
   React.useEffect(() => {
     window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
@@ -26,7 +29,52 @@ export default function Lexlet({
   ] = React.useState([]);
   const [flashColors, setFlashColors] = React.useState([]);
 
+  const [newPaletteIndexes, setNewPaletteIndexes] = React.useState([]);
+
   const isGameOver = gameState.clueMatches.every((i) => i);
+
+  React.useEffect(() => {
+    console.log(`In setNewPaletteIndexes hook`);
+    if (!isGameOver) {
+      return;
+    }
+
+    console.log(`actually executing setNewPaletteIndexes hook`);
+    setNewPaletteIndexes(
+      getNewPaletteIndexes({
+        previouslyCollectedIndexes: stats.collectedSwatchIndexes,
+        clueIndexes: gameState.clueIndexes,
+        boardColors: gameState.colors,
+      }),
+    );
+  }, [
+    isGameOver,
+    gameState.clueIndexes,
+    gameState.colors,
+    stats.collectedSwatchIndexes,
+  ]);
+
+  React.useEffect(() => {
+    console.log(`in update stats hook`);
+    if (!newPaletteIndexes.length) {
+      return;
+    }
+
+    console.log(`actually executing update stats hook`);
+    updateStats((previousStats) => ({
+      ...previousStats,
+      collectedSwatchIndexes: [
+        ...previousStats.collectedSwatchIndexes,
+        ...newPaletteIndexes,
+      ],
+    }));
+
+    const flashColors = newPaletteIndexes.map((swatchIndex) =>
+      calculateMixedColor(palette[swatchIndex]),
+    );
+
+    setFlashColors(flashColors);
+  }, [newPaletteIndexes, updateStats]);
 
   React.useEffect(() => {
     if (!isGameOver) {
@@ -51,18 +99,6 @@ export default function Lexlet({
       ]);
     }
   }, [isGameOver]);
-
-  React.useEffect(() => {
-    if (!isGameOver || !gameState.newSwatchIndexes.length) {
-      return;
-    }
-
-    const flashColors = gameState.newSwatchIndexes.map((swatchIndex) =>
-      calculateMixedColor(palette[swatchIndex]),
-    );
-
-    setFlashColors(flashColors);
-  }, [gameState.newSwatchIndexes, isGameOver]);
 
   return (
     <div
@@ -146,7 +182,7 @@ export default function Lexlet({
           hints={gameState.hints}
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
-          newSwatchIndexes={gameState.newSwatchIndexes}
+          newPaletteIndexes={newPaletteIndexes}
           swatchAnimationDestinationPosition={
             swatchAnimationDestinationPosition
           }

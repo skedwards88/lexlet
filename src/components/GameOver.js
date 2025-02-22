@@ -30,7 +30,7 @@ function resultToIcon({hints, clueIndexes, colors}) {
   return result;
 }
 
-function NewSwatches({newSwatchIndexes, swatchAnimationDestinationPosition}) {
+function NewSwatches({newPaletteIndexes, swatchAnimationDestinationPosition}) {
   const swatchAnimatedRefs = [
     React.useRef(null),
     React.useRef(null),
@@ -64,17 +64,17 @@ function NewSwatches({newSwatchIndexes, swatchAnimationDestinationPosition}) {
     setSwatchAnimationDistance(distances);
   }, [swatchAnimationDestinationPosition]); // Can ignore the warning about needing to include refs in the dep array
 
-  if (!newSwatchIndexes.length) {
+  if (!newPaletteIndexes.length) {
     return <></>;
   }
 
   return (
     <div>
-      <p>{`${newSwatchIndexes.length} new color${
-        newSwatchIndexes.length === 1 ? "" : "s"
+      <p>{`${newPaletteIndexes.length} new color${
+        newPaletteIndexes.length === 1 ? "" : "s"
       } discovered!`}</p>
       <div id="swatches">
-        {newSwatchIndexes.map((swatchIndex, index) => (
+        {newPaletteIndexes.map((swatchIndex, index) => (
           <div
             className="swatch"
             ref={swatchAnimatedRefs[index]}
@@ -98,7 +98,7 @@ export default function GameOver({
   hints,
   clueIndexes,
   colors,
-  newSwatchIndexes,
+  newPaletteIndexes,
   swatchAnimationDestinationPosition,
 }) {
   const result = resultToIcon({
@@ -111,7 +111,7 @@ export default function GameOver({
     <div id="gameOver">
       <Share text={result}></Share>
       <NewSwatches
-        newSwatchIndexes={newSwatchIndexes}
+        newPaletteIndexes={newPaletteIndexes}
         swatchAnimationDestinationPosition={swatchAnimationDestinationPosition}
       ></NewSwatches>
     </div>

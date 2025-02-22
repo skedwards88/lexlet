@@ -1,5 +1,4 @@
 import {getPlayableBoard} from "./generateGame";
-import {updateStatStreaks} from "./updateStatStreaks";
 
 export function getSeed() {
   // Get a seed based on today's date 'YYYYMMDD'
@@ -41,8 +40,7 @@ export function gameInit() {
     savedState.clueIndexes &&
     savedState.clueMatches &&
     savedState.hints &&
-    savedState.playedIndexes &&
-    savedState.stats
+    savedState.playedIndexes
   ) {
     // Temporary patch to support the green->blue rename
     const adjustedColors = savedState.colors.map((color) =>
@@ -51,11 +49,6 @@ export function gameInit() {
     return {
       ...savedState,
       colors: adjustedColors,
-      stats: {
-        ...updateStatStreaks(savedState.stats),
-        collectedSwatchIndexes: savedState.stats.collectedSwatchIndexes || [],
-      },
-      newSwatchIndexes: savedState.newSwatchIndexes || [],
     };
   }
 
@@ -78,26 +71,6 @@ export function gameInit() {
   const clueMatches = clueIndexes.map(() => false);
   const hints = clueIndexes.map((clue) => clue.map(() => false));
 
-  // If there are already stats, use those
-  let stats;
-  if (savedState && savedState.stats) {
-    stats = {
-      ...updateStatStreaks(savedState.stats),
-      collectedSwatchIndexes: savedState.stats.collectedSwatchIndexes || [],
-    };
-  } else {
-    stats = {
-      // last date played (to calculate streak)
-      lastDatePlayed: new Date(),
-      // consecutive days played
-      streak: 1,
-      // max consecutive days played
-      maxStreak: 1,
-      // indexes of the colors collected
-      collectedSwatchIndexes: [],
-    };
-  }
-
   return {
     seed: seed,
     letters: letters,
@@ -106,8 +79,6 @@ export function gameInit() {
     clueMatches: clueMatches,
     playedIndexes: [],
     hints: hints,
-    stats: stats,
-    newSwatchIndexes: [],
     result: "",
   };
 }

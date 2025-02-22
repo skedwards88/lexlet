@@ -4,8 +4,6 @@ import {checkIfNeighbors} from "@skedwards88/word_logic";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {gameInit} from "./gameInit";
 import {trie} from "./trie";
-import {palette} from "../components/palette";
-import {colorsIdenticalQ} from "./colorsIdenticalQ";
 import sendAnalytics from "../common/sendAnalytics";
 
 export function gameReducer(currentGameState, payload) {
@@ -40,7 +38,6 @@ export function gameReducer(currentGameState, payload) {
         num_found: num_found,
       });
 
-      let newStats;
       if (newClueMatches.every((i) => i)) {
         console.log("completed_game");
         sendAnalytics("completed_game");
@@ -50,7 +47,6 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         hints: newHints,
         clueMatches: newClueMatches,
-        ...(newStats && {stats: newStats}),
       };
     } else {
       return {...currentGameState, hints: newHints};
@@ -187,32 +183,6 @@ export function gameReducer(currentGameState, payload) {
       sendAnalytics("completed_game");
     }
 
-    // If the game isn't finished, can return here
-    if (!gameIsComplete) {
-      return {
-        ...currentGameState,
-        playedIndexes: [],
-        clueMatches: clueMatches,
-        clueIndexes: clueIndexes,
-        wordInProgress: false,
-        result: "",
-      };
-    }
-
-    // Figure out which colors were made this game
-    const colorsCreated = clueIndexes.map((indexes) =>
-      indexes.map((index) => currentGameState.colors[index]),
-    );
-
-    const paletteIndexes = colorsCreated.map((colorCreated) =>
-      palette.findIndex((color) => colorsIdenticalQ(color, colorCreated)),
-    );
-
-    const newPaletteIndexes = paletteIndexes.filter(
-      (paletteIndex) =>
-        !currentGameState.stats.collectedSwatchIndexes.includes(paletteIndex),
-    );
-
     return {
       ...currentGameState,
       playedIndexes: [],
@@ -220,14 +190,6 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
       result: "",
-      stats: {
-        ...currentGameState.stats,
-        collectedSwatchIndexes: [
-          ...currentGameState.stats.collectedSwatchIndexes,
-          ...newPaletteIndexes,
-        ],
-      },
-      newSwatchIndexes: newPaletteIndexes,
     };
   } else if (payload.action === "newGame") {
     return gameInit();

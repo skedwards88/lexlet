@@ -13,6 +13,7 @@ import {
 import {hasVisitedSince} from "../common/hasVisitedSince";
 import getDailySeed from "../common/getDailySeed";
 import {getInitialState} from "../common/getInitialState";
+import {statsInit} from "../logic/statsInit";
 
 export default function App() {
   // *****
@@ -93,6 +94,12 @@ export default function App() {
     gameInit,
   );
 
+  const [stats, updateStats] = React.useState(statsInit());
+
+  React.useEffect(() => {
+    window.localStorage.setItem("lexletStats", JSON.stringify(stats));
+  }, [stats]);
+
   switch (display) {
     case "announcement":
       return <WhatsNew setDisplay={setDisplay}></WhatsNew>;
@@ -101,7 +108,7 @@ export default function App() {
       return <Rules setDisplay={setDisplay}></Rules>;
 
     case "stats":
-      return <Stats setDisplay={setDisplay} stats={gameState.stats}></Stats>;
+      return <Stats setDisplay={setDisplay} stats={stats}></Stats>;
 
     case "heart":
       return <Heart setDisplay={setDisplay}></Heart>;
@@ -115,6 +122,8 @@ export default function App() {
           installPromptEvent={installPromptEvent}
           gameState={gameState}
           dispatchGameState={dispatchGameState}
+          stats={stats}
+          updateStats={updateStats}
         ></Lexlet>
       );
   }

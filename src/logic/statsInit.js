@@ -12,7 +12,7 @@ export function statsInit() {
     };
   } else {
     // Temporary patch so people don't lose their acquired stats
-    // This is only needed for a few playtesters and can be deleted after March 7, 2025
+    // TODO This is only needed for a few playtesters and can be deleted after March 7, 2025
     const savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
 
     if (savedState && savedState.stats) {

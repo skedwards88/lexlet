@@ -66,13 +66,33 @@ export default function App() {
   );
 
   // Record that they visited today
-  const [lastVisited] = React.useState(getDailySeed());
+  const [lastVisited, setLastVisited] = React.useState(getDailySeed());
   React.useEffect(() => {
     window.localStorage.setItem(
       "lexletLastVisited",
       JSON.stringify(lastVisited),
     );
   }, [lastVisited]);
+
+  function handleVisibilityChange() {
+    // If the visibility of the app changes to become visible,
+    // update the state to force the app to re-render.
+    // This is to help the daily challenge refresh if the app has
+    // been open in the background since an earlier challenge.
+    if (!document.hidden) {
+      setLastVisited(getDailySeed());
+    }
+  }
+
+  React.useEffect(() => {
+    // When the component is mounted, attach the visibility change event listener
+    // (and remove the event listener when the component is unmounted).
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   // Determine what view to show the user
   const savedDisplay = JSON.parse(localStorage.getItem("lexletDisplay"));
@@ -84,9 +104,21 @@ export default function App() {
     ),
   );
 
+  React.useEffect(() => {
+    window.localStorage.setItem("lexletDisplay", JSON.stringify(display));
+  }, [display]);
   // ******
   // End set up the display state
   // ******
+
+  // ******
+  // Game states setup
+  // ******
+  const [dailyGameState, dispatchDailyGameState] = React.useReducer(
+    gameReducer,
+    {isDaily: true},
+    gameInit,
+  );
 
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
@@ -94,11 +126,35 @@ export default function App() {
     gameInit,
   );
 
-  const [stats, updateStats] = React.useState(statsInit());
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "lexletGameSavedState",
+      JSON.stringify(gameState),
+    );
+  }, [gameState]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "lexletDailySavedState",
+      JSON.stringify(dailyGameState),
+    );
+  }, [dailyGameState]);
+
+  // ******
+  // End game states setup
+  // ******
+
+  // ******
+  // Stats setup
+  // ******
+  const [stats, setStats] = React.useState(statsInit());
 
   React.useEffect(() => {
     window.localStorage.setItem("lexletStats", JSON.stringify(stats));
   }, [stats]);
+  // ******
+  // End stats setup
+  // ******
 
   switch (display) {
     case "announcement":
@@ -113,6 +169,29 @@ export default function App() {
     case "heart":
       return <Heart setDisplay={setDisplay}></Heart>;
 
+    case "daily":
+      // force reinitialize the daily state if the day has changed
+      if (dailyGameState.seed != getDailySeed()) {
+        dispatchDailyGameState({
+          action: "newGame",
+          isDaily: true,
+          useSaved: false,
+        });
+      }
+      return (
+        <Lexlet
+          setDisplay={setDisplay}
+          setInstallPromptEvent={setInstallPromptEvent}
+          showInstallButton={showInstallButton}
+          installPromptEvent={installPromptEvent}
+          gameState={dailyGameState}
+          dispatchGameState={dispatchDailyGameState}
+          stats={stats}
+          setStats={setStats}
+          isDaily={true}
+        ></Lexlet>
+      );
+
     default:
       return (
         <Lexlet
@@ -123,7 +202,8 @@ export default function App() {
           gameState={gameState}
           dispatchGameState={dispatchGameState}
           stats={stats}
-          updateStats={updateStats}
+          setStats={setStats}
+          isDaily={false}
         ></Lexlet>
       );
   }

@@ -1,40 +1,56 @@
 import {getPlayableBoard} from "./generateGame";
+import getDailySeed from "../common/getDailySeed";
+import getRandomSeed from "../common/getRandomSeed";
+import {getDifficultyLevelForDay} from "../common/getDifficultyLevelForDay";
 
-export function getSeed() {
-  // Get a seed based on today's date 'YYYYMMDD'
-  const currentDate = new Date();
-  const seed = `${currentDate.getFullYear()}${(currentDate.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}${currentDate.getDate().toString().padStart(2, "0")}`;
-
-  return seed;
-}
-
-function getWordLengthsForDay() {
-  const today = new Date().getDay();
-
+function getWordLengthsForLevel(level) {
   const wordLengths = [
-    [6, 7], // Sunday
     [4, 4],
     [4, 5],
     [4, 6],
     [5, 6],
     [5, 6],
     [6, 6],
+    [6, 7],
   ];
 
-  return wordLengths[today];
+  return wordLengths[level - 1];
 }
 
-export function gameInit() {
-  const seed = getSeed();
+export function gameInit({
+  difficultyLevel,
+  useSaved = true,
+  isDaily = false,
+  seed,
+}) {
+  if (isDaily) {
+    seed = getDailySeed();
+  }
 
-  const savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
+  if (!seed) {
+    seed = getRandomSeed();
+  }
+
+  const savedStateName = isDaily
+    ? "lexletDailySavedState"
+    : "lexletGameSavedState";
+
+  let savedState = useSaved && JSON.parse(localStorage.getItem(savedStateName));
+
+  // Temporary patch so people don't lose their progress
+  // TODO This is only needed for a few playtesters and can be deleted after March 7, 2025
+  // once deleted, change savedState from let to const
+  if (isDaily && !savedState) {
+    savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
+  }
 
   // If today's game is in progress, keep the progress
   if (
     savedState &&
-    savedState.seed === seed &&
+    savedState.seed &&
+    // If daily, use the saved state if the seed matches
+    // otherwise, we don't care if the seed matches
+    (!isDaily || savedState.seed == seed) &&
     savedState.letters &&
     savedState.colors &&
     savedState.clueIndexes &&
@@ -49,16 +65,17 @@ export function gameInit() {
     return {
       ...savedState,
       colors: adjustedColors,
+      newPaletteIndexes: savedState.newPaletteIndexes || [],
     };
   }
 
   const gridSize = 4;
   const numClues = 5;
   const easyMode = true;
-  const [minWordLength, maxWordLength] = getWordLengthsForDay();
+  difficultyLevel = isDaily ? getDifficultyLevelForDay() : difficultyLevel || 3;
+  const [minWordLength, maxWordLength] =
+    getWordLengthsForLevel(difficultyLevel);
 
-  // Unlike the original version which returns a random game,
-  //  this returns the one game per day based on the date
   const [letters, colors, clueIndexes] = getPlayableBoard({
     gridSize: gridSize,
     minWordLength: minWordLength,
@@ -72,13 +89,15 @@ export function gameInit() {
   const hints = clueIndexes.map((clue) => clue.map(() => false));
 
   return {
-    seed: seed,
-    letters: letters,
-    colors: colors,
-    clueIndexes: clueIndexes,
-    clueMatches: clueMatches,
+    seed,
+    letters,
+    colors,
+    clueIndexes,
+    clueMatches,
     playedIndexes: [],
-    hints: hints,
+    hints,
     result: "",
+    newPaletteIndexes: [],
+    difficultyLevel,
   };
 }

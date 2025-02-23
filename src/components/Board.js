@@ -1,6 +1,13 @@
 import React from "react";
 
-function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
+function Letter({
+  letter,
+  color,
+  letterAvailability,
+  index,
+  dispatchGameState,
+  collectedSwatchIndexes,
+}) {
   const myRef = React.useRef();
 
   React.useLayoutEffect(() => {
@@ -46,6 +53,7 @@ function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
 
     dispatchGameState({
       action: "endWord",
+      collectedSwatchIndexes,
     });
   }
 
@@ -70,6 +78,7 @@ export default function Board({
   playedIndexes,
   gameOver,
   dispatchGameState,
+  collectedSwatchIndexes,
 }) {
   const board = letters.map((letter, index) => (
     <Letter
@@ -80,6 +89,7 @@ export default function Board({
       draggable={false}
       dispatchGameState={dispatchGameState}
       key={index + letter}
+      collectedSwatchIndexes={collectedSwatchIndexes}
     ></Letter>
   ));
 

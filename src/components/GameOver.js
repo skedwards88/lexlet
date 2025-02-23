@@ -2,6 +2,7 @@ import React from "react";
 import Share from "./Share";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
+import {Countdown} from "./Countdown";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -100,6 +101,8 @@ export default function GameOver({
   colors,
   newPaletteIndexes,
   swatchAnimationDestinationPosition,
+  dispatchGameState,
+  seed,
 }) {
   const result = resultToIcon({
     hints: hints,
@@ -109,6 +112,7 @@ export default function GameOver({
 
   return (
     <div id="gameOver">
+      <Countdown dispatchGameState={dispatchGameState} seed={seed}></Countdown>
       <Share text={result}></Share>
       <NewSwatches
         newPaletteIndexes={newPaletteIndexes}

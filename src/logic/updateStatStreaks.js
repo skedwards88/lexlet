@@ -1,30 +1,23 @@
-function isYesterday(timestamp) {
-  return isNDaysAgo(timestamp, 1);
-}
-
-function isNDaysAgo(timestamp, numberOfDaysAgo) {
-  const milliSecPerDay = 24 * 60 * 60 * 1000;
-  const previousDay = new Date(Date.now() - numberOfDaysAgo * milliSecPerDay);
-  const dateFromTimestamp = new Date(timestamp);
-
-  return (
-    dateFromTimestamp.getDate() === previousDay.getDate() &&
-    dateFromTimestamp.getMonth() === previousDay.getMonth() &&
-    dateFromTimestamp.getFullYear() === previousDay.getFullYear()
-  );
-}
+import {isYesterday, isToday} from "./isNDaysAgo";
 
 export function updateStatStreaks(oldStats) {
   const today = new Date();
   const lastDatePlayed = oldStats.lastDatePlayed;
-  const playedYesterday = isYesterday(lastDatePlayed);
 
   // If played yesterday, add 1 to the streak
+  // If played today, keep streak as is
   // Otherwise, reset the streak to 1
-  const newStreak = playedYesterday ? oldStats.streak + 1 : 1;
+  let newStreak;
+  if (lastDatePlayed && isYesterday(lastDatePlayed)) {
+    newStreak = (oldStats.streak || 0) + 1;
+  } else if (lastDatePlayed && isToday(lastDatePlayed)) {
+    newStreak = oldStats.streak || 0;
+  } else {
+    newStreak = 1;
+  }
 
   // Update the max streak if the new streak exceeds the current max streak
-  const newMaxStreak = Math.max(newStreak, oldStats.maxStreak);
+  const newMaxStreak = Math.max(newStreak, oldStats.maxStreak || 0);
 
   return {
     ...oldStats,

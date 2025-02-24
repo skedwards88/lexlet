@@ -121,6 +121,8 @@ export default function Lexlet({
           }
           dispatchGameState={dispatchGameState}
           seed={gameState.seed}
+          isDaily={isDaily}
+          gameState={gameState}
         />
       ) : (
         <Board

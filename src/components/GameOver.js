@@ -1,8 +1,8 @@
 import React from "react";
-import Share from "./Share";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {Countdown} from "./Countdown";
+import {handleShare} from "../common/handleShare";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -103,6 +103,8 @@ export default function GameOver({
   swatchAnimationDestinationPosition,
   dispatchGameState,
   seed,
+  isDaily,
+  gameState,
 }) {
   const result = resultToIcon({
     hints: hints,
@@ -112,8 +114,44 @@ export default function GameOver({
 
   return (
     <div id="gameOver">
-      <Countdown dispatchGameState={dispatchGameState} seed={seed}></Countdown>
-      <Share text={result}></Share>
+      {isDaily ? (
+        <Countdown
+          dispatchGameState={dispatchGameState}
+          seed={seed}
+        ></Countdown>
+      ) : (
+        <p>Success!</p>
+      )}
+      <div id="gameOverButtons">
+        {navigator.canShare ? (
+          <button
+            id="shareButton"
+            onClick={() => {
+              handleShare({
+                appName: "Lexlet",
+                text: result,
+                url: "https://lexlet.com",
+                // seed: `${gameState.seed}_${gameState.difficultyLevel}`, // todo add way to share and parse specific puzzle. need to account for daily vs not too. back propogate to blobble
+              });
+            }}
+          ></button>
+        ) : (
+          <></>
+        )}
+        {isDaily ? (
+          <></>
+        ) : (
+          <button
+            id="newGameButton"
+            onClick={() => {
+              dispatchGameState({
+                ...gameState,
+                action: "newGame",
+              });
+            }}
+          ></button>
+        )}
+      </div>
       <NewSwatches
         newPaletteIndexes={newPaletteIndexes}
         swatchAnimationDestinationPosition={swatchAnimationDestinationPosition}

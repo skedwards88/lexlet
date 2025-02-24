@@ -33,5 +33,5 @@ export function Countdown({dispatchGameState, seed}) {
     return () => clearTimeout(timerID);
   });
 
-  return <small>{`Next game in ${timeLeft}`}</small>;
+  return <p>{`Next daily challenge in \n${timeLeft}`}</p>;
 }

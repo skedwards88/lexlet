@@ -44,7 +44,6 @@ export function gameInit({
     savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
   }
 
-  // If today's game is in progress, keep the progress
   if (
     savedState &&
     savedState.seed &&

@@ -1,0 +1,139 @@
+/* Slider setting styling */
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  background: var(--dark-color);
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: calc(var(--default-font-size) * 1.5);
+  width: calc(var(--default-font-size) * 0.5);
+  border-radius: 2px;
+  background: var(--light-color);
+  box-shadow: 0 0 2px 2px black;
+  cursor: pointer;
+  margin-top: calc(var(--default-font-size) * -0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: calc(var(--default-font-size) * 1.5);
+  width: calc(var(--default-font-size) * 0.5);
+  border-radius: 2px;
+  background: var(--light-color);
+  box-shadow: 0 0 2px 2px black;
+}
+
+input[type="range"]::-ms-thumb {
+  height: calc(var(--default-font-size) * 1.5);
+  width: calc(var(--default-font-size) * 0.5);
+  border-radius: 2px;
+  background: var(--light-color);
+  box-shadow: 0 0 2px 2px black;
+  cursor: pointer;
+}
+
+/* Slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2vh;
+  cursor: pointer;
+  background: var(--light-color);
+  border-radius: 2px;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: var(--light-color);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2vh;
+  cursor: pointer;
+  background: var(--light-color);
+  border-radius: 2px;
+}
+
+input[type="range"]::-ms-track {
+  height: 2vh;
+  cursor: pointer;
+  background: var(--light-color);
+  border-radius: 2px;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: var(--light-color);
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: var(--light-color);
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: var(--light-color);
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: var(--light-color);
+}
+
+.settings {
+  text-align: center;
+  overflow: scroll;
+  font-size: calc(var(--default-font-size) * 0.7);
+  justify-items: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.setting {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin: 0.5cm;
+}
+
+.setting-description {
+  padding: 0 5px 0 0;
+}
+
+#setting-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#setting-buttons > button {
+  margin: 10px;
+}
+
+.settingSliderValue {
+  font-size: calc(var(--default-font-size) / 1.5);
+  color: var(--light-color);
+  padding: 0 1vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#settingSliderContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+}

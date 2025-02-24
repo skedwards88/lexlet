@@ -5,6 +5,7 @@ import {arraysMatchQ} from "@skedwards88/word_logic";
 import {gameInit} from "./gameInit";
 import {trie} from "./trie";
 import sendAnalytics from "../common/sendAnalytics";
+import {getNewPaletteIndexes} from "./getNewPaletteIndexes";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "startWord") {
@@ -178,10 +179,26 @@ export function gameReducer(currentGameState, payload) {
     });
 
     const gameIsComplete = clueMatches.every((i) => i);
-    if (gameIsComplete) {
-      console.log("completed_game");
-      sendAnalytics("completed_game");
+
+    if (!gameIsComplete) {
+      return {
+        ...currentGameState,
+        playedIndexes: [],
+        clueMatches: clueMatches,
+        clueIndexes: clueIndexes,
+        wordInProgress: false,
+        result: "",
+      };
     }
+
+    console.log("completed_game");
+    sendAnalytics("completed_game");
+
+    const newIndexes = getNewPaletteIndexes({
+      previouslyCollectedIndexes: payload.collectedSwatchIndexes,
+      clueIndexes,
+      boardColors: currentGameState.colors,
+    });
 
     return {
       ...currentGameState,
@@ -190,9 +207,10 @@ export function gameReducer(currentGameState, payload) {
       clueIndexes: clueIndexes,
       wordInProgress: false,
       result: "",
+      newPaletteIndexes: newIndexes,
     };
   } else if (payload.action === "newGame") {
-    return gameInit();
+    return gameInit({...payload, seed: undefined, useSaved: false});
   } else {
     console.log(`unknown action: ${payload.action}`);
     return {...currentGameState};

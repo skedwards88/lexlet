@@ -120,7 +120,7 @@ export default function Clues({
       clueColors={clueColors[index]}
       clueMatch={clueMatches[index]}
       clueLetters={clueLetters[index]}
-      key={index}
+      key={`${index}${clueColors[index]}`}
       hint={hints[index]}
       dispatchGameState={dispatchGameState}
       clueIndex={index}

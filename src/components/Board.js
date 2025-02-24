@@ -1,6 +1,13 @@
 import React from "react";
 
-function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
+function Letter({
+  letter,
+  color,
+  letterAvailability,
+  index,
+  dispatchGameState,
+  collectedSwatchIndexes,
+}) {
   const myRef = React.useRef();
 
   React.useLayoutEffect(() => {
@@ -46,6 +53,7 @@ function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
 
     dispatchGameState({
       action: "endWord",
+      collectedSwatchIndexes,
     });
   }
 
@@ -53,7 +61,6 @@ function Letter({letter, color, letterAvailability, index, dispatchGameState}) {
     <div
       className={`letter ${color}`}
       ref={myRef}
-      key={index.toString() + letter}
       onPointerDown={(e) => handlePointerDown(e, index)}
       onPointerEnter={(e) => handlePointerEnter(e, index, letterAvailability)}
       onPointerUp={(e) => handlePointerUp(e)}
@@ -70,6 +77,7 @@ export default function Board({
   playedIndexes,
   gameOver,
   dispatchGameState,
+  collectedSwatchIndexes,
 }) {
   const board = letters.map((letter, index) => (
     <Letter
@@ -79,7 +87,8 @@ export default function Board({
       index={index}
       draggable={false}
       dispatchGameState={dispatchGameState}
-      key={index + letter}
+      key={`${index}${letter}${colors[index]}`}
+      collectedSwatchIndexes={collectedSwatchIndexes}
     ></Letter>
   ));
 

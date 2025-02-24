@@ -6,6 +6,7 @@ html {
   --light-color: rgb(239 239 239);
 
   height: 100vh;
+  width: 100vw;
   background-color: var(--dark-color);
 }
 
@@ -42,20 +43,20 @@ button {
   padding: 1px 6px;
 }
 
-#controls {
-  display: grid;
-  grid-template-areas: "nextGame rules heart stats install";
-  grid-template-columns:
-    1fr
-    auto
-    auto;
-  grid-area: controls;
-  width: 100%;
-  height: 5vh;
+p {
   white-space: pre;
 }
 
-#controls > button {
+#controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: controls;
+  width: 100vw;
+  height: 5vh;
+}
+
+.controlButton {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -63,40 +64,54 @@ button {
   width: var(--default-font-size);
   height: var(--default-font-size);
   background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  margin: 0 1vmax 0 0;
-  padding: 0;
+  padding: 1px 6px;
 }
 
-#nextGame {
-  margin-left: 1vmax;
-  grid-area: nextGame;
-  font-size: calc(var(--default-font-size) * 0.75);
-  display: flex;
-  align-items: center;
+#settingsButton {
+  background-image: url("./images/settings.svg");
 }
 
-#rules {
+#newGameButton {
+  background-image: url("./images/new_game.svg");
+}
+
+#rulesButton {
   background-image: url("./images/info.svg");
-  grid-area: rules;
 }
 
-#stats {
-  background-image: url("./images/stats.svg");
-  grid-area: stats;
-}
-
-#heart {
+#heartButton {
   background-image: url("./images/heart.svg");
-  grid-area: heart;
 }
 
-#install {
+#shareButton {
+  background-image: url("./images/share.svg");
+}
+
+#calendarButton {
+  background-image:
+    url("./images/daily.svg"),
+    radial-gradient(circle, rgb(239 239 239 / 60%) 30%, rgb(55 54 71));
+  width: calc(var(--default-font-size) * 2);
+}
+
+#calendarButtonSolved {
+  background-image: url("./images/daily.svg");
+}
+
+#installButton {
   background-image: url("./images/install.svg");
-  grid-area: install;
+}
+
+#exitDailyButton {
+  border: 0;
+  width: fit-content;
+  font-size: calc(var(--default-font-size) * 0.6);
+  height: var(--default-font-size);
+  padding: 1px 6px;
+}
+
+#statsButton {
+  background-image: url("./images/stats.svg");
 }
 
 .stats {
@@ -276,6 +291,25 @@ button {
   align-self: top;
   width: 70%;
   margin: 0.5vmax;
+}
+
+#gameOverButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#gameOverButtons > button {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: var(--default-font-size);
+  height: var(--default-font-size);
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 #gameOver #swatches {

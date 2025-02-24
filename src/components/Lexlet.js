@@ -1,80 +1,41 @@
 import React from "react";
 import Board from "./Board";
-import Clues, {calculateMixedColor} from "./Clues";
+import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
-import {Countdown} from "./Countdown";
-import {palette} from "./palette";
-import {handleInstall} from "../common/handleInstall";
-import {getNewPaletteIndexes} from "../logic/getNewPaletteIndexes";
+import ControlBar from "./ControlBar";
 
 export default function Lexlet({
   setDisplay,
   installPromptEvent,
   showInstallButton,
   setInstallPromptEvent,
-  gameState,
+  gameState, //todo don't pass full state
   dispatchGameState,
   stats,
-  updateStats,
+  setStats,
+  isDaily,
+  dailyIsSolved,
 }) {
-  React.useEffect(() => {
-    window.localStorage.setItem("dailyLexletState", JSON.stringify(gameState));
-  }, [gameState]);
-
   const swatchAnimationDestinationRef = React.useRef(null);
   const [
     swatchAnimationDestinationPosition,
     setSwatchAnimationDestinationPosition,
   ] = React.useState([]);
-  const [flashColors, setFlashColors] = React.useState([]);
-
-  const [newPaletteIndexes, setNewPaletteIndexes] = React.useState([]);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
 
   React.useEffect(() => {
-    console.log(`In setNewPaletteIndexes hook`);
-    if (!isGameOver) {
-      return;
+    if (gameState.newPaletteIndexes.length) {
+      setStats((previousStats) => ({
+        ...previousStats,
+        collectedSwatchIndexes: [
+          ...previousStats.collectedSwatchIndexes,
+          ...gameState.newPaletteIndexes,
+        ],
+      }));
     }
-
-    console.log(`actually executing setNewPaletteIndexes hook`);
-    setNewPaletteIndexes(
-      getNewPaletteIndexes({
-        previouslyCollectedIndexes: stats.collectedSwatchIndexes,
-        clueIndexes: gameState.clueIndexes,
-        boardColors: gameState.colors,
-      }),
-    );
-  }, [
-    isGameOver,
-    gameState.clueIndexes,
-    gameState.colors,
-    stats.collectedSwatchIndexes,
-  ]);
-
-  React.useEffect(() => {
-    console.log(`in update stats hook`);
-    if (!newPaletteIndexes.length) {
-      return;
-    }
-
-    console.log(`actually executing update stats hook`);
-    updateStats((previousStats) => ({
-      ...previousStats,
-      collectedSwatchIndexes: [
-        ...previousStats.collectedSwatchIndexes,
-        ...newPaletteIndexes,
-      ],
-    }));
-
-    const flashColors = newPaletteIndexes.map((swatchIndex) =>
-      calculateMixedColor(palette[swatchIndex]),
-    );
-
-    setFlashColors(flashColors);
-  }, [newPaletteIndexes, updateStats]);
+  }, [gameState.newPaletteIndexes]);
 
   React.useEffect(() => {
     if (!isGameOver) {
@@ -109,50 +70,22 @@ export default function Lexlet({
 
         dispatchGameState({
           action: "endWord",
+          collectedSwatchIndexes: stats.collectedSwatchIndexes,
         });
       }}
     >
-      <div id="controls">
-        <div id="nextGame">
-          {isGameOver ? (
-            <Countdown
-              dispatchGameState={dispatchGameState}
-              seed={gameState.seed}
-            ></Countdown>
-          ) : (
-            `Hints used: ${
-              gameState.hints.flatMap((i) => i).filter((i) => i).length
-            }`
-          )}
-        </div>
-        <button id="rules" onClick={() => setDisplay("rules")}></button>
-        <button
-          id="stats"
-          ref={swatchAnimationDestinationRef}
-          style={{
-            "--colorA": `${flashColors[0] || "transparent"}`,
-            "--colorB": `${flashColors[1] || "transparent"}`,
-            "--colorC": `${flashColors[2] || "transparent"}`,
-            "--colorD": `${flashColors[3] || "transparent"}`,
-            "--colorE": `${flashColors[4] || "transparent"}`,
-          }}
-          onClick={() => {
-            setDisplay("stats");
-          }}
-          className={flashColors.length ? "swatchFlash" : ""}
-        ></button>
-        <button id="heart" onClick={() => setDisplay("heart")}></button>
-        {showInstallButton && installPromptEvent ? (
-          <button
-            id="install"
-            onClick={() =>
-              handleInstall(installPromptEvent, setInstallPromptEvent)
-            }
-          ></button>
-        ) : (
-          <></>
-        )}
-      </div>
+      <ControlBar
+        swatchAnimationDestinationRef={swatchAnimationDestinationRef}
+        newPaletteIndexes={gameState.newPaletteIndexes}
+        setDisplay={setDisplay}
+        installPromptEvent={installPromptEvent}
+        showInstallButton={showInstallButton}
+        setInstallPromptEvent={setInstallPromptEvent}
+        isDaily={isDaily}
+        dailyIsSolved={dailyIsSolved}
+        dispatchGameState={dispatchGameState}
+        gameState={gameState}
+      ></ControlBar>
       <Clues
         clueMatches={gameState.clueMatches}
         hints={gameState.hints}
@@ -182,10 +115,14 @@ export default function Lexlet({
           hints={gameState.hints}
           clueIndexes={gameState.clueIndexes}
           colors={gameState.colors}
-          newPaletteIndexes={newPaletteIndexes}
+          newPaletteIndexes={gameState.newPaletteIndexes}
           swatchAnimationDestinationPosition={
             swatchAnimationDestinationPosition
           }
+          dispatchGameState={dispatchGameState}
+          seed={gameState.seed}
+          isDaily={isDaily}
+          gameState={gameState}
         />
       ) : (
         <Board
@@ -194,6 +131,7 @@ export default function Lexlet({
           playedIndexes={gameState.playedIndexes}
           gameOver={gameState.clueMatches.every((i) => i)}
           dispatchGameState={dispatchGameState}
+          collectedSwatchIndexes={stats.collectedSwatchIndexes}
         ></Board>
       )}
     </div>

@@ -61,7 +61,6 @@ function Letter({
     <div
       className={`letter ${color}`}
       ref={myRef}
-      key={index.toString() + letter}
       onPointerDown={(e) => handlePointerDown(e, index)}
       onPointerEnter={(e) => handlePointerEnter(e, index, letterAvailability)}
       onPointerUp={(e) => handlePointerUp(e)}
@@ -88,7 +87,7 @@ export default function Board({
       index={index}
       draggable={false}
       dispatchGameState={dispatchGameState}
-      key={index + letter}
+      key={`${index}${letter}${colors[index]}`}
       collectedSwatchIndexes={collectedSwatchIndexes}
     ></Letter>
   ));

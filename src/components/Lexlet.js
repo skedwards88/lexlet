@@ -15,6 +15,7 @@ export default function Lexlet({
   stats,
   setStats,
   isDaily,
+  dailyIsSolved,
 }) {
   const swatchAnimationDestinationRef = React.useRef(null);
   const [
@@ -81,6 +82,9 @@ export default function Lexlet({
         showInstallButton={showInstallButton}
         setInstallPromptEvent={setInstallPromptEvent}
         isDaily={isDaily}
+        dailyIsSolved={dailyIsSolved}
+        dispatchGameState={dispatchGameState}
+        gameState={gameState}
       ></ControlBar>
       <Clues
         clueMatches={gameState.clueMatches}

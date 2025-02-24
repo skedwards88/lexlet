@@ -14,6 +14,7 @@ import {hasVisitedSince} from "../common/hasVisitedSince";
 import getDailySeed from "../common/getDailySeed";
 import {getInitialState} from "../common/getInitialState";
 import {statsInit} from "../logic/statsInit";
+import Settings from "./Settings";
 
 export default function App() {
   // *****
@@ -169,6 +170,15 @@ export default function App() {
     case "heart":
       return <Heart setDisplay={setDisplay}></Heart>;
 
+    case "settings":
+      return (
+        <Settings
+          setDisplay={setDisplay}
+          dispatchGameState={dispatchGameState}
+          gameState={gameState}
+        />
+      );
+
     case "daily":
       // force reinitialize the daily state if the day has changed
       if (dailyGameState.seed != getDailySeed()) {
@@ -189,6 +199,7 @@ export default function App() {
           stats={stats}
           setStats={setStats}
           isDaily={true}
+          dailyIsSolved={dailyGameState.clueMatches.every((i) => i)}
         ></Lexlet>
       );
 
@@ -204,6 +215,7 @@ export default function App() {
           stats={stats}
           setStats={setStats}
           isDaily={false}
+          dailyIsSolved={dailyGameState.clueMatches.every((i) => i)}
         ></Lexlet>
       );
   }

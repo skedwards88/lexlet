@@ -6,6 +6,7 @@ html {
   --light-color: rgb(239 239 239);
 
   height: 100vh;
+  width: 100vw;
   background-color: var(--dark-color);
 }
 
@@ -47,11 +48,11 @@ button {
   justify-content: space-evenly;
   align-items: center;
   grid-area: controls;
-  width: 100%;
+  width: 100vw;
   height: 5vh;
 }
 
-#controls > button {
+.controlButton {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -59,28 +60,27 @@ button {
   width: var(--default-font-size);
   height: var(--default-font-size);
   background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  margin: 0 1vmax 0 0;
-  padding: 0;
+  padding: 1px 6px;
 }
 
-#rules {
+#settingsButton {
+  background-image: url("./images/settings.svg");
+}
+
+#newGameButton {
+  background-image: url("./images/new_game.svg");
+}
+
+#rulesButton {
   background-image: url("./images/info.svg");
 }
 
-#stats {
-  background-image: url("./images/stats.svg");
-}
-
-#heart {
+#heartButton {
   background-image: url("./images/heart.svg");
 }
 
-#install {
-  background-image: url("./images/install.svg");
+#shareButton {
+  background-image: url("./images/share.svg");
 }
 
 #calendarButton {
@@ -90,12 +90,24 @@ button {
   width: calc(var(--default-font-size) * 2);
 }
 
-#controls > #exitDailyButton {
+#calendarButtonSolved {
+  background-image: url("./images/daily.svg");
+}
+
+#installButton {
+  background-image: url("./images/install.svg");
+}
+
+#exitDailyButton {
   border: 0;
   width: fit-content;
-  font-size: calc(var(--default-font-size) * 0.7);
+  font-size: calc(var(--default-font-size) * 0.6);
+  height: var(--default-font-size);
   padding: 1px 6px;
-  background-color: var(--light-color);
+}
+
+#statsButton {
+  background-image: url("./images/stats.svg");
 }
 
 .stats {

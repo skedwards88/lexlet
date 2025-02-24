@@ -71,7 +71,9 @@ export function gameInit({
   const gridSize = 4;
   const numClues = 5;
   const easyMode = true;
-  difficultyLevel = isDaily ? getDifficultyLevelForDay() : difficultyLevel || 3;
+  difficultyLevel = isDaily
+    ? getDifficultyLevelForDay()
+    : difficultyLevel || savedState?.difficultyLevel || 3;
   const [minWordLength, maxWordLength] =
     getWordLengthsForLevel(difficultyLevel);
 

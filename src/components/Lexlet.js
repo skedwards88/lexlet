@@ -29,10 +29,10 @@ export default function Lexlet({
     if (gameState.newPaletteIndexes.length) {
       setStats((previousStats) => ({
         ...previousStats,
-        collectedSwatchIndexes: [
+        collectedSwatchIndexes: Array.from(new Set([
           ...previousStats.collectedSwatchIndexes,
           ...gameState.newPaletteIndexes,
-        ],
+        ])),
       }));
     }
   }, [gameState.newPaletteIndexes]);

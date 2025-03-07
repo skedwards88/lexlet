@@ -8,7 +8,7 @@ A spatial word game.
 
 [Play Now!](https://lexlet.com/)
 
-<img src="src/images/icon_512.png" alt="game icon" width="70"/>
+<img src="src/images/favicons/icon_512.png" alt="game icon" width="70"/>
 
 Do you have feedback or ideas for improvement? [Open an issue](https://github.com/skedwards88/lexlet/issues/new).
 

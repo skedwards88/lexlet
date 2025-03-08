@@ -1,6 +1,6 @@
 import React from "react";
 import Lexlet from "./Lexlet";
-import Heart from "./Heart";
+import MoreGames from "./MoreGames";
 import Rules from "./Rules";
 import Stats from "./Stats";
 import WhatsNew from "./WhatsNew";
@@ -168,7 +168,7 @@ export default function App() {
       return <Stats setDisplay={setDisplay} stats={stats}></Stats>;
 
     case "heart":
-      return <Heart setDisplay={setDisplay}></Heart>;
+      return <MoreGames setDisplay={setDisplay}></MoreGames>;
 
     case "settings":
       return (

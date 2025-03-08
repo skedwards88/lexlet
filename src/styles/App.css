@@ -47,112 +47,6 @@ p {
   white-space: pre;
 }
 
-#controls {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  grid-area: controls;
-  width: 100vw;
-  height: 5vh;
-}
-
-.controlButton {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: 0;
-  width: var(--default-font-size);
-  height: var(--default-font-size);
-  background-color: transparent;
-  padding: 1px 6px;
-}
-
-#settingsButton {
-  background-image: url("./images/icons/settings.svg");
-}
-
-#newGameButton {
-  background-image: url("./images/icons/new_game.svg");
-}
-
-#rulesButton {
-  background-image: url("./images/icons/info.svg");
-}
-
-#heartButton {
-  background-image: url("./images/icons/heart.svg");
-}
-
-#shareButton {
-  background-image: url("./images/icons/share.svg");
-}
-
-#calendarButton {
-  background-image:
-    url("./images/icons/daily.svg"),
-    radial-gradient(circle, rgb(239 239 239 / 60%) 30%, rgb(55 54 71));
-  width: calc(var(--default-font-size) * 2);
-}
-
-#calendarButtonSolved {
-  background-image: url("./images/icons/daily.svg");
-}
-
-#installButton {
-  background-image: url("./images/icons/install.svg");
-}
-
-#exitDailyButton {
-  border: 0;
-  width: fit-content;
-  font-size: calc(var(--default-font-size) * 0.6);
-  height: var(--default-font-size);
-  padding: 1px 6px;
-}
-
-#statsButton {
-  background-image: url("./images/icons/stats.svg");
-}
-
-.stats {
-  font-size: calc(var(--default-font-size) * 0.75);
-  overflow: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.stats > #numbers {
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  justify-content: center;
-}
-
-.statsNumber {
-  text-align: center;
-  margin: 5vw;
-}
-
-.statsNumber > .number {
-  font-size: calc(var(--default-font-size) * 1.5);
-}
-
-.stats > #palette {
-  display: grid;
-  grid-template-columns: repeat(8, var(--clue-box-diam));
-  grid-template-rows: repeat(11, var(--clue-box-diam));
-  border: 1px solid var(--light-color);
-}
-
-.stats .swatch {
-  border: 1px solid var(--light-color);
-  width: 100%;
-  height: 100%;
-  font-size: x-small;
-}
-
 .rules {
   display: grid;
   grid-template-areas:
@@ -195,7 +89,7 @@ p {
 }
 
 #rulesDemo {
-  background-image: url("./images/screenshots/demo.gif");
+  background-image: url("../images/screenshots/demo.gif");
   width: 100vw;
   height: 50vh;
   background-position: center;
@@ -488,15 +382,4 @@ p {
 .clueBox:last-child,
 .guessBox:last-child {
   border-right: 2px solid var(--light-color);
-}
-
-/* Landscape, large screen */
-@media (orientation: landscape) and (min-width: 1000px) {
-  .App {
-    --default-font-size: min(4vh, 7vw, 1cm);
-    --board-box-diam: min(12vh, 120px);
-    --clue-box-diam: min(4vh, 16vw);
-
-    justify-content: center;
-  }
 }

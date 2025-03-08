@@ -1,0 +1,38 @@
+.stats {
+  font-size: calc(var(--default-font-size) * 0.75);
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stats > #numbers {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: center;
+}
+
+.statsNumber {
+  text-align: center;
+  margin: 5vw;
+}
+
+.statsNumber > .number {
+  font-size: calc(var(--default-font-size) * 1.5);
+}
+
+.stats > #palette {
+  display: grid;
+  grid-template-columns: repeat(8, var(--clue-box-diam));
+  grid-template-rows: repeat(11, var(--clue-box-diam));
+  border: 1px solid var(--light-color);
+}
+
+.stats .swatch {
+  border: 1px solid var(--light-color);
+  width: 100%;
+  height: 100%;
+  font-size: x-small;
+}

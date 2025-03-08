@@ -59,13 +59,8 @@ hr {
 }
 
 .rules {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "text"
-    "demo"
-    "close"
-    "version";
+  display: flex;
+  flex-direction: column;
   text-align: center;
   overflow: scroll;
   font-size: calc(var(--default-font-size) * 0.75);
@@ -92,7 +87,10 @@ hr {
   grid-area: header;
 }
 
-#rulesText,
+.rulesText {
+  white-space: pre-wrap;
+}
+
 #whatsNewText {
   white-space: pre-line;
   margin: 0 2vmax;
@@ -106,7 +104,6 @@ hr {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  grid-area: demo;
 }
 
 #rulesClose,
@@ -114,12 +111,6 @@ hr {
 #statsClose {
   height: fit-content;
   width: fit-content;
-  grid-area: close;
-}
-
-#rulesVersion {
-  grid-area: version;
-  margin: 0 0 1vmax;
 }
 
 .info {

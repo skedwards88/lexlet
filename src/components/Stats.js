@@ -56,7 +56,7 @@ export default function Stats({stats, setDisplay}) {
         id="statsClose"
         onClick={() => setDisplay("game")}
       >
-        CLOSE
+        Return
       </button>
     </div>
   );

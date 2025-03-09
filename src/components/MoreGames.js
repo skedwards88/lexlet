@@ -67,7 +67,7 @@ export default function MoreGames({setDisplay}) {
       <hr />
 
       <button className="close" onClick={() => setDisplay("game")}>
-        Close
+        Return
       </button>
 
       <small id="rulesVersion">version {packageJson.version}</small>

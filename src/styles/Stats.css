@@ -42,7 +42,7 @@
 }
 
 .stats .swatch.colored {
-  animation: pulse .6s ease-in-out 1;
+  animation: pulse .4s ease-in-out 1;
   animation-delay: calc(0.1s * var(--i, 0));
 }
 
@@ -53,7 +53,7 @@
   }
 
   50% {
-    transform: scale(1.6);
+    transform: scale(1.4);
     opacity: 0.7;
   }
 

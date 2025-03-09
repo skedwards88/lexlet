@@ -2,8 +2,13 @@ import React from "react";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 
-function Swatch({color}) {
-  return <div className="swatch" style={{backgroundColor: `${color}`}}></div>;
+function Swatch({color, pulseOrder}) {
+  return (
+    <div
+      className="swatch colored"
+      style={{backgroundColor: `${color}`, "--i": pulseOrder}}
+    ></div>
+  );
 }
 
 function StatsNumber({number, text}) {
@@ -16,16 +21,24 @@ function StatsNumber({number, text}) {
 }
 
 export default function Stats({stats, setDisplay}) {
-  const swatches = palette.map((colors, index) => (
-    <Swatch
-      color={
-        stats.collectedSwatchIndexes.includes(index)
-          ? calculateMixedColor(colors)
-          : ""
-      }
-      key={colors}
-    ></Swatch>
-  ));
+  let pulseOrder = 0;
+  const swatches = palette.map((colors, index) => {
+    const isColored = stats.collectedSwatchIndexes.includes(index);
+
+    if (isColored) {
+      pulseOrder++;
+    }
+
+    return isColored ? (
+      <Swatch
+        color={calculateMixedColor(colors)}
+        pulseOrder={pulseOrder}
+        key={colors}
+      ></Swatch>
+    ) : (
+      <div className="swatch empty"></div>
+    );
+  });
 
   return (
     <div className="App stats">

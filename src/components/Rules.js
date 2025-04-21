@@ -9,7 +9,8 @@ export default function Rules({setDisplay}) {
         patterns.
       </p>
       <p className="rulesText">Tap on a pattern to get a hint.</p>
-      <div id="rulesDemo"></div>
+      <img src="assets/demo.webp" alt="Demo" id="rulesDemo" />
+
       <p className="rulesText">
         The daily challenge is easier on Monday and gets harder over the week.
         Can you win every day?

@@ -61,6 +61,7 @@ module.exports = (env, argv) => {
         to: "./assets/screenshot_partial_1080_1080.png",
       },
       {from: "./src/privacy.html", to: "./privacy.html"},
+      {from: "./src/images/screenshots/demo.webp", to: "./assets/demo.webp"},
     ],
     options: {
       concurrency: 100,

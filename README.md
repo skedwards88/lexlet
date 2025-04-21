@@ -23,3 +23,5 @@ To run locally with live reloading and no service worker, run `npm run dev`. (If
 To run locally and register the service worker, run `npm start`.
 
 To deploy, push to `main` or manually trigger the GitHub Actions `deploy.yml` workflow.
+
+To compress the demo gif: `brew install ffmpeg` if needed, then run `ffmpeg -i src/images/screenshots/demo-smaller.gif -loop 0 src/images/screenshots/demo.webp`

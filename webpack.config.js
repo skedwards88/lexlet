@@ -89,10 +89,18 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
-          exclude: /(node_modules|bower_components)/,
-          loader: "babel-loader",
-          options: {presets: ["@babel/env"]},
+          test: /\.(js|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                "@babel/env",
+                ["@babel/preset-react", {runtime: "automatic"}],
+                "@babel/preset-typescript",
+              ],
+            },
+          },
         },
         {
           test: /\.css$/i,
@@ -104,7 +112,9 @@ module.exports = (env, argv) => {
         },
       ],
     },
-    resolve: {extensions: ["*", ".js", ".jsx"]},
+    resolve: {
+      extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    },
     output: {
       publicPath: "",
       filename: "bundle.[fullhash].js",

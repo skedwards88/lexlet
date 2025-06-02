@@ -3,11 +3,11 @@ import {getDifficultyLevelForDay} from "./getDifficultyLevelForDay";
 describe("Testing with mocked dates", () => {
   let actualDate;
 
-  function mockDate(desiredValue) {
+  function mockDate(desiredDay) {
     actualDate = Date;
     global.Date = jest.fn(() => ({
       ...actualDate.prototype,
-      getDay: jest.fn(() => desiredValue),
+      getDay: jest.fn(() => desiredDay),
     }));
     global.Date.now = jest.fn(() => actualDate.now());
   }

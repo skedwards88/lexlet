@@ -19,10 +19,10 @@ export default function MoreGames({
     logicGrid: "https://skedwards88.github.io/logic-grid/",
   };
 
-  const gameElements = Object.keys(games).map((game, index) => (
+  const gameElements = Object.entries(games).map(([game, url], index) => (
     <a
       key={index}
-      href={games[game]}
+      href={url}
       className={`game-image ${game}`}
       role="img"
       aria-label={`Screenshot of the ${game} game.`}

@@ -1,4 +1,4 @@
-export default function sendAnalytics(eventName: string, data = {}): void {
+export default function sendAnalytics(eventName, data = {}) {
   const mode = process.env["NODE_ENV"];
   if (mode === "development" || mode === "test") {
     console.log(`Not logging ${eventName} because in ${mode} mode`);

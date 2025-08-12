@@ -1,4 +1,5 @@
 import React from "react";
+import packageJson from "../../package.json";
 
 export default function Rules({setDisplay}) {
   return (
@@ -24,6 +25,7 @@ export default function Rules({setDisplay}) {
       >
         Play
       </button>
+      <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
 }

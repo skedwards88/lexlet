@@ -1,6 +1,6 @@
 import React from "react";
 import Lexlet from "./Lexlet";
-import MoreGames from "./MoreGames";
+import MoreGames from "@skedwards88/shared-components/src/components/MoreGames.js";
 import Rules from "./Rules";
 import Stats from "./Stats";
 import WhatsNew from "./WhatsNew";
@@ -168,7 +168,15 @@ export default function App() {
       return <Stats setDisplay={setDisplay} stats={stats}></Stats>;
 
     case "heart":
-      return <MoreGames setDisplay={setDisplay}></MoreGames>;
+      return (
+        <MoreGames
+          setDisplay={setDisplay}
+          games={["crossjig", "blobble", "wordfall", "gribbles", "logicGrid"]}
+          repoName={"lexlet"}
+          includeExtraInfo={true}
+          includeWordAttribution={true}
+        ></MoreGames>
+      );
 
     case "settings":
       return (

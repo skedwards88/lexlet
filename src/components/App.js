@@ -1,6 +1,6 @@
 import React from "react";
 import Lexlet from "./Lexlet";
-import MoreGames from "@skedwards88/shared-components/src/components/MoreGames.js";
+import MoreGames from "@skedwards88/shared-components/src/components/MoreGames";
 import Rules from "./Rules";
 import Stats from "./Stats";
 import WhatsNew from "./WhatsNew";

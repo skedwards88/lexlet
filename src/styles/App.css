@@ -103,7 +103,7 @@ hr {
   object-fit: contain;
 }
 
-#rulesClose,
+#rulesPlay,
 #whatsNewClose,
 #statsClose {
   height: fit-content;

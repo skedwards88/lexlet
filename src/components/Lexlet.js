@@ -7,9 +7,6 @@ import ControlBar from "./ControlBar";
 
 export default function Lexlet({
   setDisplay,
-  installPromptEvent,
-  showInstallButton,
-  setInstallPromptEvent,
   gameState, //todo don't pass full state
   dispatchGameState,
   stats,
@@ -80,9 +77,6 @@ export default function Lexlet({
         swatchAnimationDestinationRef={swatchAnimationDestinationRef}
         newPaletteIndexes={gameState.newPaletteIndexes}
         setDisplay={setDisplay}
-        installPromptEvent={installPromptEvent}
-        showInstallButton={showInstallButton}
-        setInstallPromptEvent={setInstallPromptEvent}
         isDaily={isDaily}
         dailyIsSolved={dailyIsSolved}
         dispatchGameState={dispatchGameState}

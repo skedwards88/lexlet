@@ -1,5 +1,6 @@
 import React from "react";
 import packageJson from "../../package.json";
+import PlayButtons from "@skedwards88/shared-components/src/components/PlayButtons";
 
 export default function Rules({setDisplay}) {
   return (
@@ -16,15 +17,8 @@ export default function Rules({setDisplay}) {
         The daily challenge is easier on Monday and gets harder over the week.
         Can you win every day?
       </p>
-      <button
-        id="rulesClose"
-        className="close"
-        onClick={() => {
-          setDisplay("game");
-        }}
-      >
-        Play
-      </button>
+
+      <PlayButtons setDisplay={setDisplay} setHasSeenWhatsNew={null} />
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );

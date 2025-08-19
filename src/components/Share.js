@@ -1,5 +1,5 @@
 import React from "react";
-import sendAnalytics from "../common/sendAnalytics";
+import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
 
 // todo change to use the common handleShare component
 function handleShare(text) {

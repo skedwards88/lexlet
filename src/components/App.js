@@ -9,7 +9,9 @@ import {gameReducer} from "../logic/gameReducer";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
-} from "../common/handleInstall";
+} from "@skedwards88/shared-components/src/logic/handleInstall";
+import InstallOverview from "@skedwards88/shared-components/src/components/InstallOverview";
+import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
 import {hasVisitedSince} from "../common/hasVisitedSince";
 import getDailySeed from "../common/getDailySeed";
 import {getInitialState} from "../common/getInitialState";
@@ -46,6 +48,7 @@ export default function App() {
       handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
 
     window.addEventListener("appinstalled", listener);
+
     return () => window.removeEventListener("appinstalled", listener);
   }, []);
   // *****
@@ -199,9 +202,6 @@ export default function App() {
       return (
         <Lexlet
           setDisplay={setDisplay}
-          setInstallPromptEvent={setInstallPromptEvent}
-          showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent}
           gameState={dailyGameState}
           dispatchGameState={dispatchDailyGameState}
           stats={stats}
@@ -211,13 +211,33 @@ export default function App() {
         ></Lexlet>
       );
 
-    default:
+    case "installOverview":
       return (
-        <Lexlet
+        <InstallOverview
           setDisplay={setDisplay}
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
+          googleAppLink={
+            "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
+          }
+        ></InstallOverview>
+      );
+
+    case "pwaInstall":
+      return (
+        <PWAInstall
+          setDisplay={setDisplay}
+          googleAppLink={
+            "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
+          }
+        ></PWAInstall>
+      );
+
+    default:
+      return (
+        <Lexlet
+          setDisplay={setDisplay}
           gameState={gameState}
           dispatchGameState={dispatchGameState}
           stats={stats}

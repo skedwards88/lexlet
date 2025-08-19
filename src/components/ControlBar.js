@@ -1,14 +1,11 @@
 import React from "react";
-import {handleInstall} from "../common/handleInstall";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {handleShare} from "../common/handleShare";
+import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 
 export default function ControlBar({
   setDisplay,
-  installPromptEvent,
-  showInstallButton,
-  setInstallPromptEvent,
   swatchAnimationDestinationRef,
   newPaletteIndexes = [],
   isDaily,
@@ -96,13 +93,12 @@ export default function ControlBar({
           setDisplay("stats");
         }}
       ></button>
-      {showInstallButton && installPromptEvent ? (
+
+      {!isRunningStandalone() ? (
         <button
           id="installButton"
           className="controlButton"
-          onClick={() =>
-            handleInstall(installPromptEvent, setInstallPromptEvent)
-          }
+          onClick={() => setDisplay("installOverview")}
         ></button>
       ) : (
         <></>

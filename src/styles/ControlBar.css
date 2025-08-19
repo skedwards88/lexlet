@@ -50,7 +50,7 @@
 }
 
 #installButton {
-  background-image: url("../images/icons/install.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/install.svg");
 }
 
 #exitDailyButton {

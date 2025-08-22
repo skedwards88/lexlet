@@ -19,34 +19,34 @@
 }
 
 #settingsButton {
-  background-image: url("../images/icons/settings.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/gear.svg");
 }
 
 #newGameButton {
-  background-image: url("../images/icons/new_game.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/new_game.svg");
 }
 
 #rulesButton {
-  background-image: url("../images/icons/info.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/question_mark.svg");
 }
 
 #heartButton {
-  background-image: url("../images/icons/heart.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/heart.svg");
 }
 
 #shareButton {
-  background-image: url("../images/icons/share.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/share.svg");
 }
 
 #calendarButton {
   background-image:
-    url("../images/icons/daily.svg"),
+    url("@skedwards88/shared-components/src/images/icons/calendar.svg"),
     radial-gradient(circle, rgb(239 239 239 / 60%) 30%, rgb(55 54 71));
   width: calc(var(--default-font-size) * 2);
 }
 
 #calendarButtonSolved {
-  background-image: url("../images/icons/daily.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/calendar.svg");
 }
 
 #installButton {
@@ -62,5 +62,5 @@
 }
 
 #statsButton {
-  background-image: url("../images/icons/stats.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/bar_chart.svg");
 }

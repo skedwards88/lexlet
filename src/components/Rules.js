@@ -17,8 +17,12 @@ export default function Rules({setDisplay}) {
         The daily challenge is easier on Monday and gets harder over the week.
         Can you win every day?
       </p>
-
-      <PlayButtons setDisplay={setDisplay} setHasSeenWhatsNew={null} />
+      <PlayButtons
+        onClickPlay={() => {
+          setDisplay("game");
+        }}
+        onClickInstall={() => setDisplay("installOverview")}
+      ></PlayButtons>
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );

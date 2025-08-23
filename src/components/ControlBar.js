@@ -1,8 +1,8 @@
 import React from "react";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
-import {handleShare} from "../common/handleShare";
 import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
+import Share from "@skedwards88/shared-components/src/components/Share";
 
 export default function ControlBar({
   setDisplay,
@@ -60,21 +60,14 @@ export default function ControlBar({
         onClick={() => setDisplay("heart")}
       ></button>
 
-      {navigator.canShare ? (
-        <button
-          id="shareButton"
-          className="controlButton"
-          onClick={() => {
-            handleShare({
-              appName: "Lexlet",
-              text: "Check out this word puzzle!",
-              url: "https://lexlet.com/",
-            });
-          }}
-        ></button>
-      ) : (
-        <></>
-      )}
+      <Share
+        appName="Lexlet"
+        text="Check out this word puzzle!"
+        url="https://lexlet.com/"
+        origin="control bar"
+        id="shareButton"
+        className="controlButton"
+      ></Share>
 
       <button
         id="statsButton"

@@ -2,7 +2,7 @@ import React from "react";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {Countdown} from "./Countdown";
-import {handleShare} from "../common/handleShare";
+import Share from "@skedwards88/shared-components/src/components/Share";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -123,21 +123,14 @@ export default function GameOver({
         <p>Success!</p>
       )}
       <div id="gameOverButtons">
-        {navigator.canShare ? (
-          <button
-            id="shareButton"
-            onClick={() => {
-              handleShare({
-                appName: "Lexlet",
-                text: result,
-                url: "https://lexlet.com",
-                // seed: `${gameState.seed}_${gameState.difficultyLevel}`, // todo add way to share and parse specific puzzle. need to account for daily vs not too. back propogate to blobble
-              });
-            }}
-          ></button>
-        ) : (
-          <></>
-        )}
+        <Share
+          appName="Lexlet"
+          text={result}
+          url="https://lexlet.com/"
+          origin="game over"
+          id="shareButton"
+          className="controlButton"
+        ></Share>
         {isDaily ? (
           <></>
         ) : (

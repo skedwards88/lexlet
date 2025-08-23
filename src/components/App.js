@@ -178,6 +178,9 @@ export default function App() {
           repoName={"lexlet"}
           includeExtraInfo={true}
           includeWordAttribution={true}
+          googleLink={
+            "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
+          }
         ></MoreGames>
       );
 

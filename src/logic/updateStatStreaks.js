@@ -1,4 +1,7 @@
-import {isYesterday, isToday} from "./isNDaysAgo";
+import {
+  isYesterday,
+  isToday,
+} from "@skedwards88/shared-components/src/logic/isNDaysAgo";
 
 export function updateStatStreaks(oldStats) {
   const today = new Date();

@@ -12,9 +12,9 @@ import {
 } from "@skedwards88/shared-components/src/logic/handleInstall";
 import InstallOverview from "@skedwards88/shared-components/src/components/InstallOverview";
 import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
-import {hasVisitedSince} from "../common/hasVisitedSince";
-import getDailySeed from "../common/getDailySeed";
-import {getInitialState} from "../common/getInitialState";
+import {hasVisitedSince} from "@skedwards88/shared-components/src/logic/hasVisitedSince";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
+import {getInitialState} from "../logic/getInitialState";
 import {statsInit} from "../logic/statsInit";
 import Settings from "./Settings";
 
@@ -70,7 +70,7 @@ export default function App() {
   );
 
   // Record that they visited today
-  const [lastVisited, setLastVisited] = React.useState(getDailySeed());
+  const [lastVisited, setLastVisited] = React.useState(getSeedFromDate());
   React.useEffect(() => {
     window.localStorage.setItem(
       "lexletLastVisited",
@@ -84,7 +84,7 @@ export default function App() {
     // This is to help the daily challenge refresh if the app has
     // been open in the background since an earlier challenge.
     if (!document.hidden) {
-      setLastVisited(getDailySeed());
+      setLastVisited(getSeedFromDate());
     }
   }
 
@@ -195,7 +195,7 @@ export default function App() {
 
     case "daily":
       // force reinitialize the daily state if the day has changed
-      if (dailyGameState.seed != getDailySeed()) {
+      if (dailyGameState.seed != getSeedFromDate()) {
         dispatchDailyGameState({
           action: "newGame",
           isDaily: true,

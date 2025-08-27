@@ -1,5 +1,5 @@
 import React from "react";
-import getDailySeed from "../common/getDailySeed";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
 
 function calculateTimeLeft() {
   const now = new Date();
@@ -22,7 +22,7 @@ export function Countdown({dispatchGameState, seed}) {
   React.useEffect(() => {
     const timerID = setTimeout(() => {
       // If past the next game time, get a new game, otherwise decrement the countdown
-      const newSeed = getDailySeed();
+      const newSeed = getSeedFromDate();
       if (seed !== newSeed) {
         dispatchGameState({action: "newGame"});
       } else {

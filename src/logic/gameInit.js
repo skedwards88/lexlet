@@ -1,7 +1,7 @@
 import {getPlayableBoard} from "./generateGame";
-import getDailySeed from "../common/getDailySeed";
-import getRandomSeed from "../common/getRandomSeed";
-import {getDifficultyLevelForDay} from "../common/getDifficultyLevelForDay";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
+import {getRandomSeed} from "@skedwards88/shared-components/src/logic/getRandomSeed";
+import {getDifficultyLevelForDay} from "@skedwards88/shared-components/src/logic/getDifficultyLevelForDay";
 
 function getWordLengthsForLevel(level) {
   const wordLengths = [
@@ -24,7 +24,7 @@ export function gameInit({
   seed,
 }) {
   if (isDaily) {
-    seed = getDailySeed();
+    seed = getSeedFromDate();
   }
 
   if (!seed) {

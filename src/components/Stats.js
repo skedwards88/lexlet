@@ -43,7 +43,7 @@ export default function Stats({stats, setDisplay}) {
         key={colors}
       ></Swatch>
     ) : (
-      <div className="swatch empty"></div>
+      <div className="swatch empty" key={index}></div>
     );
   });
 

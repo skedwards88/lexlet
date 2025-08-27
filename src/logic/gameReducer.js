@@ -4,7 +4,7 @@ import {checkIfNeighbors} from "@skedwards88/word_logic";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {gameInit} from "./gameInit";
 import {trie} from "./trie";
-import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
+import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getNewPaletteIndexes} from "./getNewPaletteIndexes";
 
 export function gameReducer(currentGameState, payload) {

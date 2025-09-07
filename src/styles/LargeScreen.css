@@ -1,10 +1,14 @@
 /* Landscape, large screen */
 @media (orientation: landscape) and (min-width: 1000px) {
   .App {
-    --default-font-size: min(4vh, 7vw, 1cm);
-    --board-box-diam: min(12vh, 120px);
-    --clue-box-diam: min(4vh, 16vw);
+    justify-self: center;
+    max-width: 750px;
+  }
 
-    justify-content: center;
+  #controls,
+  #exitDaily,
+  .gameOver,
+  #rulesDemo {
+    width: 100%;
   }
 }

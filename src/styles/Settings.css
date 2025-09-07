@@ -82,7 +82,7 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .settings {
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   font-size: calc(var(--default-font-size) * 0.7);
   justify-items: center;
   align-items: center;
@@ -94,8 +94,7 @@ input[type="range"]:focus::-ms-fill-upper {
 #settings {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  width: 100%;
+  width: 90%;
   align-items: stretch;
 }
 

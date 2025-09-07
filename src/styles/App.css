@@ -1,7 +1,7 @@
 html {
-  --default-font-size: min(4vmax, 7vmin, 40px);
-  --board-box-diam: min(15vmax, 20vmin, 145px);
-  --clue-box-diam: min(4vmax, 16vmin);
+  --board-box-diam: min(15vmax, 20vmin, 75px);
+  --default-font-size: calc(var(--board-box-diam) * 0.35);
+  --clue-box-diam: calc(var(--board-box-diam) * 0.5);
   --dark-color: rgb(55 54 71);
   --light-color: rgb(239 239 239);
 
@@ -55,14 +55,14 @@ hr {
   height: 90vh; /* fallback if svh isn't handled */
   height: 100svh; /* use svh if supported to account for the url bar gracefully */
   width: 100vw;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .rules {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   font-size: calc(var(--default-font-size) * 0.75);
   justify-items: center;
   align-items: center;
@@ -75,7 +75,7 @@ hr {
   justify-content: space-evenly;
   text-align: center;
   font-size: calc(var(--default-font-size) * 0.75);
-  overflow: scroll;
+  overflow: auto;
 }
 
 #rulesHeader,
@@ -115,7 +115,7 @@ hr {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -366,8 +366,8 @@ hr {
 
 .clueBox,
 .guessBox {
-  min-height: var(--clue-box-diam);
-  min-width: var(--clue-box-diam);
+  height: var(--clue-box-diam);
+  width: var(--clue-box-diam);
   border-top: 2px solid var(--light-color);
   border-left: 2px solid var(--light-color);
   border-bottom: 2px solid var(--light-color);

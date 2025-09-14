@@ -234,6 +234,7 @@ export default function App() {
           googleAppLink={
             "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
           }
+          pwaLink={"https://lexlet.com"}
         ></PWAInstall>
       );
 

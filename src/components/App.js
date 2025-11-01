@@ -17,6 +17,10 @@ import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedF
 import {getInitialState} from "../logic/getInitialState";
 import {statsInit} from "../logic/statsInit";
 import Settings from "./Settings";
+import {getUserId} from "../logic/getUserId";
+import {getSessionId} from "../logic/getSessionId";
+import {sendAnalyticsCF} from "../logic/sendAnalyticsCF";
+import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 
 export default function App() {
   // *****
@@ -158,6 +162,49 @@ export default function App() {
   }, [stats]);
   // ******
   // End stats setup
+  // ******
+
+  // ******
+  // Start analytics setup
+  // ******
+
+  // Store userID and sessionID so don't have to read local storage every time
+  const userId = getUserId("lexlet_uid");
+  const sessionId = getSessionId("lexlet_sid");
+
+  // Send analytics on load
+  React.useEffect(() => {
+    sendAnalyticsCF({
+      userId,
+      sessionId,
+      analyticsToLog: [
+        {
+          eventName: "app_load",
+          // os, browser, and isMobile are parsed on the server from the user agent headers
+          screenWidth: window.screen.width,
+          screenHeight: window.screen.height,
+          isStandalone: isRunningStandalone(),
+          devicePixelRatio: window.devicePixelRatio,
+        },
+      ],
+    });
+    // Just run once on app load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Send analytics following reducer updates, if needed
+  React.useEffect(() => {
+    const analyticsToLog = gameState.analyticsToLog;
+
+    if (!analyticsToLog || !analyticsToLog.length) {
+      return;
+    }
+
+    sendAnalyticsCF({userId, sessionId, analyticsToLog});
+  }, [gameState?.analyticsToLog, sessionId, userId]);
+
+  // ******
+  // End analytics setup
   // ******
 
   switch (display) {

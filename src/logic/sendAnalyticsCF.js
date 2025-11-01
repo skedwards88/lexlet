@@ -24,7 +24,7 @@ export function sendAnalyticsCF({userId, sessionId, analyticsToLog}) {
   void fetch(ANALYTICS_ENDPOINT, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(payload),
+    body: JSON.stringify({batch: payload}),
     keepalive: true,
   }).catch((error) => {
     console.error("Failed to send analytics", error);

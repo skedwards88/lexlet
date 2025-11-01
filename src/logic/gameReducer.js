@@ -4,24 +4,26 @@ import {checkIfNeighbors} from "@skedwards88/word_logic";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {gameInit} from "./gameInit";
 import {trie} from "./trie";
-import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getNewPaletteIndexes} from "./getNewPaletteIndexes";
 
 export function gameReducer(currentGameState, payload) {
+  let analyticsToLog = [];
+
   if (payload.action === "startWord") {
     return {
       ...currentGameState,
       wordInProgress: true,
       playedIndexes: [payload.letterIndex],
       result: "",
+      analyticsToLog,
     };
   } else if (payload.action === "hint") {
     // If we already gave a hint for that location, return early
     if (currentGameState.hints[payload.clueIndex][payload.boxIndex]) {
-      return {...currentGameState};
+      return currentGameState;
     }
 
-    sendAnalytics("hint");
+    analyticsToLog.push({eventName: "hint"});
 
     let newHints = cloneDeep(currentGameState.hints);
     newHints[payload.clueIndex][payload.boxIndex] = true;
@@ -33,24 +35,40 @@ export function gameReducer(currentGameState, payload) {
       );
       newClueMatches[payload.clueIndex] = true;
 
-      const num_found = newClueMatches.filter((i) => i).length;
-      console.log("found_word");
-      sendAnalytics("found_word", {
-        num_found: num_found,
+      const numFound = newClueMatches.filter((i) => i).length;
+
+      analyticsToLog.push({
+        eventName: "found_match",
+        eventInfo: {
+          numFound: numFound,
+        },
       });
 
       if (newClueMatches.every((i) => i)) {
-        console.log("completed_game");
-        sendAnalytics("completed_game");
+        analyticsToLog.push({
+          eventName: "completed_game",
+          eventInfo: {
+            difficultyLevel: currentGameState.difficultyLevel,
+            isDaily: currentGameState.isDaily,
+            numHints: currentGameState.hints
+              .flat()
+              .reduce(
+                (numHints, currentValue) =>
+                  currentValue ? numHints + 1 : numHints,
+                0,
+              ),
+          },
+        });
       }
 
       return {
         ...currentGameState,
         hints: newHints,
         clueMatches: newClueMatches,
+        analyticsToLog,
       };
     } else {
-      return {...currentGameState, hints: newHints};
+      return {...currentGameState, hints: newHints, analyticsToLog};
     }
   } else if (payload.action === "addLetter") {
     if (!currentGameState.wordInProgress) {
@@ -78,6 +96,7 @@ export function gameReducer(currentGameState, payload) {
     return {
       ...currentGameState,
       playedIndexes: newPlayedIndexes,
+      analyticsToLog,
     };
   } else if (payload.action === "removeLetter") {
     if (!currentGameState.wordInProgress) {
@@ -98,6 +117,7 @@ export function gameReducer(currentGameState, payload) {
     return {
       ...currentGameState,
       playedIndexes: newPlayedIndexes,
+      analyticsToLog,
     };
   } else if (payload.action === "endWord") {
     // Since we end the word on board up or on app up (in case the user swipes off the board), we can end up calling this case twice.
@@ -125,6 +145,7 @@ export function gameReducer(currentGameState, payload) {
         playedIndexes: [],
         wordInProgress: false,
         result: word.length > 3 ? "Unknown word" : "",
+        analyticsToLog,
       };
     }
 
@@ -169,13 +190,17 @@ export function gameReducer(currentGameState, payload) {
         playedIndexes: [],
         wordInProgress: false,
         result: "",
+        analyticsToLog,
       };
     }
 
-    const num_found = clueMatches.filter((i) => i).length;
-    console.log("found_match");
-    sendAnalytics("found_match", {
-      num_found: num_found,
+    const numFound = clueMatches.filter((i) => i).length;
+
+    analyticsToLog.push({
+      eventName: "found_match",
+      eventInfo: {
+        numFound: numFound,
+      },
     });
 
     const gameIsComplete = clueMatches.every((i) => i);
@@ -188,11 +213,24 @@ export function gameReducer(currentGameState, payload) {
         clueIndexes: clueIndexes,
         wordInProgress: false,
         result: "",
+        analyticsToLog,
       };
     }
 
-    console.log("completed_game");
-    sendAnalytics("completed_game");
+    analyticsToLog.push({
+      eventName: "completed_game",
+      eventInfo: {
+        difficultyLevel: currentGameState.difficultyLevel,
+        isDaily: currentGameState.isDaily,
+        numHints: currentGameState.hints
+          .flat()
+          .reduce(
+            (numHints, currentValue) =>
+              currentValue ? numHints + 1 : numHints,
+            0,
+          ),
+      },
+    });
 
     const newIndexes = getNewPaletteIndexes({
       previouslyCollectedIndexes: payload.collectedSwatchIndexes,
@@ -208,11 +246,12 @@ export function gameReducer(currentGameState, payload) {
       wordInProgress: false,
       result: "",
       newPaletteIndexes: newIndexes,
+      analyticsToLog,
     };
   } else if (payload.action === "newGame") {
     return gameInit({...payload, seed: undefined, useSaved: false});
   } else {
     console.log(`unknown action: ${payload.action}`);
-    return {...currentGameState};
+    return currentGameState;
   }
 }

@@ -17,9 +17,9 @@ import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedF
 import {getInitialState} from "../logic/getInitialState";
 import {statsInit} from "../logic/statsInit";
 import Settings from "./Settings";
-import {getUserId} from "../logic/getUserId";
-import {getSessionId} from "../logic/getSessionId";
-import {sendAnalyticsCF} from "../logic/sendAnalyticsCF";
+import {getUserId} from "@skedwards88/shared-components/src/logic/getUserId";
+import {v4 as uuidv4} from "uuid";
+import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 
 export default function App() {
@@ -170,7 +170,7 @@ export default function App() {
 
   // Store userID and sessionID so don't have to read local storage every time
   const userId = getUserId("lexlet_uid");
-  const sessionId = getSessionId("lexlet_sid");
+  const sessionId = uuidv4();
 
   // Send analytics on load
   React.useEffect(() => {

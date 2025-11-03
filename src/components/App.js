@@ -170,7 +170,10 @@ export default function App() {
 
   // Store userID and sessionID so don't have to read local storage every time
   const userId = getUserId("lexlet_uid");
-  const sessionId = uuidv4();
+
+  // Store sessionID as a ref so I have the same session ID until app refresh
+  const sessionIdRef = React.useRef(uuidv4());
+  const sessionId = sessionIdRef.current;
 
   // Send analytics on load
   React.useEffect(() => {
@@ -202,6 +205,16 @@ export default function App() {
 
     sendAnalyticsCF({userId, sessionId, analyticsToLog});
   }, [gameState?.analyticsToLog, sessionId, userId]);
+
+  React.useEffect(() => {
+    const analyticsToLog = dailyGameState.analyticsToLog;
+
+    if (!analyticsToLog || !analyticsToLog.length) {
+      return;
+    }
+
+    sendAnalyticsCF({userId, sessionId, analyticsToLog});
+  }, [dailyGameState?.analyticsToLog, sessionId, userId]);
 
   // ******
   // End analytics setup

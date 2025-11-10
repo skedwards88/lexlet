@@ -8,6 +8,7 @@ import "./styles/Settings.css";
 import "@skedwards88/shared-components/src/styles/MoreGames.css";
 import "@skedwards88/shared-components/src/styles/Install.css";
 import "./styles/LargeScreen.css";
+import {MetadataContextProvider} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
   const path = "/service-worker.js";
@@ -26,4 +27,8 @@ if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <MetadataContextProvider>
+    <App />
+  </MetadataContextProvider>,
+);

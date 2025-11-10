@@ -65,7 +65,6 @@ export function gameInit({
       ...savedState,
       colors: adjustedColors,
       newPaletteIndexes: savedState.newPaletteIndexes || [],
-      analyticsToLog: [],
     };
   }
 
@@ -101,8 +100,5 @@ export function gameInit({
     result: "",
     newPaletteIndexes: [],
     difficultyLevel,
-    analyticsToLog: [
-      {eventName: "new_game", eventInfo: {isDaily, difficultyLevel}},
-    ],
   };
 }

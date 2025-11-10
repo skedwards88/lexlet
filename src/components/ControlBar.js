@@ -3,6 +3,7 @@ import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 import Share from "@skedwards88/shared-components/src/components/Share";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 
 export default function ControlBar({
   setDisplay,
@@ -13,6 +14,8 @@ export default function ControlBar({
   dispatchGameState,
   gameState,
 }) {
+  const {userId, sessionId} = useMetadataContext();
+
   const flashColors = newPaletteIndexes.map((newIndex) =>
     calculateMixedColor(palette[newIndex]),
   );
@@ -67,6 +70,8 @@ export default function ControlBar({
         origin="control bar"
         id="shareButton"
         className="controlButton"
+        userId={userId}
+        sessionId={sessionId}
       ></Share>
 
       <button

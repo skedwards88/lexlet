@@ -3,6 +3,7 @@ import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {Countdown} from "./Countdown";
 import Share from "@skedwards88/shared-components/src/components/Share";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 
 function resultToIcon({hints, clueIndexes, colors}) {
   const boxTranslation = {
@@ -106,6 +107,8 @@ export default function GameOver({
   isDaily,
   gameState,
 }) {
+  const {userId, sessionId} = useMetadataContext();
+
   const result = resultToIcon({
     hints: hints,
     clueIndexes: clueIndexes,
@@ -130,6 +133,8 @@ export default function GameOver({
           origin="game over"
           id="shareButton"
           className="controlButton"
+          userId={userId}
+          sessionId={sessionId}
         ></Share>
         {isDaily ? (
           <></>

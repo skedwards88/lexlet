@@ -1,5 +1,6 @@
 {
   "name": "lexlet",
+  "displayName": "Lexlet",
   "version": "2.0.81",
   "description": "",
   "main": "index.js",

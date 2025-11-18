@@ -50,8 +50,8 @@ module.exports = (env, argv) => {
       {from: "./src/images/favicons/icon_192.png", to: "./assets/icon_192.png"},
       {from: "./src/images/favicons/icon_512.png", to: "./assets/icon_512.png"},
       {
-        from: "./src/images/favicons/maskable_icon.png",
-        to: "./assets/maskable_icon.png",
+        from: "./src/images/favicons/maskable_icon_192.png",
+        to: "./assets/maskable_icon_192.png",
       },
       {from: "./src/manifest.json", to: "./assets/manifest.json"},
       {from: "./src/assetlinks.json", to: "./.well-known/assetlinks.json"},

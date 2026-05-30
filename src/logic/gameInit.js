@@ -100,5 +100,6 @@ export function gameInit({
     result: "",
     newPaletteIndexes: [],
     difficultyLevel,
+    isDaily,
   };
 }

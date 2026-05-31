@@ -28,7 +28,11 @@ export function inferEventsToLog(oldState, newState) {
   if (numNewHints > numOldHints) {
     analyticsToLog.push({eventName: "hint"});
   }
-  if (newState.clueMatches.every((i) => i)) {
+
+  if (
+    !oldState.clueMatches.every((i) => i) &&
+    newState.clueMatches.every((i) => i)
+  ) {
     analyticsToLog.push({
       eventName: "completed_game",
       eventInfo: {

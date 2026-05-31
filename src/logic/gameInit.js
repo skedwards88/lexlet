@@ -65,6 +65,7 @@ export function gameInit({
       ...savedState,
       colors: adjustedColors,
       newPaletteIndexes: savedState.newPaletteIndexes || [],
+      isResumedFromSave: true,
     };
   }
 
@@ -101,5 +102,6 @@ export function gameInit({
     newPaletteIndexes: [],
     difficultyLevel,
     isDaily,
+    isResumedFromSave: false,
   };
 }

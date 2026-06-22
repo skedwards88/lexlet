@@ -44,5 +44,20 @@ export function inferEventsToLog(oldState, newState) {
       },
     });
   }
+
+  // If they found an invalid word (and the word is > 3 letters)
+  if (
+    newState.lastInvalidWord &&
+    newState.lastInvalidWord.length > 3 &&
+    newState.lastInvalidWord != oldState.lastInvalidWord
+  ) {
+    analyticsToLog.push({
+      eventName: "unknown_word",
+      eventInfo: {
+        word: newState.lastInvalidWord,
+      },
+    });
+  }
+
   return analyticsToLog;
 }

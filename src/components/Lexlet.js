@@ -99,9 +99,9 @@ export default function Lexlet({
         )}
         colors={gameState.playedIndexes.map((index) => gameState.colors[index])}
       ></CurrentWord>
-      {gameState.result ? (
+      {gameState.lastInvalidWord ? (
         <div id="wordResult" className="fadeOut">
-          {gameState.result}
+          Unknown word
         </div>
       ) : (
         <></>

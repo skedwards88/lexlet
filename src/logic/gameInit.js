@@ -98,7 +98,7 @@ export function gameInit({
     clueMatches,
     playedIndexes: [],
     hints,
-    result: "",
+    lastInvalidWord: null,
     newPaletteIndexes: [],
     difficultyLevel,
     isDaily,

@@ -12,7 +12,7 @@ export function gameReducer(currentGameState, payload) {
       ...currentGameState,
       wordInProgress: true,
       playedIndexes: [payload.letterIndex],
-      result: "",
+      lastInvalidWord: null,
     };
   } else if (payload.action === "hint") {
     // If we already gave a hint for that location, return early
@@ -110,7 +110,8 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         playedIndexes: [],
         wordInProgress: false,
-        result: word.length > 3 ? "Unknown word" : "",
+        // store the word in the state so we can log it in the analytics to see if the dictionary should be updated
+        lastInvalidWord: word,
       };
     }
 
@@ -154,7 +155,7 @@ export function gameReducer(currentGameState, payload) {
         ...currentGameState,
         playedIndexes: [],
         wordInProgress: false,
-        result: "",
+        lastInvalidWord: null,
       };
     }
 
@@ -167,7 +168,7 @@ export function gameReducer(currentGameState, payload) {
         clueMatches: clueMatches,
         clueIndexes: clueIndexes,
         wordInProgress: false,
-        result: "",
+        lastInvalidWord: null,
       };
     }
 
@@ -183,7 +184,7 @@ export function gameReducer(currentGameState, payload) {
       clueMatches: clueMatches,
       clueIndexes: clueIndexes,
       wordInProgress: false,
-      result: "",
+      lastInvalidWord: null,
       newPaletteIndexes: newIndexes,
     };
   } else if (payload.action === "newGame") {

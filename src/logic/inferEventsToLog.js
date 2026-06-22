@@ -12,6 +12,7 @@ export function inferEventsToLog(oldState, newState) {
     });
   }
 
+  // If they used a hint
   const numOldHints = oldState.hints
     .flat()
     .reduce(
@@ -29,6 +30,7 @@ export function inferEventsToLog(oldState, newState) {
     analyticsToLog.push({eventName: "hint"});
   }
 
+  // If they completed the game
   if (
     !oldState.clueMatches.every((i) => i) &&
     newState.clueMatches.every((i) => i)

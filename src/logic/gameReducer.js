@@ -111,7 +111,7 @@ export function gameReducer(currentGameState, payload) {
         playedIndexes: [],
         wordInProgress: false,
         // store the word in the state so we can log it in the analytics to see if the dictionary should be updated
-        lastInvalidWord: word,
+        lastInvalidWord: word.length > 3 ? word : null,
       };
     }
 

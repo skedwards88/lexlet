@@ -45,10 +45,9 @@ export function inferEventsToLog(oldState, newState) {
     });
   }
 
-  // If they found an invalid word (and the word is > 3 letters)
+  // If they found an invalid word
   if (
     newState.lastInvalidWord &&
-    newState.lastInvalidWord.length > 3 &&
     newState.lastInvalidWord != oldState.lastInvalidWord
   ) {
     analyticsToLog.push({

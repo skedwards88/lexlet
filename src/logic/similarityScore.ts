@@ -1,4 +1,7 @@
-export function getColorSimilarityScore(pattern1, pattern2) {
+export function getColorSimilarityScore(
+  pattern1: string,
+  pattern2: string,
+): 1 | 0 {
   // If the patterns have the exact same number of each color, they have a non-zero similarity score
 
   const numR1 = pattern1.match(/r/g)?.length || 0;
@@ -22,7 +25,7 @@ export function getColorSimilarityScore(pattern1, pattern2) {
   return 1;
 }
 
-export function getWordSimilarityScore(word1, word2) {
+export function getWordSimilarityScore(word1: string, word2: string): number {
   // if the words are exactly the same
   if (word1 === word2) return 1;
 
@@ -62,7 +65,7 @@ export function getWordSimilarityScore(word1, word2) {
 
   // If they share any stretch of 4 letters
   let quadrupletScore = 0;
-  let word1Quadruplets = [];
+  const word1Quadruplets = [];
   for (let index = 0; index <= word1.length - 4; index++) {
     word1Quadruplets.push(word1.slice(index, index + 4));
   }
@@ -76,7 +79,7 @@ export function getWordSimilarityScore(word1, word2) {
   // And if they share any stretch of 3 letters (if they don't already share 4 letters)
   let tripletScore = 0;
   if (quadrupletScore === 0) {
-    let word1Triplets = [];
+    const word1Triplets = [];
     for (let index = 0; index <= word1.length - 3; index++) {
       word1Triplets.push(word1.slice(index, index + 3));
     }
@@ -91,7 +94,10 @@ export function getWordSimilarityScore(word1, word2) {
   return Math.max(startScore, endScore, quadrupletScore, tripletScore);
 }
 
-export function getMaxWordSimilarityScore(wordList1, wordList2) {
+export function getMaxWordSimilarityScore(
+  wordList1: string[],
+  wordList2: string[],
+): number {
   let maxSimilarityScore = 0;
   for (let index1 = 0; index1 < wordList1.length; index1++) {
     for (let index2 = 0; index2 < wordList2.length; index2++) {

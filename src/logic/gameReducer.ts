@@ -1,12 +1,42 @@
-import cloneDeep from "lodash.clonedeep";
 import {isKnown} from "@skedwards88/word_logic";
 import {checkIfNeighbors} from "@skedwards88/word_logic";
 import {arraysMatchQ} from "@skedwards88/word_logic";
-import {gameInit} from "./gameInit";
+import {gameInit, type GameState} from "./gameInit";
 import {trie} from "./trie";
 import {getNewPaletteIndexes} from "./getNewPaletteIndexes";
 
-export function gameReducer(currentGameState, payload) {
+export type ReducerPayload =
+  | {
+      action: "startWord";
+      letterIndex: number;
+    }
+  | {
+      action: "addLetter";
+      letterIndex: number;
+    }
+  | {
+      action: "removeLetter";
+      letterIndex: number;
+    }
+  | {
+      action: "hint";
+      clueIndex: number;
+      boxIndex: number;
+    }
+  | {
+      action: "endWord";
+      collectedSwatchIndexes: number[];
+    }
+  | {
+      action: "newGame";
+      difficultyLevel?: number;
+      isDaily?: boolean;
+    };
+
+export function gameReducer(
+  currentGameState: GameState,
+  payload: ReducerPayload,
+): GameState {
   if (payload.action === "startWord") {
     return {
       ...currentGameState,
@@ -20,12 +50,12 @@ export function gameReducer(currentGameState, payload) {
       return currentGameState;
     }
 
-    let newHints = cloneDeep(currentGameState.hints);
+    const newHints = structuredClone(currentGameState.hints);
     newHints[payload.clueIndex][payload.boxIndex] = true;
 
     // If all boxes in the clue have been hinted, that clue is fully solved
     if (newHints[payload.clueIndex].every((i) => i)) {
-      let newClueMatches = JSON.parse(
+      const newClueMatches = JSON.parse(
         JSON.stringify(currentGameState.clueMatches),
       );
       newClueMatches[payload.clueIndex] = true;
@@ -120,8 +150,8 @@ export function gameReducer(currentGameState, payload) {
     const currentColors = currentGameState.playedIndexes.map(
       (index) => currentGameState.colors[index],
     );
-    let clueMatches = [...currentGameState.clueMatches];
-    let clueIndexes = currentGameState.clueIndexes.map((indexes) => [
+    const clueMatches = [...currentGameState.clueMatches];
+    const clueIndexes = currentGameState.clueIndexes.map((indexes) => [
       ...indexes,
     ]);
     for (
@@ -188,9 +218,17 @@ export function gameReducer(currentGameState, payload) {
       newPaletteIndexes: newIndexes,
     };
   } else if (payload.action === "newGame") {
-    return gameInit({...payload, seed: undefined, useSaved: false});
+    return gameInit({
+      difficultyLevel:
+        payload.difficultyLevel ?? currentGameState.difficultyLevel,
+      isDaily: payload.isDaily ?? currentGameState.isDaily,
+      seed: undefined,
+      useSaved: false,
+    });
   } else {
-    console.log(`unknown action: ${payload.action}`);
+    console.log(
+      `unknown action: ${(payload as unknown as {action: string}).action}`,
+    );
     return currentGameState;
   }
 }

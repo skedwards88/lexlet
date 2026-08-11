@@ -1,6 +1,12 @@
-import React from "react";
+import type {LetterQu} from "@skedwards88/word_logic/dist/Types";
+import type {Color} from "../logic/gameInit";
+import type {ReducerPayload} from "../logic/gameReducer";
 
-function convertToRGB(red, yellow, blue) {
+function convertToRGB(
+  red: number,
+  yellow: number,
+  blue: number,
+): [number, number, number] {
   // Convert RYB to RGB
   // I pulled these calculations from the internet and made some tweaks until it looked "right-ish"
 
@@ -41,7 +47,7 @@ function convertToRGB(red, yellow, blue) {
   return [red, green, blue];
 }
 
-export function calculateMixedColor(colors) {
+export function calculateMixedColor(colors: Color[]): string {
   // Convert a list of red/yellow/blue color names
   // to an rbga value reflecting the mixture of the colors
 
@@ -82,7 +88,14 @@ function Clue({
   hint,
   dispatchGameState,
   clueIndex,
-}) {
+}: {
+  clueColors: Color[];
+  clueMatch: boolean;
+  clueLetters: LetterQu[];
+  hint: boolean[];
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  clueIndex: number;
+}): React.JSX.Element {
   const clueSolved = clueMatch || hint.every((i) => i);
   const boxes = clueColors.map((color, index) => (
     <button
@@ -114,8 +127,14 @@ export default function Clues({
   clueLetters,
   hints,
   dispatchGameState,
-}) {
-  const clueDisplays = clueColors.map((clue, index) => (
+}: {
+  clueColors: Color[][];
+  clueMatches: boolean[];
+  clueLetters: LetterQu[][];
+  hints: boolean[][];
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+}): React.JSX.Element {
+  const clueDisplays = clueColors.map((_, index) => (
     <Clue
       clueColors={clueColors[index]}
       clueMatch={clueMatches[index]}

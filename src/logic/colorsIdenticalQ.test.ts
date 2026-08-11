@@ -31,6 +31,7 @@ describe("colorsIdenticalQ", () => {
   test("colors other than red,yellow,blue are ignored", () => {
     expect(
       colorsIdenticalQ(
+        // @ts-expect-error intentionally testing incorrectly typed input
         ["red", "red", "yellow", "green"],
         ["red", "red", "yellow"],
       ),

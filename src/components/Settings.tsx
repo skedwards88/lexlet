@@ -1,10 +1,28 @@
-import React from "react";
+import type {GameState} from "../logic/gameInit";
+import type {ReducerPayload} from "../logic/gameReducer";
+import type {DisplayState} from "./App";
 
-export default function Settings({setDisplay, dispatchGameState, gameState}) {
-  function handleNewGame(event) {
+interface NewGameFormElements extends HTMLFormControlsCollection {
+  difficultyLevel: HTMLInputElement;
+}
+
+interface NewGameFormElement extends HTMLFormElement {
+  readonly elements: NewGameFormElements;
+}
+
+export default function Settings({
+  setDisplay,
+  dispatchGameState,
+  gameState,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  gameState: GameState;
+}): React.JSX.Element {
+  function handleNewGame(event: React.SubmitEvent<NewGameFormElement>): void {
     event.preventDefault();
     const newDifficultyLevel = parseInt(
-      event.target.elements.difficultyLevel.value,
+      event.currentTarget.elements.difficultyLevel.value,
     );
 
     dispatchGameState({
@@ -15,13 +33,14 @@ export default function Settings({setDisplay, dispatchGameState, gameState}) {
   }
 
   return (
-    <form className="App settings" onSubmit={(e) => handleNewGame(e)}>
+    <form className="App settings" onSubmit={handleNewGame}>
       <div id="settings">
         <div className="setting">
           <div className="setting-description">
             <label htmlFor="difficultyLevel">Difficulty</label>
           </div>
           <div id="settingSliderContainer">
+            {/* Ignore the warning about the en dash being confusing here */}
             <div className="settingSliderValue">–</div>
             <input
               id="difficultyLevel"

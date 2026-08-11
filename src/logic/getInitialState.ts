@@ -1,8 +1,10 @@
+import type {DisplayState} from "../components/App";
+
 export function getInitialState(
-  savedDisplayState,
-  hasVisitedEver,
-  hasVisitedSinceLastAnnouncement,
-) {
+  savedDisplayState: DisplayState | undefined,
+  hasVisitedEver: boolean,
+  hasVisitedSinceLastAnnouncement: boolean,
+): DisplayState {
   if (!hasVisitedEver) {
     return "rules";
   }

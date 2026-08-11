@@ -7,9 +7,17 @@ import {
   getMaxWordSimilarityScore,
   getColorSimilarityScore,
 } from "./similarityScore";
-import {determinePatternPreference} from "./determinePatternPreference";
+import {
+  determinePatternPreference,
+  type Pattern,
+} from "./determinePatternPreference";
+import type {LetterQu} from "@skedwards88/word_logic/dist/Types";
+import type {Color} from "./gameInit";
 
-function getLetters(gridSize, pseudoRandomGenerator) {
+function getLetters(
+  gridSize: number,
+  pseudoRandomGenerator: seedrandom.PRNG,
+): LetterQu[] {
   // Given the distribution of letters in the word list
   // Choose n letters without substitution
   const shuffledLetters = shuffleArray(letterPool, pseudoRandomGenerator);
@@ -26,7 +34,7 @@ function getLetters(gridSize, pseudoRandomGenerator) {
       qIndex < (gridSize * gridSize) / 2
         ? qIndex + gridSize
         : qIndex - gridSize;
-    const replacementLetter = shuffleArray(
+    const replacementLetter = shuffleArray<LetterQu>(
       ["A", "E", "I", "O"],
       pseudoRandomGenerator,
     )[0];
@@ -36,9 +44,13 @@ function getLetters(gridSize, pseudoRandomGenerator) {
   return chosenLetters;
 }
 
-function tallyItems(items = []) {
-  let tally = {};
-  items.forEach((item) => (tally[item] = tally[item] ? tally[item] + 1 : 1));
+function tallyItems<T extends string | number>(
+  items: T[] = [],
+): Partial<Record<T, number>> {
+  const tally: Partial<Record<T, number>> = {};
+  items.forEach((item) => {
+    tally[item] = (tally[item] ?? 0) + 1;
+  });
   return tally;
 }
 
@@ -49,15 +61,22 @@ export function getPlayableBoard({
   easyMode,
   numClues,
   seed,
-}) {
-  const colorDistribution = ["red", "blue", "yellow"];
+}: {
+  gridSize: number;
+  minWordLength: number;
+  maxWordLength: number;
+  easyMode: boolean;
+  numClues: number;
+  seed: string;
+}): [LetterQu[], Color[], number[][]] {
+  const colorDistribution: Color[] = ["red", "blue", "yellow"];
   let foundPlayableBoard = false;
-  let letters = [];
-  let colors = [];
-  let clueIndexes = [];
+  let letters: LetterQu[] = [];
+  let colors: Color[] = [];
+  let clueIndexes: number[][] = [];
 
   // Create a new seedable random number generator
-  let pseudoRandomGenerator = seedrandom(seed);
+  const pseudoRandomGenerator = seedrandom(seed);
 
   while (!foundPlayableBoard) {
     // Pick a random assortment of letters and colors
@@ -72,7 +91,7 @@ export function getPlayableBoard({
     }
 
     // make sure that we have at least 4 of each color
-    let colorTally = {};
+    let colorTally: Partial<Record<Color, number>> = {};
     while (
       Object.values(colorTally).length < colorDistribution.length ||
       Object.values(colorTally).some((i) => i < 4)
@@ -104,7 +123,7 @@ export function getPlayableBoard({
 
     // Right now, we have a list of word indexes, many of which use the same pattern
     // Consolidate data about each pattern into a dict with the patterns as the keys
-    let patternData = {};
+    const patternData: Record<string, Pattern> = {};
     for (const currentIndexes of shuffledWordIndexes) {
       const pattern = currentIndexes.map((index) => colors[index][0]).join("");
       const word = currentIndexes.map((index) => letters[index]).join("");
@@ -153,7 +172,7 @@ export function getPlayableBoard({
       patternData[pattern]["sumSimilarityScore"] = sumSimilarityScore;
     }
 
-    let potentialPatterns = new Set(Object.keys(patternData));
+    const potentialPatterns = new Set(Object.keys(patternData));
     for (const pattern in patternData) {
       for (const comparisonPattern in patternData[pattern].similarityScores) {
         // If any pattern comparisons have a similarity score greater than .75
@@ -192,13 +211,13 @@ export function getPlayableBoard({
 
     // Order the potential patterns by similarity score (lower = better)
     // If two patterns have the same similarity score, favor the pattern with more solutions
-    potentialPatterns = Array.from(potentialPatterns);
-    potentialPatterns.sort((patternA, patternB) =>
+    const potentialPatternsAsArray = Array.from(potentialPatterns);
+    potentialPatternsAsArray.sort((patternA, patternB) =>
       determinePatternPreference(patternA, patternB, patternData),
     );
 
     // Choose the first index of the first N patterns to be the "official" solution
-    clueIndexes = potentialPatterns
+    clueIndexes = potentialPatternsAsArray
       .slice(0, numClues)
       .map((pattern) => patternData[pattern].indexes[0]);
 

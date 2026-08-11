@@ -1,7 +1,9 @@
+import type {Color} from "./gameInit";
+
 // Given two arrays of strings representing the primary colors ("yellow", "red", "blue")
 // determine if the ratio of primary colors in the two arrays are identical
-export function colorsIdenticalQ(colorsA, colorsB) {
-  function tallyColors(colors) {
+export function colorsIdenticalQ(colorsA: Color[], colorsB: Color[]): boolean {
+  function tallyColors(colors: Color[]): Record<Color, number> {
     return colors.reduce(
       (tally, currentColor) => {
         tally[currentColor]++;

@@ -2,8 +2,28 @@ import {getPlayableBoard} from "./generateGame";
 import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
 import {getRandomSeed} from "@skedwards88/shared-components/src/logic/getRandomSeed";
 import {getDifficultyLevelForDay} from "@skedwards88/shared-components/src/logic/getDifficultyLevelForDay";
+import type {LetterQu} from "@skedwards88/word_logic/dist/Types";
+import {getFromStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
 
-function getWordLengthsForLevel(level) {
+export type Color = "red" | "yellow" | "blue";
+
+export type GameState = {
+  seed: string;
+  letters: LetterQu[];
+  colors: Color[];
+  clueIndexes: number[][];
+  clueMatches: boolean[];
+  playedIndexes: number[];
+  hints: boolean[][];
+  lastInvalidWord: string | null;
+  newPaletteIndexes: number[];
+  difficultyLevel: number;
+  isDaily: boolean;
+  isResumedFromSave: boolean;
+  wordInProgress: boolean;
+};
+
+function getWordLengthsForLevel(level: number): number[] {
   const wordLengths = [
     [4, 4],
     [4, 5],
@@ -22,7 +42,12 @@ export function gameInit({
   useSaved = true,
   isDaily = false,
   seed,
-}) {
+}: {
+  difficultyLevel?: number;
+  useSaved?: boolean;
+  isDaily?: boolean;
+  seed?: string | undefined;
+}): GameState {
   if (isDaily) {
     seed = getSeedFromDate();
   }
@@ -35,18 +60,11 @@ export function gameInit({
     ? "lexletDailySavedState"
     : "lexletGameSavedState";
 
-  let savedState = useSaved && JSON.parse(localStorage.getItem(savedStateName));
-
-  // Temporary patch so people don't lose their progress
-  // TODO This is only needed for a few playtesters and can be deleted after March 7, 2025
-  // once deleted, change savedState from let to const
-  if (isDaily && !savedState) {
-    savedState = JSON.parse(localStorage.getItem("dailyLexletState"));
-  }
+  const savedState = getFromStorage<GameState>(savedStateName);
 
   if (
-    savedState &&
-    savedState.seed &&
+    useSaved &&
+    savedState?.seed &&
     // If daily, use the saved state if the seed matches
     // otherwise, we don't care if the seed matches
     (!isDaily || savedState.seed == seed) &&
@@ -57,13 +75,8 @@ export function gameInit({
     savedState.hints &&
     savedState.playedIndexes
   ) {
-    // Temporary patch to support the green->blue rename
-    const adjustedColors = savedState.colors.map((color) =>
-      color === "green" ? "blue" : color,
-    );
     return {
       ...savedState,
-      colors: adjustedColors,
       newPaletteIndexes: savedState.newPaletteIndexes || [],
       isResumedFromSave: true,
     };
@@ -103,5 +116,6 @@ export function gameInit({
     difficultyLevel,
     isDaily,
     isResumedFromSave: false,
+    wordInProgress: false,
   };
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
+import type {ReducerPayload} from "../logic/gameReducer";
 
-function calculateTimeLeft() {
+function calculateTimeLeft(): string {
   const now = new Date();
   const nowHours = now.getHours();
   const nowMinutes = now.getMinutes();
@@ -16,7 +17,13 @@ function calculateTimeLeft() {
   return `${adjDiffHours} hr ${diffMinutes} min`;
 }
 
-export function Countdown({dispatchGameState, seed}) {
+export function Countdown({
+  dispatchGameState,
+  seed,
+}: {
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  seed: string;
+}): React.JSX.Element {
   const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
 
   React.useEffect(() => {
@@ -30,7 +37,7 @@ export function Countdown({dispatchGameState, seed}) {
       }
     }, 60000);
 
-    return () => clearTimeout(timerID);
+    return (): void => clearTimeout(timerID);
   });
 
   return <p>{`Next daily challenge in \n${timeLeft}`}</p>;

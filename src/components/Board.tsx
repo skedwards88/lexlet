@@ -1,4 +1,7 @@
 import React from "react";
+import type {ReducerPayload} from "../logic/gameReducer";
+import {type LetterQu} from "@skedwards88/word_logic/dist/Types";
+import type {Color} from "../logic/gameInit";
 
 function Letter({
   letter,
@@ -7,12 +10,22 @@ function Letter({
   index,
   dispatchGameState,
   collectedSwatchIndexes,
-}) {
-  const myRef = React.useRef();
+}: {
+  letter: LetterQu;
+  color: Color;
+  letterAvailability: boolean;
+  index: number;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  collectedSwatchIndexes: number[];
+}): React.JSX.Element {
+  const letterRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useLayoutEffect(() => {
-    const myDiv = myRef.current;
-    const currentClasses = myDiv.className
+    const letterDiv = letterRef.current;
+    if (!letterDiv) {
+      return;
+    }
+    const currentClasses = letterDiv.className
       .split(" ")
       .filter((entry) => entry !== "unavailable");
 
@@ -20,20 +33,24 @@ function Letter({
       ? currentClasses.join(" ")
       : [...currentClasses, "unavailable"].join(" ");
 
-    myDiv.className = newClass;
+    letterDiv.className = newClass;
   }, [letterAvailability]);
 
-  function handlePointerDown(e, index) {
-    e.preventDefault();
-    e.target.releasePointerCapture(e.pointerId);
+  function handlePointerDown(event: React.PointerEvent, index: number): void {
+    event.preventDefault();
+    event.currentTarget.releasePointerCapture(event.pointerId);
     dispatchGameState({
       action: "startWord",
       letterIndex: index,
     });
   }
 
-  function handlePointerEnter(e, index, letterAvailability) {
-    e.preventDefault();
+  function handlePointerEnter(
+    event: React.PointerEvent,
+    index: number,
+    letterAvailability: boolean,
+  ): void {
+    event.preventDefault();
     if (!letterAvailability) {
       dispatchGameState({
         action: "removeLetter",
@@ -48,8 +65,8 @@ function Letter({
     }
   }
 
-  function handlePointerUp(e) {
-    e.preventDefault();
+  function handlePointerUp(event: React.PointerEvent): void {
+    event.preventDefault();
 
     dispatchGameState({
       action: "endWord",
@@ -60,7 +77,7 @@ function Letter({
   return (
     <div
       className={`letter ${color}`}
-      ref={myRef}
+      ref={letterRef}
       onPointerDown={(e) => handlePointerDown(e, index)}
       onPointerEnter={(e) => handlePointerEnter(e, index, letterAvailability)}
       onPointerUp={(e) => handlePointerUp(e)}
@@ -78,14 +95,20 @@ export default function Board({
   gameOver,
   dispatchGameState,
   collectedSwatchIndexes,
-}) {
+}: {
+  letters: LetterQu[];
+  colors: Color[];
+  playedIndexes: number[];
+  gameOver: boolean;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  collectedSwatchIndexes: number[];
+}): React.JSX.Element {
   const board = letters.map((letter, index) => (
     <Letter
       letter={letter}
       color={colors[index]}
       letterAvailability={gameOver ? false : !playedIndexes.includes(index)}
       index={index}
-      draggable={false}
       dispatchGameState={dispatchGameState}
       key={`${index}${letter}${colors[index]}`}
       collectedSwatchIndexes={collectedSwatchIndexes}

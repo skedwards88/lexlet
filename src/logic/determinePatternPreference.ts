@@ -1,4 +1,15 @@
-export function determinePatternPreference(patternA, patternB, patternData) {
+export type Pattern = {
+  sumSimilarityScore: number;
+  similarityScores: Record<string, number>;
+  indexes: number[][];
+  words: Set<string>;
+};
+
+export function determinePatternPreference(
+  patternA: string,
+  patternB: string,
+  patternData: Record<string, Pattern>,
+): 1 | -1 {
   // prefer lower sum similarity score
   if (
     patternData[patternA].sumSimilarityScore <

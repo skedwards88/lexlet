@@ -2,8 +2,9 @@ import {
   isYesterday,
   isToday,
 } from "@skedwards88/shared-components/src/logic/isNDaysAgo";
+import type {Stats} from "./statsInit";
 
-export function updateStatStreaks(oldStats) {
+export function updateStatStreaks(oldStats: Stats): Stats {
   const today = new Date();
   const lastDatePlayed = oldStats.lastDatePlayed;
 
@@ -24,7 +25,7 @@ export function updateStatStreaks(oldStats) {
 
   return {
     ...oldStats,
-    lastDatePlayed: today,
+    lastDatePlayed: today.toISOString(),
     streak: newStreak,
     maxStreak: newMaxStreak,
   };

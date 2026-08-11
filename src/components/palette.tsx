@@ -1,5 +1,7 @@
+import type {Color} from "../logic/gameInit";
+
 // All possible colors, sorted into a visually appealing order when displayed in an 8x11 grid
-export const palette = [
+export const palette: Color[][] = [
   ["yellow", "yellow", "red", "red", "red", "red", "red"],
   ["yellow", "red", "red"],
   ["yellow", "yellow", "red", "red", "red"],

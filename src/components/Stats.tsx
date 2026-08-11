@@ -1,17 +1,37 @@
-import React from "react";
+import type {CSSPropertiesWithVars} from "../CSSPropertiesWithVars";
+import type {Stats} from "../logic/statsInit";
+import type {DisplayState} from "./App";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
+import {pickRandomIntBetween} from "@skedwards88/word_logic";
 
-function Swatch({color, pulseOrder}) {
+function Swatch({
+  color,
+  pulseOrder,
+}: {
+  color: string;
+  pulseOrder: number;
+}): React.JSX.Element {
   return (
     <div
       className="swatch colored"
-      style={{backgroundColor: `${color}`, "--i": pulseOrder}}
+      style={
+        {
+          backgroundColor: `${color}`,
+          "--i": pulseOrder,
+        } as CSSPropertiesWithVars
+      }
     ></div>
   );
 }
 
-function StatsNumber({number, text}) {
+function StatsNumber({
+  number,
+  text,
+}: {
+  number: number;
+  text: string;
+}): React.JSX.Element {
   return (
     <div className="statsNumber">
       <div className="number">{number}</div>
@@ -20,15 +40,13 @@ function StatsNumber({number, text}) {
   );
 }
 
-function pickRandomIntBetween(int1, int2) {
-  const min = Math.min(int1, int2);
-  const max = Math.max(int1, int2);
-
-  // To make it inclusive, need max + 1
-  return Math.floor(min + Math.random() * (max + 1 - min));
-}
-
-export default function Stats({stats, setDisplay}) {
+export default function Stats({
+  stats,
+  setDisplay,
+}: {
+  stats: Stats;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const maxPulseOrder = stats.collectedSwatchIndexes.length;
 
   const swatches = palette.map((colors, index) => {
@@ -40,7 +58,7 @@ export default function Stats({stats, setDisplay}) {
         // Doing pulseOrder like this to give the possibility of having multiple swatches pulse at the same time.
         // The animation is fast enough that the pause if that happens still looks cohesive.
         pulseOrder={pickRandomIntBetween(1, maxPulseOrder)}
-        key={colors}
+        key={JSON.stringify(colors)}
       ></Swatch>
     ) : (
       <div className="swatch empty" key={index}></div>

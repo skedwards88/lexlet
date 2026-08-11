@@ -1,9 +1,11 @@
-import React from "react";
 import {calculateMixedColor} from "./Clues";
 import {palette} from "./palette";
 import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 import Share from "@skedwards88/shared-components/src/components/Share";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import type {ReducerPayload} from "../logic/gameReducer";
+import type {DisplayState} from "./App";
+import type {CSSPropertiesWithVars} from "../CSSPropertiesWithVars";
 
 export default function ControlBar({
   setDisplay,
@@ -12,8 +14,14 @@ export default function ControlBar({
   isDaily,
   dailyIsSolved,
   dispatchGameState,
-  gameState,
-}) {
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  swatchAnimationDestinationRef: React.RefObject<HTMLButtonElement | null>;
+  newPaletteIndexes: number[];
+  isDaily: boolean;
+  dailyIsSolved: boolean;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+}): React.JSX.Element {
   const {userId, sessionId} = useMetadataContext();
 
   const flashColors = newPaletteIndexes.map((newIndex) =>
@@ -38,7 +46,6 @@ export default function ControlBar({
             className="controlButton"
             onClick={() => {
               dispatchGameState({
-                ...gameState,
                 action: "newGame",
               });
             }}
@@ -80,13 +87,15 @@ export default function ControlBar({
           flashColors.length ? "controlButton swatchFlash" : "controlButton"
         }
         ref={swatchAnimationDestinationRef}
-        style={{
-          "--colorA": `${flashColors[0] || "transparent"}`,
-          "--colorB": `${flashColors[1] || "transparent"}`,
-          "--colorC": `${flashColors[2] || "transparent"}`,
-          "--colorD": `${flashColors[3] || "transparent"}`,
-          "--colorE": `${flashColors[4] || "transparent"}`,
-        }}
+        style={
+          {
+            "--colorA": `${flashColors[0] || "transparent"}`,
+            "--colorB": `${flashColors[1] || "transparent"}`,
+            "--colorC": `${flashColors[2] || "transparent"}`,
+            "--colorD": `${flashColors[3] || "transparent"}`,
+            "--colorE": `${flashColors[4] || "transparent"}`,
+          } as CSSPropertiesWithVars
+        }
         onClick={() => {
           setDisplay("stats");
         }}

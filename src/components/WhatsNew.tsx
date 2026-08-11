@@ -1,6 +1,10 @@
-import React from "react";
+import type {DisplayState} from "./App";
 
-export default function WhatsNew({setDisplay}) {
+export default function WhatsNew({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   return (
     <div className="App whatsNew">
       <h1 id="whatsNewHeader">{"What's New"}</h1>

@@ -4,8 +4,19 @@ import {palette} from "./palette";
 import {Countdown} from "./Countdown";
 import Share from "@skedwards88/shared-components/src/components/Share";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import type {ReducerPayload} from "../logic/gameReducer";
+import {type Color} from "../logic/gameInit";
+import type {CSSPropertiesWithVars} from "../CSSPropertiesWithVars";
 
-function resultToIcon({hints, clueIndexes, colors}) {
+function resultToIcon({
+  hints,
+  clueIndexes,
+  colors,
+}: {
+  hints: boolean[][];
+  clueIndexes: number[][];
+  colors: Color[];
+}): string {
   const boxTranslation = {
     red: "🟥",
     blue: "🟦",
@@ -32,21 +43,26 @@ function resultToIcon({hints, clueIndexes, colors}) {
   return result;
 }
 
-function NewSwatches({newPaletteIndexes, swatchAnimationDestinationPosition}) {
+function NewSwatches({
+  newPaletteIndexes,
+  swatchAnimationDestinationPosition,
+}: {
+  newPaletteIndexes: number[];
+  swatchAnimationDestinationPosition: [number, number] | null;
+}): React.JSX.Element {
   const swatchAnimatedRefs = [
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
+    React.useRef<HTMLDivElement | null>(null),
+    React.useRef<HTMLDivElement | null>(null),
+    React.useRef<HTMLDivElement | null>(null),
+    React.useRef<HTMLDivElement | null>(null),
+    React.useRef<HTMLDivElement | null>(null),
   ];
 
-  const [swatchAnimationDistance, setSwatchAnimationDistance] = React.useState(
-    [],
-  );
+  const [swatchAnimationDistances, setSwatchAnimationDistances] =
+    React.useState<[number, number][]>([]);
 
   React.useEffect(() => {
-    const distances = swatchAnimatedRefs.map((ref) => {
+    const distances: [number, number][] = swatchAnimatedRefs.map((ref) => {
       if (!ref.current || !swatchAnimationDestinationPosition) {
         return [0, 0];
       }
@@ -63,7 +79,7 @@ function NewSwatches({newPaletteIndexes, swatchAnimationDestinationPosition}) {
       return [distanceToMoveX, distanceToMoveY];
     });
 
-    setSwatchAnimationDistance(distances);
+    setSwatchAnimationDistances(distances);
   }, [swatchAnimationDestinationPosition]); // Can ignore the warning about needing to include refs in the dep array
 
   if (!newPaletteIndexes.length) {
@@ -81,14 +97,16 @@ function NewSwatches({newPaletteIndexes, swatchAnimationDestinationPosition}) {
             className="swatch"
             ref={swatchAnimatedRefs[index]}
             key={swatchIndex}
-            style={{
-              backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
-              ...(swatchAnimationDistance[index]?.length && {
-                "--distanceX": `${swatchAnimationDistance[index][0]}px`,
-                "--distanceY": `${swatchAnimationDistance[index][1]}px`,
-                "--delay": `${2 + index / 5}s`,
-              }),
-            }}
+            style={
+              {
+                backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+                ...(swatchAnimationDistances[index]?.length && {
+                  "--distanceX": `${swatchAnimationDistances[index][0]}px`,
+                  "--distanceY": `${swatchAnimationDistances[index][1]}px`,
+                  "--delay": `${2 + index / 5}s`,
+                }),
+              } as CSSPropertiesWithVars
+            }
           ></div>
         ))}
       </div>
@@ -105,8 +123,16 @@ export default function GameOver({
   dispatchGameState,
   seed,
   isDaily,
-  gameState,
-}) {
+}: {
+  hints: boolean[][];
+  clueIndexes: number[][];
+  colors: Color[];
+  newPaletteIndexes: number[];
+  swatchAnimationDestinationPosition: [number, number] | null;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  seed: string;
+  isDaily: boolean;
+}): React.JSX.Element {
   const {userId, sessionId} = useMetadataContext();
 
   const result = resultToIcon({
@@ -143,7 +169,6 @@ export default function GameOver({
             id="newGameButton"
             onClick={() => {
               dispatchGameState({
-                ...gameState,
                 action: "newGame",
               });
             }}

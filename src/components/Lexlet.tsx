@@ -4,21 +4,35 @@ import Clues from "./Clues";
 import CurrentWord from "./CurrentWord";
 import GameOver from "./GameOver";
 import ControlBar from "./ControlBar";
+import type {ReducerPayload} from "../logic/gameReducer";
+import type {DisplayState} from "./App";
+import type {GameState} from "../logic/gameInit";
+import type {Stats} from "../logic/statsInit";
 
 export default function Lexlet({
   setDisplay,
-  gameState, //todo don't pass full state
+  gameState,
   dispatchGameState,
   stats,
   setStats,
   isDaily,
   dailyIsSolved,
-}) {
-  const swatchAnimationDestinationRef = React.useRef(null);
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  gameState: GameState;
+  dispatchGameState: React.Dispatch<ReducerPayload>;
+  stats: Stats;
+  setStats: React.Dispatch<React.SetStateAction<Stats>>;
+  isDaily: boolean;
+  dailyIsSolved: boolean;
+}): React.JSX.Element {
+  const swatchAnimationDestinationRef = React.useRef<HTMLButtonElement | null>(
+    null,
+  );
   const [
     swatchAnimationDestinationPosition,
     setSwatchAnimationDestinationPosition,
-  ] = React.useState([]);
+  ] = React.useState<[number, number] | null>(null);
 
   const isGameOver = gameState.clueMatches.every((i) => i);
 
@@ -34,7 +48,7 @@ export default function Lexlet({
         ),
       }));
     }
-  }, [gameState.newPaletteIndexes]);
+  }, [gameState.newPaletteIndexes, setStats]);
 
   React.useEffect(() => {
     if (!isGameOver) {
@@ -80,7 +94,6 @@ export default function Lexlet({
         isDaily={isDaily}
         dailyIsSolved={dailyIsSolved}
         dispatchGameState={dispatchGameState}
-        gameState={gameState}
       ></ControlBar>
       <Clues
         clueMatches={gameState.clueMatches}
@@ -118,7 +131,6 @@ export default function Lexlet({
           dispatchGameState={dispatchGameState}
           seed={gameState.seed}
           isDaily={isDaily}
-          gameState={gameState}
         />
       ) : (
         <Board

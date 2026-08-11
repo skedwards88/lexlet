@@ -4,11 +4,13 @@ describe("determinePatternPreference", () => {
   const patternData = {
     pattern1: {
       sumSimilarityScore: 0,
+      similarityScores: {},
       indexes: [[1, 3, 5, 4]],
       words: new Set(["BOOK"]),
     },
     pattern2: {
       sumSimilarityScore: 0,
+      similarityScores: {},
       indexes: [
         [1, 3, 5, 4],
         [1, 3, 5, 2],
@@ -17,11 +19,13 @@ describe("determinePatternPreference", () => {
     },
     pattern3: {
       sumSimilarityScore: 3.5,
+      similarityScores: {},
       indexes: [[1, 3, 5, 4]],
       words: new Set(["BOOK"]),
     },
     pattern4: {
       sumSimilarityScore: 3.5,
+      similarityScores: {},
       indexes: [
         [1, 3, 5, 4],
         [1, 3, 5, 8],
@@ -30,6 +34,7 @@ describe("determinePatternPreference", () => {
     },
     pattern5: {
       sumSimilarityScore: 3.5,
+      similarityScores: {},
       indexes: [
         [1, 3, 5, 4, 7],
         [1, 3, 5, 4, 8],
@@ -38,6 +43,7 @@ describe("determinePatternPreference", () => {
     },
     pattern6: {
       sumSimilarityScore: 3.5,
+      similarityScores: {},
       indexes: [
         [1, 3, 5, 4, 7],
         [1, 3, 5, 4, 8],
@@ -82,7 +88,7 @@ describe("determinePatternPreference", () => {
   });
 
   test("can be used to sort", () => {
-    let potentialPatterns = Object.keys(patternData);
+    const potentialPatterns = Object.keys(patternData);
     potentialPatterns.sort((patternA, patternB) =>
       determinePatternPreference(patternA, patternB, patternData),
     );

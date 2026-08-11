@@ -22,6 +22,7 @@ export type ReducerPayload =
       action: "hint";
       clueIndex: number;
       boxIndex: number;
+      collectedSwatchIndexes: number[];
     }
   | {
       action: "endWord";
@@ -45,29 +46,48 @@ export function gameReducer(
       lastInvalidWord: null,
     };
   } else if (payload.action === "hint") {
+    const {clueIndex, boxIndex} = payload;
+
     // If we already gave a hint for that location, return early
-    if (currentGameState.hints[payload.clueIndex][payload.boxIndex]) {
+    if (currentGameState.hints[clueIndex][boxIndex]) {
       return currentGameState;
     }
 
     const newHints = structuredClone(currentGameState.hints);
-    newHints[payload.clueIndex][payload.boxIndex] = true;
+    newHints[clueIndex][boxIndex] = true;
 
     // If all boxes in the clue have been hinted, that clue is fully solved
-    if (newHints[payload.clueIndex].every((i) => i)) {
-      const newClueMatches = JSON.parse(
-        JSON.stringify(currentGameState.clueMatches),
-      );
-      newClueMatches[payload.clueIndex] = true;
+    const clueFullyHinted = newHints[clueIndex].every(Boolean);
 
+    if (!clueFullyHinted) {
+      return {...currentGameState, hints: newHints};
+    }
+
+    const newClueMatches = structuredClone(currentGameState.clueMatches);
+    newClueMatches[clueIndex] = true;
+
+    const gameIsComplete = newClueMatches.every(Boolean);
+
+    if (!gameIsComplete) {
       return {
         ...currentGameState,
         hints: newHints,
         clueMatches: newClueMatches,
       };
-    } else {
-      return {...currentGameState, hints: newHints};
     }
+
+    const newPaletteIndexes = getNewPaletteIndexes({
+      previouslyCollectedIndexes: payload.collectedSwatchIndexes,
+      clueIndexes: currentGameState.clueIndexes,
+      boardColors: currentGameState.colors,
+    });
+
+    return {
+      ...currentGameState,
+      hints: newHints,
+      clueMatches: newClueMatches,
+      newPaletteIndexes,
+    };
   } else if (payload.action === "addLetter") {
     if (!currentGameState.wordInProgress) {
       return currentGameState;
@@ -150,10 +170,8 @@ export function gameReducer(
     const currentColors = currentGameState.playedIndexes.map(
       (index) => currentGameState.colors[index],
     );
-    const clueMatches = [...currentGameState.clueMatches];
-    const clueIndexes = currentGameState.clueIndexes.map((indexes) => [
-      ...indexes,
-    ]);
+    const clueMatches = structuredClone(currentGameState.clueMatches);
+    const clueIndexes = structuredClone(currentGameState.clueIndexes);
     for (
       let clueIndex = 0;
       clueIndex < currentGameState.clueIndexes.length;
@@ -195,8 +213,8 @@ export function gameReducer(
       return {
         ...currentGameState,
         playedIndexes: [],
-        clueMatches: clueMatches,
-        clueIndexes: clueIndexes,
+        clueMatches,
+        clueIndexes,
         wordInProgress: false,
         lastInvalidWord: null,
       };

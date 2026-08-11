@@ -105,6 +105,7 @@ export default function Lexlet({
           clue.map((index) => gameState.letters[index]),
         )}
         dispatchGameState={dispatchGameState}
+        collectedSwatchIndexes={stats.collectedSwatchIndexes}
       ></Clues>
       <CurrentWord
         letters={gameState.playedIndexes.map(

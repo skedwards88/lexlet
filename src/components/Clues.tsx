@@ -88,6 +88,7 @@ function Clue({
   hint,
   dispatchGameState,
   clueIndex,
+  collectedSwatchIndexes,
 }: {
   clueColors: Color[];
   clueMatch: boolean;
@@ -95,6 +96,7 @@ function Clue({
   hint: boolean[];
   dispatchGameState: React.Dispatch<ReducerPayload>;
   clueIndex: number;
+  collectedSwatchIndexes: number[];
 }): React.JSX.Element {
   const clueSolved = clueMatch || hint.every((i) => i);
   const boxes = clueColors.map((color, index) => (
@@ -109,8 +111,9 @@ function Clue({
       onClick={() =>
         dispatchGameState({
           action: "hint",
-          clueIndex: clueIndex,
+          clueIndex,
           boxIndex: index,
+          collectedSwatchIndexes,
         })
       }
     >
@@ -127,12 +130,14 @@ export default function Clues({
   clueLetters,
   hints,
   dispatchGameState,
+  collectedSwatchIndexes,
 }: {
   clueColors: Color[][];
   clueMatches: boolean[];
   clueLetters: LetterQu[][];
   hints: boolean[][];
   dispatchGameState: React.Dispatch<ReducerPayload>;
+  collectedSwatchIndexes: number[];
 }): React.JSX.Element {
   const clueDisplays = clueColors.map((_, index) => (
     <Clue
@@ -143,6 +148,7 @@ export default function Clues({
       hint={hints[index]}
       dispatchGameState={dispatchGameState}
       clueIndex={index}
+      collectedSwatchIndexes={collectedSwatchIndexes}
     ></Clue>
   ));
 

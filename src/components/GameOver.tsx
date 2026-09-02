@@ -6,7 +6,6 @@ import Share from "@skedwards88/shared-components/src/components/Share";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import type {ReducerPayload} from "../logic/gameReducer";
 import {type Color} from "../logic/gameInit";
-import type {CSSPropertiesWithVars} from "../CSSPropertiesWithVars";
 
 function resultToIcon({
   hints,
@@ -61,7 +60,7 @@ function NewSwatches({
   const [swatchAnimationDistances, setSwatchAnimationDistances] =
     React.useState<[number, number][]>([]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const distances: [number, number][] = swatchAnimatedRefs.map((ref) => {
       if (!ref.current || !swatchAnimationDestinationPosition) {
         return [0, 0];
@@ -79,6 +78,7 @@ function NewSwatches({
       return [distanceToMoveX, distanceToMoveY];
     });
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- https://github.com/facebook/react/issues/34858, https://github.com/react/react/issues/34743
     setSwatchAnimationDistances(distances);
   }, [swatchAnimationDestinationPosition]); // Can ignore the warning about needing to include refs in the dep array
 
@@ -97,16 +97,14 @@ function NewSwatches({
             className="swatch"
             ref={swatchAnimatedRefs[index]}
             key={swatchIndex}
-            style={
-              {
-                backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
-                ...(swatchAnimationDistances[index]?.length && {
-                  "--distanceX": `${swatchAnimationDistances[index][0]}px`,
-                  "--distanceY": `${swatchAnimationDistances[index][1]}px`,
-                  "--delay": `${2 + index / 5}s`,
-                }),
-              } as CSSPropertiesWithVars
-            }
+            style={{
+              backgroundColor: `${calculateMixedColor(palette[swatchIndex])}`,
+              ...(swatchAnimationDistances[index]?.length && {
+                "--distanceX": `${swatchAnimationDistances[index][0]}px`,
+                "--distanceY": `${swatchAnimationDistances[index][1]}px`,
+                "--delay": `${2 + index / 5}s`,
+              }),
+            }}
           ></div>
         ))}
       </div>

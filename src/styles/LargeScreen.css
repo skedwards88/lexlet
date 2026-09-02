@@ -1,5 +1,5 @@
 /* Landscape, large screen */
-@media (orientation: landscape) and (min-width: 1000px) {
+@media (orientation: landscape) and (width >= 1000px) {
   .App {
     justify-self: center;
     max-width: 750px;

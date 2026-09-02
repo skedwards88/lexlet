@@ -181,7 +181,6 @@ hr {
   flex-direction: column;
   text-align: center;
   justify-self: center;
-  align-self: top;
   width: 70%;
   margin: 0.5vmax;
 }

@@ -144,7 +144,7 @@ export default function Clues({
       clueColors={clueColors[index]}
       clueMatch={clueMatches[index]}
       clueLetters={clueLetters[index]}
-      key={`${index}${clueColors[index]}`}
+      key={`${index}${String(clueColors[index])}`}
       hint={hints[index]}
       dispatchGameState={dispatchGameState}
       clueIndex={index}

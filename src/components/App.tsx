@@ -217,7 +217,7 @@ export default function App(): React.JSX.Element {
 
     case "heart":
       return (
-        <MoreGames
+        <MoreGames<DisplayState>
           setDisplay={setDisplay}
           games={["crossjig", "blobble", "wordfall", "gribbles", "logicGrid"]}
           repoName={"lexlet"}
@@ -226,6 +226,8 @@ export default function App(): React.JSX.Element {
           googleLink={
             "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
           }
+          userId={userId}
+          sessionId={sessionId}
         ></MoreGames>
       );
 
@@ -260,7 +262,7 @@ export default function App(): React.JSX.Element {
 
     case "installOverview":
       return (
-        <InstallOverview
+        <InstallOverview<DisplayState>
           setDisplay={setDisplay}
           googleAppLink={
             "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
@@ -275,7 +277,7 @@ export default function App(): React.JSX.Element {
 
     case "pwaInstall":
       return (
-        <PWAInstall
+        <PWAInstall<DisplayState>
           setDisplay={setDisplay}
           googleAppLink={
             "https://play.google.com/store/apps/details?id=com.palettegame.twa&hl=en_US"
